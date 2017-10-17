@@ -1,9 +1,9 @@
 import React from 'react';
 
 export default ({number}) => (
-	<div className={ 'row module module-' + number }>
-		<div className="col-xs-12">
-	  		
+	<div className="row">
+		<div className={ 'col-xs-12 module module-' + number }>
+	  		<h1>Module { number }</h1>
 		</div>
 	</div>
 )

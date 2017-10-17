@@ -4,5 +4,5 @@ import { Map, List } from "immutable";
 // 1. build initial state from an initial API call 
 // 2. when changes are made, update state and send API call as seperate things, keeping the two synchronised but not relying on replies to update
 export default Map({
-	modules: List([ 1, 2, 3, 4, 5, 6]),
+	modules: List([ 1, 2, 3, 4, 5]),
 });

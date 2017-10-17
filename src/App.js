@@ -4,7 +4,6 @@ import {
     Route,
 } from "react-router-dom";
 import Header from './components/Header';
-import Footer from './components/Footer';
 import ModulesNav from './containers/ModulesNav';
 import Module from './components/Module';
 // import axios from 'axios';
@@ -22,7 +21,6 @@ class App extends Component {
         <Route path="/module/:number" render={ ({ match }) => (
     		<Module number={ match.params.number } />
 		)} />
-        <Footer />
       </div>
      </Router>
     );

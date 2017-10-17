@@ -4,6 +4,9 @@
 /******************************************/
 /*Imported modules*/
 /******************************************/
+.module-icon {
+  height: 100px; }
+
 .module-icon-1 {
   background-color: #3D3028; }
 
@@ -11,10 +14,10 @@
   background-color: #765F4F; }
 
 .module-icon-3 {
-  background-color: #E4C7C6; }
+  background-color: #C89FA3; }
 
 .module-icon-4 {
-  background-color: #C89FA3; }
+  background-color: #E4C7C6; }
 
 .module-icon-5 {
   background-color: #FCC1B3; }
@@ -26,16 +29,16 @@
   background-color: #765F4F; }
 
 .module-icon-8 {
-  background-color: #E4C7C6; }
+  background-color: #C89FA3; }
 
 .module-icon-9 {
-  background-color: #C89FA3; }
+  background-color: #E4C7C6; }
 
 .module-icon-10 {
   background-color: #FCC1B3; }
 
 .module {
-  height: 350px; }
+  height: 400px; }
 
 .module-1 {
   background-color: #3D3028; }
@@ -44,10 +47,10 @@
   background-color: #765F4F; }
 
 .module-3 {
-  background-color: #E4C7C6; }
+  background-color: #C89FA3; }
 
 .module-4 {
-  background-color: #C89FA3; }
+  background-color: #E4C7C6; }
 
 .module-5 {
   background-color: #FCC1B3; }
@@ -59,10 +62,10 @@
   background-color: #765F4F; }
 
 .module-8 {
-  background-color: #E4C7C6; }
+  background-color: #C89FA3; }
 
 .module-9 {
-  background-color: #C89FA3; }
+  background-color: #E4C7C6; }
 
 .module-10 {
   background-color: #FCC1B3; }
