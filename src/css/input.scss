@@ -4,8 +4,15 @@
 
 $neutral: #DCDCDC;
 
+$colour1: #3D3028;
+$colour2: #765F4F;
+$colour3: #E4C7C6;
+$colour4: #C89FA3;
+$colour5: #FCC1B3;
+
 /******************************************/
 /*Imported modules*/
 /******************************************/
-
+@import 'modules/modulesNav';
+@import 'modules/module';
 @import 'modules/footer';
