@@ -6,13 +6,10 @@ import {
 import Header from './components/Header';
 import ModulesNav from './containers/ModulesNav';
 import Module from './components/Module';
-// import axios from 'axios';
 
 class App extends Component {
 
   render() {
-	// let posts = axios.get('http://developme.box/wp-json/wp/v2/posts');
-	// console.log(posts);
     return (
     <Router>
       <div className="container">

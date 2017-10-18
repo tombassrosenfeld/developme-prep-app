@@ -4,6 +4,9 @@
 /******************************************/
 /*Imported modules*/
 /******************************************/
+.home-link:hover {
+  text-decoration: none; }
+
 .module-icon {
   height: 100px; }
 
