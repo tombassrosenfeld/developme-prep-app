@@ -10,67 +10,67 @@
 .module-icon {
   height: 100px; }
 
-.module-icon-1 {
+.module-icon-0 {
   background-color: #3D3028; }
+
+.module-icon-1 {
+  background-color: #765F4F; }
 
 .module-icon-2 {
-  background-color: #765F4F; }
+  background-color: #C89FA3; }
 
 .module-icon-3 {
-  background-color: #C89FA3; }
+  background-color: #E4C7C6; }
 
 .module-icon-4 {
-  background-color: #E4C7C6; }
-
-.module-icon-5 {
   background-color: #FCC1B3; }
 
-.module-icon-6 {
+.module-icon-5 {
   background-color: #3D3028; }
 
-.module-icon-7 {
+.module-icon-6 {
   background-color: #765F4F; }
 
-.module-icon-8 {
+.module-icon-7 {
   background-color: #C89FA3; }
 
-.module-icon-9 {
+.module-icon-8 {
   background-color: #E4C7C6; }
 
-.module-icon-10 {
+.module-icon-9 {
   background-color: #FCC1B3; }
 
 .module {
   height: 400px; }
 
-.module-1 {
+.module-0 {
   background-color: #3D3028; }
+
+.module-1 {
+  background-color: #765F4F; }
 
 .module-2 {
-  background-color: #765F4F; }
+  background-color: #C89FA3; }
 
 .module-3 {
-  background-color: #C89FA3; }
+  background-color: #E4C7C6; }
 
 .module-4 {
-  background-color: #E4C7C6; }
-
-.module-5 {
   background-color: #FCC1B3; }
 
-.module-6 {
+.module-5 {
   background-color: #3D3028; }
 
-.module-7 {
+.module-6 {
   background-color: #765F4F; }
 
-.module-8 {
+.module-7 {
   background-color: #C89FA3; }
 
-.module-9 {
+.module-8 {
   background-color: #E4C7C6; }
 
-.module-10 {
+.module-9 {
   background-color: #FCC1B3; }
 
 .footer {

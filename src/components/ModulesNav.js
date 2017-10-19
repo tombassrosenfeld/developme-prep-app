@@ -3,8 +3,8 @@ import ModuleIcon from './ModuleIcon';
 
 export default ({modules}) => (
 	<div className="row">
-		{ modules.map((i) => (
-			<ModuleIcon key={ i } id={ i } />
+		{ modules.map(({id}, i) => (
+			<ModuleIcon key={ i } id={ i }  />
 		)) }
 	</div>
 )
