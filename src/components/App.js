@@ -6,7 +6,7 @@ import {
 import axios from '../data/axios';
 import Header from './Header';
 import ModulesNav from '../containers/ModulesNav';
-import Module from './Module';
+import Module from '../containers/Module';
 
 class App extends Component {
   constructor(props) {
@@ -15,6 +15,7 @@ class App extends Component {
     this.getDataFromAPI();
   }
 
+  // TODO: this shouldn't be here. But it can't be in the reducer because it's asynchronous and the reducer needs to return state immediately. Redux-thunks library would make it possible to put this in the actions creator and then only dispatch once it gets the response. 
   getDataFromAPI() {
     let apiCall = axios.get('cf_preparation'); // we need to get a .then() going on! // what about errors, when it fails?
     apiCall.then(response => {
@@ -22,24 +23,31 @@ class App extends Component {
     })
   }
 
+  loading() {
+    return (
+      <div className="container"><p>Loading</p></div>
+    )
+  }
+
+  loaded() {
+    return (
+      <div className="container">
+        <ModulesNav />
+        <Route path="/module/:id" render={ ({ match }) => (
+          <Module id={ match.params.id } />
+        )} />
+      </div>
+    )
+  }
+
   render() {
-    // consider seperating our the render function into seperate functions. loading() could return a loading sign initially then the rest of the app when the data is loaded.
     return (
     <Router>
       <div>
         <div className="container">
           <Header />
         </div>  
-        { this.props.isLoaded ?
-          <div className="container">
-            <ModulesNav />
-            <Route path="/module/:number" render={ ({ match }) => (
-        		  <Module number={ match.params.number } />
-    		    )} />
-          </div>
-          :
-          null
-        }
+        { this.props.isLoaded ? this.loaded() : this.loading() }
       </div>
     </Router>
     );

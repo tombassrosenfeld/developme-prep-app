@@ -8,6 +8,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     dispatchData: (data) => dispatch(dispatchData(data)),
-}) 
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
