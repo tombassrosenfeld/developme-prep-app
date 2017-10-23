@@ -1,34 +1,59 @@
+$iconSize: 100px;
+
 .module-icon {
-	height: 100px;
+	// width: $iconSize;
+	height: $iconSize;
+	background-color: $homeGreen;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	// margin: 20px;
+	h1 {
+		line-height: $iconSize;
+		color: #FFF;
+		font-size: $iconSize * 0.3;
+	}
 }
 
-.module-icon-0 {
-	background-color: $colour1;
+.module-icon-inner {
+	width: 80%;
+	height: 80%;
+	position: absolute;
+	top: 10%;
+	// width: $iconSize * 0.9;
+	// height: $iconSize * 0.9;
+	border: solid $iconSize * 0.05 #FFF;
+	border-radius: 3%;
+	text-align: center;
 }
-.module-icon-1 {
-	background-color: $colour2;
-}
-.module-icon-2 {
-	background-color: $colour3;
-}
-.module-icon-3 {
-	background-color: $colour4;
-}
-.module-icon-4 {
-	background-color: $colour5;
-}
-.module-icon-5 {
-	background-color: $colour1;
-}
-.module-icon-6 {
-	background-color: $colour2;
-}
-.module-icon-7 {
-	background-color: $colour3;
-}
-.module-icon-8 {
-	background-color: $colour4;
-}
-.module-icon-9 {
-	background-color: $colour5;
-}
+
+// .module-icon-0 {
+// 	background-color: $colour1;
+// }
+// .module-icon-1 {
+// 	background-color: $colour2;
+// }
+// .module-icon-2 {
+// 	background-color: $colour3;
+// }
+// .module-icon-3 {
+// 	background-color: $colour4;
+// }
+// .module-icon-4 {
+// 	background-color: $colour5;
+// }
+// .module-icon-5 {
+// 	background-color: $colour1;
+// }
+// .module-icon-6 {
+// 	background-color: $colour2;
+// }
+// .module-icon-7 {
+// 	background-color: $colour3;
+// }
+// .module-icon-8 {
+// 	background-color: $colour4;
+// }
+// .module-icon-9 {
+// 	background-color: $colour5;
+// }

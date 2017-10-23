@@ -1,8 +1,13 @@
 import { connect } from "react-redux";
 import ModulesNav from "../components/ModulesNav";
+import { onClickIcon } from "../data/actions";
 
 const mapStateToProps = state => ({
     modules: state.get("modules"),
 });
 
-export default connect(mapStateToProps)(ModulesNav);
+const mapDispatchToProps = dispatch => ({
+	onClickIcon: (id) => dispatch(onClickIcon(id)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ModulesNav);

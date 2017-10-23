@@ -1,10 +1,17 @@
 import React from 'react';
+import { Map, List } from "immutable";
 import ModuleIcon from './ModuleIcon';
 
-export default ({modules}) => (
+export default ({modules, onClickIcon}) => (
 	<div className="row">
-		{ modules.map(({id}, i) => (
-			<ModuleIcon key={ i } id={ i }  />
+		{ modules.map((module, i) => (
+			<ModuleIcon 
+				key={ i } 
+				id={ module.get('id') } 
+				title={ module.get('short_title') }
+				selected={ module.get('selected') } 
+				onClick={ () => onClickIcon(i) }
+			/>
 		)) }
 	</div>
 )

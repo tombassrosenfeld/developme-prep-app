@@ -1,34 +1,11 @@
 .module {
 	height: 400px;
+	background-color: $homeGreen;
 }
 
-.module-0 {
-	background-color: $colour1;
-}
-.module-1 {
-	background-color: $colour2;
-}
-.module-2 {
-	background-color: $colour3;
-}
-.module-3 {
-	background-color: $colour4;
-}
-.module-4 {
-	background-color: $colour5;
-}
-.module-5 {
-	background-color: $colour1;
-}
-.module-6 {
-	background-color: $colour2;
-}
-.module-7 {
-	background-color: $colour3;
-}
-.module-8 {
-	background-color: $colour4;
-}
-.module-9 {
-	background-color: $colour5;
+h3.task {
+	border-top: 2px dotted $white;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	margin-top: 0;
 }

@@ -2,76 +2,72 @@
 /*Colour names*/
 /******************************************/
 /******************************************/
+/*Generic*/
+/******************************************/
+body {
+  font-family: 'Cousine', monospace; }
+
+h1 {
+  font-family: 'Cousine', monospace; }
+  h1 small {
+    color: #404040; }
+
+p {
+  color: #404040;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5em;
+  word-wrap: break-word;
+  font-weight: 300;
+  text-align: justify; }
+
+/******************************************/
 /*Imported modules*/
 /******************************************/
+.logo {
+  width: 200px;
+  height: 36px;
+  background-image: url("../images/developme_logo.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+  position: relative;
+  top: 8px; }
+
+.header-subtitle {
+  display: inline-block; }
+
 .home-link:hover {
   text-decoration: none; }
 
 .module-icon {
-  height: 100px; }
+  height: 100px;
+  background-color: #00e6b8;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .module-icon h1 {
+    line-height: 100px;
+    color: #FFF;
+    font-size: 30px; }
 
-.module-icon-0 {
-  background-color: #3D3028; }
-
-.module-icon-1 {
-  background-color: #765F4F; }
-
-.module-icon-2 {
-  background-color: #C89FA3; }
-
-.module-icon-3 {
-  background-color: #E4C7C6; }
-
-.module-icon-4 {
-  background-color: #FCC1B3; }
-
-.module-icon-5 {
-  background-color: #3D3028; }
-
-.module-icon-6 {
-  background-color: #765F4F; }
-
-.module-icon-7 {
-  background-color: #C89FA3; }
-
-.module-icon-8 {
-  background-color: #E4C7C6; }
-
-.module-icon-9 {
-  background-color: #FCC1B3; }
+.module-icon-inner {
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  top: 10%;
+  border: solid 5px #FFF;
+  border-radius: 3%;
+  text-align: center; }
 
 .module {
-  height: 400px; }
+  height: 400px;
+  background-color: #00e6b8; }
 
-.module-0 {
-  background-color: #3D3028; }
-
-.module-1 {
-  background-color: #765F4F; }
-
-.module-2 {
-  background-color: #C89FA3; }
-
-.module-3 {
-  background-color: #E4C7C6; }
-
-.module-4 {
-  background-color: #FCC1B3; }
-
-.module-5 {
-  background-color: #3D3028; }
-
-.module-6 {
-  background-color: #765F4F; }
-
-.module-7 {
-  background-color: #C89FA3; }
-
-.module-8 {
-  background-color: #E4C7C6; }
-
-.module-9 {
-  background-color: #FCC1B3; }
+h3.task {
+  border-top: 2px dotted #FFF;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  margin-top: 0; }
 
 .footer {
   background-color: #DCDCDC; }
