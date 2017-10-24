@@ -1,5 +1,4 @@
 import React from 'react';
-import { Map, List } from "immutable";
 import ModuleIcon from './ModuleIcon';
 
 export default ({modules, onClickIcon}) => (

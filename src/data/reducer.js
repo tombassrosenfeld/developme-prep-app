@@ -1,5 +1,4 @@
 import initial from "./initial";
-import { Map, List } from "immutable";
 import { formatJSON } from '../utilities/utilities';
 import { DISPATCH_DATA } from "./actions";
 import { ONCLICK_ICON } from "./actions";
@@ -10,7 +9,6 @@ const processData = (state, { data }) => {
 }
 
 const onClickIcon = (state, { id }) => {
-	console.log(id);
 	return state.set('modules', state.get('modules').map((module) => module.set('selected', false)))
 				.setIn(['modules', id, 'selected'], true);
 }

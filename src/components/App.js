@@ -7,6 +7,7 @@ import axios from '../data/axios';
 import Header from './Header';
 import ModulesNav from '../containers/ModulesNav';
 import Module from '../containers/Module';
+import Task from '../containers/Task';
 
 class App extends Component {
   constructor(props) {
@@ -15,9 +16,9 @@ class App extends Component {
     this.getDataFromAPI();
   }
 
-  // TODO: this shouldn't be here. But it can't be in the reducer because it's asynchronous and the reducer needs to return state immediately. Redux-thunks library would make it possible to put this in the actions creator and then only dispatch once it gets the response. 
+  // TODO: Thunks!
   getDataFromAPI() {
-    let apiCall = axios.get('cf_preparation'); // we need to get a .then() going on! // what about errors, when it fails?
+    let apiCall = axios.get('cf_preparation'); // TODO error handling
     apiCall.then(response => {
       this.props.dispatchData(response.data);
     })
@@ -33,8 +34,11 @@ class App extends Component {
     return (
       <div className="container">
         <ModulesNav />
-        <Route path="/module/:id" render={ ({ match }) => (
+        <Route path="/modules/:id" render={ ({ match }) => (
           <Module id={ match.params.id } />
+        )} />
+        <Route path="/tasks/:module/:id" render={ ({ match }) => (
+          <Task id={ match.params.id } moduleID={ match.params.module }/>
         )} />
       </div>
     )

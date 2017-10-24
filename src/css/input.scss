@@ -4,13 +4,7 @@
 
 $homeGreen: #00e6b8;
 $white: #FFF;
-$neutral: #DCDCDC;
-
-$colour1: #3D3028;
-$colour2: #765F4F;
-$colour3: #C89FA3;
-$colour4: #E4C7C6;
-$colour5: #FCC1B3;
+$black: #404040;
 
 /******************************************/
 /*Generic*/
@@ -20,15 +14,22 @@ body {
 	font-family: 'Cousine', monospace;
 }
 
+a {
+	color: #404040;
+}
+a, a:hover, a:active {
+	text-decoration: none;
+}
+
 h1 {
 	font-family: 'Cousine', monospace;
 	small {
-		color: #404040;	
+		color: $black;	
 	}
 }
 
 p {
-	color: #404040;
+	color: $black;
     font-family: 'Roboto', sans-serif;
     font-size: 1.5em;
     word-wrap: break-word;
@@ -36,10 +37,10 @@ p {
     text-align: justify;
 }
 
+
 /******************************************/
 /*Imported modules*/
 /******************************************/
 @import 'modules/header';
 @import 'modules/modulesNav';
 @import 'modules/module';
-@import 'modules/footer';
