@@ -6,8 +6,17 @@ import { Provider } from "react-redux";
 import reducer from "./data/reducer";
 import './css/output.css';
 
-// create a store using our reducer
-const store = createStore(reducer);
+// import necessary to make asynchronous actions using thunks, for API calls
+import { applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import { getModules } from "./data/actions";
+
+const store = createStore(
+  reducer,
+  applyMiddleware(thunk)
+);
+// Thunks
+store.dispatch(getModules());
 
 ReactDOM.render(
 	<Provider store={ store }>

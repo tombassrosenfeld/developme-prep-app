@@ -3,7 +3,6 @@ import {
     BrowserRouter as Router,
     Route,
 } from "react-router-dom";
-import axios from '../data/axios';
 import Header from './Header';
 import ModulesNav from '../containers/ModulesNav';
 import Module from '../containers/Module';
@@ -13,15 +12,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     // run function to send api call
-    this.getDataFromAPI();
-  }
-
-  // TODO: Thunks!
-  getDataFromAPI() {
-    let apiCall = axios.get('cf_preparation'); // TODO error handling
-    apiCall.then(response => {
-      this.props.dispatchData(response.data);
-    })
+    this.props.getModules();
   }
 
   loading() {
