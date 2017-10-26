@@ -1,11 +1,9 @@
 import initial from "./initial";
-import { formatJSON } from '../utilities/utilities';
-import { DISPATCH_DATA } from "./actions";
+import { MODULES_DATA } from "./actions";
 import { ONCLICK_ICON } from "./actions";
 
-const processData = (state, { data }) => {
-	// use 'utilities/utilities.js' to format the API response
-	return state.set('modules', formatJSON(data)).set('isLoaded', true);
+const modules_data = (state, { data }) => {
+	return state.set('modules', data).set('isLoaded', true);
 }
 
 const onClickIcon = (state, { id }) => {
@@ -15,7 +13,7 @@ const onClickIcon = (state, { id }) => {
 
 export default (state = initial, action) => {
 	switch (action.type) {
-		case DISPATCH_DATA: return processData(state, action);
+		case MODULES_DATA: return modules_data(state, action);
 		case ONCLICK_ICON: return onClickIcon(state, action);
 		default: return state;
 	}
