@@ -2,6 +2,7 @@ import axios from '../data/axios';
 import { formatJSON } from '../utilities/utilities';
 
 // the reducer will need these
+export const AUTHENTICATE = Symbol("AUTHENTICATE");
 export const MODULES_DATA = Symbol("MODULES_DATA");
 export const REQUEST_DATA_FROM_API = Symbol("REQUEST_DATA_FROM_API");
 export const UPDATE_ISLOADED = Symbol("UPDATE_ISLOADED");
@@ -14,10 +15,24 @@ const modulesData = (data) => ({
 });
 
 export const getModules = () => dispatch => {
-    let apiCall = axios.get('cf_preparation'); // TODO error handling
-    return apiCall.then(response => {
+    // TODO error handling
+    return axios.get('cf_preparation').then(response => {
       return dispatch(modulesData(response.data));
     })
+};
+
+export const authenticate = (username, password) => dispatch => {
+	axios.post('http://developme.box/wp-json/jwt-auth/v1/token', {
+		username: username,
+		password: password,
+	})
+	.then(function(response){
+		console.log(response);
+		return dispatch({type: AUTHENTICATE, authKey: response.data.token});
+	})
+	.catch(function(error){
+		console.log('unable to authenticate user'); // TODO: this should be a login error
+	})
 };
 
 export const onClickIcon = (id) => ({

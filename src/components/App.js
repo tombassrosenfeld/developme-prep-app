@@ -7,12 +7,14 @@ import Header from './Header';
 import ModulesNav from '../containers/ModulesNav';
 import Module from '../containers/Module';
 import Task from '../containers/Task';
+import Login from '../containers/Login';
 
 class App extends Component {
   constructor(props) {
     super(props);
     // run function to send api call
     this.props.getModules();
+    // this.props.authenticate('developme_admin', 'password');
   }
 
   loading() {
@@ -24,6 +26,7 @@ class App extends Component {
   loaded() {
     return (
       <div className="container">
+        <Route path="/login/" component={ Login } />
         <ModulesNav />
         <Route path="/modules/:id" render={ ({ match }) => (
           <Module id={ match.params.id } />

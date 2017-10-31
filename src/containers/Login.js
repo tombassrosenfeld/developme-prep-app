@@ -1,15 +1,13 @@
 import { connect } from "react-redux";
-import App from "../components/App";
-import { getModules } from "../data/actions";
+import Login from "../components/Login";
 import { authenticate } from "../data/actions";
 
 const mapStateToProps = state => ({
-    isLoaded: state.get("isLoaded"),
+   
 });
 
 const mapDispatchToProps = dispatch => ({
-    getModules: () => getModules(),
     authenticate: (username, password) => dispatch(authenticate(username, password)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
