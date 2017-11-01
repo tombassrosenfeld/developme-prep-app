@@ -1,5 +1,6 @@
 import initial from "./initial";
 import { AUTHENTICATE } from "./actions";
+import { LOGOUT } from "./actions";
 import { ONFORMELEMENTCHANGE } from "./actions";
 import { MODULES_DATA } from "./actions";
 import { ONCLICK_ICON } from "./actions";
@@ -14,8 +15,13 @@ const onClickIcon = (state, { id }) => {
 }
 
 const authenticate = (state, { authKey }) => {
-	return state.setIn(['login','loggedIn'], true)
+	return state.set('loggedIn', true)
 				.setIn(['login', 'token'], authKey);
+}
+
+const logOut = (state) => {
+	console.log('loggingOut');
+	return state.set('loggedIn', false);
 }
 
 const updateLogin = (state, { id, val }) => {
@@ -25,6 +31,7 @@ const updateLogin = (state, { id, val }) => {
 export default (state = initial, action) => {
 	switch (action.type) {
 		case AUTHENTICATE: return authenticate(state, action);
+		case LOGOUT: return logOut(state);
 		case ONFORMELEMENTCHANGE: return updateLogin(state, action);
 		case MODULES_DATA: return modules_data(state, action);
 		case ONCLICK_ICON: return onClickIcon(state, action);

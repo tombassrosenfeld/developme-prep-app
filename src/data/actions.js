@@ -3,6 +3,7 @@ import { formatJSON } from '../utilities/utilities';
 
 // the reducer will need these
 export const AUTHENTICATE = Symbol("AUTHENTICATE");
+export const LOGOUT = Symbol("LOGOUT");
 export const ONFORMELEMENTCHANGE = Symbol("ONFORMELEMENTCHANGE");
 export const MODULES_DATA = Symbol("MODULES_DATA");
 export const REQUEST_DATA_FROM_API = Symbol("REQUEST_DATA_FROM_API");
@@ -34,6 +35,10 @@ export const authenticate = (username, password) => dispatch => {
 		console.log('unable to authenticate user'); // TODO: this should be a login error
 	})
 };
+
+export const logOut = () => ({
+	type: LOGOUT,
+})
 
 export const onFormElementChange = (id, val) => ({
 	type: ONFORMELEMENTCHANGE,
