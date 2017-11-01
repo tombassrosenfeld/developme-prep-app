@@ -5,5 +5,7 @@ export default Map({
 	loggedIn: false,
 	login: Map({ username: '', password: '', token: null}),
 	modules: List([1,2,3,4,5]),
+	user: List([]),
+	errors: null,
 });
 

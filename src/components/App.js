@@ -10,16 +10,14 @@ import Task from '../containers/Task';
 import Login from '../containers/Login';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.props.getModules();
-  }
 
   loading() {
-    // TODO: when something is loading there should be a doodah
+    return (
+      <p>loading</p> // TODO: make this better
+    )
   }
 
-  loggedIn() {
+  loaded() {
     return (
       <div className="container">
         <ModulesNav />
@@ -39,7 +37,8 @@ class App extends Component {
       <div>
         <div className="container">
           <Header />
-          { this.props.loggedIn ? this.loggedIn() : <Login /> }
+          { this.props.loggedIn ? null : <Login /> }
+          { this.props.loggedIn ? this.props.isLoaded? this.loaded() : this.loading() : null }
         </div>  
       </div>
     </Router>
