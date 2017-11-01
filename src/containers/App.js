@@ -4,6 +4,7 @@ import { getModules } from "../data/actions";
 import { authenticate } from "../data/actions";
 
 const mapStateToProps = state => ({
+	loggedIn: state.get('loggedIn'),
     isLoaded: state.get("isLoaded"),
 });
 

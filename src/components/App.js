@@ -3,7 +3,7 @@ import {
     BrowserRouter as Router,
     Route,
 } from "react-router-dom";
-import Header from './Header';
+import Header from '../containers/Header';
 import ModulesNav from '../containers/ModulesNav';
 import Module from '../containers/Module';
 import Task from '../containers/Task';
@@ -16,15 +16,12 @@ class App extends Component {
   }
 
   loading() {
-    return (
-      <div className="container"><p>Loading</p></div>
-    )
+    // TODO: when something is loading there should be a doodah
   }
 
-  loaded() {
+  loggedIn() {
     return (
       <div className="container">
-        <Route path="/login/" component={ Login } />
         <ModulesNav />
         <Route path="/modules/:id" render={ ({ match }) => (
           <Module id={ match.params.id } />
@@ -42,8 +39,8 @@ class App extends Component {
       <div>
         <div className="container">
           <Header />
+          { this.props.loggedIn ? this.loggedIn() : <Login /> }
         </div>  
-        { this.props.isLoaded ? this.loaded() : this.loading() }
       </div>
     </Router>
     );
