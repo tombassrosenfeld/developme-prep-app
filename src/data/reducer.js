@@ -2,10 +2,10 @@ import initial from "./initial";
 import { AUTHENTICATE } from "./actions";
 import { LOGOUT } from "./actions";
 import { ONFORMELEMENTCHANGE } from "./actions";
-import { MODULES_DATA } from "./actions";
+import { API_DATA } from "./actions";
 import { ONCLICK_ICON } from "./actions";
 
-const modules_data = (state, { data }) => {
+const apiData = (state, { data }) => {
 	return state.set('modules', data).set('isLoaded', true);
 }
 
@@ -33,7 +33,7 @@ export default (state = initial, action) => {
 		case AUTHENTICATE: return authenticate(state, action);
 		case LOGOUT: return logOut(state);
 		case ONFORMELEMENTCHANGE: return updateLogin(state, action);
-		case MODULES_DATA: return modules_data(state, action);
+		case API_DATA: return apiData(state, action);
 		case ONCLICK_ICON: return onClickIcon(state, action);
 		default: return state;
 	}

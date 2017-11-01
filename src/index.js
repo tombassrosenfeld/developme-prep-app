@@ -9,14 +9,11 @@ import './css/output.css';
 // import necessary to make asynchronous actions using thunks, for API calls
 import { applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { getModules } from "./data/actions";
 
 const store = createStore(
   reducer,
   applyMiddleware(thunk)
 );
-// Thunks
-store.dispatch(getModules());
 
 ReactDOM.render(
 	<Provider store={ store }>
