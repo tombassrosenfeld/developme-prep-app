@@ -12,9 +12,7 @@ import Login from '../containers/Login';
 class App extends Component {
   constructor(props) {
     super(props);
-    // run function to send api call
     this.props.getModules();
-    // this.props.authenticate('developme_admin', 'password');
   }
 
   loading() {

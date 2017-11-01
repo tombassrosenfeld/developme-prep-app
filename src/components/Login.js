@@ -27,7 +27,7 @@ export default ({login, authenticate, onFormElementChange}) => (
 			</div>
 		</div>
 		<div className="col-sm-2">
-			<button	onClick={ () => authenticate() } className="btn btn-default">Submit</button>
+			<button	onClick={ () => authenticate(login.get('username'), login.get('password')) } className="btn btn-default">Submit</button>
 		</div>
 	</div>
 )

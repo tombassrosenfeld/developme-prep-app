@@ -19,8 +19,6 @@ const authenticate = (state, { authKey }) => {
 }
 
 const updateLogin = (state, { id, val }) => {
-	console.log(id);
-	console.log(val);
 	return state.setIn(['login', id], val);
 }
 

@@ -28,7 +28,6 @@ export const authenticate = (username, password) => dispatch => {
 		password: password,
 	})
 	.then(function(response){
-		console.log(response);
 		return dispatch({type: AUTHENTICATE, authKey: response.data.token});
 	})
 	.catch(function(error){
