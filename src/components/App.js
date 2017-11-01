@@ -13,9 +13,8 @@ class App extends Component {
 
   loading() {
     return (
-      <p>loading</p>
+      <p>loading</p> // TODO: make this better
     )
-    // TODO: when something is loading there should be a doodah
   }
 
   loaded() {

@@ -3,8 +3,8 @@ import { Map, List } from "immutable";
 export const preventDefault =  (e) => e.preventDefault();
 
 // rewrite this function if the API changes 
-export const formatJSON = (jsonFromAPI) => {
-	let formattedJSON = jsonFromAPI.map((item, i) => Map({
+export const modulesDataToJSON = (modulesData) => {
+	let formattedJSON = modulesData.map((item, i) => Map({
 									id: i, 
 									title: item.title.rendered, 
 									short_title: item.acfs.short_title,
@@ -13,4 +13,12 @@ export const formatJSON = (jsonFromAPI) => {
 									selected: 'selected',
 								}));
 	return List(formattedJSON);
+}
+
+export const userDataToJSON = (userData, userName) => {
+	// find the user correct user by checking who we have in the state
+	let user = userData.filter((user) => {
+		return user.name === userName;
+	}, '')[0];
+	return user;
 }

@@ -2,11 +2,16 @@ import initial from "./initial";
 import { AUTHENTICATE } from "./actions";
 import { LOGOUT } from "./actions";
 import { ONFORMELEMENTCHANGE } from "./actions";
-import { API_DATA } from "./actions";
+import { MODULES_DATA } from "./actions";
+import { USER_DATA } from "./actions";
 import { ONCLICK_ICON } from "./actions";
 
-const apiData = (state, { data }) => {
+const modulesData = (state, { data }) => {
 	return state.set('modules', data).set('isLoaded', true);
+}
+
+const userData = (state, { data }) => {
+	return state.set('user', data); //TODO: this could be an issue as is isLoaded sets to true on modules Data. Want to set is loaded to true when both of them return.
 }
 
 const onClickIcon = (state, { id }) => {
@@ -33,7 +38,8 @@ export default (state = initial, action) => {
 		case AUTHENTICATE: return authenticate(state, action);
 		case LOGOUT: return logOut(state);
 		case ONFORMELEMENTCHANGE: return updateLogin(state, action);
-		case API_DATA: return apiData(state, action);
+		case MODULES_DATA: return modulesData(state, action);
+		case USER_DATA: return userData(state, action);
 		case ONCLICK_ICON: return onClickIcon(state, action);
 		default: return state;
 	}
