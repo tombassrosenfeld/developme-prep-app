@@ -1,6 +1,5 @@
 import { connect } from "react-redux";
 import App from "../components/App";
-import { getModules } from "../data/actions";
 import { authenticate } from "../data/actions";
 
 const mapStateToProps = state => ({
@@ -9,7 +8,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    getModules: () => getModules(),
     authenticate: (username, password) => dispatch(authenticate(username, password)),
 });
 
