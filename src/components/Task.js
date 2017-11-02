@@ -11,6 +11,7 @@ export default ({id, moduleID, modules}) => (
 	  		</a>
 	  		
 		</div>
+
 		<div className={ 'col-xs-12 col-md-6 tasks' }>
 	  		{ modules.getIn([moduleID, 'tasks']).map( ({task}, i) => (
 	  			<Link key={ i } to={ '/tasks/' + moduleID + '/' + i }>
