@@ -19,7 +19,7 @@ class App extends Component {
 
   loaded() {
     return (
-      <div className="container">
+      <div>
         <ModulesNav />
         <Route path="/modules/:id" render={ ({ match }) => (
           <Module id={ match.params.id } />

@@ -29,6 +29,7 @@ export const authenticate = (username, password) => dispatch => {
 // ...Fetches the user and modules data from the API, formats then dispatches to the reducer
 const getData = (token, username) => dispatch => {
 	getModules().then(function(response) {
+		console.log(response);
 	    dispatch(modulesData(response.data));
 	}).catch(function(error) {
 		console.log('error fetching module data'); // TODO: this should be a login error
@@ -61,6 +62,12 @@ function getUserData(token) {
 	return axios.get('users', {
     	headers: {'Authorization': token}
     })
+}
+
+function getUser(id, token) {
+	return axios.get('users/' + id, {
+		headers: {'Authorization': token}	
+	})
 }
 
 
