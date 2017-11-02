@@ -16,9 +16,11 @@ export const modulesDataToJSON = (modulesData) => {
 }
 
 export const userDataToJSON = (userData, userName) => {
-	// find the user correct user by checking who we have in the state
+	// find the correct user by checking who we have in the state
 	let user = userData.filter((user) => {
 		return user.name === userName;
 	}, '')[0];
+
+	console.log(user);
 	return user;
 }
