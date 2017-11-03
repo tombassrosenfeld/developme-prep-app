@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
+import TaskList from './TaskList';
+
 export default ({id, moduleID, modules}) => (
 	<div className={'row module'}>
 		<div className={ 'col-xs-12 col-md-6' }>
@@ -11,12 +13,8 @@ export default ({id, moduleID, modules}) => (
 	  		</a>
 	  		
 		</div>
-		<div className={ 'col-xs-12 col-md-6 tasks' }>
-	  		{ modules.getIn([moduleID, 'tasks']).map( ({task}, i) => (
-	  			<Link key={ i } to={ '/tasks/' + moduleID + '/' + i }>
-	  				<h3 className="task" key={ i }>{ task }</h3>
-	  			</Link>
-	  		))}
-		</div>
+
+		<TaskList id={ moduleID } modules={modules} />
+
 	</div>
 )
