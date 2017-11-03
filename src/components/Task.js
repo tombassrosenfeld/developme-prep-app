@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from "react-router-dom";
 
 import TaskList from './TaskList';
 
@@ -11,10 +10,8 @@ export default ({id, moduleID, modules}) => (
 	  		<a href={ 'https://' + modules.getIn([moduleID, 'tasks'])[id].link } target="_blank" >
 	  			<p>{ modules.getIn([moduleID, 'tasks'])[id].link }</p>
 	  		</a>
-	  		
 		</div>
 
 		<TaskList id={ moduleID } modules={modules} />
-
 	</div>
 )

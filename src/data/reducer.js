@@ -1,9 +1,9 @@
 import initial from "./initial";
-import { AUTHENTICATE } from "./actions";
+import { AUTHENTICATE } from "../data/actions_API";
+import { MODULES_DATA } from "../data/actions_API";
+import { USER_DATA } from "../data/actions_API";
 import { LOGOUT } from "./actions";
 import { ONFORMELEMENTCHANGE } from "./actions";
-import { MODULES_DATA } from "./actions";
-import { USER_DATA } from "./actions";
 import { ONCLICK_ICON } from "./actions";
 
 const modulesData = (state, { data }) => {
