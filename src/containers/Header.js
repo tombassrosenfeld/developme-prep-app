@@ -4,7 +4,7 @@ import { logOut } from "../data/actions";
 
 const mapStateToProps = state => ({
 	loggedIn: state.get('loggedIn'),
-	login: state.get('login'),
+	user: state.get('user'),
 });
 
 const mapDispatchToProps = dispatch => ({

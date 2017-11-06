@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import App from "../components/App";
-import { authenticate } from "../data/actions";
+import { authenticate } from "../data/actions_API";
 
 const mapStateToProps = state => ({
 	loggedIn: state.get('loggedIn'),

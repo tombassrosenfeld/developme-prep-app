@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
 import Login from "../components/Login";
-import { authenticate } from "../data/actions";
+import { authenticate } from "../data/actions_API";
 import { onFormElementChange } from "../data/actions";
 
 const mapStateToProps = state => ({
-   login: state.get('login'),
+   user: state.get('user'),
 });
 
 const mapDispatchToProps = dispatch => ({

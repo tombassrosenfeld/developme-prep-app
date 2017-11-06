@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ({login, authenticate, onFormElementChange}) => (
+export default ({user, authenticate, onFormElementChange}) => (
 	<div className="row">
 		<form>
 			<div className="col-sm-5">	
@@ -10,7 +10,7 @@ export default ({login, authenticate, onFormElementChange}) => (
 				    	className="form-control" 
 				    	id="username" 
 				    	placeholder="username" 
-				    	value={ login.get('username') }
+				    	value={ user.get('username') }
 				    	onChange={ (e) => onFormElementChange(e.target.id, e.target.value) }
 				    />
 				</div>
@@ -22,14 +22,14 @@ export default ({login, authenticate, onFormElementChange}) => (
 				    	className="form-control" 
 				    	id="password" 
 				    	placeholder="password" 
-				    	value={ login.get('password') }
+				    	value={ user.get('password') }
 				    	onChange={ (e) => onFormElementChange(e.target.id, e.target.value) }
 				    />
 				</div>
 			</div>
 		</form>
 		<div className="col-sm-1 col-sm-offset-1">
-			<button	onClick={ () => authenticate(login.get('username'), login.get('password')) } className="btn btn-default">Submit</button>
+			<button	onClick={ () => authenticate(user.get('username'), user.get('password')) } className="btn btn-default">Submit</button>
 		</div>
 	</div>
 )

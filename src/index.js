@@ -10,7 +10,7 @@ import './css/output.css';
 import { applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
-const store = createStore(
+export const store = createStore(
   reducer,
   applyMiddleware(thunk)
 );
