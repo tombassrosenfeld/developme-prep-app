@@ -71,7 +71,7 @@ p {
   .module-icon:hover .module-icon-inner {
     background-color: #FFF; }
 
-.module {
+.app {
   min-height: 400px;
   background-color: #00e6b8;
   padding-bottom: 25px; }
