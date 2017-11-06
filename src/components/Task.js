@@ -2,7 +2,7 @@ import React from 'react';
 
 import TaskList from './TaskList';
 
-export default ({id, moduleID, modules}) => (
+export default ({ id, moduleID, modules}) => (
 	<div className={'row module'}>
 		<div className={ 'col-xs-12 col-md-6' }>
 	  		<h1>Module { +moduleID + 1} <small>{ modules.getIn([moduleID, 'title']) }</small></h1>
@@ -11,7 +11,5 @@ export default ({id, moduleID, modules}) => (
 	  			<p>{ modules.getIn([moduleID, 'tasks'])[id].link }</p>
 	  		</a>
 		</div>
-
-		<TaskList id={ moduleID } modules={modules} />
 	</div>
 )

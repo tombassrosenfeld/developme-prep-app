@@ -8,6 +8,5 @@ export default ({id, modules}) => (
 	  		<h1>Module { +id + 1} <small>{ modules.getIn([id, 'title']) }</small></h1>
 	  		<p>{ modules.getIn([id, 'description']) }</p>
 		</div>
-		<TaskList id={ id } modules={modules} />
 	</div>
 )
