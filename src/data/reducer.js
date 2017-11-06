@@ -1,4 +1,5 @@
 import initial from "./initial";
+
 import { ONFORMELEMENTCHANGE } from "./actions";
 import { UPDATE_TOKEN } from "../data/actions_API";
 import { USER_DATA } from "../data/actions_API";
@@ -26,7 +27,7 @@ const updateUserID = (state, { data }) => {
 }
 
 const updateUserProgress = (state, { data }) => {
-	return state.set('userProgress');
+	return state.setIn(['userProgress'], data);
 }
 
 const modulesData = (state, { data }) => {

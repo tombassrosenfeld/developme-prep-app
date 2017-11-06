@@ -80,16 +80,26 @@ p {
   padding-top: 47px; }
 
 .task {
-  border-top: 2px dotted #FFF;
-  padding-bottom: 10px;
-  padding-top: 10px; }
+  border-top: 2px dotted #FFF; }
 
-.task:hover {
+.task-title {
+  margin-top: 0px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  width: 80%; }
+
+.task-title:hover {
   cursor: pointer;
   color: #FFF; }
 
-.task::after {
-  content: '+';
-  float: right; }
+.marker {
+  border-radius: 50%;
+  border: 1px solid #FFF;
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  float: right;
+  cursor: pointer;
+  margin-top: 8px; }
 
 /*# sourceMappingURL=output.css.map */

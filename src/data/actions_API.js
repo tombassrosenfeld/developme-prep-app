@@ -19,6 +19,19 @@ export const authenticate = (username, password) => dispatch => {
 		console.log('unable to authenticate user'); // TODO: this should be a login error
 	})
 };
+export const updateUserProgress = (id) => dispatch => {
+	let state = store.getState();
+	let userProgress = state.get('userProgress');
+	let taskIndex = userProgress.indexOf(id);
+	if (taskIndex < 0) {
+		userProgress.push(id);
+	} else {
+		userProgress.pop(taskIndex);
+	}
+	// send to state
+	dispatch(userProgress(userProgress)); // why is this not working???? 
+	// send to api...
+}
 
 // ...Fetches the user and modules data from the API, formats then dispatches to the reducer
 const getData = (token) => dispatch => {
