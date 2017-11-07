@@ -5,9 +5,9 @@ import { store } from '../index.js';
 export const UPDATE_TOKEN = Symbol("UPDATE_TOKEN");
 export const MODULES_DATA = Symbol("MODULES_DATA");
 export const USER_DATA = Symbol("USER_DATA");
-export const USER_PROGRESS_FROMAPI = Symbol("USER_PROGRESS_FROMAPI");
+export const USER_PROGRESS = Symbol("USER_PROGRESS");
 
-// when user submits login details, authenticate is called ...
+// when user submits login details, calls authenticate()
 export const authenticate = (username, password) => dispatch => {
 	getToken(username, password).then(function(response){
 		// dispatches key to state
@@ -20,26 +20,25 @@ export const authenticate = (username, password) => dispatch => {
 	})
 };
 
-// ...Fetches the user and modules data from the API, formats then dispatches to the reducer
+// if authentication is sucessful, calls getdata()
 const getData = (token) => dispatch => {
-
+	// gets data for all users TODO: is there a better endpoint for this?
 	getUserData(token).then(function(response) {
-		// dispatch the result
 		dispatch(userData(response.data));
 		//get user ID from the state
 		let userID = store.getState().getIn(['user', 'id']); 
 
-		// get progress data of the current user
-		getUserProgress(token, userID).then(function(response){
-			dispatch(userProgressFromApi(response.data));
+		// get progress data for the current user
+		getUserProgress(token, userID).then(function(response) {
+			dispatch(userProgress(response.data));
 		}).catch(function(error){
 			console.log("error fetching user progress data");
 		})
-
 	}).catch(function(error) {
 		console.log('error fetching user data'); // TODO: this should be a login error
 	})
 
+	// gets modules and tasks
 	getModules().then(function(response) {
 	    dispatch(modulesData(response.data));
 	}).catch(function(error) {
@@ -47,26 +46,48 @@ const getData = (token) => dispatch => {
 	})
 };
 
+// when user clicks on markers
+export const onClickUserProgress = (id) => dispatch => {
+	//get user progress from the state
+	let userProgressArr = store.getState().get('userProgress').toArray();
+	var savedProgressArr = store.getState().get('userProgress').toArray();
+
+	if (!userProgressArr.includes(id)) {
+		userProgressArr.push(id);
+	} else {
+		let index = userProgressArr.indexOf(id);
+		userProgressArr.splice(index, 1);
+	}
+	dispatch(userProgress(userProgressArr));
+	let userID = store.getState().getIn(['user', 'id']);
+	let token = store.getState().getIn(['user', 'token']);
+	
+	postUserProgress(userID, token, userProgressArr).catch(function(error){
+		// if failed to update, roll back to userProgressArr
+		console.log('error saving your progress');
+		return dispatch(userProgress(savedProgressArr));
+	})
+}
+
 const updateToken = (token) => ({
 	type: UPDATE_TOKEN, 
 	token,
 })
-
-// formatting of responses
-const modulesData = (data) => ({
-    type: MODULES_DATA,
-    data: modulesDataToJSON(data),
-});
 
 const userData = (data) => ({
 	type: USER_DATA,
 	data,
 })
 
-const userProgressFromApi = (data) => ({
-	type: USER_PROGRESS_FROMAPI,
+const userProgress = (data) => ({
+	type: USER_PROGRESS,
 	data,
 })
+
+const modulesData = (data) => ({
+    type: MODULES_DATA,
+    data: modulesDataToJSON(data),
+});
 
 // API calls
 function getToken(username, password) {
@@ -81,11 +102,20 @@ function getUserData(token) {
     	headers: {'Authorization': token}
     })
 }
+
 function getUserProgress(token, userID) {
 	return axios.get('http://developme.box/wp-json/cf/prep/' + userID + '/progress', {
     	headers: {'Authorization': token},
     })
 }
+
+function postUserProgress(userID, token, data) {
+	return axios.post('http://developme.box/wp-json/cf/prep/' + userID + '/progress', {
+    	headers: {'Authorization': token},
+    	data: data,
+    })
+}
+
 function getModules() {
 	return axios.get('cf_preparation');
 } 
