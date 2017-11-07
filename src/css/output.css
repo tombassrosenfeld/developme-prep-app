@@ -29,6 +29,9 @@ p {
 /******************************************/
 /*Imported modules*/
 /******************************************/
+.page-header {
+  margin-top: 10px; }
+
 .logo {
   width: 200px;
   height: 36px;
@@ -37,14 +40,27 @@ p {
   background-repeat: no-repeat;
   display: inline-block;
   position: relative;
-  top: 8px; }
+  top: 8px;
+  left: 3px; }
+
+.btn-logout {
+  position: relative;
+  top: 6px;
+  background-color: #00e6b8;
+  color: #FFF;
+  border: none; }
 
 .header-subtitle {
-  display: inline-block; }
+  display: inline-block;
+  margin-top: 10px; }
 
 .home-link:hover {
   text-decoration: none; }
 
+/* Small Devices, Tablets */
+@media only screen and (max-width: 768px) {
+  .header-loggedIn {
+    display: none; } }
 .module-icon {
   height: 100px;
   background-color: #00e6b8;
