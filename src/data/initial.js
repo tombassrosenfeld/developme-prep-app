@@ -6,5 +6,5 @@ export default Map({
 	user: Map({ id: '', username: '', password: '', token: null }),
 	modules: List([1,2,3,4,5]),
 	userProgress: List([]),
-	errors: null,
+	errors: '',
 });

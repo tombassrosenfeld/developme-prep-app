@@ -1,3 +1,8 @@
+.btn-login {
+	position: relative;
+	right: 8px
+}
+
 .app {
 	min-height: 400px;
 	background-color: $homeGreen;
@@ -34,8 +39,18 @@
 	margin-top: 8px
 	
 }
-
 .complete {
 	background-color: $black;
 }
 
+.error-message-container {
+	margin: 10px 0;
+	padding: 10px 0;
+	background-color: #666;
+	border-radius: 4px;
+	cursor: pointer;
+}
+.error-message {
+	color: #FFF;
+	margin-bottom: 0;
+}

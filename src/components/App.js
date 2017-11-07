@@ -4,6 +4,7 @@ import {
     Route,
 } from "react-router-dom";
 import Header from '../containers/Header';
+import Errors from '../containers/Errors';
 import ModulesNav from '../containers/ModulesNav';
 import Module from '../containers/Module';
 import Task from '../containers/Task';
@@ -44,6 +45,7 @@ class App extends Component {
       <div>
         <div className="container">
           <Header />
+          <Errors />
           { this.props.loggedIn ? null : <Login /> }
           { this.props.loggedIn ? this.props.isLoaded? this.loaded() : this.loading() : null }
         </div>  

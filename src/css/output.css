@@ -21,7 +21,7 @@ h1 {
 p {
   color: #404040;
   font-family: 'Roboto', sans-serif;
-  font-size: 1.5em;
+  font-size: 1.1em;
   word-wrap: break-word;
   font-weight: 300;
   text-align: justify; }
@@ -71,6 +71,10 @@ p {
   .module-icon:hover .module-icon-inner {
     background-color: #FFF; }
 
+.btn-login {
+  position: relative;
+  right: 8px; }
+
 .app {
   min-height: 400px;
   background-color: #00e6b8;
@@ -104,5 +108,16 @@ p {
 
 .complete {
   background-color: #404040; }
+
+.error-message-container {
+  margin: 10px 0;
+  padding: 10px 0;
+  background-color: #666;
+  border-radius: 4px;
+  cursor: pointer; }
+
+.error-message {
+  color: #FFF;
+  margin-bottom: 0; }
 
 /*# sourceMappingURL=output.css.map */
