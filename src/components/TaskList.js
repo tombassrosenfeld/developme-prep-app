@@ -7,7 +7,7 @@ export default ({id, modules, userProgress, onClickUserProgress}) => (
   		{ modules.getIn([id, 'tasks']).map( ({task}, i) => (
   			<div className="task" key={ i }>
 	  			<Completed 
-	  				completed={ userProgress.includes( modules.getIn([id, 'short_title']) + '.' + i)? 'complete' : 'incomplete' }
+	  				completed={ userProgress.includes( modules.getIn([id, 'short_title']) + '.' + i)? 'complete' : null }
 	  				onClick={ () => onClickUserProgress(modules.getIn([id, 'short_title']) + '.' + i) }
 	  			/>
 	  			<Link to={ '/tasks/' + id + '/' + i }>
