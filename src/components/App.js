@@ -7,6 +7,7 @@ import Header from '../containers/Header';
 import ModulesNav from '../containers/ModulesNav';
 import Module from '../containers/Module';
 import Task from '../containers/Task';
+import TaskList from '../containers/TaskList';
 import Login from '../containers/Login';
 
 class App extends Component {
@@ -22,10 +23,16 @@ class App extends Component {
       <div>
         <ModulesNav />
         <Route path="/modules/:id" render={ ({ match }) => (
-          <Module id={ match.params.id } />
+          <div className="row app">
+            <Module id={ match.params.id }/>
+            <TaskList id={ match.params.id }/>
+          </div>
         )} />
         <Route path="/tasks/:module/:id" render={ ({ match }) => (
-          <Task id={ match.params.id } moduleID={ match.params.module }/>
+          <div className="row app">
+            <Task id={ match.params.id } moduleID={ match.params.module }/>
+            <TaskList id={ match.params.module }/>
+          </div>
         )} />
       </div>
     )

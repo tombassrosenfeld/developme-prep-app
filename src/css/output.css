@@ -71,7 +71,7 @@ p {
   .module-icon:hover .module-icon-inner {
     background-color: #FFF; }
 
-.module {
+.app {
   min-height: 400px;
   background-color: #00e6b8;
   padding-bottom: 25px; }
@@ -80,16 +80,29 @@ p {
   padding-top: 47px; }
 
 .task {
-  border-top: 2px dotted #FFF;
-  padding-bottom: 10px;
-  padding-top: 10px; }
+  border-top: 2px dotted #FFF; }
 
-.task:hover {
+.task-title {
+  margin-top: 0px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  width: 80%; }
+
+.task-title:hover {
   cursor: pointer;
   color: #FFF; }
 
-.task::after {
-  content: '+';
-  float: right; }
+.marker {
+  border-radius: 50%;
+  border: 1px solid #FFF;
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  float: right;
+  cursor: pointer;
+  margin-top: 8px; }
+
+.complete {
+  background-color: #404040; }
 
 /*# sourceMappingURL=output.css.map */
