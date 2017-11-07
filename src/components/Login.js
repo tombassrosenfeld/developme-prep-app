@@ -29,7 +29,7 @@ export default ({user, authenticate, onFormElementChange}) => (
 			</div>
 		</form>
 		<div className="col-sm-1 col-sm-offset-1">
-			<button	onClick={ () => authenticate(user.get('username'), user.get('password')) } className="btn btn-default">Submit</button>
+			<button	onClick={ () => authenticate(user.get('username'), user.get('password')) } className="btn btn-default btn-login">Submit</button>
 		</div>
 	</div>
 )

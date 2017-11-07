@@ -1,8 +1,10 @@
 import axios from '../data/axios';
 import { modulesDataToJSON } from '../utilities/utilities';
 import { store } from '../index.js';
+import { updateErrors } from './actions';
 
 export const UPDATE_TOKEN = Symbol("UPDATE_TOKEN");
+export const UPDATE_ERRORS = Symbol("UPDATE_ERRORS");
 export const MODULES_DATA = Symbol("MODULES_DATA");
 export const USER_DATA = Symbol("USER_DATA");
 export const USER_PROGRESS = Symbol("USER_PROGRESS");
@@ -10,13 +12,15 @@ export const USER_PROGRESS = Symbol("USER_PROGRESS");
 // when user submits login details, calls authenticate()
 export const authenticate = (username, password) => dispatch => {
 	getToken(username, password).then(function(response){
+		// remove any errors
+		dispatch(updateErrors(''));
 		// dispatches key to state
 		dispatch(updateToken(response.data.token));
 		// and immediately calls api for module and user data
 		dispatch(getData(response.data.token));
 	})
 	.catch(function(error){
-		console.log('unable to authenticate user'); // TODO: this should be a login error
+		dispatch(updateErrors('Unable to log you in! Please check your details.'));
 	})
 };
 
@@ -24,25 +28,31 @@ export const authenticate = (username, password) => dispatch => {
 const getData = (token) => dispatch => {
 	// gets data for all users TODO: is there a better endpoint for this?
 	getUserData(token).then(function(response) {
+		// remove any errors
+		dispatch(updateErrors(''));
 		dispatch(userData(response.data));
 		//get user ID from the state
 		let userID = store.getState().getIn(['user', 'id']); 
 
 		// get progress data for the current user
 		getUserProgress(token, userID).then(function(response) {
+			// remove any errors
+			dispatch(updateErrors(''));
 			dispatch(userProgress(response.data));
 		}).catch(function(error){
-			console.log("error fetching user progress data");
+			dispatch(updateErrors('Error: unable to retrieve your saved progress.'))
 		})
 	}).catch(function(error) {
-		console.log('error fetching user data'); // TODO: this should be a login error
+		dispatch(updateErrors('Error: unable to retrieve user data.'))
 	})
 
 	// gets modules and tasks
 	getModules().then(function(response) {
+		// remove any errors
+		dispatch(updateErrors(''));
 	    dispatch(modulesData(response.data));
 	}).catch(function(error) {
-		console.log('error fetching module data'); // TODO: this should be a login error
+		dispatch(updateErrors('Error: no modules or tasks available.'))
 	})
 };
 
@@ -62,9 +72,12 @@ export const onClickUserProgress = (id) => dispatch => {
 	let userID = store.getState().getIn(['user', 'id']);
 	let token = store.getState().getIn(['user', 'token']);
 	
-	postUserProgress(userID, token, userProgressArr).catch(function(error){
+	postUserProgress(userID, token, userProgressArr).then(function(response){
+		// remove any errors
+		dispatch(updateErrors(''));		
+	}).catch(function(error){
 		// if failed to update, roll back to userProgressArr
-		console.log('error saving your progress');
+		dispatch(updateErrors('Error: unable to save your progress.'))
 		return dispatch(userProgress(savedProgressArr));
 	})
 }
