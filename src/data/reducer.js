@@ -1,11 +1,13 @@
 import initial from "./initial";
+import { List } from "immutable";
 
 import { ONFORMELEMENTCHANGE } from "./actions";
 import { UPDATE_TOKEN } from "../data/actions_API";
 import { USER_DATA } from "../data/actions_API";
-import { USER_PROGRESS } from "../data/actions_API";
+import { USER_PROGRESS_FROMAPI} from "../data/actions_API";
 import { MODULES_DATA } from "../data/actions_API";
 import { ONCLICK_ICON } from "./actions";
+import { ONCLICK_USERPROGRESS } from "./actions";
 import { LOGOUT } from "./actions";
 
 const updateUsernameAndPassword = (state, { id, val }) => {
@@ -26,8 +28,8 @@ const updateUserID = (state, { data }) => {
 	return state.setIn(['user', 'id'], user.id);
 }
 
-const updateUserProgress = (state, { data }) => {
-	return state.setIn(['userProgress'], data);
+const updateUserProgressFromApi = (state, { data }) => {
+	return state.set('userProgress', List(data));
 }
 
 const modulesData = (state, { data }) => {
@@ -39,8 +41,18 @@ const onClickIcon = (state, { id }) => {
 				.setIn(['modules', id, 'selected'], true);
 }
 
+const onClickUserProgress = (state, { id }) => {
+	let userProgress = state.get('userProgress');
+	if (!userProgress.includes(id)) {
+		return state.set('userProgress', userProgress.insert(0, id));
+	} else {
+		let index = state.get('userProgress').indexOf(id);
+		return state.set('userProgress', userProgress.delete(index));
+	}
+	return state;
+}
+
 const logOut = (state) => {
-	console.log('loggingOut');
 	return state.set('loggedIn', false);
 }
 
@@ -49,9 +61,10 @@ export default (state = initial, action) => {
 		case ONFORMELEMENTCHANGE: return updateUsernameAndPassword(state, action);
 		case UPDATE_TOKEN: return updateToken(state, action);
 		case USER_DATA: return updateUserID(state, action);
-		case USER_PROGRESS: return updateUserProgress(state, action);
+		case USER_PROGRESS_FROMAPI: return updateUserProgressFromApi(state, action);
 		case MODULES_DATA: return modulesData(state, action);
 		case ONCLICK_ICON: return onClickIcon(state, action);
+		case ONCLICK_USERPROGRESS: return onClickUserProgress(state, action);
 		case LOGOUT: return logOut(state);
 		default: return state;
 	}

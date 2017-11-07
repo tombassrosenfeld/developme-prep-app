@@ -5,7 +5,7 @@ import { store } from '../index.js';
 export const UPDATE_TOKEN = Symbol("UPDATE_TOKEN");
 export const MODULES_DATA = Symbol("MODULES_DATA");
 export const USER_DATA = Symbol("USER_DATA");
-export const USER_PROGRESS = Symbol("USER_PROGRESS");
+export const USER_PROGRESS_FROMAPI = Symbol("USER_PROGRESS_FROMAPI");
 
 // when user submits login details, authenticate is called ...
 export const authenticate = (username, password) => dispatch => {
@@ -19,19 +19,6 @@ export const authenticate = (username, password) => dispatch => {
 		console.log('unable to authenticate user'); // TODO: this should be a login error
 	})
 };
-export const updateUserProgress = (id) => dispatch => {
-	let state = store.getState();
-	let userProgress = state.get('userProgress');
-	let taskIndex = userProgress.indexOf(id);
-	if (taskIndex < 0) {
-		userProgress.push(id);
-	} else {
-		userProgress.pop(taskIndex);
-	}
-	// send to state
-	dispatch(userProgress(userProgress)); // why is this not working???? 
-	// send to api...
-}
 
 // ...Fetches the user and modules data from the API, formats then dispatches to the reducer
 const getData = (token) => dispatch => {
@@ -44,7 +31,7 @@ const getData = (token) => dispatch => {
 
 		// get progress data of the current user
 		getUserProgress(token, userID).then(function(response){
-			dispatch(userProgress(response.data));
+			dispatch(userProgressFromApi(response.data));
 		}).catch(function(error){
 			console.log("error fetching user progress data");
 		})
@@ -76,8 +63,8 @@ const userData = (data) => ({
 	data,
 })
 
-const userProgress = (data) => ({
-	type: USER_PROGRESS,
+const userProgressFromApi = (data) => ({
+	type: USER_PROGRESS_FROMAPI,
 	data,
 })
 
