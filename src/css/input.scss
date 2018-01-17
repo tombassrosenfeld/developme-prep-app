@@ -5,6 +5,8 @@
 $homeGreen: #00e6b8;
 $white: #FFF;
 $black: #404040;
+$darkGrey: #4d4d4d;
+$lightGrey: #DBDBDB;
 
 /******************************************/
 /*Generic*/
@@ -17,12 +19,14 @@ body {
 a {
 	color: #404040;
 }
+
 a, a:hover, a:active {
 	text-decoration: none;
 }
 
 h1 {
-	font-family: 'Cousine', monospace;
+	font-family: 'Roboto', sans-serif;
+	font-size: 24px;
 	small {
 		color: $black;	
 	}
@@ -35,6 +39,9 @@ p {
     word-wrap: break-word;
     font-weight: 300;
     text-align: justify;
+}
+.container-fluid.container-header {
+	padding: 0;
 }
 
 

@@ -43,7 +43,7 @@ class App extends Component {
     return (
     <Router>
       <div>
-        <div className="container">
+        <div className="container-fluid container-header">
           <Header />
           <Errors />
           { this.props.loggedIn ? null : <Login /> }

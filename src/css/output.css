@@ -14,7 +14,8 @@ a, a:hover, a:active {
   text-decoration: none; }
 
 h1 {
-  font-family: 'Cousine', monospace; }
+  font-family: 'Roboto', sans-serif;
+  font-size: 24px; }
   h1 small {
     color: #404040; }
 
@@ -26,36 +27,47 @@ p {
   font-weight: 300;
   text-align: justify; }
 
+.container-fluid.container-header {
+  padding: 0; }
+
 /******************************************/
 /*Imported modules*/
 /******************************************/
 .page-header {
-  margin-top: 10px; }
+  margin-top: 0px; }
+
+.top-nav {
+  background-color: #DBDBDB;
+  padding: 5px 20px 0;
+  height: 37x; }
 
 .logo {
-  width: 200px;
-  height: 36px;
+  position: relative;
+  top: 3px;
+  width: 120px;
+  height: 22px;
   background-image: url("../images/developme_logo.svg");
   background-size: contain;
   background-repeat: no-repeat;
-  display: inline-block;
-  position: relative;
-  top: 8px;
-  left: 3px; }
+  display: inline-block; }
 
 .btn-logout {
-  position: relative;
-  top: 6px;
   background-color: #00e6b8;
   color: #FFF;
-  border: none; }
+  border: none;
+  font-size: 10px; }
 
-.header-subtitle {
+.titles {
+  text-align: center;
+  margin: 20px 0; }
+
+.header-course {
   display: inline-block;
   margin-top: 10px; }
 
-.home-link:hover {
-  text-decoration: none; }
+.header-username {
+  display: inline-block;
+  color: #00e6b8; }
 
 /* Small Devices, Tablets */
 @media only screen and (max-width: 768px) {
