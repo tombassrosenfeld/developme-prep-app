@@ -5,7 +5,7 @@
 /*Generic*/
 /******************************************/
 body {
-  font-family: 'Cousine', monospace; }
+  font-family: 'Roboto', sans-serif; }
 
 a {
   color: #404040; }
@@ -14,9 +14,13 @@ a, a:hover, a:active {
   text-decoration: none; }
 
 h1 {
-  font-family: 'Cousine', monospace; }
+  font-size: 24px; }
   h1 small {
     color: #404040; }
+
+h2 {
+  font-size: 16px;
+  margin: 0; }
 
 p {
   color: #404040;
@@ -26,36 +30,64 @@ p {
   font-weight: 300;
   text-align: justify; }
 
+.container-fluid {
+  padding: 0; }
+
 /******************************************/
 /*Imported modules*/
 /******************************************/
 .page-header {
-  margin-top: 10px; }
+  margin-top: 0px;
+  border-bottom: none; }
+
+.top-nav {
+  background-color: #DBDBDB;
+  padding: 5px 20px 0;
+  height: 37px; }
 
 .logo {
-  width: 200px;
-  height: 36px;
+  position: relative;
+  top: 3px;
+  width: 120px;
+  height: 22px;
   background-image: url("../images/developme_logo.svg");
   background-size: contain;
   background-repeat: no-repeat;
-  display: inline-block;
-  position: relative;
-  top: 8px;
-  left: 3px; }
+  display: inline-block; }
 
 .btn-logout {
-  position: relative;
-  top: 6px;
   background-color: #00e6b8;
   color: #FFF;
-  border: none; }
+  border: none;
+  font-size: 10px; }
 
-.header-subtitle {
+.titles {
+  text-align: center;
+  margin: 35px 0; }
+
+.header-course {
   display: inline-block;
-  margin-top: 10px; }
+  margin: 10px 0 0 0; }
 
-.home-link:hover {
-  text-decoration: none; }
+.header-username {
+  display: inline-block;
+  color: #00e6b8;
+  margin: 10px 0 0 0; }
+
+.header-cohort {
+  color: #00e6b8; }
+
+.bottom-nav {
+  background-color: #DBDBDB;
+  text-align: center; }
+
+.bottom-nav-module {
+  display: inline-block;
+  background-color: #00e6b8;
+  padding: 0 5px;
+  border-radius: 1px;
+  margin: 0 1px;
+  cursor: pointer; }
 
 /* Small Devices, Tablets */
 @media only screen and (max-width: 768px) {
@@ -127,9 +159,8 @@ p {
 
 .error-message-container {
   margin: 10px 0;
-  padding: 10px 0;
+  padding: 8px 0;
   background-color: #666;
-  border-radius: 4px;
   cursor: pointer; }
 
 .error-message {
