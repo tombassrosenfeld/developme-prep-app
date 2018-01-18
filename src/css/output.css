@@ -93,7 +93,7 @@ p {
 @media only screen and (max-width: 768px) {
   .header-loggedIn {
     display: none; } }
-.module-icon {
+.topic-icon {
   height: 100px;
   background-color: #00e6b8;
   display: flex;
@@ -102,7 +102,7 @@ p {
   color: #FFF;
   font-size: 20px; }
 
-.module-icon-inner {
+.topic-icon-inner {
   width: 80%;
   height: 80%;
   position: absolute;
@@ -111,12 +111,12 @@ p {
   display: flex;
   justify-content: center;
   align-items: center; }
-  .module-icon-inner h1 {
+  .topic-icon-inner h1 {
     margin-top: 13px; }
 
-.module-icon:hover {
+.topic-icon:hover {
   color: #00e6b8; }
-  .module-icon:hover .module-icon-inner {
+  .topic-icon:hover .topic-icon-inner {
     background-color: #FFF; }
 
 .btn-login {

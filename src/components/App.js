@@ -5,8 +5,8 @@ import {
 } from "react-router-dom";
 import Header from '../containers/Header';
 import Errors from '../containers/Errors';
-import ModulesNav from '../containers/ModulesNav';
-import Module from '../containers/Module';
+import TopicsNav from '../containers/TopicsNav';
+import Topic from '../containers/Topic';
 import Task from '../containers/Task';
 import TaskList from '../containers/TaskList';
 import Login from '../containers/Login';
@@ -22,17 +22,17 @@ class App extends Component {
   loaded() {
     return (
       <div>
-        <ModulesNav />
-        <Route path="/modules/:id" render={ ({ match }) => (
+        <TopicsNav />
+        <Route path="/topics/:id" render={ ({ match }) => (
           <div className="row app">
-            <Module id={ match.params.id }/>
+            <Topic id={ match.params.id }/>
             <TaskList id={ match.params.id }/>
           </div>
         )} />
-        <Route path="/tasks/:module/:id" render={ ({ match }) => (
+        <Route path="/tasks/:topic/:id" render={ ({ match }) => (
           <div className="row app">
-            <Task id={ match.params.id } moduleID={ match.params.module }/>
-            <TaskList id={ match.params.module }/>
+            <Task id={ match.params.id } topicID={ match.params.topic }/>
+            <TaskList id={ match.params.topic }/>
           </div>
         )} />
       </div>
