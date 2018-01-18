@@ -1,11 +1,12 @@
 .page-header {
 	margin-top: 0px;
+	border-bottom: none;
 }
 
 .top-nav {
 	background-color: $lightGrey;
 	padding: 5px 20px 0;
-	height: 37x;
+	height: 37px;
 }
 
 .logo {
@@ -28,16 +29,34 @@
 
 .titles {
 	text-align: center;
-	margin: 20px 0;
+	margin: 35px 0;
 }
 .header-course {
 	display: inline-block;
-	margin-top: 10px;
+	margin: 10px 0 0 0;
 }
 .header-username {
 	display: inline-block;
 	color: $homeGreen;	
+	margin: 10px 0 0 0;
 }
+.header-cohort {
+	color: $homeGreen;	
+}
+
+.bottom-nav {
+	background-color: $lightGrey;
+	text-align: center;
+}
+.bottom-nav-module {
+	display: inline-block;
+	background-color: $homeGreen;
+	padding: 0 5px;
+	border-radius: 1px;
+	margin: 0 1px;
+	cursor: pointer;
+}
+
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {

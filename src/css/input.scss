@@ -13,7 +13,7 @@ $lightGrey: #DBDBDB;
 /******************************************/
 
 body {
-	font-family: 'Cousine', monospace;
+	font-family: 'Roboto', sans-serif;
 }
 
 a {
@@ -25,11 +25,14 @@ a, a:hover, a:active {
 }
 
 h1 {
-	font-family: 'Roboto', sans-serif;
 	font-size: 24px;
 	small {
 		color: $black;	
 	}
+}
+h2 {
+	font-size: 16px;
+	margin: 0;
 }
 
 p {
@@ -40,10 +43,9 @@ p {
     font-weight: 300;
     text-align: justify;
 }
-.container-fluid.container-header {
+.container-fluid {
 	padding: 0;
 }
-
 
 /******************************************/
 /*Imported modules*/

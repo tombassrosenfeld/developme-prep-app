@@ -5,7 +5,7 @@
 /*Generic*/
 /******************************************/
 body {
-  font-family: 'Cousine', monospace; }
+  font-family: 'Roboto', sans-serif; }
 
 a {
   color: #404040; }
@@ -14,10 +14,13 @@ a, a:hover, a:active {
   text-decoration: none; }
 
 h1 {
-  font-family: 'Roboto', sans-serif;
   font-size: 24px; }
   h1 small {
     color: #404040; }
+
+h2 {
+  font-size: 16px;
+  margin: 0; }
 
 p {
   color: #404040;
@@ -27,19 +30,20 @@ p {
   font-weight: 300;
   text-align: justify; }
 
-.container-fluid.container-header {
+.container-fluid {
   padding: 0; }
 
 /******************************************/
 /*Imported modules*/
 /******************************************/
 .page-header {
-  margin-top: 0px; }
+  margin-top: 0px;
+  border-bottom: none; }
 
 .top-nav {
   background-color: #DBDBDB;
   padding: 5px 20px 0;
-  height: 37x; }
+  height: 37px; }
 
 .logo {
   position: relative;
@@ -59,15 +63,31 @@ p {
 
 .titles {
   text-align: center;
-  margin: 20px 0; }
+  margin: 35px 0; }
 
 .header-course {
   display: inline-block;
-  margin-top: 10px; }
+  margin: 10px 0 0 0; }
 
 .header-username {
   display: inline-block;
+  color: #00e6b8;
+  margin: 10px 0 0 0; }
+
+.header-cohort {
   color: #00e6b8; }
+
+.bottom-nav {
+  background-color: #DBDBDB;
+  text-align: center; }
+
+.bottom-nav-module {
+  display: inline-block;
+  background-color: #00e6b8;
+  padding: 0 5px;
+  border-radius: 1px;
+  margin: 0 1px;
+  cursor: pointer; }
 
 /* Small Devices, Tablets */
 @media only screen and (max-width: 768px) {
@@ -139,9 +159,8 @@ p {
 
 .error-message-container {
   margin: 10px 0;
-  padding: 10px 0;
+  padding: 8px 0;
   background-color: #666;
-  border-radius: 4px;
   cursor: pointer; }
 
 .error-message {
