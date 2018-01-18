@@ -3,7 +3,7 @@ import TaskList from "../components/TaskList";
 import { onClickUserProgress } from "../data/actions_API";
 
 const mapStateToProps = state => ({
-    modules: state.get("modules"),
+    topics: state.get("topics"),
     userProgress: state.get('userProgress'),
 });
 

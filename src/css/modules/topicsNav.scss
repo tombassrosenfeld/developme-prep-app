@@ -1,4 +1,4 @@
-.module-icon {
+.topic-icon {
 	height: 100px;
 	background-color: $homeGreen;
 	display: flex;
@@ -8,7 +8,7 @@
 	font-size: 20px;
 }
 
-.module-icon-inner {
+.topic-icon-inner {
 	width: 80%;
 	height: 80%;
 	position: absolute;
@@ -22,9 +22,9 @@
 	}
 }
 
-.module-icon:hover {
+.topic-icon:hover {
 	color: $homeGreen;
-	.module-icon-inner {
+	.topic-icon-inner {
 		background-color: $white;
 	}
 }

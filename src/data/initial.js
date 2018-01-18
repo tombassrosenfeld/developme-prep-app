@@ -4,7 +4,7 @@ export default Map({
 	isLoaded: false,
 	loggedIn: false,
 	user: Map({ id: '', username: '', password: '', token: null }),
-	modules: List([1,2,3,4,5]),
+	topics: List([1,2,3,4,5]),
 	userProgress: List([]),
 	errors: '',
 });

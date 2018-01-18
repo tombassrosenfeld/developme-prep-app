@@ -38,12 +38,12 @@ const updateUserProgress = (state, { data }) => {
 }
 
 const modulesData = (state, { data }) => {
-	return state.set('modules', data).set('isLoaded', true);
+	return state.set('topics', data).set('isLoaded', true);
 }
 
 const onClickIcon = (state, { id }) => {
-	return state.set('modules', state.get('modules').map((module) => module.set('selected', false)))
-				.setIn(['modules', id, 'selected'], true);
+	return state.set('topics', state.get('topics').map((topic) => topic.set('selected', false)))
+				.setIn(['topics', id, 'selected'], true);
 }
 
 const logOut = (state) => {
