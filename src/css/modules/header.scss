@@ -1,6 +1,8 @@
 .page-header {
 	margin-top: 0px;
 	border-bottom: none;
+	padding: 0;
+	background-color: $white;
 }
 
 .top-nav {
@@ -42,6 +44,7 @@
 }
 .header-cohort {
 	color: $homeGreen;	
+	margin: 0;
 }
 
 .bottom-nav {

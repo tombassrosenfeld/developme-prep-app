@@ -21,7 +21,7 @@ class App extends Component {
 
   loaded() {
     return (
-      <div>
+      <div className="row">
         <TopicsNav />
         <Route path="/topics/:id" render={ ({ match }) => (
           <div className="row app">
@@ -43,7 +43,7 @@ class App extends Component {
     return (
     <Router>
       <div>
-        <div className="container-fluid container-header">
+        <div className="container-fluid">
           <Header />
           <Errors />
           { this.props.loggedIn ? null : <Login /> }

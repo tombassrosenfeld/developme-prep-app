@@ -7,6 +7,7 @@ $white: #FFF;
 $black: #404040;
 $darkGrey: #4d4d4d;
 $lightGrey: #DBDBDB;
+$lightestGrey: #F7F7F7;
 
 /******************************************/
 /*Generic*/
@@ -14,6 +15,7 @@ $lightGrey: #DBDBDB;
 
 body {
 	font-family: 'Roboto', sans-serif;
+	background-color: $lightestGrey;
 }
 
 a {
@@ -32,7 +34,6 @@ h1 {
 }
 h2 {
 	font-size: 16px;
-	margin: 0;
 }
 
 p {

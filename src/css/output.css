@@ -5,7 +5,8 @@
 /*Generic*/
 /******************************************/
 body {
-  font-family: 'Roboto', sans-serif; }
+  font-family: 'Roboto', sans-serif;
+  background-color: #F7F7F7; }
 
 a {
   color: #404040; }
@@ -19,8 +20,7 @@ h1 {
     color: #404040; }
 
 h2 {
-  font-size: 16px;
-  margin: 0; }
+  font-size: 16px; }
 
 p {
   color: #404040;
@@ -38,7 +38,9 @@ p {
 /******************************************/
 .page-header {
   margin-top: 0px;
-  border-bottom: none; }
+  border-bottom: none;
+  padding: 0;
+  background-color: #FFF; }
 
 .top-nav {
   background-color: #DBDBDB;
@@ -75,7 +77,8 @@ p {
   margin: 10px 0 0 0; }
 
 .header-cohort {
-  color: #00e6b8; }
+  color: #00e6b8;
+  margin: 0; }
 
 .bottom-nav {
   background-color: #DBDBDB;
@@ -93,26 +96,19 @@ p {
 @media only screen and (max-width: 768px) {
   .header-loggedIn {
     display: none; } }
-.topic-icon {
-  height: 100px;
-  background-color: #00e6b8;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #FFF;
-  font-size: 20px; }
+.topics {
+  background-color: #FFF; }
 
-.topic-icon-inner {
-  width: 80%;
-  height: 80%;
-  position: absolute;
-  border-radius: 3%;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center; }
-  .topic-icon-inner h1 {
-    margin-top: 13px; }
+.topics-header {
+  height: 50px;
+  border-bottom: 1px solid #DBDBDB; }
+
+.topic-icon {
+  background-color: #DBDBDB;
+  margin: 0;
+  padding: 0;
+  color: #404040;
+  font-size: 20px; }
 
 .topic-icon:hover {
   color: #00e6b8; }
