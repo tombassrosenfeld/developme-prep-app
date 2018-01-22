@@ -173,28 +173,47 @@ p {
   padding: 0 10px;
   color: #4d4d4d; }
 
+.topicStatus p {
+  text-align: center;
+  padding: 0; }
+
+.topicStatus-stat {
+  margin: 15px 0 5px 0;
+  font-weight: bold;
+  font-size: 18px; }
+
+.topicStatus-done {
+  color: #00e6b8; }
+
+.topicStatus-notDone {
+  color: #404040; }
+
+.topicStatus-label {
+  color: #C9C9C9;
+  font-size: 12px; }
+
+.topicStatus-marker {
+  margin-top: 15px; }
+
 .taskList-title {
   font-weight: bold; }
 
-.taskList-title-done {
-  font-weight: bold;
+.status-title {
   text-align: center; }
 
 .task h2 {
   margin: 5px 0 0 0;
   color: #4d4d4d; }
 
-.task:hover .task-info {
-  background-color: #00e6b8; }
 .task:hover .task-number {
   background-color: #FFF;
   color: #00e6b8; }
 .task:hover .task-title {
+  background-color: #00e6b8;
   font-weight: bolder;
   border-radiue: 4px; }
 
 .marker {
-  margin-top: 5px;
   display: flex;
   justify-content: center;
   cursor: pointer; }
@@ -204,5 +223,8 @@ p {
     color: #00e6b8; }
   .marker .fa-times-circle-o {
     color: #FF3030; }
+
+.taskList-marker {
+  margin-top: 5px; }
 
 /*# sourceMappingURL=output.css.map */

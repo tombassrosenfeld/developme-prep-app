@@ -12,6 +12,6 @@ export default ({id, topics}) => (
 	  		<p className="topic-description">{ topics.getIn([id, 'description']) }</p>
 	  	</div>
 	  	<TaskList id={ id }/>
-	  	<TopicStatus id={ id }/>
+	  	<TopicStatus topic={ topics.getIn([id]) }/>
 	</div>
 )

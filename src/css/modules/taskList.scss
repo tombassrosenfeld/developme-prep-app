@@ -1,8 +1,7 @@
 .taskList-title {
 	font-weight: bold;
 }
-.taskList-title-done {
-	font-weight: bold;
+.status-title {
 	text-align: center;
 }
 .task {
@@ -12,20 +11,17 @@
 	}
 }
 .task:hover {
-	.task-info {
-		background-color: $homeGreen;
-	}
 	.task-number {
 		background-color: $white;
 		color: $homeGreen;
 	}
 	.task-title {
+		background-color: $homeGreen;
 		font-weight: bolder;
 		border-radiue: 4px;
 	}
 }
 .marker {
-	margin-top: 5px;
 	display: flex;
 	justify-content: center;
 	cursor: pointer;
@@ -38,4 +34,7 @@
 	.fa-times-circle-o {
 		color: $red;
 	}
+}
+.taskList-marker {
+	margin-top: 5px;
 }

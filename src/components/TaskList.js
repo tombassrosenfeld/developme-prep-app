@@ -9,7 +9,7 @@ export default ({id, topics, userProgress, onClickUserProgress}) => (
 				<h2 className="panel-title">Tasks</h2> 
 			</div>
 			<div className="col-xs-2">
-				<h2 className="taskList-title-done">Done</h2> 
+				<h2 className="panel-title status-title">Done</h2> 
 			</div>
 		</div>
   		{ topics.getIn([id, 'tasks']).map( ({task}, i) => (
