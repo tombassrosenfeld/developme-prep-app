@@ -33,52 +33,31 @@ p {
 .narrow-padding {
   padding: 0 10px; }
 
-/******************************************/
-/*Imported modules*/
-/******************************************/
-.btn-login {
-  position: relative;
-  right: 8px; }
-
-.tasks {
-  padding-top: 47px; }
-
-.task {
-  border-top: 2px dotted #FFF; }
-
-.task-title {
-  margin-top: 0px;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  width: 80%; }
-
-.task-title:hover {
-  cursor: pointer;
-  color: #FFF; }
-
-.marker {
-  border-radius: 50%;
-  border: 1px solid #FFF;
-  width: 40px;
-  height: 40px;
-  display: inline-block;
-  float: right;
-  cursor: pointer;
-  margin-top: 8px; }
-
-.complete {
-  background-color: #404040; }
+.panel {
+  background-color: #FFF;
+  padding: 0;
+  border: 1px solid #E5E5E5;
+  margin: 20px 0 0 0;
+  border-radius: 0px; }
 
 .error-message-container {
   margin: 10px 0;
   padding: 8px 0;
-  background-color: #666;
-  cursor: pointer; }
+  background-color: #FF3030;
+  cursor: pointer;
+  border-radius: 4px; }
 
 .error-message {
   color: #FFF;
   margin-bottom: 0; }
 
+.btn-login {
+  position: relative;
+  right: 8px; }
+
+/******************************************/
+/*Imported modules*/
+/******************************************/
 .top-nav {
   background-color: #C9C9C9;
   padding: 5px 20px 0;
@@ -141,12 +120,6 @@ p {
 @media only screen and (max-width: 768px) {
   .header-loggedIn {
     display: none; } }
-.topics {
-  background-color: #FFF;
-  padding: 0;
-  border: 1px solid #E5E5E5;
-  margin-top: 20px; }
-
 .topics-header {
   border-bottom: 1px solid #E5E5E5; }
 
@@ -189,5 +162,34 @@ p {
 .topic-description {
   padding: 0 10px;
   color: #4d4d4d; }
+
+.taskList {
+  margin-top: 0px;
+  border-top: 1px solid #FFF; }
+  .taskList h2 {
+    padding: 0 10px; }
+
+.taskList-title {
+  font-weight: bold; }
+
+.taskList-title-done {
+  text-align: center; }
+
+.task-title {
+  color: #4d4d4d;
+  margin: 5px 0; }
+
+.marker {
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer; }
+  .marker .fa {
+    font-size: 20px; }
+  .marker .fa-check-circle-o {
+    color: #00e6b8; }
+  .marker .fa-times-circle-o {
+    color: #FF3030; }
 
 /*# sourceMappingURL=output.css.map */

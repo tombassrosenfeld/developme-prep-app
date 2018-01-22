@@ -1,0 +1,33 @@
+.taskList {
+	margin-top: 0px;
+	border-top: 1px solid $white;
+	h2 {
+		padding: 0 10px;
+	}
+}
+.taskList-title {
+	font-weight: bold;
+}
+.taskList-title-done {
+	text-align: center;
+}
+.task-title {
+	color: $darkGrey;
+	margin: 5px 0;
+}
+.marker {
+	margin-top: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	.fa {
+		font-size: 20px;
+	}
+	.fa-check-circle-o {
+		color: $homeGreen;
+	}
+	.fa-times-circle-o {
+		color: $red;
+	}
+}

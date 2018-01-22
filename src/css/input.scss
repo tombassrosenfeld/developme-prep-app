@@ -3,6 +3,7 @@
 /******************************************/
 
 $homeGreen: #00e6b8;
+$red: #FF3030;
 $white: #FFF;
 $black: #404040;
 $darkGrey: #4d4d4d;
@@ -49,7 +50,28 @@ p {
 .narrow-padding {
 	padding: 0 10px;
 }
-
+.panel {
+	background-color: $white;
+	padding: 0;
+	border: 1px solid $lighterGrey;
+	margin: 20px 0 0 0;
+	border-radius: 0px;
+}
+.error-message-container {
+	margin: 10px 0;
+	padding: 8px 0;
+	background-color: $red;
+	cursor: pointer;
+	border-radius: 4px;
+}
+.error-message {
+	color: #FFF;
+	margin-bottom: 0;
+}
+.btn-login {
+	position: relative;
+	right: 8px
+}
 
 /******************************************/
 /*Imported modules*/
@@ -58,3 +80,4 @@ p {
 @import 'modules/header';
 @import 'modules/topicsNav';
 @import 'modules/topic';
+@import 'modules/taskList';
