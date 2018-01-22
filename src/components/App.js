@@ -24,13 +24,13 @@ class App extends Component {
       <div className="row">
         <TopicsNav />
         <Route path="/topics/:id" render={ ({ match }) => (
-          <div className="row app">
+          <div className="app">
             <Topic id={ match.params.id }/>
             <TaskList id={ match.params.id }/>
           </div>
         )} />
         <Route path="/tasks/:topic/:id" render={ ({ match }) => (
-          <div className="row app">
+          <div className="app">
             <Task id={ match.params.id } topicID={ match.params.topic }/>
             <TaskList id={ match.params.topic }/>
           </div>

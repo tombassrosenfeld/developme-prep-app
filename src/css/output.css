@@ -173,24 +173,25 @@ p {
 
 .taskList-title-done {
   font-weight: bold;
-  text-align: right; }
+  text-align: center; }
 
 .task h2 {
   margin: 5px 0 0 0;
   color: #4d4d4d; }
-.task .task-title {
-  padding-left: 0; }
 
+.task:hover .task-info {
+  background-color: #00e6b8; }
 .task:hover .task-number {
+  background-color: #FFF;
   color: #00e6b8; }
 .task:hover .task-title {
-  background-color: #00e6b8;
-  font-weight: bolder; }
+  font-weight: bolder;
+  border-radiue: 4px; }
 
 .marker {
   margin-top: 5px;
   display: flex;
-  justify-content: left;
+  justify-content: center;
   cursor: pointer; }
   .marker .fa {
     font-size: 20px; }

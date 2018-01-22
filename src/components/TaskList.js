@@ -16,14 +16,14 @@ export default ({id, topics, userProgress, onClickUserProgress}) => (
 	  		{ topics.getIn([id, 'tasks']).map( ({task}, i) => (
 				<div className="row task" key={i}>
 			  		<Link to={ '/tasks/' + id + '/' + i }>
-						<div className="col-xs-1">
-				  			<h2 className="task-number">{ i + 10 }.</h2>
-						</div>
 						<div className="col-xs-10">
-				  			<h2 className="task-title">{ task }</h2>
+				  			<h2 className="task-info">
+				  				<span className="task-number">{ i + 1 }. </span>
+				  				<span className="task-title">{ task }</span>
+				  			</h2>
 						</div>
 		  			</Link>
-					<div className="col-xs-1">
+					<div className="col-xs-2">
 			  			<Completed 
 			  				completed={ userProgress.includes( topics.getIn([id, 'short_title']) + '.' + i) }
 			  				onClick={ () => onClickUserProgress(topics.getIn([id, 'short_title']) + '.' + i) }
