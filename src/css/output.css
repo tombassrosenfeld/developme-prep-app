@@ -34,11 +34,20 @@ p {
   padding: 0 10px; }
 
 .panel {
+  margin: 0;
   background-color: #FFF;
-  padding: 0;
   border: 1px solid #E5E5E5;
-  margin: 20px 0 0 0;
-  border-radius: 0px; }
+  border-bottom: 1px solid #FFF;
+  padding-bottom: 10px;
+  border-radius: 0; }
+  .panel h1, .panel h2, .panel p {
+    padding: 0 10px; }
+  .panel .panel-title {
+    font-weight: bold;
+    margin: 30px 0 20px 0; }
+
+.panel:first-of-type {
+  margin: 20px 0 0 0; }
 
 .error-message-container {
   margin: 10px 0;
@@ -120,6 +129,9 @@ p {
 @media only screen and (max-width: 768px) {
   .header-loggedIn {
     display: none; } }
+.topics {
+  padding-bottom: 0; }
+
 .topics-header {
   border-bottom: 1px solid #E5E5E5; }
 
@@ -132,14 +144,12 @@ p {
   background-color: #00e6b8; }
 
 .topics-title {
-  padding: 0 10px;
   font-weight: bold;
   margin: 30px 0 20px 0; }
 
 .topics-icon {
   background-color: #E5E5E5;
   margin: 0;
-  padding: 0 10px;
   border-bottom: 1px solid #FFF;
   border-bottom: 1px solid #FFF;
   color: #404040;
@@ -162,11 +172,6 @@ p {
 .topic-description {
   padding: 0 10px;
   color: #4d4d4d; }
-
-.taskList {
-  margin-top: 0px;
-  border-top: 1px solid #FFF;
-  padding: 0 10px; }
 
 .taskList-title {
   font-weight: bold; }

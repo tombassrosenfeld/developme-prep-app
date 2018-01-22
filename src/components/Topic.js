@@ -1,4 +1,6 @@
 import React from 'react';
+import TaskList from '../containers/TaskList';
+import TopicStatus from '../containers/TopicStatus';
 
 export default ({id, topics}) => (
 	<div className="col-xs-12 col-sm-8 col-md-6 narrow-padding">
@@ -9,5 +11,7 @@ export default ({id, topics}) => (
 	  		<h1 className="topic-title">Topic { +id + 1} <small>{ topics.getIn([id, 'title']) }</small></h1>
 	  		<p className="topic-description">{ topics.getIn([id, 'description']) }</p>
 	  	</div>
+	  	<TaskList id={ id }/>
+	  	<TopicStatus id={ id }/>
 	</div>
 )

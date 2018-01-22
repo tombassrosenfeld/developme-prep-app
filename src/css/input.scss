@@ -51,11 +51,22 @@ p {
 	padding: 0 10px;
 }
 .panel {
+	margin: 0;
 	background-color: $white;
-	padding: 0;
 	border: 1px solid $lighterGrey;
-	margin: 20px 0 0 0;
-	border-radius: 0px;
+	border-bottom: 1px solid $white;;
+	padding-bottom: 10px;
+	border-radius: 0;
+	h1, h2, p {
+		padding: 0 10px;
+	}
+	.panel-title {
+		font-weight: bold;
+		margin: 30px 0 20px 0;
+	}
+}
+.panel:first-of-type {
+	margin: 20px 0 0 0;	
 }
 .error-message-container {
 	margin: 10px 0;
