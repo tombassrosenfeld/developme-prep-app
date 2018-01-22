@@ -8,7 +8,8 @@ export default ({user, loggedIn, logOut}) => (
 				<Link className="home-link" to="/">
 					<div className="logo"></div>
 		  		</Link>	
-				{loggedIn? <button className="btn btn-default pull-right btn-logout" onClick={ () => logOut() }>Log Out</button> : null}
+				{ loggedIn? <button className="btn btn-default pull-right btn-logout" onClick={ () => logOut() }>Log Out</button> : null}
+				{ loggedIn? <i className="fa fa-user-o pull-right" aria-hidden="true"></i> : null }
 			</div>
 		</div>
 
