@@ -1,22 +1,41 @@
 .topics {
 	background-color: $white;
+	padding: 0;
+	border: 1px solid $lighterGrey;
 }
 .topics-header {
-	height: 50px;
-	border-bottom: 1px solid $lightGrey;
+	border-bottom: 1px solid $lighterGrey;
+}
+.topics-header-icon {
+	width: 40px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: $homeGreen;
+}
+.topics-title {
+	padding: 0 10px;
+	font-weight: bold;
+	margin: 30px 0 20px 0;
 }
 
 .topic-icon {
-	background-color: $lightGrey;
+	background-color: $lighterGrey;
 	margin: 0;
-	padding: 0;
+	padding: 0 10px;
+	border-bottom: 1px solid $white;
+	border-bottom: 1px solid $white;
 	color: $black;
 	font-size: 20px;
 }
+.topic-title {
+	margin: 10px 0;
+	color: $darkGrey;
+}
 
 .topic-icon:hover {
-	color: $homeGreen;
-	.topic-icon-inner {
-		background-color: $white;
-	}
+	background-color: $homeGreen;
+	color: $black;
+	font-weight: bold;
 }

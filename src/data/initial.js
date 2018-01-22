@@ -7,8 +7,8 @@ export default Map({
 	// loggedIn: false,
 	topics: List([
 		Map({id: 1, title: 'Javascript', short_title: 'JS', description: 'Lorem ipsum', tasks: [], selected: false }),
-		Map({id: 1, title: 'Javascript', short_title: 'JS', description: 'Lorem ipsum', tasks: [], selected: false }),
-		Map({id: 1, title: 'Javascript', short_title: 'JS', description: 'Lorem ipsum', tasks: [], selected: false }),
+		Map({id: 2, title: 'Javascript', short_title: 'JS', description: 'Lorem ipsum', tasks: [], selected: false }),
+		Map({id: 3, title: 'Javascript', short_title: 'JS', description: 'Lorem ipsum', tasks: [], selected: false }),
 		]),
 	// topics: List([1, 2, 3, 4, 5]),
 	user: Map({ id: '', username: 'Peter Thomas', password: '', token: null }),

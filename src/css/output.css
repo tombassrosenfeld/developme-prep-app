@@ -30,9 +30,6 @@ p {
   font-weight: 300;
   text-align: justify; }
 
-.container-fluid {
-  padding: 0; }
-
 /******************************************/
 /*Imported modules*/
 /******************************************/
@@ -43,7 +40,7 @@ p {
   background-color: #FFF; }
 
 .top-nav {
-  background-color: #DBDBDB;
+  background-color: #C9C9C9;
   padding: 5px 20px 0;
   height: 37px; }
 
@@ -81,7 +78,7 @@ p {
   margin: 0; }
 
 .bottom-nav {
-  background-color: #DBDBDB;
+  background-color: #C9C9C9;
   text-align: center; }
 
 .bottom-nav-module {
@@ -97,23 +94,43 @@ p {
   .header-loggedIn {
     display: none; } }
 .topics {
-  background-color: #FFF; }
+  background-color: #FFF;
+  padding: 0;
+  border: 1px solid #E5E5E5; }
 
 .topics-header {
-  height: 50px;
-  border-bottom: 1px solid #DBDBDB; }
+  border-bottom: 1px solid #E5E5E5; }
+
+.topics-header-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00e6b8; }
+
+.topics-title {
+  padding: 0 10px;
+  font-weight: bold;
+  margin: 30px 0 20px 0; }
 
 .topic-icon {
-  background-color: #DBDBDB;
+  background-color: #E5E5E5;
   margin: 0;
-  padding: 0;
+  padding: 0 10px;
+  border-bottom: 1px solid #FFF;
+  border-bottom: 1px solid #FFF;
   color: #404040;
   font-size: 20px; }
 
+.topic-title {
+  margin: 10px 0;
+  color: #4d4d4d; }
+
 .topic-icon:hover {
-  color: #00e6b8; }
-  .topic-icon:hover .topic-icon-inner {
-    background-color: #FFF; }
+  background-color: #00e6b8;
+  color: #404040;
+  font-weight: bold; }
 
 .btn-login {
   position: relative;
