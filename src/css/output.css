@@ -33,12 +33,6 @@ p {
 /******************************************/
 /*Imported modules*/
 /******************************************/
-.page-header {
-  margin-top: 0px;
-  border-bottom: none;
-  padding: 0;
-  background-color: #FFF; }
-
 .top-nav {
   background-color: #C9C9C9;
   padding: 5px 20px 0;
@@ -63,6 +57,9 @@ p {
 .titles {
   text-align: center;
   margin: 35px 0; }
+
+.header-body {
+  background-color: #FFF; }
 
 .header-course {
   display: inline-block;
