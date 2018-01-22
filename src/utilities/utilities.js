@@ -14,3 +14,4 @@ export const modulesDataToJSON = (modulesData) => {
 								}));
 	return List(formattedJSON);
 }
+
