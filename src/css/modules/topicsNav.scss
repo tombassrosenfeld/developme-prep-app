@@ -2,6 +2,7 @@
 	background-color: $white;
 	padding: 0;
 	border: 1px solid $lighterGrey;
+	margin-top: 20px;
 }
 .topics-header {
 	border-bottom: 1px solid $lighterGrey;
@@ -20,7 +21,7 @@
 	margin: 30px 0 20px 0;
 }
 
-.topic-icon {
+.topics-icon {
 	background-color: $lighterGrey;
 	margin: 0;
 	padding: 0 10px;
@@ -29,12 +30,13 @@
 	color: $black;
 	font-size: 20px;
 }
-.topic-title {
+
+.topics-icon-title {
 	margin: 10px 0;
 	color: $darkGrey;
 }
 
-.topic-icon:hover {
+.topics-icon:hover {
 	background-color: $homeGreen;
 	color: $black;
 	font-weight: bold;

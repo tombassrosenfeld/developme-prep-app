@@ -1,8 +1,13 @@
 import React from 'react';
 
 export default ({id, topics}) => (
-	<div className={ 'col-xs-12 col-md-6' }>
-  		<h1>Topic { +id + 1} <small>{ topics.getIn([id, 'title']) }</small></h1>
-  		<p>{ topics.getIn([id, 'description']) }</p>
+	<div className="col-xs-12 col-md-6 narrow-padding">
+		<div className="topics">
+			<div className="topics-header">
+				<div className="topics-header-icon"><i className="fa fa-2x fa-file-o" aria-hidden="true"></i></div>
+			</div>
+	  		<h1 className="topic-title">Topic { +id + 1} <small>{ topics.getIn([id, 'title']) }</small></h1>
+	  		<p className="topic-description">{ topics.getIn([id, 'description']) }</p>
+	  	</div>
 	</div>
 )
