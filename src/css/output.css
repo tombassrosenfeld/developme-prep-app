@@ -165,25 +165,32 @@ p {
 
 .taskList {
   margin-top: 0px;
-  border-top: 1px solid #FFF; }
-  .taskList h2 {
-    padding: 0 10px; }
+  border-top: 1px solid #FFF;
+  padding: 0 10px; }
 
 .taskList-title {
   font-weight: bold; }
 
 .taskList-title-done {
-  text-align: center; }
+  font-weight: bold;
+  text-align: right; }
 
-.task-title {
-  color: #4d4d4d;
-  margin: 5px 0; }
+.task h2 {
+  margin: 5px 0 0 0;
+  color: #4d4d4d; }
+.task .task-title {
+  padding-left: 0; }
+
+.task:hover .task-number {
+  color: #00e6b8; }
+.task:hover .task-title {
+  background-color: #00e6b8;
+  font-weight: bolder; }
 
 .marker {
   margin-top: 5px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
   cursor: pointer; }
   .marker .fa {
     font-size: 20px; }

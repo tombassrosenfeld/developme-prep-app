@@ -1,25 +1,38 @@
 .taskList {
 	margin-top: 0px;
 	border-top: 1px solid $white;
-	h2 {
-		padding: 0 10px;
-	}
+	padding: 0 10px;
 }
 .taskList-title {
 	font-weight: bold;
 }
 .taskList-title-done {
-	text-align: center;
+	font-weight: bold;
+	text-align: right;
 }
-.task-title {
-	color: $darkGrey;
-	margin: 5px 0;
+.task {
+	h2 {
+		margin: 5px 0 0 0;
+		color: $darkGrey;
+	}
+	.task-title {
+		padding-left: 0;
+	}
+}
+.task:hover {
+	.task-number {
+		color: $homeGreen;
+	}
+	.task-title {
+		background-color: $homeGreen;
+		font-weight: bolder;
+	}
 }
 .marker {
 	margin-top: 5px;
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	justify-content: left;
+	// align-items: center;
 	cursor: pointer;
 	.fa {
 		font-size: 20px;
