@@ -227,4 +227,8 @@ p {
 .taskList-marker {
   margin-top: 5px; }
 
+@media only screen and (max-width: 500px) {
+  .status-title {
+    float: right; } }
+
 /*# sourceMappingURL=output.css.map */

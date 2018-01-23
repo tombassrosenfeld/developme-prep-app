@@ -6,13 +6,14 @@ export default ({userProgress, topic}) => (
 		<div className="row">
 			<div className="col-xs-6"><h2 className="panel-title">Completed</h2></div>
 			<div className="col-xs-2">
-				<p className="topicStatus-stat topicStatus-done">0</p>
-				{ true === false ? calculateTopicStatus(userProgress, topic)[0] : null}
+				<p className="topicStatus-stat topicStatus-done">
+					{ calculateTopicStatus(userProgress, topic)[0] }
+				</p>
 				<p className="topicStatus-label">DONE</p>
 			</div>
 			<div className="col-xs-2">
-				<p className="topicStatus-stat topicStatus-not-done">5</p>
-				{ true === false ? calculateTopicStatus(userProgress, topic)[1] : null}
+				<p className="topicStatus-stat topicStatus-not-done">
+					{ calculateTopicStatus(userProgress, topic)[1] }</p>
 				<p className="topicStatus-label">NOT DONE</p>
 			</div>
 			<div className="col-xs-2">
