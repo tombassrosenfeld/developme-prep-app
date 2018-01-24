@@ -11,6 +11,7 @@ export const modulesDataToJSON = (modulesData) => {
 									short_title: item.acfs.short_title,
 									description: item.acfs.description,
 									tasks: item.acfs.tasks ? item.acfs.tasks : [],
+									assessments: item.acfs.assessment ? item.acfs.assessment : [],
 									selected: 'selected',
 								}));
 	return List(formattedJSON);

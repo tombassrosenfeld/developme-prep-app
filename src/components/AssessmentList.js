@@ -2,28 +2,28 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import Completed from './Completed';
 
-export default ({id, topics, userProgress, onClickUserProgress}) => (
+export default ({id, topics, userProgress}) => (
 	<div className="panel">
 		<div className="row">
 			<div className="col-xs-10">
-				<h2 className="panel-title">Tasks</h2> 
+				<h2 className="panel-title">Assessments</h2> 
 			</div>
 			<div className="col-xs-2">
 				<h2 className="panel-title status-title">Done</h2> 
 			</div>
 		</div>
 		<div className="taskList">
-	  		{ topics.getIn([id, 'tasks']).map( ({task}, i) => (
+	  		{ topics.getIn([id, 'assessments']).map( (assessment, i) => (
 				<div className="row task" key={i}>
-			  		<Link to={ '/prep/topic/' + id + '/task/' + i }>
+			  		<Link to={ '/prep/topic/' + id + '/assessment/' + i }>
 						<div className="col-xs-10">
-				  			<p className="taskList-task-title">{i + 1}. { task }</p>
+				  			<p className="taskList-task-title">{i + 1}. { assessment.assessment_title }</p>
 						</div>
 		  			</Link>
 					<div className="col-xs-2">
 			  			<Completed 
-			  				completed={ userProgress.includes( topics.getIn([id, 'short_title']) + '.' + i) }
-			  				onClick={ () => onClickUserProgress(topics.getIn([id, 'short_title']) + '.' + i) }
+			  				// completed={  }
+			  				// onClick={  }
 			  			/>
 					</div>
 				</div>

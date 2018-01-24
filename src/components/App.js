@@ -21,13 +21,13 @@ class App extends Component {
   loaded() {
     return (
       <div className="row">
-          <Route path="/prep/topics/" render={ ({ match }) => (
+          <Route path="/prep/topic/" render={ ({ match }) => (
             <TopicsNav />
           )} />        
-          <Route path="/prep/topics/:id" render={ ({ match }) => (
+          <Route path="/prep/topic/:id" render={ ({ match }) => (
             <Topic id={ match.params.id }/>
           )} />
-          <Route path="/prep/topics/:topic/:task" render={ ({ match }) => (
+          <Route path="/prep/topic/:topic/task/:task" render={ ({ match }) => (
             <Task id={ match.params.task } topicID={ match.params.topic }/>
           )} />
         
