@@ -198,17 +198,16 @@ p {
   margin-top: 12px;
   font-size: 40px; }
 
+@media only screen and (max-width: 500px) {
+  .marker.topicStatus-marker .fa {
+    float: right; } }
 .taskList-title {
   font-weight: bold; }
 
 .status-title {
   text-align: center; }
 
-.task li {
-  color: #4d4d4d;
-  margin: 3px 0; }
-
-.task:hover li {
+.task:hover p {
   background-color: #00e6b8;
   color: #404040;
   font-weight: bolder; }

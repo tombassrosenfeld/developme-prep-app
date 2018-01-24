@@ -27,6 +27,12 @@
 	font-size: 12px;
 }
 .marker.topicStatus-marker .fa {
-		margin-top: 12px;
-		font-size: 40px;
+	margin-top: 12px;
+	font-size: 40px;
+}
+
+@media only screen and (max-width : 500px) {
+	.marker.topicStatus-marker .fa {
+		float: right;
+	}
 }
