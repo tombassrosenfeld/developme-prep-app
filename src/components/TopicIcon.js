@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 
 export default ({id, selected, title, onClick}) => (
-	<Link to={ '/topics/' + id }>
+	<Link to={ '/prep/topics/' + id }>
 		<div 
 			className="topics-icon row"
 			onClick={ onClick } 

@@ -15,7 +15,7 @@ export default ({id, topics, userProgress, onClickUserProgress}) => (
 		<div className="taskList">
 	  		{ topics.getIn([id, 'tasks']).map( ({task}, i) => (
 				<div className="row task" key={i}>
-			  		<Link to={ '/topics/' + id + '/' + i }>
+			  		<Link to={ '/prep/topics/' + id + '/' + i }>
 						<div className="col-xs-10">
 				  			<p className="taskList-task-title">{i + 1}. { task }</p>
 						</div>

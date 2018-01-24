@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import ModulesNav from "./ModulesNav";
 
 export default ({user, loggedIn, logOut}) => (
 	<div>
@@ -21,12 +22,7 @@ export default ({user, loggedIn, logOut}) => (
 			</div>
 		</div>
 
-		<div className="row bottom-nav">
-			<div className="col-xs-12 modules">			
-				{loggedIn? (
-					<div className="bottom-nav-module">Preparation</div> 
-				) : null}
-			</div>
-		</div>
+		{ loggedIn? <ModulesNav /> : null }
+
 	</div>
 )
