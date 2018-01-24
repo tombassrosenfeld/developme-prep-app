@@ -45,6 +45,8 @@ p {
   .panel .panel-title {
     font-weight: bold;
     margin: 30px 0 20px 0; }
+  .panel ol {
+    padding-left: 28px; }
 
 .panel:first-of-type {
   margin: 20px 0 0 0; }
@@ -192,8 +194,9 @@ p {
   color: #C9C9C9;
   font-size: 12px; }
 
-.topicStatus-marker {
-  margin-top: 15px; }
+.marker.topicStatus-marker .fa {
+  margin-top: 12px;
+  font-size: 40px; }
 
 .taskList-title {
   font-weight: bold; }
@@ -201,17 +204,14 @@ p {
 .status-title {
   text-align: center; }
 
-.task h2 {
-  margin: 5px 0 0 0;
-  color: #4d4d4d; }
+.task li {
+  color: #4d4d4d;
+  margin: 3px 0; }
 
-.task:hover .task-number {
-  background-color: #FFF;
-  color: #00e6b8; }
-.task:hover .task-title {
+.task:hover li {
   background-color: #00e6b8;
-  font-weight: bolder;
-  border-radiue: 4px; }
+  color: #404040;
+  font-weight: bolder; }
 
 .marker {
   display: flex;

@@ -5,20 +5,16 @@
 	text-align: center;
 }
 .task {
-	h2 {
-		margin: 5px 0 0 0;
+	li {
 		color: $darkGrey;
+		margin: 3px 0;
 	}
 }
 .task:hover {
-	.task-number {
-		background-color: $white;
-		color: $homeGreen;
-	}
-	.task-title {
+	li {
 		background-color: $homeGreen;
+		color: $black;
 		font-weight: bolder;
-		border-radiue: 4px;
 	}
 }
 .marker {

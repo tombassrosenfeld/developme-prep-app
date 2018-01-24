@@ -26,6 +26,7 @@
 	color: $lightGrey;
 	font-size: 12px;
 }
-.topicStatus-marker {
-	margin-top: 15px;
+.marker.topicStatus-marker .fa {
+		margin-top: 12px;
+		font-size: 40px;
 }

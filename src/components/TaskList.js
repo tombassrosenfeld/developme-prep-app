@@ -12,14 +12,12 @@ export default ({id, topics, userProgress, onClickUserProgress}) => (
 				<h2 className="panel-title status-title">Done</h2> 
 			</div>
 		</div>
+		<ol>
   		{ topics.getIn([id, 'tasks']).map( ({task}, i) => (
 			<div className="row task" key={i}>
 		  		<Link to={ '/tasks/' + id + '/' + i }>
 					<div className="col-xs-10">
-			  			<h2 className="task-info">
-			  				<span className="task-number">{ i + 1 }. </span>
-			  				<span className="task-title">{ task }</span>
-			  			</h2>
+			  			<li className="task-info">{ task }</li>
 					</div>
 	  			</Link>
 				<div className="col-xs-2">
@@ -30,5 +28,6 @@ export default ({id, topics, userProgress, onClickUserProgress}) => (
 				</div>
 			</div>
   		))}
+  		</ol>
 	</div>
 )
