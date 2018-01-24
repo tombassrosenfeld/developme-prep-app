@@ -28,10 +28,9 @@ class App extends Component {
             <Topic id={ match.params.id }/>
           </div>
         )} />
-        <Route path="/tasks/:topic/:id" render={ ({ match }) => (
+        <Route path="/topics/:topic/:task" render={ ({ match }) => (
           <div className="app">
-            <Task id={ match.params.id } topicID={ match.params.topic }/>
-            <TaskList id={ match.params.topic }/>
+            <Task id={ match.params.task } topicID={ match.params.topic }/>
           </div>
         )} />
       </div>

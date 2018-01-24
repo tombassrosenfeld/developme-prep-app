@@ -8,7 +8,7 @@ export default ({id, topics}) => (
 			<div className="topics-header">
 				<div className="topics-header-icon"><i className="fa fa-2x fa-file-o" aria-hidden="true"></i></div>
 			</div>
-	  		<h1 className="topic-title">Topic { +id + 1} <small>{ topics.getIn([id, 'title']) }</small></h1>
+	  		<h1 className="topic-title">{ topics.getIn([id, 'short_title']) } <small>{ topics.getIn([id, 'title']) }</small></h1>
 	  		<p className="topic-description">{ topics.getIn([id, 'description']) }</p>
 	  	</div>
 	  	<TaskList id={ id }/>
