@@ -1,13 +1,34 @@
 import React from 'react';
 
 export default ({ id, topicID, topics}) => (
-		<div className="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-4 narrow-padding">
-			<div className="panel">
-				<h1 className="panel-title">{ topics.getIn([topicID, 'tasks'])[id].task }</h1>
-		  		<p>{ topics.getIn([topicID, 'tasks'])[id].instructions }</p>
-		  		<a href={ 'https://' + topics.getIn([topicID, 'tasks'])[id].link } target="_blank" >
-		  			<p>{ topics.getIn([topicID, 'tasks'])[id].link }</p>
-		  		</a>
-		  	</div>
-		</div>
+	<div className="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-4 narrow-padding">
+		<div className="panel">
+			<h1>{+id + 1}. { topics.getIn([topicID, 'tasks'])[id].task }</h1>
+	  		<p>{ topics.getIn([topicID, 'tasks'])[id].description }</p>
+	  		{ topics.getIn([topicID, 'tasks'])[id].resources? <h2 className="panel-title">Resources</h2> : null }
+	  	</div>
+	  	<div className="task-resources">
+	  		{topics.getIn([topicID, 'tasks'])[id].resources ?
+	  			topics.getIn([topicID, 'tasks'])[id].resources.map( (resource, i) => (
+		  			<a href={resource.link} target="_blank" className="resource-link" key={i}>
+			  			<div className="panel" >
+				  			<div className="row">
+				  				<div className="col-xs-2 resource-icon-container">
+				  					<i className={'fa fa-2x resource-icon ' + resource.resource_type}></i>
+				  				</div>
+				  				<div className="col-xs-8 resource-info">
+				  					<h2 className="panel-title">{resource.title}</h2>
+				  					<p>{resource.description}</p>
+				  				</div>
+				  				<div className="col-xs-2 resource-status">
+				  					Complete?
+				  				</div>
+				  			</div>
+					  	</div>
+					</a>
+				)) 
+				: null
+	  		}
+	  	</div>
+	</div>
 )

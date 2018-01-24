@@ -26,6 +26,8 @@ a {
 
 a, a:hover, a:active {
 	text-decoration: none;
+	color: $black;
+	font-weight: bolder;
 }
 
 h1 {
@@ -58,7 +60,6 @@ p {
 	background-color: $white;
 	border: 1px solid $lighterGrey;
 	border-bottom: 1px solid $white;;
-	padding-bottom: 10px;
 	border-radius: 0;
 	h1, h2, p {
 		padding: 0 10px;
@@ -92,3 +93,4 @@ p {
 @import 'modules/topicsNav';
 @import 'modules/topic';
 @import 'modules/taskList';
+@import 'modules/task';

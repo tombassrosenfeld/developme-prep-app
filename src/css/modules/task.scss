@@ -1,0 +1,32 @@
+.task-resources .panel {
+	background-color: $lighterGrey;
+	color: $darkGrey;
+	padding-bottom: 10px;
+	.panel-title {
+		margin: 10px 0 0 0;
+	}
+}
+.task-resources .panel:hover {
+	background-color: $homeGreen;
+	p, .resource-icon {
+		color: $black;
+		font-weight: bolder;
+	}
+}
+
+.resource-icon-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 75px;
+	padding-right: 0;
+	.resource-icon {
+		color: $darkGrey;
+	}
+}
+.resource-info {
+	padding-left: 0;
+	p {
+		margin: 0
+	}
+}

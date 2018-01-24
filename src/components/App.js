@@ -8,7 +8,6 @@ import Errors from '../containers/Errors';
 import TopicsNav from '../containers/TopicsNav';
 import Topic from '../containers/Topic';
 import Task from '../containers/Task';
-import TaskList from '../containers/TaskList';
 import Login from '../containers/Login';
 
 class App extends Component {
@@ -41,10 +40,10 @@ class App extends Component {
       <div>
         <div className="container-fluid">
           <Header />
-          <div className="app">
           <Errors />
-          { this.props.loggedIn ? null : <Login /> }
-          { this.props.loggedIn ? this.props.isLoaded? this.loaded() : this.loading() : null }
+          <div className="app">
+            { this.props.loggedIn ? null : <Login /> }
+            { this.props.loggedIn ? this.props.isLoaded? this.loaded() : this.loading() : null }
           </div>
         </div>  
       </div>

@@ -4,6 +4,7 @@ export const preventDefault =  (e) => e.preventDefault();
 
 // rewrite this function if the API changes 
 export const modulesDataToJSON = (modulesData) => {
+	console.log(modulesData);
 	let formattedJSON = modulesData.map((item, i) => Map({
 									id: i, 
 									title: item.title.rendered, 

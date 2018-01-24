@@ -12,7 +12,9 @@ a {
   color: #404040; }
 
 a, a:hover, a:active {
-  text-decoration: none; }
+  text-decoration: none;
+  color: #404040;
+  font-weight: bolder; }
 
 h1 {
   font-size: 24px; }
@@ -41,7 +43,6 @@ p {
   background-color: #FFF;
   border: 1px solid #E5E5E5;
   border-bottom: 1px solid #FFF;
-  padding-bottom: 10px;
   border-radius: 0; }
   .panel h1, .panel h2, .panel p {
     padding: 0 10px; }
@@ -199,8 +200,14 @@ p {
 @media only screen and (max-width: 500px) {
   .marker.topicStatus-marker .fa {
     float: right; } }
+.taskList {
+  padding-bottom: 10px; }
+
 .taskList-title {
   font-weight: bold; }
+
+.taskList-task-title {
+  margin-bottom: 0; }
 
 .status-title {
   text-align: center; }
@@ -227,5 +234,31 @@ p {
 @media only screen and (max-width: 500px) {
   .status-title {
     float: right; } }
+.task-resources .panel {
+  background-color: #E5E5E5;
+  color: #4d4d4d;
+  padding-bottom: 10px; }
+  .task-resources .panel .panel-title {
+    margin: 10px 0 0 0; }
+
+.task-resources .panel:hover {
+  background-color: #00e6b8; }
+  .task-resources .panel:hover p, .task-resources .panel:hover .resource-icon {
+    color: #404040;
+    font-weight: bolder; }
+
+.resource-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75px;
+  padding-right: 0; }
+  .resource-icon-container .resource-icon {
+    color: #4d4d4d; }
+
+.resource-info {
+  padding-left: 0; }
+  .resource-info p {
+    margin: 0; }
 
 /*# sourceMappingURL=output.css.map */
