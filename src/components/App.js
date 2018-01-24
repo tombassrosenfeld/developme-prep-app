@@ -23,16 +23,14 @@ class App extends Component {
     return (
       <div className="row">
         <TopicsNav />
-        <Route path="/topics/:id" render={ ({ match }) => (
-          <div className="app">
-            <Topic id={ match.params.id }/>
-          </div>
-        )} />
-        <Route path="/topics/:topic/:task" render={ ({ match }) => (
-          <div className="app">
+        
+          <Route path="/topics/:id" render={ ({ match }) => (
+              <Topic id={ match.params.id }/>
+          )} />
+          <Route path="/topics/:topic/:task" render={ ({ match }) => (
             <Task id={ match.params.task } topicID={ match.params.topic }/>
-          </div>
-        )} />
+          )} />
+        
       </div>
     )
   }
@@ -43,9 +41,11 @@ class App extends Component {
       <div>
         <div className="container-fluid">
           <Header />
+          <div className="app">
           <Errors />
           { this.props.loggedIn ? null : <Login /> }
           { this.props.loggedIn ? this.props.isLoaded? this.loaded() : this.loading() : null }
+          </div>
         </div>  
       </div>
     </Router>
