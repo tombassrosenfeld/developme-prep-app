@@ -16,12 +16,9 @@ export default ({ id, topicID, topics}) => (
 				  				<div className="col-xs-2 resource-icon-container">
 				  					<i className={'fa fa-2x resource-icon ' + resource.resource_type}></i>
 				  				</div>
-				  				<div className="col-xs-8 resource-info">
+				  				<div className="col-xs-10 resource-info">
 				  					<h2 className="panel-title">{resource.title}</h2>
 				  					<p>{resource.description}</p>
-				  				</div>
-				  				<div className="col-xs-2 resource-status">
-				  					Complete?
 				  				</div>
 				  			</div>
 					  	</div>
