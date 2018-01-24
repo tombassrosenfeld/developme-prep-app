@@ -8,6 +8,7 @@ import Errors from '../containers/Errors';
 import TopicsNav from '../containers/TopicsNav';
 import Topic from '../containers/Topic';
 import Task from '../containers/Task';
+import Assessment from '../containers/Assessment';
 import Login from '../containers/Login';
 
 class App extends Component {
@@ -29,6 +30,9 @@ class App extends Component {
           )} />
           <Route path="/prep/topic/:topic/task/:task" render={ ({ match }) => (
             <Task id={ match.params.task } topicID={ match.params.topic }/>
+          )} />
+          <Route path="/prep/topic/:topic/assessment/:assessment" render={ ({ match }) => (
+            <Assessment id={ match.params.assessment } topicID={ match.params.topic }/>
           )} />
         
       </div>
