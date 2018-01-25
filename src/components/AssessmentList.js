@@ -13,7 +13,8 @@ export default ({id, topics, userProgress}) => (
 			</div>
 		</div>
 		<div className="taskList">
-	  		{ topics.getIn([id, 'assessments']).map( (assessment, i) => (
+		{ topics.getIn([id, 'assessments']).length > 0 ?
+	  		topics.getIn([id, 'assessments']).map( (assessment, i) => (
 				<div className="row task" key={i}>
 			  		<Link to={ '/prep/topic/' + id + '/assessment/' + i }>
 						<div className="col-xs-10">
@@ -27,7 +28,13 @@ export default ({id, topics, userProgress}) => (
 			  			/>
 					</div>
 				</div>
-	  		))}
+	  		)) :
+	  		<div className="row task">
+	  			<div className="col-xs-10">
+					<p className="taskList-task-title">There are currently no assessments for this topic</p>
+				</div>
+			</div>
+	  	}
 		</div>
 	</div>
 )

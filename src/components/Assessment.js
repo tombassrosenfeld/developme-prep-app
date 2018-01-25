@@ -12,7 +12,7 @@ export default ({ id, topicID, topics}) => (
 					<div className="panel" key={i}>
 			  			<div className="row">
 			  				<div className="col-xs-12">
-			  					<p>{question.question}</p>
+			  					<p>{i + 1}. {question.question}</p>
 			  					{ question.answer_type === 'Multiple Choice' ? 
 			  						question.answers.map( (answer, i) => (
 										<div className="radio">
@@ -22,7 +22,11 @@ export default ({ id, topicID, topics}) => (
 								         	</label>
 								        </div>
 			  						))
-			  					: null }
+			  					: 
+			  						<div className="textarea">
+			  							<textarea class="form-control" rows="3"></textarea>
+			  						</div>
+			  					}
 			  				</div>
 			  			</div>
 				  	</div>
