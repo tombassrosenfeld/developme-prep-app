@@ -228,9 +228,6 @@ p {
   .marker .fa-times-circle-o {
     color: #FF3030; }
 
-.taskList-marker {
-  margin-top: 5px; }
-
 @media only screen and (max-width: 500px) {
   .status-title {
     float: right; } }
@@ -260,5 +257,14 @@ p {
   padding-left: 0; }
   .resource-info p {
     margin: 0; }
+
+.assessment-questions .panel {
+  background-color: #E5E5E5;
+  color: #4d4d4d;
+  padding: 10px 0; }
+  .assessment-questions .panel .panel-title {
+    margin: 10px 0 0 0; }
+  .assessment-questions .panel .radio {
+    padding-left: 40px; }
 
 /*# sourceMappingURL=output.css.map */
