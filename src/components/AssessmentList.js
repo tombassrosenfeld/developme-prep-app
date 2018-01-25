@@ -23,8 +23,7 @@ export default ({id, topics, userProgress}) => (
 		  			</Link>
 					<div className="col-xs-2">
 			  			<Completed 
-			  				// completed={  }
-			  				// onClick={  }
+			  				completed={ userProgress.includes( topics.getIn([id, 'short_title']) + '.assess.' + i) }
 			  			/>
 					</div>
 				</div>

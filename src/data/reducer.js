@@ -6,6 +6,7 @@ import { UPDATE_TOKEN } from "../data/actions_API";
 import { UPDATE_ERRORS } from "../data/actions";
 import { USER_DATA } from "../data/actions_API";
 import { USER_PROGRESS} from "../data/actions_API";
+import { USER_ASSESSMENT_DATA} from "../data/actions_API";
 import { MODULES_DATA } from "../data/actions_API";
 import { ONCLICK_ICON } from "./actions";
 import { LOGOUT } from "./actions";
@@ -33,8 +34,11 @@ const updateUserID = (state, { data }) => {
 }
 
 const updateUserProgress = (state, { data }) => {
-	console.log(updateUserProgress);
 	return state.set('userProgress', List(data));
+}
+
+const updateUserAssessmentData = (state, { data }) => {
+	return state.set('assessmentData', data);
 }
 
 const modulesData = (state, { data }) => {
@@ -57,6 +61,7 @@ export default (state = initial, action) => {
 		case UPDATE_ERRORS: return updateErrors(state, action);
 		case USER_DATA: return updateUserID(state, action);
 		case USER_PROGRESS: return updateUserProgress(state, action);
+		case USER_ASSESSMENT_DATA: return updateUserAssessmentData(state, action);
 		case MODULES_DATA: return modulesData(state, action);
 		case ONCLICK_ICON: return onClickIcon(state, action);
 		case LOGOUT: return logOut(state);

@@ -1,5 +1,6 @@
 import axios from '../data/axios';
 import { modulesDataToJSON } from '../utilities/utilities';
+import { userAssessmentDataToJSON } from '../utilities/utilities';
 import { store } from '../index.js';
 import { updateErrors } from './actions';
 
@@ -8,6 +9,7 @@ export const UPDATE_ERRORS = Symbol("UPDATE_ERRORS");
 export const MODULES_DATA = Symbol("MODULES_DATA");
 export const USER_DATA = Symbol("USER_DATA");
 export const USER_PROGRESS = Symbol("USER_PROGRESS");
+export const USER_ASSESSMENT_DATA = Symbol("USER_ASSESSMENT_DATA");
 
 // when user submits login details, calls authenticate()
 export const authenticate = (username, password) => dispatch => {
@@ -42,6 +44,15 @@ const getData = (token) => dispatch => {
 		}).catch(function(error){
 			dispatch(updateErrors('Error: unable to retrieve your saved progress.'))
 		})
+
+		// get assessment data for the current user
+		getUserAssessmentData(token, userID).then(function(response) {
+			dispatch(updateErrors(''));
+			dispatch(userAssessmentData(response.data));
+		}).catch(function(error) {
+			dispatch(updateErrors('Error: no assessment data available.'))	
+		})
+
 	}).catch(function(error) {
 		dispatch(updateErrors('Error: unable to retrieve user data.'))
 	})
@@ -54,6 +65,7 @@ const getData = (token) => dispatch => {
 	}).catch(function(error) {
 		dispatch(updateErrors('Error: no modules or tasks available.'))
 	})
+
 };
 
 // when user clicks on markers
@@ -97,6 +109,11 @@ const userProgress = (data) => ({
 	data,
 })
 
+const userAssessmentData = (data) => ({
+	type: USER_ASSESSMENT_DATA,
+	data: userAssessmentDataToJSON(data),
+})
+
 const modulesData = (data) => ({
     type: MODULES_DATA,
     data: modulesDataToJSON(data),
@@ -118,6 +135,12 @@ function getUserData(token) {
 
 function getUserProgress(token, userID) {
 	return axios.get('http://developme.box/wp-json/cf/prep/' + userID + '/progress', {
+    	headers: {'Authorization': token},
+    })
+}
+
+function getUserAssessmentData(token, userID) {
+	return axios.get('http://developme.box/wp-json/cf/prep/' + userID + '/assessment', {
     	headers: {'Authorization': token},
     })
 }
