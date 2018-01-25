@@ -3,6 +3,7 @@ import { modulesDataToJSON } from '../utilities/utilities';
 import { userAssessmentDataToJSON } from '../utilities/utilities';
 import { store } from '../index.js';
 import { updateErrors } from './actions';
+import { List, Map } from "immutable";
 
 export const UPDATE_TOKEN = Symbol("UPDATE_TOKEN");
 export const UPDATE_ERRORS = Symbol("UPDATE_ERRORS");
@@ -97,8 +98,8 @@ export const onClickUserProgress = (id) => dispatch => {
 // when user clicks an answer in the assessment
 export const onClickAssessmentAnswer = (assessmentKey, questionID, answerID) => dispatch => {
 	//get assessment data from the state
-	let userAssessmentDataArr = store.getState().get('assessmentData').toArray();
-	let savedUserAssessmentDataArr = store.getState().get('assessmentData').toArray();
+	let userAssessmentDataArr = store.getState().get('assessmentData').toJS();
+	let savedUserAssessmentDataArr = store.getState().get('assessmentData').toJS();
 
 	// get any data that exists for this assessmentKey
 	userAssessmentDataArr = userAssessmentDataArr.filter(assessment => assessment.assessmentKey === assessmentKey);
@@ -107,15 +108,18 @@ export const onClickAssessmentAnswer = (assessmentKey, questionID, answerID) => 
 	if (!userAssessmentDataArr.length > 0) {
 		// create answers array
 		let answersArr = [];
-		// add the selected answer at the address of the question
+		// record the answer at the address of the question!!
 		answersArr[questionID] = answerID; 
 		// create an assessment record and push to the master array
-		userAssessmentDataArr.push(Map({assessmentKey: assessmentKey, answers: List(answerArr), mark: null}))
+		userAssessmentDataArr.push({assessmentKey: assessmentKey, answers: answersArr, mark: null});
 	} else {
-		// ammend the existing record
 		console.log(userAssessmentDataArr);
+		// record the answer at the address of the question!!
+		userAssessmentDataArr[0].answers[questionID] = answerID;
 	}
 	// dispatch to state
+	dispatch(userAssessmentData(userAssessmentDataArr));
+
 	// post to api
 }
 
