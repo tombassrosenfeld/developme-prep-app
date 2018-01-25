@@ -72,7 +72,7 @@ const getData = (token) => dispatch => {
 export const onClickUserProgress = (id) => dispatch => {
 	//get user progress from the state
 	let userProgressArr = store.getState().get('userProgress').toArray();
-	var savedProgressArr = store.getState().get('userProgress').toArray();
+	var savedUserProgressArr = store.getState().get('userProgress').toArray();
 
 	if (!userProgressArr.includes(id)) {
 		userProgressArr.push(id);
@@ -90,8 +90,33 @@ export const onClickUserProgress = (id) => dispatch => {
 	}).catch(function(error){
 		// if failed to update, roll back to userProgressArr
 		dispatch(updateErrors('Error: unable to save your progress.'))
-		return dispatch(userProgress(savedProgressArr));
+		return dispatch(userProgress(savedUserProgressArr));
 	})
+}
+
+// when user clicks an answer in the assessment
+export const onClickAssessmentAnswer = (assessmentKey, questionID, answerID) => dispatch => {
+	//get assessment data from the state
+	let userAssessmentDataArr = store.getState().get('assessmentData').toArray();
+	let savedUserAssessmentDataArr = store.getState().get('assessmentData').toArray();
+
+	// get any data that exists for this assessmentKey
+	userAssessmentDataArr = userAssessmentDataArr.filter(assessment => assessment.assessmentKey === assessmentKey);
+
+	// if no assessment data for this assessment
+	if (!userAssessmentDataArr.length > 0) {
+		// create answers array
+		let answersArr = [];
+		// add the selected answer at the address of the question
+		answersArr[questionID] = answerID; 
+		// create an assessment record and push to the master array
+		userAssessmentDataArr.push(Map({assessmentKey: assessmentKey, answers: List(answerArr), mark: null}))
+	} else {
+		// ammend the existing record
+		console.log(userAssessmentDataArr);
+	}
+	// dispatch to state
+	// post to api
 }
 
 const updateToken = (token) => ({
