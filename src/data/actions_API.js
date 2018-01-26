@@ -27,20 +27,22 @@ export const authenticate = (username, password) => dispatch => {
 	})
 };
 
-// if authentication is sucessful, calls getdata()
+// if authentication is successful, calls getdata()
 const getData = (token) => dispatch => {
-	// gets data for all users TODO: is there a better endpoint for this?
+	// gets data for all users
 	getUserData(token).then(function(response) {
 		// remove any errors
 		dispatch(updateErrors(''));
+		// update state
 		dispatch(userData(response.data));
-		//get user ID from the state
+		// get user ID from the state
 		let userID = store.getState().getIn(['user', 'id']); 
 
 		// get progress data for the current user
 		getUserProgress(token, userID).then(function(response) {
 			// remove any errors
 			dispatch(updateErrors(''));
+			// update state
 			dispatch(userProgress(response.data));
 		}).catch(function(error){
 			dispatch(updateErrors('Error: unable to retrieve your saved progress.'))
@@ -48,7 +50,9 @@ const getData = (token) => dispatch => {
 
 		// get assessment data for the current user
 		getUserAssessmentData(token, userID).then(function(response) {
+			// remove any errors
 			dispatch(updateErrors(''));
+			// update state
 			dispatch(userAssessmentData(response.data));
 		}).catch(function(error) {
 			dispatch(updateErrors('Error: no assessment data available.'))	

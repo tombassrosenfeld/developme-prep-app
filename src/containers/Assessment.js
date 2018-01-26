@@ -4,7 +4,8 @@ import { onClickAssessmentAnswer } from "../data/actions_API";
 
 const mapStateToProps = state => ({
     topics: state.get("topics"),
-    userProgress: state.get('userProgress'),
+    // userProgress: state.get('userProgress'),
+    userAssessmentData: state.get('userAssessmentData'),
 });
 
 const mapDispatchToProps = dispatch => ({

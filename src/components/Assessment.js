@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ({ id, topicID, topics, onClickAssessmentAnswer}) => (
+export default ({ id, topicID, topics, userAssessmentData, onClickAssessmentAnswer}) => (
 	<div className="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-4 narrow-padding">
 		<div className="panel">
 			<h1>{+id + 1}. { topics.getIn([topicID, 'assessments'])[id].assessment_title }</h1>
@@ -15,6 +15,7 @@ export default ({ id, topicID, topics, onClickAssessmentAnswer}) => (
 			  					<p>{questionID + 1}. {question.question}</p>
 			  					{ question.answer_type === 'Multiple Choice' ? 
 			  						question.answers.map( (answer, answerID) => (
+			  							// TODO, turn this into a component
 										<div className="radio" key={answerID}>
 											<label 
 												onClick={() => onClickAssessmentAnswer(
@@ -23,7 +24,15 @@ export default ({ id, topicID, topics, onClickAssessmentAnswer}) => (
 													answerID,
 												)}
 											>
-								            	<input type="radio" value="option1" checked={false} />
+								            	<input 
+								            		type="radio" 
+								            		value="option1" 
+								            		checked={isAnswerChecked(
+								            			topics.getIn([topicID, 'short_title']) + '.assess.' + id, // assessmentKey
+								            			questionID, 
+								            			answerID,
+								            		)} 
+								            	/>
 										 		{answer.answer_choice}
 								         	</label>
 								        </div>
