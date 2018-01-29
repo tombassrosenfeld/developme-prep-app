@@ -13,18 +13,18 @@ export default ({id, topics, userProgress, onClickUserProgress}) => (
 			</div>
 		</div>
 		<div className="taskList">
-			{ topics.getIn([id, 'tasks']).length > 0 ?
-		  		topics.getIn([id, 'tasks']).map( ({task}, i) => (
+			{ topics.getIn([id, 'tasks']).toArray().length > 0 ?
+		  		topics.getIn([id, 'tasks']).map( (task, i) => (
 					<div className="row task" key={i}>
 				  		<Link to={ '/prep/topic/' + id + '/task/' + i }>
 							<div className="col-xs-10">
-					  			<p className="taskList-task-title">{i + 1}. { task }</p>
+					  			<p className="taskList-task-title">{i + 1}. { task.get('task') }</p>
 							</div>
 			  			</Link>
 						<div className="col-xs-2">
 				  			<Completed 
 				  				completed={ userProgress.includes( topics.getIn([id, 'short_title']) + '.' + i) }
-				  				onClick={ () => onClickUserProgress(topics.getIn([id, 'short_title']) + '.' + i) }
+				  				onClick={ () => onClickUserProgress( topics.getIn([id, 'short_title']) + '.' + i) }
 				  			/>
 						</div>
 					</div>

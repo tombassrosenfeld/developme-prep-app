@@ -52,7 +52,7 @@ export default Map({
 	// topics: List([
 		// data, data, data, data, data
 	// ]),
-	topics: List([1, 2, 3, 4, 5]),
+	topics: List([]),
 	// user: Map({ id: '', username: 'Peter Thomas', password: '', token: null }),
 	user: Map({ id: '', username: '', password: '', token: null }),
 	userProgress: List([]),

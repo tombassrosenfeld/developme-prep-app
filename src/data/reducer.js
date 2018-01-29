@@ -38,11 +38,11 @@ const updateUserProgress = (state, { data }) => {
 }
 
 const updateUserAssessmentData = (state, { data }) => {
-	console.log(data.toJS());
 	return state.set('assessmentData', data);
 }
 
 const modulesData = (state, { data }) => {
+	console.log(data.toJS());
 	return state.set('topics', data).set('isLoaded', true);
 }
 

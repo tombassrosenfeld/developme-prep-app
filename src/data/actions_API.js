@@ -65,7 +65,7 @@ const getData = (token) => dispatch => {
 	getModules().then(function(response) {
 		// remove any errors
 		dispatch(updateErrors(''));
-	    dispatch(modulesData(response.data));
+	    dispatch(modulesData(modulesDataToJSON(response.data)));
 	}).catch(function(error) {
 		dispatch(updateErrors('Error: no modules or tasks available.'))
 	})
@@ -144,7 +144,7 @@ const userAssessmentData = (data) => ({
 
 const modulesData = (data) => ({
     type: MODULES_DATA,
-    data: modulesDataToJSON(data),
+    data,
 });
 
 // API calls

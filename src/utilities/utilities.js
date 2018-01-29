@@ -1,10 +1,10 @@
-import { Map, List } from "immutable";
+import { fromJS } from "immutable";
 
 export const preventDefault =  (e) => e.preventDefault();
 
 // rewrite this function if the API changes 
 export const modulesDataToJSON = (modulesData) => {
-	let formattedJSON = modulesData.map((item, i) => Map({
+	let data = modulesData.map((item, i) => ({
 									id: i, 
 									title: item.title.rendered, 
 									short_title: item.acfs.short_title,
@@ -13,7 +13,7 @@ export const modulesDataToJSON = (modulesData) => {
 									assessments: item.acfs.assessment ? item.acfs.assessment : [],
 									selected: 'selected',
 								}));
-	return List(formattedJSON);
+	return fromJS(data); // make immutable
 }
 
 // export const userAssessmentDataToJSON = (assessmentData) => {
@@ -32,7 +32,7 @@ export const calculateTopicStatus = (userProgress, topic) => {
 	let userProgressArr = userProgress.toJS();
 	let tasksArr = topic.get('tasks');
 	let assessmentArr = topic.get('assessments');
-	let totalTasks = tasksArr.length + assessmentArr.length;
+	let totalTasks = tasksArr.toArray().length + assessmentArr.toArray().length;
 	let topicKey = topic.get('short_title');
 	let done = userProgressArr.filter(task => task.indexOf(topicKey) !== -1).length;
 	let notDone = totalTasks - done;
