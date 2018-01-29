@@ -30,7 +30,7 @@ export default ({ id, topicID, topics, userAssessmentData, onClickAssessmentAnsw
 								            		type="radio" 
 								            		value="option1" 
 								            		checked={
-								            			userAssessmentData.getIn([topics.getIn([topicID, 'short_title']), 'answers', questionID ]) === answerID
+								            			userAssessmentData.getIn([topics.getIn([topicID, 'short_title']), id, 'answers', questionID ]) === answerID
 								            		} 
 								            	/>
 								            	
