@@ -4,12 +4,11 @@ import { onClickAssessmentAnswer } from "../data/actions_API";
 
 const mapStateToProps = state => ({
     topics: state.get("topics"),
-    // userProgress: state.get('userProgress'),
-    userAssessmentData: state.get('userAssessmentData'),
+    userAssessmentData: state.get('assessmentData'),
 });
 
 const mapDispatchToProps = dispatch => ({
-	onClickAssessmentAnswer: (assessmentKey, questionID, answerID) => dispatch(onClickAssessmentAnswer(assessmentKey, questionID, answerID)),
+	onClickAssessmentAnswer: (topic, assessmentID, questionID, answerID) => dispatch(onClickAssessmentAnswer(topic, assessmentID, questionID, answerID)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Assessment);

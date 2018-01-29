@@ -1,4 +1,5 @@
 import React from 'react';
+import { isAnswerChecked } from '../utilities/utilities';
 
 export default ({ id, topicID, topics, userAssessmentData, onClickAssessmentAnswer}) => (
 	<div className="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-4 narrow-padding">
@@ -19,7 +20,8 @@ export default ({ id, topicID, topics, userAssessmentData, onClickAssessmentAnsw
 										<div className="radio" key={answerID}>
 											<label 
 												onClick={() => onClickAssessmentAnswer(
-													topics.getIn([topicID, 'short_title']) + '.assess.' + id, // assessmentKey
+													topics.getIn([topicID, 'short_title']), // topic short title
+													id, // assessment id
 													questionID,
 													answerID,
 												)}
@@ -27,12 +29,11 @@ export default ({ id, topicID, topics, userAssessmentData, onClickAssessmentAnsw
 								            	<input 
 								            		type="radio" 
 								            		value="option1" 
-								            		checked={isAnswerChecked(
-								            			topics.getIn([topicID, 'short_title']) + '.assess.' + id, // assessmentKey
-								            			questionID, 
-								            			answerID,
-								            		)} 
+								            		checked={
+								            			userAssessmentData.getIn([topics.getIn([topicID, 'short_title']), 'answers', questionID ]) === answerID
+								            		} 
 								            	/>
+								            	
 										 		{answer.answer_choice}
 								         	</label>
 								        </div>

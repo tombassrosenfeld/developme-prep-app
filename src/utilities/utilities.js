@@ -17,12 +17,14 @@ export const modulesDataToJSON = (modulesData) => {
 }
 
 export const userAssessmentDataToJSON = (assessmentData) => {
-	let formattedJSON = assessmentData.map((assessment, i) => Map({
-									assessmentKey: assessment.assessmentKey,
-									answers: assessment.answers? List(assessment.answers) : List([]),
-									result: assessment.result? assessment.result : null,
-								}));
-	return List(formattedJSON);
+	let formattedJSON = {};
+	for (var property in assessmentData) {
+	    if (assessmentData.hasOwnProperty(property)) {
+	        formattedJSON.property = Map({answers: List(property.answers), result: property.result});
+	    }
+	}
+	console.log(Map(formattedJSON));
+	return Map(formattedJSON);
 }
 
 // TODO: refactor design of initial state so that this gets calculated on return of user progress API call 

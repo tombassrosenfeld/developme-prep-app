@@ -56,10 +56,10 @@ export default Map({
 	// user: Map({ id: '', username: 'Peter Thomas', password: '', token: null }),
 	user: Map({ id: '', username: '', password: '', token: null }),
 	userProgress: List([]),
-	assessmentData: List([
-							Map({assessmentKey: '', answers: List([]), mark: null}), 
-							Map({assessmentKey: '', answers: List([]), result: null}), 
-						]),
-	assessmentData: List([]),
+	// assessmentData: Map({
+	// 						JS: Map({answers: List([]), mark: null}), 
+	// 						SQL: Map({answers: List([]), result: null}), 
+	// 					}),
+	assessmentData: Map({}),
 	errors: '',
 });

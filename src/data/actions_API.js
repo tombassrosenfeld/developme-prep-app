@@ -53,7 +53,7 @@ const getData = (token) => dispatch => {
 			// remove any errors
 			dispatch(updateErrors(''));
 			// update state
-			dispatch(userAssessmentData(response.data));
+			dispatch(userAssessmentData(userAssessmentDataToJSON(response.data)));
 		}).catch(function(error) {
 			dispatch(updateErrors('Error: no assessment data available.'))	
 		})
@@ -100,29 +100,25 @@ export const onClickUserProgress = (id) => dispatch => {
 }
 
 // when user clicks an answer in the assessment
-export const onClickAssessmentAnswer = (assessmentKey, questionID, answerID) => dispatch => {
+export const onClickAssessmentAnswer = (topic, assessmentID, questionID, answerID) => dispatch => {
 	//get assessment data from the state
-	let userAssessmentDataArr = store.getState().get('assessmentData').toJS();
-	let savedUserAssessmentDataArr = store.getState().get('assessmentData').toJS();
-
-	// get any data that exists for this assessmentKey
-	userAssessmentDataArr = userAssessmentDataArr.filter(assessment => assessment.assessmentKey === assessmentKey);
+	let userAssessmentDataObj = store.getState().get('assessmentData');
+	let savedUserAssessmentDataObj = store.getState().get('assessmentData');
 
 	// if no assessment data for this assessment
-	if (!userAssessmentDataArr.length > 0) {
+	if (!userAssessmentDataObj.getIn([topic, assessmentID])) {
 		// create answers array
 		let answersArr = [];
 		// record the answer at the address of the question!!
 		answersArr[questionID] = answerID; 
-		// create an assessment record and push to the master array
-		userAssessmentDataArr.push({assessmentKey: assessmentKey, answers: answersArr, mark: null});
+		// create an assessment record and set in userAssessmentDataObj
+		userAssessmentDataObj = userAssessmentDataObj.setIn([topic, assessmentID], Map({answers: List(answersArr), result: null}));
 	} else {
-		console.log(userAssessmentDataArr);
 		// record the answer at the address of the question!!
-		userAssessmentDataArr[0].answers[questionID] = answerID;
+		userAssessmentDataObj = userAssessmentDataObj.setIn([topic, assessmentID, 'answers', questionID], answerID);
 	}
 	// dispatch to state
-	dispatch(userAssessmentData(userAssessmentDataArr));
+	dispatch(userAssessmentData(userAssessmentDataObj));
 
 	// post to api
 }
@@ -144,7 +140,7 @@ const userProgress = (data) => ({
 
 const userAssessmentData = (data) => ({
 	type: USER_ASSESSMENT_DATA,
-	data: userAssessmentDataToJSON(data),
+	data,
 })
 
 const modulesData = (data) => ({
