@@ -1,5 +1,4 @@
 import React from 'react';
-import { isAnswerChecked } from '../utilities/utilities';
 
 export default ({ id, topicID, topics, userAssessmentData, onClickAssessmentAnswer}) => (
 	<div className="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-4 narrow-padding">

@@ -1,12 +1,12 @@
 import axios from '../data/axios';
-import { modulesDataToJSON } from '../utilities/utilities';
+import { processTopicsData } from '../utilities/utilities';
 import { store } from '../index.js';
 import { updateErrors } from './actions';
 import { List, Map, fromJS } from "immutable";
 
 export const UPDATE_TOKEN = Symbol("UPDATE_TOKEN");
 export const UPDATE_ERRORS = Symbol("UPDATE_ERRORS");
-export const MODULES_DATA = Symbol("MODULES_DATA");
+export const TOPICS_DATA = Symbol("TOPICS_DATA");
 export const USER_DATA = Symbol("USER_DATA");
 export const USER_PROGRESS = Symbol("USER_PROGRESS");
 export const USER_ASSESSMENT_DATA = Symbol("USER_ASSESSMENT_DATA");
@@ -62,10 +62,10 @@ const getData = (token) => dispatch => {
 	})
 
 	// gets modules and tasks
-	getModules().then(function(response) {
+	getTopics().then(function(response) {
 		// remove any errors
 		dispatch(updateErrors(''));
-	    dispatch(modulesData(modulesDataToJSON(response.data)));
+	    dispatch(topicsData(processTopicsData(response.data)));
 	}).catch(function(error) {
 		dispatch(updateErrors('Error: no modules or tasks available.'))
 	})
@@ -142,8 +142,8 @@ const userAssessmentData = (data) => ({
 	data,
 })
 
-const modulesData = (data) => ({
-    type: MODULES_DATA,
+const topicsData = (data) => ({
+    type: TOPICS_DATA,
     data,
 });
 
@@ -180,6 +180,6 @@ function postUserProgress(userID, token, data) {
     })
 }
 
-function getModules() {
+function getTopics() {
 	return axios.get('cf_preparation');
 } 

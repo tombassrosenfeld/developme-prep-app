@@ -3,7 +3,7 @@ import { fromJS } from "immutable";
 export const preventDefault =  (e) => e.preventDefault();
 
 // rewrite this function if the API changes 
-export const modulesDataToJSON = (modulesData) => {
+export const processTopicsData = (modulesData) => {
 	let data = modulesData.map((item, i) => ({
 									id: i, 
 									title: item.title.rendered, 
@@ -15,17 +15,6 @@ export const modulesDataToJSON = (modulesData) => {
 								}));
 	return fromJS(data); // make immutable
 }
-
-// export const userAssessmentDataToJSON = (assessmentData) => {
-// 	let formattedJSON = {};
-// 	for (var property in assessmentData) {
-// 	    if (assessmentData.hasOwnProperty(property)) {
-// 	        formattedJSON.property = Map({answers: List(property.answers), result: property.result});
-// 	    }
-// 	}
-// 	console.log(Map(formattedJSON));
-// 	return Map(formattedJSON);
-// }
 
 // TODO: refactor design of initial state so that this gets calculated on return of user progress API call 
 export const calculateTopicStatus = (userProgress, topic) => {
