@@ -16,16 +16,16 @@ export const modulesDataToJSON = (modulesData) => {
 	return List(formattedJSON);
 }
 
-export const userAssessmentDataToJSON = (assessmentData) => {
-	let formattedJSON = {};
-	for (var property in assessmentData) {
-	    if (assessmentData.hasOwnProperty(property)) {
-	        formattedJSON.property = Map({answers: List(property.answers), result: property.result});
-	    }
-	}
-	console.log(Map(formattedJSON));
-	return Map(formattedJSON);
-}
+// export const userAssessmentDataToJSON = (assessmentData) => {
+// 	let formattedJSON = {};
+// 	for (var property in assessmentData) {
+// 	    if (assessmentData.hasOwnProperty(property)) {
+// 	        formattedJSON.property = Map({answers: List(property.answers), result: property.result});
+// 	    }
+// 	}
+// 	console.log(Map(formattedJSON));
+// 	return Map(formattedJSON);
+// }
 
 // TODO: refactor design of initial state so that this gets calculated on return of user progress API call 
 export const calculateTopicStatus = (userProgress, topic) => {

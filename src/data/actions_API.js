@@ -1,9 +1,8 @@
 import axios from '../data/axios';
 import { modulesDataToJSON } from '../utilities/utilities';
-import { userAssessmentDataToJSON } from '../utilities/utilities';
 import { store } from '../index.js';
 import { updateErrors } from './actions';
-import { List, Map } from "immutable";
+import { List, Map, fromJS } from "immutable";
 
 export const UPDATE_TOKEN = Symbol("UPDATE_TOKEN");
 export const UPDATE_ERRORS = Symbol("UPDATE_ERRORS");
@@ -53,7 +52,7 @@ const getData = (token) => dispatch => {
 			// remove any errors
 			dispatch(updateErrors(''));
 			// update state
-			dispatch(userAssessmentData(userAssessmentDataToJSON(response.data)));
+			dispatch(userAssessmentData(fromJS(response.data))); // convert to immutable and dispatch
 		}).catch(function(error) {
 			dispatch(updateErrors('Error: no assessment data available.'))	
 		})
