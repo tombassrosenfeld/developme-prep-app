@@ -33,7 +33,6 @@ export default ({ id, topicID, topics, userAssessmentData, onClickAssessmentAnsw
 								            			userAssessmentData.getIn([topics.getIn([topicID, 'short_title']), id, 'answers', questionID ]) === answerID
 								            		} 
 								            	/>
-								            	
 										 		{answer.answer_choice}
 								         	</label>
 								        </div>
