@@ -17,15 +17,14 @@ export default ({ id, topicID, topics, userAssessmentData, onClickAssessmentAnsw
 			  						question.get('answers').map( (answer, answerID) => (
 			  							// TODO, turn this into a component
 										<div className="radio" key={answerID}>
-											<label 
-												onClick={() => onClickAssessmentAnswer(
-													topics.getIn([topicID, 'short_title']), // topic short title
-													id, // assessment id
-													questionID,
-													answerID,
-												)}
-											>
+											<label>
 								            	<input 
+									            	onChange={() => onClickAssessmentAnswer(
+														topics.getIn([topicID, 'short_title']), // topic short title
+														id, // assessment id
+														questionID,
+														answerID,
+													)}
 								            		type="radio" 
 								            		value="option1" 
 								            		checked={

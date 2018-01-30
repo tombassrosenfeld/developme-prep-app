@@ -49,6 +49,7 @@ const getData = (token) => dispatch => {
 
 		// get assessment data for the current user
 		getUserAssessmentData(token, userID).then(function(response) {
+			console.log(response.data);
 			// remove any errors
 			dispatch(updateErrors(''));
 			// update state
@@ -113,11 +114,10 @@ export const onClickAssessmentAnswer = (topic, assessmentID, questionID, answerI
 
 	// post to api
 	let userID = store.getState().getIn(['user', 'id']);
-	console.log(userID);
 	let token = store.getState().getIn(['user', 'token']);
 	postUserAssessmentData(userID, token, userAssessmentDataObj.toJS()).then(function(response){
+		console.log(response);
 		// remove any errors
-		console.log(response.data);
 		dispatch(updateErrors(''));		
 	}).catch(function(error){
 		// if failed to update, roll back to previous state
