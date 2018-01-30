@@ -13,7 +13,7 @@ export default ({id, topics, userProgress}) => (
 			</div>
 		</div>
 		<div className="taskList">
-		{ topics.getIn([id, 'assessments']).toArray().length > 0 ?
+		{ topics.getIn([id, 'assessments']).size > 0 ?
 	  		topics.getIn([id, 'assessments']).map( (assessment, i) => (
 				<div className="row task" key={i}>
 			  		<Link to={ '/prep/topic/' + id + '/assessment/' + i }>
