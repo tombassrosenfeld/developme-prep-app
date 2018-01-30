@@ -116,7 +116,6 @@ export const onChangeAssessmentAnswer = (topic, assessmentID, questionID, answer
 	let userID = store.getState().getIn(['user', 'id']);
 	let token = store.getState().getIn(['user', 'token']);
 	postUserAssessmentData(userID, token, userAssessmentDataObj.toJS()).then(function(response){
-		console.log(response);
 		// remove any errors
 		dispatch(updateErrors(''));		
 	}).catch(function(error){
@@ -126,8 +125,7 @@ export const onChangeAssessmentAnswer = (topic, assessmentID, questionID, answer
 	})
 }
 
-export const onClickAssessmentSubmit = (topicID, assessmentID, assessment, userAnswers) => dispatch => {
-	// TODO form validation, is there an answer for each one?
+export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, userAnswers) => dispatch => {
 
 	// get correct answers out of topics info
 	let answers = assessment.get('questions').map((question, i) => question.get('correct_answer') - 1);
@@ -135,8 +133,26 @@ export const onClickAssessmentSubmit = (topicID, assessmentID, assessment, userA
 	// filter userAnswers for correct answers
 	let correctAnswers = answers.filter((answer, i) => answer == userAnswers.get(i));
 
-	// let userAssessmentData = store.getState().get('userData']);
-	console.log(correctAnswers.toJS());
+	// get data from state
+	let assessmentData = store.getState().get('assessmentData');
+	let savedAssessmentData = store.getState().get('assessmentData');
+	// update
+	assessmentData = assessmentData.setIn([topicTitle, assessmentID, 'result'], correctAnswers.size);
+	// dispatch back to state
+	dispatch(userAssessmentData(assessmentData));
+
+	// TODO: this is a repetition of above...
+	// post to api
+	let userID = store.getState().getIn(['user', 'id']);
+	let token = store.getState().getIn(['user', 'token']);
+	postUserAssessmentData(userID, token, assessmentData.toJS()).then(function(response){
+		// remove any errors
+		dispatch(updateErrors(''));		
+	}).catch(function(error){
+		// if failed to update, roll back to previous state
+		dispatch(updateErrors('Error: unable to save your answers.'))
+		return dispatch(userAssessmentData(savedAssessmentData));
+	});
 
 	// update the assessmentdata.result 
 	// update the db

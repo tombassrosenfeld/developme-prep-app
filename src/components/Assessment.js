@@ -47,7 +47,7 @@ export default ({ id, topicID, topics, userAssessmentData, onChangeAssessmentAns
 					<button 
 						className="btn btn-default btn-logout btn-submit" 
 						onClick={ () => onClickAssessmentSubmit(
-							topicID, // topicID
+							topics.getIn([topicID, 'short_title']), // topic short title
 							id, // assessmentID
 							topics.getIn([topicID, 'assessments', id]), // assessment
 							userAssessmentData.getIn([topics.getIn([topicID, 'short_title']), id, 'answers']), // user assessment answers

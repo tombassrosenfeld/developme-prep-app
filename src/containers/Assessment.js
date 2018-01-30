@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	onChangeAssessmentAnswer: (topic, assessmentID, questionID, answerID) => dispatch(onChangeAssessmentAnswer(topic, assessmentID, questionID, answerID)),
-	onClickAssessmentSubmit: (topicID, assessmentID, assessment, userAnswers) => dispatch(onClickAssessmentSubmit(topicID, assessmentID, assessment, userAnswers)),
+	onClickAssessmentSubmit: (topicTitle, assessmentID, assessment, userAnswers) => dispatch(onClickAssessmentSubmit(topicTitle, assessmentID, assessment, userAnswers)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Assessment);
