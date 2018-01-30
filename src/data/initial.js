@@ -21,17 +21,17 @@ let data =
 				{question: "What is the capital of the UK?", 
 				answer_type: "Multiple Choice", 
 				answers: [{answer_choice: 'London'}, {answer_choice: 'Berlin'}, {answer_choice: 'Paris'}, {answer_choice: 'Timbuktu'}, {answer_choice: 'Dehli'} ], 
-				correct_answer: "Answer 1"},
+				correct_answer: 1},
 
 				{question: "What is the capital of the UK?", 
 				answer_type: "Multiple Choice", 
 				answers: [{answer_choice: 'London'}, {answer_choice: 'Berlin'}, {answer_choice: 'Paris'}, {answer_choice: 'Timbuktu'}, {answer_choice: 'Dehli'} ], 
-				correct_answer: "Answer 1"},
+				correct_answer: 2},
 
 				{question: "What is the capital of the UK?", 
 				answer_type: "Multiple Choice", 
 				answers: [{answer_choice: 'London'}, {answer_choice: 'Berlin'}, {answer_choice: 'Paris'}, {answer_choice: 'Timbuktu'}, {answer_choice: 'Dehli'} ], 
-				correct_answer: "Answer 1"} 
+				correct_answer: 4} 
 			],
 				
 		}],
@@ -45,16 +45,16 @@ let data =
 
 
 export default Map({
-	// isLoaded: true,
-	isLoaded: false,
-	// loggedIn: true,
-	loggedIn: false,
-	// topics: List([
-		// data, data, data, data, data
-	// ]),
-	topics: List([]),
-	// user: Map({ id: '', username: 'Peter Thomas', password: '', token: null }),
-	user: Map({ id: '', username: '', password: '', token: null }),
+	isLoaded: true,
+	// isLoaded: false,
+	loggedIn: true,
+	// loggedIn: false,
+	topics: List([
+		data, data, data, data, data
+	]),
+	// topics: List([]),
+	user: Map({ id: 1, username: 'Peter Thomas', password: '', token: null }),
+	// user: Map({ id: '', username: '', password: '', token: null }),
 	userProgress: List([]),
 	// assessmentData: Map({
 							// JS: Map({answers: List([]), mark: null}), 

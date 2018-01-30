@@ -269,4 +269,11 @@ p {
   .assessment-questions .panel .textarea {
     padding: 0 40px; }
 
+.submit-assessment {
+  padding: 10px;
+  display: flex;
+  justify-content: center; }
+  .submit-assessment .btn-submit {
+    font-size: 14px; }
+
 /*# sourceMappingURL=output.css.map */

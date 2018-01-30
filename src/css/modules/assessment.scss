@@ -12,3 +12,12 @@
 		padding: 0 40px;
 	}
 }
+
+.submit-assessment {
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+	.btn-submit {
+		font-size: 14px;
+	}
+}

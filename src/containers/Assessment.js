@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import Assessment from "../components/Assessment";
-import { onClickAssessmentAnswer } from "../data/actions_API";
+import { onChangeAssessmentAnswer } from "../data/actions_API";
+import { onClickAssessmentSubmit } from "../data/actions_API";
 
 const mapStateToProps = state => ({
     topics: state.get("topics"),
@@ -8,7 +9,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-	onClickAssessmentAnswer: (topic, assessmentID, questionID, answerID) => dispatch(onClickAssessmentAnswer(topic, assessmentID, questionID, answerID)),
+	onChangeAssessmentAnswer: (topic, assessmentID, questionID, answerID) => dispatch(onChangeAssessmentAnswer(topic, assessmentID, questionID, answerID)),
+	onClickAssessmentSubmit: (topicID, assessmentID, assessment, userAnswers) => dispatch(onClickAssessmentSubmit(topicID, assessmentID, assessment, userAnswers)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Assessment);

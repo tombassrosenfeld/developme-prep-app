@@ -102,7 +102,7 @@ export const onClickUserProgress = (id) => dispatch => {
 }
 
 // when user clicks an answer in the assessment
-export const onClickAssessmentAnswer = (topic, assessmentID, questionID, answerID) => dispatch => {
+export const onChangeAssessmentAnswer = (topic, assessmentID, questionID, answerID) => dispatch => {
 	//get assessment data from the state
 	let userAssessmentDataObj = store.getState().get('assessmentData');
 	let savedUserAssessmentDataObj = store.getState().get('assessmentData');
@@ -124,6 +124,22 @@ export const onClickAssessmentAnswer = (topic, assessmentID, questionID, answerI
 		dispatch(updateErrors('Error: unable to save your answers.'))
 		return dispatch(userAssessmentData(savedUserAssessmentDataObj));
 	})
+}
+
+export const onClickAssessmentSubmit = (topicID, assessmentID, assessment, userAnswers) => dispatch => {
+	// TODO form validation, is there an answer for each one?
+
+	// get correct answers out of topics info
+	let answers = assessment.get('questions').map((question, i) => question.get('correct_answer') - 1);
+
+	// filter userAnswers for correct answers
+	let correctAnswers = answers.filter((answer, i) => answer == userAnswers.get(i));
+
+	// let userAssessmentData = store.getState().get('userData']);
+	console.log(correctAnswers.toJS());
+
+	// update the assessmentdata.result 
+	// update the db
 }
 
 const updateToken = (token) => ({
