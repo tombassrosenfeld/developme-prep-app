@@ -84,15 +84,17 @@ export const onClickUserProgress = (id) => dispatch => {
 		let index = userProgressArr.indexOf(id);
 		userProgressArr.splice(index, 1);
 	}
+	// dispatch to state
 	dispatch(userProgress(userProgressArr));
+	
+	// post to api
 	let userID = store.getState().getIn(['user', 'id']);
 	let token = store.getState().getIn(['user', 'token']);
-	
 	postUserProgress(userID, token, userProgressArr).then(function(response){
 		// remove any errors
 		dispatch(updateErrors(''));		
 	}).catch(function(error){
-		// if failed to update, roll back to userProgressArr
+		// if failed to update, roll back to previous state
 		dispatch(updateErrors('Error: unable to save your progress.'))
 		return dispatch(userProgress(savedUserProgressArr));
 	})
@@ -104,22 +106,24 @@ export const onClickAssessmentAnswer = (topic, assessmentID, questionID, answerI
 	let userAssessmentDataObj = store.getState().get('assessmentData');
 	let savedUserAssessmentDataObj = store.getState().get('assessmentData');
 
-	// if no assessment data for this assessment
-	if (!userAssessmentDataObj.getIn([topic, assessmentID])) {
-		// create answers array
-		let answersArr = [];
-		// record the answer at the address of the question!!
-		answersArr[questionID] = answerID; 
-		// create an assessment record and set in userAssessmentDataObj
-		userAssessmentDataObj = userAssessmentDataObj.setIn([topic, assessmentID], Map({answers: List(answersArr), result: null}));
-	} else {
-		// record the answer at the address of the question!!
-		userAssessmentDataObj = userAssessmentDataObj.setIn([topic, assessmentID, 'answers', questionID], answerID);
-	}
+	userAssessmentDataObj = userAssessmentDataObj.setIn([topic, assessmentID, 'answers', questionID], answerID);
+	
 	// dispatch to state
 	dispatch(userAssessmentData(userAssessmentDataObj));
 
 	// post to api
+	let userID = store.getState().getIn(['user', 'id']);
+	console.log(userID);
+	let token = store.getState().getIn(['user', 'token']);
+	postUserAssessmentData(userID, token, userAssessmentDataObj.toJS()).then(function(response){
+		// remove any errors
+		console.log(response.data);
+		dispatch(updateErrors(''));		
+	}).catch(function(error){
+		// if failed to update, roll back to previous state
+		dispatch(updateErrors('Error: unable to save your answers.'))
+		return dispatch(userAssessmentData(savedUserAssessmentDataObj));
+	})
 }
 
 const updateToken = (token) => ({
@@ -167,14 +171,21 @@ function getUserProgress(token, userID) {
     })
 }
 
+function postUserProgress(userID, token, data) {
+	return axios.post('http://developme.box/wp-json/cf/prep/' + userID + '/progress', {
+    	headers: {'Authorization': token},
+    	data: data,
+    })
+}
+
 function getUserAssessmentData(token, userID) {
 	return axios.get('http://developme.box/wp-json/cf/prep/' + userID + '/assessment', {
     	headers: {'Authorization': token},
     })
 }
 
-function postUserProgress(userID, token, data) {
-	return axios.post('http://developme.box/wp-json/cf/prep/' + userID + '/progress', {
+function postUserAssessmentData(userID, token, data) {
+	return axios.post('http://developme.box/wp-json/cf/prep/' + userID + '/assessment', {
     	headers: {'Authorization': token},
     	data: data,
     })

@@ -1,7 +1,7 @@
-import { Map, List } from "immutable";
+import { Map, List, fromJS } from "immutable";
 
 let data =  
-	Map({ 
+	fromJS({ 
 		id: 1, 
 		title: "Blanditiis quidem aut sit", 
 		short_title: "CSS", 
@@ -57,9 +57,9 @@ export default Map({
 	user: Map({ id: '', username: '', password: '', token: null }),
 	userProgress: List([]),
 	// assessmentData: Map({
-	// 						JS: Map({answers: List([]), mark: null}), 
-	// 						SQL: Map({answers: List([]), result: null}), 
-	// 					}),
+							// JS: Map({answers: List([]), mark: null}), 
+							// SQL: Map({answers: List([]), result: null}), 
+						// }),
 	assessmentData: Map({}),
 	errors: '',
 });
