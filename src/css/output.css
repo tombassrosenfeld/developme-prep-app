@@ -236,7 +236,10 @@ p {
   color: #4d4d4d;
   padding-bottom: 10px; }
   .task-resources .panel .panel-title {
-    margin: 10px 0 0 0; }
+    margin: 10px 0 0 0;
+    padding-left: 0; }
+  .task-resources .panel p {
+    padding-left: 0; }
 
 .task-resources .panel:hover {
   background-color: #00e6b8; }
@@ -264,8 +267,8 @@ p {
   padding: 10px 0; }
   .assessment-questions .panel .panel-title {
     margin: 10px 0 0 0; }
-  .assessment-questions .panel .radio {
-    padding-left: 40px; }
+  .assessment-questions .panel .panel-title, .assessment-questions .panel p {
+    padding-left: 0; }
   .assessment-questions .panel .textarea {
     padding: 0 40px; }
 
