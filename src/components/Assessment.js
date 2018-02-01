@@ -2,9 +2,8 @@ import React from 'react';
 import AssessmentQuestion from '../containers/AssessmentQuestion';
 import AssessmentSubmit from '../containers/AssessmentSubmit';
 
-export default ({ id, topicID, topics, userAssessmentData, onClickAssessmentSubmit}) => (
+export default ({ id, topicID, topics, userAssessmentData}) => (
 	<div className="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-4 narrow-padding">
-	
 		<div className="panel">
 			<h1>{+id + 1}. { topics.getIn([topicID, 'assessments', id, 'assessment_title']) }</h1>
 	  		<h2>Questions</h2>
@@ -28,6 +27,5 @@ export default ({ id, topicID, topics, userAssessmentData, onClickAssessmentSubm
 			topicTitle={topics.getIn([topicID, 'short_title'])}
 			userAnswers={userAssessmentData.getIn([topics.getIn([topicID, 'short_title']), id, 'answers'])}
 		/>
-
 	</div>
 )
