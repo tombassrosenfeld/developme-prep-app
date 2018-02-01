@@ -1,5 +1,6 @@
 import React from 'react';
 import AssessmentQuestion from '../containers/AssessmentQuestion';
+import AssessmentSubmit from '../containers/AssessmentSubmit';
 
 export default ({ id, topicID, topics, userAssessmentData, onClickAssessmentSubmit}) => (
 	<div className="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-4 narrow-padding">
@@ -21,21 +22,12 @@ export default ({ id, topicID, topics, userAssessmentData, onClickAssessmentSubm
 			)) }
 		</div>
 
-		<div className="panel submit-assessment">
-			<div className="row">
-				<div className="col-xs-12">
-					<button 
-						className="btn btn-default btn-logout btn-submit" 
-						onClick={ () => onClickAssessmentSubmit(
-							topics.getIn([topicID, 'short_title']), // topic short title
-							id, // assessmentID
-							topics.getIn([topicID, 'assessments', id]), // assessment
-							userAssessmentData.getIn([topics.getIn([topicID, 'short_title']), id, 'answers']), // user assessment answers
-						) }
-					>Submit</button>
-				</div>
-			</div>
-		</div>
+		<AssessmentSubmit 
+			assessmentID={id}
+			assessment={topics.getIn([topicID, 'assessments', id])}
+			topicTitle={topics.getIn([topicID, 'short_title'])}
+			userAnswers={userAssessmentData.getIn([topics.getIn([topicID, 'short_title']), id, 'answers'])}
+		/>
 
 	</div>
 )
