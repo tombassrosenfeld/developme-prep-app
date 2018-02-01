@@ -1,4 +1,5 @@
 import React from 'react';
+import TaskResource from './TaskResource';
 
 export default ({ id, topicID, topics}) => (
 	<div className="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-4 narrow-padding">
@@ -10,19 +11,13 @@ export default ({ id, topicID, topics}) => (
 	  	<div className="task-resources">
 	  		{topics.getIn([topicID, 'tasks', id, 'resources']) ?
 	  			topics.getIn([topicID, 'tasks', id, 'resources']).map( (resource, i) => (
-		  			<a href={resource.link} target="_blank" className="resource-link" key={i}>
-			  			<div className="panel" >
-				  			<div className="row">
-				  				<div className="col-xs-2 resource-icon-container">
-				  					<i className={'fa fa-2x resource-icon ' + resource.get('resource_type')}></i>
-				  				</div>
-				  				<div className="col-xs-10 resource-info">
-				  					<h2 className="panel-title">{resource.get('title')}</h2>
-				  					<p>{resource.get('description')}</p>
-				  				</div>
-				  			</div>
-					  	</div>
-					</a>
+	  				<TaskResource 
+	  					key={i}
+	  					title={resource.get('title')}
+	  					description={resource.get('description')}
+	  					type={resource.get('resource_type')}
+	  					link={resource.get('link')}
+	  				/>
 				)) 
 				: null
 	  		}
