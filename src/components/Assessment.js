@@ -16,16 +16,21 @@ export default ({ id, topicID, topics, userAssessmentData}) => (
 					question={question} 
 					questionID={questionID}
 					assessmentID={id}
-					topicTitle={topics.getIn([topicID, 'short_title'])}
+					topicTitle={topics.getIn([topicID, 'short_title'])
+
+				}
 				/>
 			)) }
 		</div>
-
-		<AssessmentSubmit 
-			assessmentID={id}
-			assessment={topics.getIn([topicID, 'assessments', id])}
-			topicTitle={topics.getIn([topicID, 'short_title'])}
-			userAnswers={userAssessmentData.getIn([topics.getIn([topicID, 'short_title']), id, 'answers'])}
-		/>
+		{ !userAssessmentData.getIn([topics.getIn([topicID, 'short_title']), id, 'result']) ? 
+			<AssessmentSubmit 
+				assessmentID={id}
+				assessment={topics.getIn([topicID, 'assessments', id])}
+				topicTitle={topics.getIn([topicID, 'short_title'])}
+				userAnswers={userAssessmentData.getIn([topics.getIn([topicID, 'short_title']), id, 'answers'])}
+			/>
+			:
+			null
+		}
 	</div>
 )

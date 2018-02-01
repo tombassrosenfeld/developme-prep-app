@@ -38,7 +38,6 @@ const updateUserProgress = (state, { data }) => {
 }
 
 const updateUserAssessmentData = (state, { data }) => {
-	console.log(data.toJS());
 	return state.set('assessmentData', data);
 }
 
