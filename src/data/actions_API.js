@@ -2,7 +2,7 @@ import axios from '../data/axios';
 import { processTopicsData } from '../utilities/utilities';
 import { store } from '../index.js';
 import { updateErrors } from './actions';
-import { List, Map, fromJS } from "immutable";
+import { fromJS } from "immutable";
 
 export const UPDATE_TOKEN = Symbol("UPDATE_TOKEN");
 export const UPDATE_ERRORS = Symbol("UPDATE_ERRORS");
@@ -131,7 +131,7 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 	let answers = assessment.get('questions').map((question, i) => question.get('correct_answer') - 1);
 
 	// filter userAnswers for correct answers
-	let correctAnswers = answers.filter((answer, i) => answer == userAnswers.get(i));
+	let correctAnswers = answers.filter((answer, i) => answer === userAnswers.get(i));
 
 	// get data from state
 	let assessmentData = store.getState().get('assessmentData');
