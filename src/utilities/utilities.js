@@ -18,12 +18,11 @@ export const processTopicsData = (modulesData) => {
 
 // TODO: refactor design of initial state so that this gets calculated on return of user progress API call 
 export const calculateTopicStatus = (userProgress, topic) => {
-	let userProgressArr = userProgress.toJS();
 	let tasksArr = topic.get('tasks');
 	let assessmentArr = topic.get('assessments');
-	let totalTasks = tasksArr.toArray().length + assessmentArr.toArray().length;
+	let totalTasks = tasksArr.size + assessmentArr.size;
 	let topicKey = topic.get('short_title');
-	let done = userProgressArr.filter(task => task.indexOf(topicKey) !== -1).length;
+	let done = userProgress.filter(task => task.indexOf(topicKey) !== -1).size;
 	let notDone = totalTasks - done;
 	let isComplete = notDone <= 0;
 	let topicStatus = [

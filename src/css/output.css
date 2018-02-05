@@ -64,6 +64,15 @@ p {
   position: relative;
   right: 8px; }
 
+.fa {
+  font-size: 20px; }
+
+.fa-check-circle-o {
+  color: #00e6b8; }
+
+.fa-times-circle-o {
+  color: #FF3030; }
+
 /******************************************/
 /*Imported modules*/
 /******************************************/
@@ -220,12 +229,6 @@ p {
   display: flex;
   justify-content: center;
   cursor: pointer; }
-  .marker .fa {
-    font-size: 20px; }
-  .marker .fa-check-circle-o {
-    color: #00e6b8; }
-  .marker .fa-times-circle-o {
-    color: #FF3030; }
 
 @media only screen and (max-width: 500px) {
   .status-title {

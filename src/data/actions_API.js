@@ -49,7 +49,6 @@ const getData = (token) => dispatch => {
 
 		// get assessment data for the current user
 		getUserAssessmentData(token, userID).then(function(response) {
-			console.log(response.data);
 			// remove any errors
 			dispatch(updateErrors(''));
 			// update state
@@ -75,6 +74,7 @@ const getData = (token) => dispatch => {
 
 // when user clicks on markers
 export const onClickUserProgress = (id) => dispatch => {
+	console.log(id);
 	//get user progress from the state
 	let userProgressArr = store.getState().get('userProgress').toArray();
 	var savedUserProgressArr = store.getState().get('userProgress').toArray();
@@ -146,8 +146,12 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 	let userID = store.getState().getIn(['user', 'id']);
 	let token = store.getState().getIn(['user', 'token']);
 	postUserAssessmentData(userID, token, assessmentData.toJS()).then(function(response){
+		// TODO: onClickUserProgress does not fire...
+		console.log(topicTitle + '.assess.' + assessmentID);
+		// add assessment to the user progress
+		onClickUserProgress(topicTitle + '.assess.' + assessmentID);
 		// remove any errors
-		dispatch(updateErrors(''));		
+		dispatch(updateErrors(''));	
 	}).catch(function(error){
 		// if failed to update, roll back to previous state
 		dispatch(updateErrors('Error: unable to save your answers.'))

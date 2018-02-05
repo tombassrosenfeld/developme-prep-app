@@ -45,21 +45,21 @@ let data =
 
 
 export default Map({
-	// isLoaded: true,
-	isLoaded: false,
-	// loggedIn: true,
-	loggedIn: false,
-	// topics: List([
-		// data, data, data, data, data
-	// ]),
-	topics: List([]),
-	// user: Map({ id: 1, username: 'Peter Thomas', password: '', token: null }),
-	user: Map({ id: '', username: '', password: '', token: null }),
+	isLoaded: true,
+	// isLoaded: false,
+	loggedIn: true,
+	// loggedIn: false,
+	topics: List([
+		data, data, data, data, data
+	]),
+	// topics: List([]),
+	user: Map({ id: 1, username: 'Peter Thomas', password: '', token: null }),
+	// user: Map({ id: '', username: '', password: '', token: null }),
 	userProgress: List([]),
 	// assessmentData: Map({
-							// JS: Map({answers: List([]), mark: null}), 
-							// SQL: Map({answers: List([]), result: null}), 
-						// }),
+	// 						JS: List([Map({answers: List([]), mark: null})]), 
+	// 						SQL: Map({answers: List([]), result: null}), 
+	// 					}),
 	assessmentData: Map({}),
 	errors: '',
 });
