@@ -2,15 +2,13 @@ import React from 'react';
 import AssessmentQuestionChoices from '../containers/AssessmentQuestionChoices'
 
 export default ({questionID, question, assessmentID, topicTitle, userAssessmentData }) => (
-	<div className="panel">
+	<div className="panel" >
 		<div className="row">
-			<div className="col-xs-12">
-				<p>{questionID + 1}. {question.get('question')}</p>
+			<div className="col-xs-2 resource-icon-container">
+				<i className="fa fa-2x fa-question"></i>
 			</div>
-		</div>
-		
-		<div className="row">
-			<div className="col-xs-12">
+			<div className="col-xs-10 resource-info">
+				<h2 className="panel-title">{questionID + 1}. {question.get('question')}</h2>
 				{!userAssessmentData.getIn([topicTitle, assessmentID, 'result'])? 
 					<AssessmentQuestionChoices 
 						choices={question.get('answers')}
@@ -26,6 +24,5 @@ export default ({questionID, question, assessmentID, topicTitle, userAssessmentD
 				}
 			</div>
 		</div>
-
   	</div>
 )

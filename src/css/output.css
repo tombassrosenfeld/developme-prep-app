@@ -22,14 +22,13 @@ h1 {
     color: #404040; }
 
 h2 {
-  font-size: 16px; }
+  font-size: 14px; }
 
 p {
   color: #404040;
   font-family: 'Roboto', sans-serif;
-  font-size: 14px;
-  font-weight: 300;
-  text-align: justify; }
+  font-size: 13.5px;
+  font-weight: 300; }
 
 .app {
   padding-top: 20px;
@@ -47,7 +46,7 @@ p {
   .panel h1, .panel h2, .panel p {
     padding: 0 10px; }
   .panel .panel-title {
-    font-weight: bold;
+    font-weight: 600;
     margin: 30px 0 20px 0; }
 
 .error-message-container {
@@ -236,7 +235,7 @@ p {
   color: #4d4d4d;
   padding-bottom: 10px; }
   .task-resources .panel .panel-title {
-    margin: 10px 0 0 0;
+    margin: 10px 0 5px 0;
     padding-left: 0; }
   .task-resources .panel p {
     padding-left: 0; }
@@ -266,7 +265,7 @@ p {
   color: #4d4d4d;
   padding: 10px 0; }
   .assessment-questions .panel .panel-title {
-    margin: 10px 0 0 0; }
+    margin: 10px 0 5px 0; }
   .assessment-questions .panel .panel-title, .assessment-questions .panel p {
     padding-left: 0; }
   .assessment-questions .panel .textarea {
