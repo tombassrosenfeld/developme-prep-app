@@ -30,52 +30,34 @@ export const authenticate = (username, password) => dispatch => {
 const getData = (token) => dispatch => {
 	// gets data for all users
 	getUserData(token).then(function(response) {
-		// remove any errors
-		dispatch(updateErrors(''));
-		// update state
-		dispatch(userData(response.data));
-		// get user ID from the state
+		dispatch(updateErrors('')); // remove any errors
+		dispatch(userData(response.data)); // update state
+
 		let userID = store.getState().getIn(['user', 'id']); 
 
 		// get progress data for the current user
-		getUserProgress(token, userID).then(function(response) {
-			// remove any errors
-			dispatch(updateErrors(''));
-			// update state
-			dispatch(userProgress(response.data));
-		}).catch(function(error){
-			dispatch(updateErrors('Error: unable to retrieve your saved progress.'))
-		})
+		getUserProgress(token, userID).then( (response) => {
+			dispatch(updateErrors('')); // remove any errors
+			dispatch(userProgress(response.data)); // update state
+		}).catch( (error) => dispatch(updateErrors('Error: unable to retrieve your saved progress.')) );
 
 		// get assessment data for the current user
-		getUserAssessmentData(token, userID).then(function(response) {
-			// remove any errors
-			dispatch(updateErrors(''));
-			// update state
-			dispatch(userAssessmentData(fromJS(response.data))); // convert to immutable and dispatch
-		}).catch(function(error) {
-			dispatch(updateErrors('Error: no assessment data available.'))	
-		})
+		getUserAssessmentData(token, userID).then( (response) => {
+			dispatch(updateErrors('')); // remove any errors
+			dispatch(userAssessmentData(fromJS(response.data))); // update state
+		}).catch( (error) => dispatch(updateErrors('Error: no assessment data available.'))	);
 
-	}).catch(function(error) {
-		dispatch(updateErrors('Error: unable to retrieve user data.'))
-	})
+	}).catch( (error) => dispatch(updateErrors('Error: unable to retrieve user data.')) );
 
 	// gets modules and tasks
-	getTopics().then(function(response) {
-		// remove any errors
-		dispatch(updateErrors(''));
-	    dispatch(topicsData(processTopicsData(response.data)));
-	}).catch(function(error) {
-		dispatch(updateErrors('Error: no modules or tasks available.'))
-	})
-
+	getTopics().then( (response) => {
+		dispatch(updateErrors('')); // remove any errors
+	    dispatch(topicsData(processTopicsData(response.data))); // update state
+	}).catch( (error) => dispatch(updateErrors('Error: no modules or tasks available.')) );
 };
 
 // when user clicks on markers
 export const onClickUserProgress = (id) => dispatch => {
-	console.log(id);
-	//get user progress from the state
 	let userProgressArr = store.getState().get('userProgress').toArray();
 	var savedUserProgressArr = store.getState().get('userProgress').toArray();
 
@@ -85,20 +67,19 @@ export const onClickUserProgress = (id) => dispatch => {
 		let index = userProgressArr.indexOf(id);
 		userProgressArr.splice(index, 1);
 	}
-	// dispatch to state
-	dispatch(userProgress(userProgressArr));
+	
+	dispatch(userProgress(userProgressArr));// dispatch to state
 	
 	// post to api
 	let userID = store.getState().getIn(['user', 'id']);
 	let token = store.getState().getIn(['user', 'token']);
-	postUserProgress(userID, token, userProgressArr).then(function(response){
-		// remove any errors
-		dispatch(updateErrors(''));		
-	}).catch(function(error){
-		// if failed to update, roll back to previous state
-		dispatch(updateErrors('Error: unable to save your progress.'))
-		return dispatch(userProgress(savedUserProgressArr));
-	})
+	postUserProgress(userID, token, userProgressArr)
+		.then( response => dispatch(updateErrors('')) )
+		.catch( error => {
+			// if failed to update, roll back to previous state
+			dispatch(updateErrors('Error: unable to save your progress.'))
+			return dispatch(userProgress(savedUserProgressArr));
+		})
 }
 
 // when user clicks an answer in the assessment
@@ -109,57 +90,48 @@ export const onChangeAssessmentAnswer = (topic, assessmentID, questionID, answer
 
 	userAssessmentDataObj = userAssessmentDataObj.setIn([topic, assessmentID, 'answers', questionID], answerID);
 	
-	// dispatch to state
-	dispatch(userAssessmentData(userAssessmentDataObj));
+	dispatch(userAssessmentData(userAssessmentDataObj)); // dispatch to state
 
 	// post to api
 	let userID = store.getState().getIn(['user', 'id']);
 	let token = store.getState().getIn(['user', 'token']);
-	postUserAssessmentData(userID, token, userAssessmentDataObj.toJS()).then(function(response){
-		// remove any errors
-		dispatch(updateErrors(''));		
-	}).catch(function(error){
-		// if failed to update, roll back to previous state
-		dispatch(updateErrors('Error: unable to save your answers.'))
-		return dispatch(userAssessmentData(savedUserAssessmentDataObj));
-	})
+	postUserAssessmentData(userID, token, userAssessmentDataObj.toJS())
+		.then( response => dispatch(updateErrors('')) )// remove any errors
+		.catch( error => {
+			// if failed to update, roll back to previous state
+			dispatch(updateErrors('Error: unable to save your answers.'))
+			return dispatch(userAssessmentData(savedUserAssessmentDataObj));
+		})
 }
 
 export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, userAnswers) => dispatch => {
-
-	// get correct answers out of topics info
 	let answers = assessment.get('questions').map((question, i) => question.get('correct_answer') - 1);
-
-	// filter userAnswers for correct answers
 	let correctAnswers = answers.filter((answer, i) => answer === userAnswers.get(i));
 
-	// get data from state
 	let assessmentData = store.getState().get('assessmentData');
 	let savedAssessmentData = store.getState().get('assessmentData');
 	// update
 	assessmentData = assessmentData.setIn([topicTitle, assessmentID, 'result'], correctAnswers.size);
-	// dispatch back to state
-	dispatch(userAssessmentData(assessmentData));
+	
+	dispatch(userAssessmentData(assessmentData)); // dispatch to state
 
-	// TODO: this is a repetition of above...
 	// post to api
 	let userID = store.getState().getIn(['user', 'id']);
 	let token = store.getState().getIn(['user', 'token']);
-	postUserAssessmentData(userID, token, assessmentData.toJS()).then(function(response){
-		// TODO: onClickUserProgress does not fire...
-		console.log(topicTitle + '.assess.' + assessmentID);
-		// add assessment to the user progress
-		onClickUserProgress(topicTitle + '.assess.' + assessmentID);
-		// remove any errors
-		dispatch(updateErrors(''));	
-	}).catch(function(error){
-		// if failed to update, roll back to previous state
-		dispatch(updateErrors('Error: unable to save your answers.'))
-		return dispatch(userAssessmentData(savedAssessmentData));
-	});
-
-	// update the assessmentdata.result 
-	// update the db
+	postUserAssessmentData(userID, token, assessmentData.toJS())
+		.then( response => {
+			// TODO: onClickUserProgress does not fire...
+			
+			// add assessment to the user progress
+			// onClickUserProgress(topicTitle + '.assess.' + assessmentID);
+			// remove any errors
+			dispatch(updateErrors(''));	
+		})
+		.catch( error => {
+			// if failed to update, roll back to previous state
+			dispatch(updateErrors('Error: unable to save your answers.'))
+			return dispatch(userAssessmentData(savedAssessmentData));
+		} );
 }
 
 const updateToken = (token) => ({

@@ -22,9 +22,9 @@ export const calculateTopicStatus = (userProgress, topic) => {
 	let assessmentArr = topic.get('assessments');
 	let totalTasks = tasksArr.size + assessmentArr.size;
 	let topicKey = topic.get('short_title');
-	console.log(userProgress.toJS());
 	let done = userProgress.filter(task => task.indexOf(topicKey) !== -1).size;
-	console.log(done);	
+	// console.log(userProgress.toJS());
+	// console.log(done);	
 	let notDone = totalTasks - done;
 	let isComplete = notDone <= 0;
 	let topicStatus = [
