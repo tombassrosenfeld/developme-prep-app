@@ -2,6 +2,7 @@ import React from 'react';
 import AssessmentQuestion from '../containers/AssessmentQuestion';
 import AssessmentSubmit from '../containers/AssessmentSubmit';
 import AssessmentHeader from './AssessmentHeader';
+import { List } from "immutable";
 
 export default ({ id, topicID, topics, userAssessmentData}) => (
 	<div className="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-4 narrow-padding">
@@ -29,7 +30,10 @@ export default ({ id, topicID, topics, userAssessmentData}) => (
 				assessmentID={id}
 				assessment={topics.getIn([topicID, 'assessments', id])}
 				topicTitle={topics.getIn([topicID, 'short_title'])}
-				userAnswers={userAssessmentData.getIn([topics.getIn([topicID, 'short_title']), id, 'answers'])}
+				userAnswers={
+					userAssessmentData.getIn([topics.getIn([topicID, 'short_title']), id, 'answers']) ?
+					userAssessmentData.getIn([topics.getIn([topicID, 'short_title']), id, 'answers']) : List([])
+				}
 			/>
 			: null
 		}

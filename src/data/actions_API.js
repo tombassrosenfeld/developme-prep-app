@@ -105,33 +105,44 @@ export const onChangeAssessmentAnswer = (topic, assessmentID, questionID, answer
 }
 
 export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, userAnswers) => dispatch => {
+	// mark assessment and update assessmentData
 	let answers = assessment.get('questions').map((question, i) => question.get('correct_answer') - 1);
 	let correctAnswers = answers.filter((answer, i) => answer === userAnswers.get(i));
-
 	let assessmentData = store.getState().get('assessmentData');
 	let savedAssessmentData = store.getState().get('assessmentData');
-	// update
 	assessmentData = assessmentData.setIn([topicTitle, assessmentID, 'result'], correctAnswers.size);
-	
 	dispatch(userAssessmentData(assessmentData)); // dispatch to state
 
-	// post to api
+	// update user progress data
+	let userProgressArr = store.getState().get('userProgress').toArray(); // TODO keep this immutable
+	var savedUserProgressArr = store.getState().get('userProgress').toArray(); // TODO keep this immutable
+	userProgressArr.push(topicTitle + '.assess.' + assessmentID);
+	dispatch(userProgress(userProgressArr));// dispatch to state
+
+	// post to api - if any part of the process fails revert back
 	let userID = store.getState().getIn(['user', 'id']);
 	let token = store.getState().getIn(['user', 'token']);
 	postUserAssessmentData(userID, token, assessmentData.toJS())
 		.then( response => {
-			// TODO: onClickUserProgress does not fire...
-			
-			// add assessment to the user progress
-			// onClickUserProgress(topicTitle + '.assess.' + assessmentID);
-			// remove any errors
 			dispatch(updateErrors(''));	
+			// post user progress
+			postUserProgress(userID, token, userProgressArr)
+				.then( response => dispatch(updateErrors('')) )
+				.catch( error => {
+					// if failed, roll back assessment and user progress data
+					dispatch(updateErrors('Error: unable to save your progress.'))
+					dispatch(userAssessmentData(savedAssessmentData));
+					return dispatch(userProgress(savedUserProgressArr));
+				})
 		})
 		.catch( error => {
-			// if failed to update, roll back to previous state
 			dispatch(updateErrors('Error: unable to save your answers.'))
-			return dispatch(userAssessmentData(savedAssessmentData));
+			// if failed, roll back assessment and user progress data
+			dispatch(userAssessmentData(savedAssessmentData));
+			return dispatch(userProgress(savedUserProgressArr));
 		} );
+
+
 }
 
 const updateToken = (token) => ({
