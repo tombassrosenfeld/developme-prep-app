@@ -7,7 +7,7 @@ export default ({ assessmentID, assessmentTitle, result, totalQuestions}) => (
 			<div className="col-xs-6">
   				<h2>Questions</h2>
   			</div>
-  			{result ?
+  			{result != null ?
 				<div className="col-xs-6">
 					<h2 className="pull-right">
 						{ "Your score: " + result + " / " + totalQuestions }

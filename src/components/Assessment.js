@@ -25,7 +25,7 @@ export default ({ id, topicID, topics, userAssessmentData}) => (
 			)) }
 		</div>
 
-		{ !userAssessmentData.getIn([topics.getIn([topicID, 'short_title']), id, 'result']) ? 
+		{ userAssessmentData.getIn([topics.getIn([topicID, 'short_title']), id, 'result']) == null ? 
 			<AssessmentSubmit 
 				assessmentID={id}
 				assessment={topics.getIn([topicID, 'assessments', id])}

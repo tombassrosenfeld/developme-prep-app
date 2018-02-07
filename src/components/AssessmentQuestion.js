@@ -5,7 +5,7 @@ export default ({questionID, question, assessmentID, topicTitle, userAssessmentD
 	<div className="panel" >
 		<div className="row">
 			<div className="col-xs-2 resource-icon-container .marker">
-				{!userAssessmentData.getIn([topicTitle, assessmentID, 'result'])? 
+				{userAssessmentData.getIn([topicTitle, assessmentID, 'result']) == null ? 
 					<i className="fa fa-2x fa-question"></i>
 					:
 					(question.get('correct_answer') - 1) === userAssessmentData.getIn([topicTitle, assessmentID, 'answers', questionID]) ?
@@ -16,7 +16,7 @@ export default ({questionID, question, assessmentID, topicTitle, userAssessmentD
 			</div>
 			<div className="col-xs-10 resource-info">
 				<h2 className="panel-title">{questionID + 1}. {question.get('question')}</h2>
-				{!userAssessmentData.getIn([topicTitle, assessmentID, 'result'])? 
+				{userAssessmentData.getIn([topicTitle, assessmentID, 'result']) == null ? 
 					<AssessmentQuestionChoices 
 						choices={question.get('answers')}
 						topicTitle={topicTitle}

@@ -118,7 +118,8 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 	// update user progress data
 	let userProgressArr = store.getState().get('userProgress').toArray(); // TODO keep this immutable
 	var savedUserProgressArr = store.getState().get('userProgress').toArray(); // TODO keep this immutable
-	userProgressArr.push(topicTitle + '.assess.' + assessmentID);
+	let assessmentKey = topicTitle + '.assess.' + assessmentID;
+	!userProgressArr.includes(assessmentKey) ? userProgressArr.push(assessmentKey) : null;
 	dispatch(userProgress(userProgressArr));// dispatch to state
 
 	// post to api - if any part of the process fails revert back
