@@ -173,7 +173,7 @@ const topicsData = (data) => ({
 
 // API calls
 function getToken(username, password) {
-	return axios.post('http://developme.box/wp-json/jwt-auth/v1/token', { // TODO: change this when you change the server...
+	return axios.post('http://resources.developme.box/wp-json/jwt-auth/v1/token', { // TODO: change this when you change the server...
 		username: username,
 		password: password,
 	})
@@ -186,26 +186,26 @@ function getUserData(token) {
 }
 
 function getUserProgress(token, userID) {
-	return axios.get('http://developme.box/wp-json/cf/prep/' + userID + '/progress', {
+	return axios.get('http://resources.developme.box/wp-json/cf/prep/' + userID + '/progress', {// TODO: change this when you change the server...
     	headers: {'Authorization': token},
     })
 }
 
 function postUserProgress(userID, token, data) {
-	return axios.post('http://developme.box/wp-json/cf/prep/' + userID + '/progress', {
+	return axios.post('http://resources.developme.box/wp-json/cf/prep/' + userID + '/progress', {// TODO: change this when you change the server...
     	headers: {'Authorization': token},
     	data: data,
     })
 }
 
 function getUserAssessmentData(token, userID) {
-	return axios.get('http://developme.box/wp-json/cf/prep/' + userID + '/assessment', {
+	return axios.get('http://resources.developme.box/wp-json/cf/prep/' + userID + '/assessment', {// TODO: change this when you change the server...
     	headers: {'Authorization': token},
     })
 }
 
 function postUserAssessmentData(userID, token, data) {
-	return axios.post('http://developme.box/wp-json/cf/prep/' + userID + '/assessment', {
+	return axios.post('http://resources.developme.box/wp-json/cf/prep/' + userID + '/assessment', {// TODO: change this when you change the server...
     	headers: {'Authorization': token},
     	data: data,
     })
