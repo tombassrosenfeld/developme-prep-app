@@ -13,47 +13,49 @@ export const USER_ASSESSMENT_DATA = Symbol("USER_ASSESSMENT_DATA");
 
 // when user submits login details, calls authenticate()
 export const authenticate = (username, password) => dispatch => {
-	getToken(username, password).then(function(response){
-		// remove any errors
-		dispatch(updateErrors(''));
-		// dispatches key to state
-		dispatch(updateToken(response.data.token));
-		// and immediately calls api for module and user data
-		dispatch(getData(response.data.token));
-	})
-	.catch(function(error){
-		dispatch(updateErrors('Unable to log you in! Please check your details.'));
-	})
+	getToken(username, password)
+		.then( response => {
+			dispatch(updateErrors('')); // remove any errors
+			dispatch(updateToken(response.data.token)); // dispatches key to state
+			dispatch(getData(response.data.token)); // and immediately calls api for module and user data
+		})
+		.catch( error => dispatch(updateErrors('Unable to log you in! Please check your details.')) )
 };
 
 // if authentication is successful, calls getdata()
 const getData = (token) => dispatch => {
 	// gets data for all users
-	getUserData(token).then(function(response) {
-		dispatch(updateErrors('')); // remove any errors
-		dispatch(userData(response.data)); // update state
-
-		let userID = store.getState().getIn(['user', 'id']); 
-
-		// get progress data for the current user
-		getUserProgress(token, userID).then( (response) => {
+	getUserData(token)
+		.then( response => {
 			dispatch(updateErrors('')); // remove any errors
-			dispatch(userProgress(response.data)); // update state
-		}).catch( (error) => dispatch(updateErrors('Error: unable to retrieve your saved progress.')) );
+			dispatch(userData(response.data)); // update state
+			let userID = store.getState().getIn(['user', 'id']); 
 
-		// get assessment data for the current user
-		getUserAssessmentData(token, userID).then( (response) => {
-			dispatch(updateErrors('')); // remove any errors
-			dispatch(userAssessmentData(fromJS(response.data))); // update state
-		}).catch( (error) => dispatch(updateErrors('Error: no assessment data available.'))	);
+			// get progress data for the current user
+			getUserProgress(token, userID)
+				.then( response => {
+					dispatch(updateErrors('')); // remove any errors
+					dispatch(userProgress(response.data)); // update state
+				})
+				.catch( error => dispatch(updateErrors('Error: unable to retrieve your saved progress.')) );
 
-	}).catch( (error) => dispatch(updateErrors('Error: unable to retrieve user data.')) );
+			// get assessment data for the current user
+			getUserAssessmentData(token, userID)
+				.then( response => {
+					dispatch(updateErrors('')); // remove any errors
+					dispatch(userAssessmentData(fromJS(response.data))); // update state
+				})
+				.catch( error => dispatch(updateErrors('Error: no assessment data available.'))	);
+		})
+		.catch( error => dispatch(updateErrors('Error: unable to retrieve user data.')) );
 
 	// gets modules and tasks
-	getTopics().then( (response) => {
-		dispatch(updateErrors('')); // remove any errors
-	    dispatch(topicsData(processTopicsData(response.data))); // update state
-	}).catch( (error) => dispatch(updateErrors('Error: no modules or tasks available.')) );
+	getTopics()
+		.then( response => {
+			dispatch(updateErrors('')); // remove any errors
+		    dispatch(topicsData(processTopicsData(response.data))); // update state
+		})
+		.catch( error => dispatch(updateErrors('Error: no modules or tasks available.')) );
 };
 
 // when user clicks on markers
@@ -77,7 +79,7 @@ export const onClickUserProgress = (id) => dispatch => {
 		.then( response => dispatch(updateErrors('')) )
 		.catch( error => {
 			// if failed to update, roll back to previous state
-			dispatch(updateErrors('Error: unable to save your progress.'))
+			dispatch(updateErrors('Error: unable to save your progress.'));
 			return dispatch(userProgress(savedUserProgressArr));
 		})
 }
@@ -99,7 +101,7 @@ export const onChangeAssessmentAnswer = (topic, assessmentID, questionID, answer
 		.then( response => dispatch(updateErrors('')) )// remove any errors
 		.catch( error => {
 			// if failed to update, roll back to previous state
-			dispatch(updateErrors('Error: unable to save your answers.'))
+			dispatch(updateErrors('Error: unable to save your answers.'));
 			return dispatch(userAssessmentData(savedUserAssessmentDataObj));
 		})
 }
@@ -130,19 +132,17 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 				.then( response => dispatch(updateErrors('')) )
 				.catch( error => {
 					// if failed, roll back assessment and user progress data
-					dispatch(updateErrors('Error: unable to save your progress.'))
+					dispatch(updateErrors('Error: unable to save your progress.'));
 					dispatch(userAssessmentData(savedAssessmentData));
 					return dispatch(userProgress(savedUserProgressArr));
 				})
 		})
 		.catch( error => {
-			dispatch(updateErrors('Error: unable to save your answers.'))
 			// if failed, roll back assessment and user progress data
+			dispatch(updateErrors('Error: unable to save your answers.'))
 			dispatch(userAssessmentData(savedAssessmentData));
 			return dispatch(userProgress(savedUserProgressArr));
 		} );
-
-
 }
 
 const updateToken = (token) => ({
