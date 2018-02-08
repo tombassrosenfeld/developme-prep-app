@@ -4,7 +4,7 @@ import { store } from '../index.js';
 import { updateErrors } from './actions';
 import { fromJS } from "immutable";
 
-export const UPDATE_TOKEN = Symbol("UPDATE_TOKEN");
+export const UPDATE_TOKEN_AND_USER = Symbol("UPDATE_TOKEN_AND_USER");
 export const UPDATE_ERRORS = Symbol("UPDATE_ERRORS");
 export const TOPICS_DATA = Symbol("TOPICS_DATA");
 export const USER_DATA = Symbol("USER_DATA");
@@ -15,8 +15,9 @@ export const USER_ASSESSMENT_DATA = Symbol("USER_ASSESSMENT_DATA");
 export const authenticate = (username, password) => dispatch => {
 	getToken(username, password)
 		.then( response => {
+			console.log(response);
 			dispatch(updateErrors('')); // remove any errors
-			dispatch(updateToken(response.data.token)); // dispatches key to state
+			dispatch(updateTokenAndUser(response.data)); // dispatches key to state
 			dispatch(getData(response.data.token)); // and immediately calls api for module and user data
 		})
 		.catch( error => dispatch(updateErrors('Unable to log you in! Please check your details.')) )
@@ -50,7 +51,7 @@ const getData = (token) => dispatch => {
 		})
 		.catch( error => { 
 			dispatch(updateErrors('Error: unable to retrieve user data.'));
-			console.log(error); });
+			console.log(error.response); });
 
 	// gets modules and tasks
 	getTopics()
@@ -149,9 +150,9 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 		} );
 }
 
-const updateToken = (token) => ({
-	type: UPDATE_TOKEN, 
-	token,
+const updateTokenAndUser = (data) => ({
+	type: UPDATE_TOKEN_AND_USER, 
+	data,
 })
 
 const userData = (data) => ({
@@ -183,33 +184,33 @@ function getToken(username, password) {
 }
 
 function getUserData(token) {
-	return axios.get('users', {
-    	headers: {'Authorization': token}
+	return axios.get('users?context=edit', { // TODO: how to handle this when there are more than 100 users in the db
+    	headers: {'Authorization': 'Bearer ' + token},
     })
 }
 
 function getUserProgress(token, userID) {
 	return axios.get('http://resources.developme.box/wp-json/cf/prep/' + userID + '/progress', {// TODO: change this when you change the server...
-    	headers: {'Authorization': token},
+    	headers: {'Authorization': 'Bearer ' + token},
     })
 }
 
 function postUserProgress(userID, token, data) {
 	return axios.post('http://resources.developme.box/wp-json/cf/prep/' + userID + '/progress', {// TODO: change this when you change the server...
-    	headers: {'Authorization': token},
+    	headers: {'Authorization': 'Bearer ' + token},
     	data: data,
     })
 }
 
 function getUserAssessmentData(token, userID) {
 	return axios.get('http://resources.developme.box/wp-json/cf/prep/' + userID + '/assessment', {// TODO: change this when you change the server...
-    	headers: {'Authorization': token},
+    	headers: {'Authorization': 'Bearer ' + token},
     })
 }
 
 function postUserAssessmentData(userID, token, data) {
 	return axios.post('http://resources.developme.box/wp-json/cf/prep/' + userID + '/assessment', {// TODO: change this when you change the server...
-    	headers: {'Authorization': token},
+    	headers: {'Authorization': 'Bearer ' + token},
     	data: data,
     })
 }

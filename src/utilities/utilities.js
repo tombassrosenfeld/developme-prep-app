@@ -32,3 +32,4 @@ export const calculateTopicStatus = (userProgress, topic) => {
 	return topicStatus;
 }
 
+
