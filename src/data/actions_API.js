@@ -27,6 +27,7 @@ const getData = (token) => dispatch => {
 	// gets data for all users
 	getUserData(token)
 		.then( response => {
+			console.log(response);
 			dispatch(updateErrors('')); // remove any errors
 			dispatch(userData(response.data)); // update state
 			let userID = store.getState().getIn(['user', 'id']); 
@@ -47,7 +48,9 @@ const getData = (token) => dispatch => {
 				})
 				.catch( error => dispatch(updateErrors('Error: no assessment data available.'))	);
 		})
-		.catch( error => dispatch(updateErrors('Error: unable to retrieve user data.')) );
+		.catch( error => { 
+			dispatch(updateErrors('Error: unable to retrieve user data.'));
+			console.log(error); });
 
 	// gets modules and tasks
 	getTopics()

@@ -25,6 +25,7 @@ const updateErrors = (state, { errorMessage }) => {
 }
 
 const updateUserID = (state, { data }) => {
+	console.log(data);
 	// find the matching userID
 	let user = data.filter((user) => {
 		return user.name === state.getIn(['user', 'username']);
