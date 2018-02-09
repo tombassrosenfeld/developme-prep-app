@@ -26,20 +26,10 @@ export const authenticate = (username, password) => dispatch => {
 const getData = (token) => dispatch => {
 	getUserData(token)
 		.then( response => {
-			console.log(response);
 			dispatch(updateErrors('')); // remove any errors
 			dispatch(userData(response.data)); // update state with user data
-			console.log(response.data[0].userProgress);
 			dispatch(userProgress(List(response.data[0].userProgress))); // update state with user progress
-			let userID = response.data[0].id;
-
-			// get assessment data for the current user
-			getUserAssessmentData(token, userID)
-				.then( response => {
-					dispatch(updateErrors('')); // remove any errors
-					dispatch(userAssessmentData(fromJS(response.data))); // update state
-				})
-				.catch( error => dispatch(updateErrors('Error: no assessment data available.'))	);
+			dispatch(userAssessmentData(fromJS(response.data[0].userAssessmentData))); // update state
 		})
 		.catch( error => dispatch( updateErrors('Error: unable to retrieve user data.')) );
 
@@ -180,22 +170,10 @@ function getUserData(token) {
     })
 }
 
-function getUserProgress(token, userID) {
-	return axios.get('/wp-json/cf/prep/' + userID + '/progress', {// TODO: change this when you change the server...
-    	headers: {'Authorization': 'Bearer ' + token},
-    })
-}
-
 function postUserProgress(userID, token, data) {
 	return axios.post('/wp-json/cf/prep/' + userID + '/progress', {// TODO: change this when you change the server...
     	headers: {'Authorization': 'Bearer ' + token},
     	data: data,
-    })
-}
-
-function getUserAssessmentData(token, userID) {
-	return axios.get('/wp-json/cf/prep/' + userID + '/assessment', {// TODO: change this when you change the server...
-    	headers: {'Authorization': 'Bearer ' + token},
     })
 }
 
