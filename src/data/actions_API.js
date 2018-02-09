@@ -24,10 +24,6 @@ export const authenticate = (username, password) => dispatch => {
 
 // if authentication is successful, calls getdata()
 const getData = (token) => dispatch => {
-	// validateToken(token)
-	// 	.then(response => console.log(response))
-	// 	.catch(error => console.log(error.response));
-	// gets data for all users
 	getUserData(token)
 		.then( response => {
 			dispatch(updateErrors('')); // remove any errors
@@ -179,14 +175,6 @@ function getToken(username, password) {
 	return axios.post('/wp-json/jwt-auth/v1/token', { // TODO: change this when you change the server...
 		username: username,
 		password: password,
-	})
-}
-
-function validateToken(token) {
-	return axios.post('/wp-json/jwt-auth/v1/token/validate', {
-		headers: {'Authorization': 'Bearer ' + token,
-					"Accept": "application/json",
-		},
 	})
 }
 
