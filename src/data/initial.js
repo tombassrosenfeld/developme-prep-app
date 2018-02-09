@@ -56,6 +56,7 @@ export default Map({
 	loggedIn: false,
 	topics: List([]),
 	user: Map({ id: '', username: '', password: '', user_display_name: '', user_email: '', token: null }),
+	
 	userProgress: List([]),
 	assessmentData: Map({}),
 	errors: '',
