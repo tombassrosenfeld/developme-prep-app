@@ -15,7 +15,6 @@ export const USER_ASSESSMENT_DATA = Symbol("USER_ASSESSMENT_DATA");
 export const authenticate = (username, password) => dispatch => {
 	getToken(username, password)
 		.then( response => {
-			console.log(response);
 			dispatch(updateErrors('')); // remove any errors
 			dispatch(updateTokenAndUser(response.data)); // dispatches key to state
 			dispatch(getData(response.data.token)); // and immediately calls api for module and user data
@@ -25,9 +24,9 @@ export const authenticate = (username, password) => dispatch => {
 
 // if authentication is successful, calls getdata()
 const getData = (token) => dispatch => {
-	validateToken(token)
-		.then(response => console.log(response))
-		.catch(error => console.log(error.response));
+	// validateToken(token)
+	// 	.then(response => console.log(response))
+	// 	.catch(error => console.log(error.response));
 	// gets data for all users
 	getUserData(token)
 		.then( response => {
@@ -53,9 +52,7 @@ const getData = (token) => dispatch => {
 				})
 				.catch( error => dispatch(updateErrors('Error: no assessment data available.'))	);
 		})
-		.catch( error => { 
-			dispatch(updateErrors('Error: unable to retrieve user data.'));
-			console.log(error.response); });
+		.catch( error => dispatch( updateErrors('Error: unable to retrieve user data.')) );
 
 	// gets modules and tasks
 	getTopics()
@@ -181,14 +178,14 @@ const topicsData = (data) => ({
 
 // API calls
 function getToken(username, password) {
-	return axios.post('http://resources.developme.box/wp-json/jwt-auth/v1/token', { // TODO: change this when you change the server...
+	return axios.post('/wp-json/jwt-auth/v1/token', { // TODO: change this when you change the server...
 		username: username,
 		password: password,
 	})
 }
 
 function validateToken(token) {
-	return axios.post('http://resources.developme.box/wp-json/jwt-auth/v1/token/validate', {
+	return axios.post('/wp-json/jwt-auth/v1/token/validate', {
 		headers: {'Authorization': 'Bearer ' + token,
 					"Accept": "application/json",
 		},
@@ -197,37 +194,37 @@ function validateToken(token) {
 
 function getUserData(token) {
 	let userEmail = store.getState().getIn(['user', 'user_email']);
-	return axios.get('users?context=edit&search=' + userEmail, { // only return user data for the logged in user
+	return axios.get('/wp-json/wp/v2/users?context=edit&search=' + userEmail, { // only return user data for the logged in user
     	headers: {'Authorization': 'Bearer ' + token},
     })
 }
 
 function getUserProgress(token, userID) {
-	return axios.get('http://resources.developme.box/wp-json/cf/prep/' + userID + '/progress', {// TODO: change this when you change the server...
+	return axios.get('/wp-json/cf/prep/' + userID + '/progress', {// TODO: change this when you change the server...
     	headers: {'Authorization': 'Bearer ' + token},
     })
 }
 
 function postUserProgress(userID, token, data) {
-	return axios.post('http://resources.developme.box/wp-json/cf/prep/' + userID + '/progress', {// TODO: change this when you change the server...
+	return axios.post('/wp-json/cf/prep/' + userID + '/progress', {// TODO: change this when you change the server...
     	headers: {'Authorization': 'Bearer ' + token},
     	data: data,
     })
 }
 
 function getUserAssessmentData(token, userID) {
-	return axios.get('http://resources.developme.box/wp-json/cf/prep/' + userID + '/assessment', {// TODO: change this when you change the server...
+	return axios.get('/wp-json/cf/prep/' + userID + '/assessment', {// TODO: change this when you change the server...
     	headers: {'Authorization': 'Bearer ' + token},
     })
 }
 
 function postUserAssessmentData(userID, token, data) {
-	return axios.post('http://resources.developme.box/wp-json/cf/prep/' + userID + '/assessment', {// TODO: change this when you change the server...
+	return axios.post('/wp-json/cf/prep/' + userID + '/assessment', {// TODO: change this when you change the server...
     	headers: {'Authorization': 'Bearer ' + token},
     	data: data,
     })
 }
 
 function getTopics() {
-	return axios.get('cf_preparation');
+	return axios.get('/wp-json/wp/v2/cf_preparation');
 } 
