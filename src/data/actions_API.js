@@ -26,17 +26,12 @@ export const authenticate = (username, password) => dispatch => {
 const getData = (token) => dispatch => {
 	getUserData(token)
 		.then( response => {
+			console.log(response);
 			dispatch(updateErrors('')); // remove any errors
-			dispatch(userData(response.data)); // update state
+			dispatch(userData(response.data)); // update state with user data
+			console.log(response.data[0].userProgress);
+			dispatch(userProgress(List(response.data[0].userProgress))); // update state with user progress
 			let userID = response.data[0].id;
-
-			// get progress data for the current user
-			getUserProgress(token, userID)
-				.then( response => {
-					dispatch(updateErrors('')); // remove any errors
-					dispatch(userProgress(List(response.data))); // update state
-				})
-				.catch( error => dispatch(updateErrors('Error: unable to retrieve your saved progress.')) );
 
 			// get assessment data for the current user
 			getUserAssessmentData(token, userID)
