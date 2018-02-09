@@ -42,7 +42,7 @@ const updateUserID = (state, { data }) => {
 }
 
 const updateUserProgress = (state, { data }) => {
-	return state.set('userProgress', List(data));
+	return state.set('userProgress', data);
 }
 
 const updateUserAssessmentData = (state, { data }) => {

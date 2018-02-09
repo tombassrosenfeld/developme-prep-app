@@ -2,7 +2,7 @@ import axios from '../data/axios';
 import { processTopicsData } from '../utilities/utilities';
 import { store } from '../index.js';
 import { updateErrors } from './actions';
-import { fromJS } from "immutable";
+import { List, fromJS } from "immutable";
 
 export const UPDATE_TOKEN_AND_USER = Symbol("UPDATE_TOKEN_AND_USER");
 export const UPDATE_ERRORS = Symbol("UPDATE_ERRORS");
@@ -30,17 +30,15 @@ const getData = (token) => dispatch => {
 	// gets data for all users
 	getUserData(token)
 		.then( response => {
-			// TODO: refactor user progress and assessment data as can now get this all from one call
-			console.log(response);
 			dispatch(updateErrors('')); // remove any errors
 			dispatch(userData(response.data)); // update state
-			let userID = store.getState().getIn(['user', 'id']); 
+			let userID = response.data[0].id;
 
 			// get progress data for the current user
 			getUserProgress(token, userID)
 				.then( response => {
 					dispatch(updateErrors('')); // remove any errors
-					dispatch(userProgress(response.data)); // update state
+					dispatch(userProgress(List(response.data))); // update state
 				})
 				.catch( error => dispatch(updateErrors('Error: unable to retrieve your saved progress.')) );
 
@@ -65,14 +63,14 @@ const getData = (token) => dispatch => {
 
 // when user clicks on markers
 export const onClickUserProgress = (id) => dispatch => {
-	let userProgressArr = store.getState().get('userProgress').toArray();
-	var savedUserProgressArr = store.getState().get('userProgress').toArray();
+	let userProgressArr = store.getState().get('userProgress');
+	var savedUserProgressArr = userProgressArr;
 
 	if (!userProgressArr.includes(id)) {
-		userProgressArr.push(id);
+		userProgressArr = userProgressArr.push(id);
 	} else {
 		let index = userProgressArr.indexOf(id);
-		userProgressArr.splice(index, 1);
+		userProgressArr = userProgressArr.splice(index, 1);
 	}
 	
 	dispatch(userProgress(userProgressArr));// dispatch to state
@@ -93,7 +91,7 @@ export const onClickUserProgress = (id) => dispatch => {
 export const onChangeAssessmentAnswer = (topic, assessmentID, questionID, answerID) => dispatch => {
 	//get assessment data from the state
 	let userAssessmentDataObj = store.getState().get('assessmentData');
-	let savedUserAssessmentDataObj = store.getState().get('assessmentData');
+	let savedUserAssessmentDataObj = userAssessmentDataObj;
 
 	userAssessmentDataObj = userAssessmentDataObj.setIn([topic, assessmentID, 'answers', questionID], answerID);
 	
@@ -116,13 +114,13 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 	let answers = assessment.get('questions').map((question, i) => question.get('correct_answer') - 1);
 	let correctAnswers = answers.filter((answer, i) => answer === userAnswers.get(i));
 	let assessmentData = store.getState().get('assessmentData');
-	let savedAssessmentData = store.getState().get('assessmentData');
+	let savedAssessmentData = assessmentData;
 	assessmentData = assessmentData.setIn([topicTitle, assessmentID, 'result'], correctAnswers.size);
 	dispatch(userAssessmentData(assessmentData)); // dispatch to state
 
 	// update user progress data
 	let userProgressArr = store.getState().get('userProgress').toArray(); // TODO keep this immutable
-	var savedUserProgressArr = store.getState().get('userProgress').toArray(); // TODO keep this immutable
+	var savedUserProgressArr = userProgressArr; // TODO keep this immutable
 	let assessmentKey = topicTitle + '.assess.' + assessmentID;
 	!userProgressArr.includes(assessmentKey) ? userProgressArr.push(assessmentKey) : null;
 	dispatch(userProgress(userProgressArr));// dispatch to state
