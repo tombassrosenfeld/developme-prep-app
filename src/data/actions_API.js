@@ -25,9 +25,13 @@ export const authenticate = (username, password) => dispatch => {
 
 // if authentication is successful, calls getdata()
 const getData = (token) => dispatch => {
+	validateToken(token)
+		.then(response => console.log(response))
+		.catch(error => console.log(error.response));
 	// gets data for all users
 	getUserData(token)
 		.then( response => {
+			// TODO: refactor user progress and assessment data as can now get this all from one call
 			console.log(response);
 			dispatch(updateErrors('')); // remove any errors
 			dispatch(userData(response.data)); // update state
@@ -183,8 +187,17 @@ function getToken(username, password) {
 	})
 }
 
+function validateToken(token) {
+	return axios.post('http://resources.developme.box/wp-json/jwt-auth/v1/token/validate', {
+		headers: {'Authorization': 'Bearer ' + token,
+					"Accept": "application/json",
+		},
+	})
+}
+
 function getUserData(token) {
-	return axios.get('users?context=edit', { // TODO: how to handle this when there are more than 100 users in the db
+	let userEmail = store.getState().getIn(['user', 'user_email']);
+	return axios.get('users?context=edit&search=' + userEmail, { // only return user data for the logged in user
     	headers: {'Authorization': 'Bearer ' + token},
     })
 }

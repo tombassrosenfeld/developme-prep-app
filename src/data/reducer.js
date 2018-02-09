@@ -32,8 +32,11 @@ const updateUserID = (state, { data }) => {
 
 	// find the matching userID
 	let user = data.filter((user) => {
-		return user.name === state.getIn(['user', 'user_email']) || user.name === state.getIn(['user', 'user_display_name']);
+		return user.username === state.getIn(['user', 'username'])
 	}, '')[0];
+	// TODO: save whole of the user object in state?
+	// TODO: save all of the meta as one item, so userprogress and assessment data are in the same place
+	// TODO: don't need to make the second API calls then...
 	// and update the user ID in the state
 	return state.setIn(['user', 'id'], user.id);
 }
