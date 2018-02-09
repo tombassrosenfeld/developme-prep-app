@@ -4,7 +4,7 @@ import { store } from '../index.js';
 import { updateErrors } from './actions';
 import { List, fromJS } from "immutable";
 
-export const UPDATE_TOKEN_AND_USER = Symbol("UPDATE_TOKEN_AND_USER");
+export const UPDATE_CREDENTIALS = Symbol("UPDATE_CREDENTIALS");
 export const UPDATE_ERRORS = Symbol("UPDATE_ERRORS");
 export const TOPICS_DATA = Symbol("TOPICS_DATA");
 export const USER_DATA = Symbol("USER_DATA");
@@ -16,7 +16,7 @@ export const authenticate = (username, password) => dispatch => {
 	getToken(username, password)
 		.then( response => {
 			dispatch(updateErrors('')); // remove any errors
-			dispatch(updateTokenAndUser(response.data)); // dispatches key to state
+			dispatch(updateCredentials(response.data)); // dispatches token and credentials to state
 			dispatch(getData(response.data.token)); // and immediately calls api for module and user data
 		})
 		.catch( error => dispatch(updateErrors('Unable to log you in! Please check your details.')) )
@@ -31,7 +31,9 @@ const getData = (token) => dispatch => {
 			dispatch(userProgress(List(response.data[0].userProgress))); // update state with user progress
 			dispatch(userAssessmentData(fromJS(response.data[0].userAssessmentData))); // update state
 		})
-		.catch( error => dispatch( updateErrors('Error: unable to retrieve user data.')) );
+		.catch( error => {
+			dispatch( updateErrors('Error: unable to retrieve user data.'));
+		});
 
 	// gets modules and tasks
 	getTopics()
@@ -60,8 +62,12 @@ export const onClickUserProgress = (id) => dispatch => {
 	let userID = store.getState().getIn(['user', 'id']);
 	let token = store.getState().getIn(['user', 'token']);
 	postUserProgress(userID, token, userProgressArr)
-		.then( response => dispatch(updateErrors('')) )
+		.then( response => {
+			console.log(response);
+			dispatch(updateErrors(''));
+		})
 		.catch( error => {
+			console.log(error.response);
 			// if failed to update, roll back to previous state
 			dispatch(updateErrors('Error: unable to save your progress.'));
 			return dispatch(userProgress(savedUserProgressArr));
@@ -130,8 +136,8 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 		} );
 }
 
-const updateTokenAndUser = (data) => ({
-	type: UPDATE_TOKEN_AND_USER, 
+const updateCredentials = (data) => ({
+	type: UPDATE_CREDENTIALS, 
 	data,
 })
 
@@ -170,11 +176,20 @@ function getUserData(token) {
     })
 }
 
+// function postUserProgress(userID, token, data) {
+// 	return axios.post('/wp-json/cf/prep/' + userID + '/progress', {// TODO: change this when you change the server...
+//     	headers: {'Authorization': 'Bearer ' + token},
+//     	data: data,
+//     })
+// }
+
+// TODO: update_callback doesn't fire...
+
 function postUserProgress(userID, token, data) {
-	return axios.post('/wp-json/cf/prep/' + userID + '/progress', {// TODO: change this when you change the server...
-    	headers: {'Authorization': 'Bearer ' + token},
-    	data: data,
-    })
+	axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+	return axios.post('/wp-json/wp/v2/users/' + userID, {
+		data: data,
+	})
 }
 
 function postUserAssessmentData(userID, token, data) {
