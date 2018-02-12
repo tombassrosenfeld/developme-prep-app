@@ -109,7 +109,7 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 	let userProgressArr = store.getState().get('userProgress'); 
 	var savedUserProgressArr = userProgressArr; 
 	let assessmentKey = topicTitle + '.assess.' + assessmentID;
-	!userProgressArr.includes(assessmentKey) ? userProgressArr.push(assessmentKey) : null;
+	userProgressArr = !userProgressArr.includes(assessmentKey) ? userProgressArr.push(assessmentKey) : userProgressArr;
 	dispatch(userProgress(userProgressArr));// dispatch to state
 
 	// post to api - if any part of the process fails revert back
