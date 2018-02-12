@@ -121,7 +121,10 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 			dispatch(updateErrors(''));	
 			// post user progress
 			postUserProgress(userID, token, userProgressArr)
-				.then( response => dispatch(updateErrors('')) )
+				.then( response => {
+					console.log(response);
+					dispatch(updateErrors(''))
+				})
 				.catch( error => {
 					// if failed, roll back assessment and user progress data
 					dispatch(updateErrors('Error: unable to save your progress.'));
@@ -178,26 +181,15 @@ function getUserData(token) {
 }
 
 function postUserProgress(userID, token, data) {
+	axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 	return axios.post('/wp-json/cf/prep/' + userID + '/progress', {
-    	headers: {'Authorization': 'Bearer ' + token},
     	data: data,
     })
 }
 
-// TODO: update_callback doesn't fire... 
-// SOLUTION: is the wording of the default callbacks wrong, should it be post_callback
-// SOLUTION: send to custom endpoint with token, get token out of header and call validate enpoint. If returns true, complete action
-
-// function postUserProgress(userID, token, data) {
-// 	axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-// 	return axios.post('/wp-json/wp/v2/users/' + userID, {
-// 		data: data,
-// 	})
-// }
-
 function postUserAssessmentData(userID, token, data) {
+	axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 	return axios.post('/wp-json/cf/prep/' + userID + '/assessment', {
-    	headers: {'Authorization': 'Bearer ' + token},
     	data: data,
     })
 }
