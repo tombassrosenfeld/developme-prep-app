@@ -59,9 +59,7 @@ export const onClickUserProgress = (id) => dispatch => {
 	dispatch(userProgress(userProgressArr));// dispatch to state
 	
 	// post to api
-	let userID = store.getState().getIn(['user', 'id']);
-	let token = store.getState().getIn(['user', 'token']);
-	postUserProgress(userID, token, userProgressArr)
+	postUserProgress(userProgressArr)
 		.then( response => {
 			dispatch(updateErrors(''));
 		})
@@ -83,9 +81,7 @@ export const onChangeAssessmentAnswer = (topic, assessmentID, questionID, answer
 	dispatch(userAssessmentData(userAssessmentDataObj)); // dispatch to state
 
 	// post to api
-	let userID = store.getState().getIn(['user', 'id']);
-	let token = store.getState().getIn(['user', 'token']);
-	postUserAssessmentData(userID, token, userAssessmentDataObj.toJS())
+	postUserAssessmentData(userAssessmentDataObj)
 		.then( response => dispatch(updateErrors('')) )// remove any errors
 		.catch( error => {
 			// if failed to update, roll back to previous state
@@ -101,6 +97,7 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 	let assessmentData = store.getState().get('assessmentData');
 	let savedAssessmentData = assessmentData;
 	assessmentData = assessmentData.setIn([topicTitle, assessmentID, 'result'], correctAnswers.size);
+	
 	dispatch(userAssessmentData(assessmentData)); // dispatch to state
 
 	// update user progress data
@@ -111,13 +108,11 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 	dispatch(userProgress(userProgressArr));// dispatch to state
 
 	// post to api - if any part of the process fails revert back
-	let userID = store.getState().getIn(['user', 'id']);
-	let token = store.getState().getIn(['user', 'token']);
-	postUserAssessmentData(userID, token, assessmentData.toJS())
+	postUserAssessmentData(assessmentData.toJS())
 		.then( response => {
 			dispatch(updateErrors(''));	
 			// post user progress
-			postUserProgress(userID, token, userProgressArr)
+			postUserProgress(userProgressArr)
 				.then( response => {
 					dispatch(updateErrors(''))
 				})
@@ -176,14 +171,18 @@ function getUserData(token) {
     })
 }
 
-function postUserProgress(userID, token, data) {
+function postUserProgress(data) {
+	let userID = store.getState().getIn(['user', 'id']);
+	let token = store.getState().getIn(['user', 'token']);
 	axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 	return axios.post('/wp-json/cf/prep/' + userID + '/progress', {
     	data: data,
     })
 }
 
-function postUserAssessmentData(userID, token, data) {
+function postUserAssessmentData(data) {
+	let userID = store.getState().getIn(['user', 'id']);
+	let token = store.getState().getIn(['user', 'token']);
 	axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 	return axios.post('/wp-json/cf/prep/' + userID + '/assessment', {
     	data: data,
