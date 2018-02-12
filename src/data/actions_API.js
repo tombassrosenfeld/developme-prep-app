@@ -26,6 +26,7 @@ export const authenticate = (username, password) => dispatch => {
 const getData = (token) => dispatch => {
 	getUserData(token)
 		.then( response => {
+			console.log(response);
 			dispatch(updateErrors('')); // remove any errors
 			dispatch(userData(response.data)); // update state with user data
 			dispatch(userProgress(List(response.data[0].userProgress))); // update state with user progress
