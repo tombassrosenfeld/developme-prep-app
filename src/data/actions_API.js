@@ -163,7 +163,7 @@ const topicsData = (data) => ({
 
 // API calls
 function getToken(username, password) {
-	return axios.post('/wp-json/jwt-auth/v1/token', { // TODO: change this when you change the server...
+	return axios.post('/wp-json/jwt-auth/v1/token', { 
 		username: username,
 		password: password,
 	})
@@ -176,24 +176,26 @@ function getUserData(token) {
     })
 }
 
-// function postUserProgress(userID, token, data) {
-// 	return axios.post('/wp-json/cf/prep/' + userID + '/progress', {// TODO: change this when you change the server...
-//     	headers: {'Authorization': 'Bearer ' + token},
-//     	data: data,
-//     })
-// }
-
-// TODO: update_callback doesn't fire...
-
 function postUserProgress(userID, token, data) {
-	axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-	return axios.post('/wp-json/wp/v2/users/' + userID, {
-		data: data,
-	})
+	return axios.post('/wp-json/cf/prep/' + userID + '/progress', {
+    	headers: {'Authorization': 'Bearer ' + token},
+    	data: data,
+    })
 }
 
+// TODO: update_callback doesn't fire... 
+// SOLUTION: is the wording of the default callbacks wrong, should it be post_callback
+// SOLUTION: send to custom endpoint with token, get token out of header and call validate enpoint. If returns true, complete action
+
+// function postUserProgress(userID, token, data) {
+// 	axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+// 	return axios.post('/wp-json/wp/v2/users/' + userID, {
+// 		data: data,
+// 	})
+// }
+
 function postUserAssessmentData(userID, token, data) {
-	return axios.post('/wp-json/cf/prep/' + userID + '/assessment', {// TODO: change this when you change the server...
+	return axios.post('/wp-json/cf/prep/' + userID + '/assessment', {
     	headers: {'Authorization': 'Bearer ' + token},
     	data: data,
     })
