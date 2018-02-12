@@ -26,7 +26,6 @@ export const authenticate = (username, password) => dispatch => {
 const getData = (token) => dispatch => {
 	getUserData(token)
 		.then( response => {
-			console.log(response);
 			dispatch(updateErrors('')); // remove any errors
 			dispatch(userData(response.data)); // update state with user data
 			dispatch(userProgress(List(response.data[0].userProgress))); // update state with user progress
@@ -64,11 +63,9 @@ export const onClickUserProgress = (id) => dispatch => {
 	let token = store.getState().getIn(['user', 'token']);
 	postUserProgress(userID, token, userProgressArr)
 		.then( response => {
-			console.log(response);
 			dispatch(updateErrors(''));
 		})
 		.catch( error => {
-			console.log(error.response);
 			// if failed to update, roll back to previous state
 			dispatch(updateErrors('Error: unable to save your progress.'));
 			return dispatch(userProgress(savedUserProgressArr));
@@ -122,7 +119,6 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 			// post user progress
 			postUserProgress(userID, token, userProgressArr)
 				.then( response => {
-					console.log(response);
 					dispatch(updateErrors(''))
 				})
 				.catch( error => {
