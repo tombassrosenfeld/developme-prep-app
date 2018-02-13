@@ -8,7 +8,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    authenticate: (username, password) => dispatch(authenticate(username, password)),
+    authenticate: (e, username, password) => {
+    	e.preventDefault();
+    	dispatch(authenticate(username, password))
+    },
     onFormElementChange: (id, val) => dispatch(onFormElementChange(id, val)),
 });
 
