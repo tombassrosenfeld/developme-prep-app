@@ -1,32 +1,40 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import ModulesNav from "./ModulesNav";
+import ProgressBar from "./ProgressBar";
 
-export default ({className, userProgress, numAssessments, numTasks}) => {
+export default ({className, userProgress, numAssessments, numTasks, topics}) => {
 
-	let totalTasks = numTasks + numAssessments,
+	const totalTasks = numTasks + numAssessments,
 	progressPercentage = ((userProgress / totalTasks) * 100).toFixed(0) + '%';
 
 	return (
-		<div className={className}>
+		<div className="col-xs-12 col-sm-8 col-md-6">
 			<div className="topics panel">
-				<div className="topics-header">
-					<div className="topics-header-icon"><i className="fa fa-2x fa-file-o" aria-hidden="true"></i></div>
-				</div>
-				<div>
-					<h1 className="text-center topic-title">Fellowship Student App</h1>
-	  			<p className="topic-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<div className="welcome">
+					<div className="logo"></div>
+					<h1 className="topic-title text-center">Coding Fellowship Student App</h1>
+					<div className="welcome-banner">
+					</div>
+	  			<p className="topic-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 	  		</div>
   		</div>
   		<div className="topics panel">
-				<h2 className="text-center panel-title">Your progress so far</h2>
-				<p className="text-center">Progress against all tasks and assessments</p>	 
-				<div className="progress">
-				  <div className="progress-bar" role="progressbar" aria-valuenow={userProgress} aria-valuemin="0" aria-valuemax={totalTasks} style={{width: progressPercentage}}>
-				  	{progressPercentage}
-				    <span className="sr-only">{progressPercentage} Complete</span>
-				  </div>
-				</div>
+  			<ProgressBar 
+  				text={"Progress against all tasks and assessments. (" + userProgress +"/"+ totalTasks + ")"}
+  				value={userProgress} 
+  				maxValue={totalTasks} 
+  				progressPercentage={progressPercentage} 
+  			/>
+  		</div>
+  		<div className="topics panel">
+  			<h2 className="text-center panel-title">How to use the app</h2>
+				<ul className="instructions">
+					<li>Use the sidebar navigation to view each topic</li>
+					<li>Each topic has a number of tasks for you to complete. Be sure to take a look at the resources for each task. Mark a task as complete when you're done</li>
+					<li>When you're ready, have a go at the assessments for each topic</li>
+					<li>Feel free to use other resources too. The more preparation you put in, the more you will get out of the Coding Fellowship!</li>
+				</ul>
   		</div>
 		</div>
 	)

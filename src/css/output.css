@@ -281,9 +281,28 @@ p {
   .submit-assessment .btn-submit {
     font-size: 14px; }
 
+.welcome .logo {
+  display: block;
+  position: static;
+  margin: 10px; }
+
+.welcome-banner {
+  height: 175px;
+  margin: 0 10px 20px;
+  width: calc(100% - 20px);
+  background-image: url(https://developme.training/wp-content/uploads/2015/09/header-background-fell-june2017.jpg);
+  background-position: center 36%; }
+
+.instructions {
+  margin: 0 25px;
+  width: 80%; }
+  .instructions li {
+    margin: 8px 0; }
+
 .progress {
   margin: 10px auto;
-  width: 80%; }
+  width: 80%;
+  background-color: #E5E5E5; }
 
 .progress-bar {
   background-color: #00e6b8; }
