@@ -10,6 +10,7 @@ import Topic from '../containers/Topic';
 import Task from '../containers/Task';
 import Assessment from '../containers/Assessment';
 import Login from '../containers/Login';
+import Welcome from '../containers/Welcome';
 
 class App extends Component {
 
@@ -22,8 +23,14 @@ class App extends Component {
   loaded() {
     return (
       <div className="row">
+          <Route exact path="/" render={ ({ match }) => (
+            <div className="row">
+              <TopicsNav className="col-xs-12 col-sm-4 col-md-2 col-md-offset-2 narrow-padding" />
+              <Welcome className="col-xs-12 col-sm-8 col-md-6" />
+            </div>
+          )} />        
           <Route path="/prep/topic/" render={ ({ match }) => (
-            <TopicsNav />
+            <TopicsNav className="col-xs-12 col-sm-4 col-md-2 col-md-offset-2 narrow-padding" />
           )} />        
           <Route path="/prep/topic/:id" render={ ({ match }) => (
             <Topic id={ match.params.id }/>

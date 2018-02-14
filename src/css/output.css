@@ -281,4 +281,11 @@ p {
   .submit-assessment .btn-submit {
     font-size: 14px; }
 
+.progress {
+  margin: 10px auto;
+  width: 80%; }
+
+.progress-bar {
+  background-color: #00e6b8; }
+
 /*# sourceMappingURL=output.css.map */
