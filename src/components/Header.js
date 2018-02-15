@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import ModulesNav from "./ModulesNav";
 
-export default ({user, loggedIn, logOut}) => (
+export default ({user, loggedIn, logOut, userRole}) => (
 	<div>
 		<div className="row top-nav">
 			<div className="col-xs-12">
@@ -17,12 +17,12 @@ export default ({user, loggedIn, logOut}) => (
 		<div className="row header-body">
 			<div className="col-xs-12 titles">
 				<h1 className="header-course">Coding Fellowship |</h1>
-				<h1 className="header-username">&nbsp;{loggedIn? user.get('username') : 'App' }</h1>
-				{loggedIn? <h2 className="header-cohort">Cohort 10</h2> : null }
+				<h1 className="header-username">&nbsp;{loggedIn? userRole === 'student' ? user.get('username') : 'Instructor' : 'App' }</h1>
+				{loggedIn? <h2 className="header-cohort">{userRole === 'student' ? 'Cohort 10' : user.get('username')}</h2> : null }
 			</div>
 		</div>
 
-		{ loggedIn? <ModulesNav /> : null }
+		{ loggedIn? <ModulesNav text={userRole === 'student' ? 'Preparation' : 'Students'} /> : null }
 
 	</div>
 )
