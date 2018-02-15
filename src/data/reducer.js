@@ -27,8 +27,10 @@ const updateErrors = (state, { errorMessage }) => {
 
 const updateUser = (state, { data }) => {
 	let user = data[0];
+	console.log(data);
 	return state.setIn(['user', 'id'], user.id)
-				.setIn(['user', 'username'], user.username); // update username with the value provided by api
+				.setIn(['user', 'username'], user.username) // update username with the value provided by api
+				.setIn(['user', 'roles'], user.roles); // update roles with the value provided by api
 }
 
 const updateUserProgress = (state, { data }) => {

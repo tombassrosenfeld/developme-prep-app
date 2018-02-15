@@ -6,6 +6,7 @@ import {
 import Header from '../containers/Header';
 import Errors from '../containers/Errors';
 import TopicsNav from '../containers/TopicsNav';
+import CohortNav from '../containers/CohortNav';
 import Topic from '../containers/Topic';
 import Task from '../containers/Task';
 import Assessment from '../containers/Assessment';
@@ -22,9 +23,13 @@ class App extends Component {
   loaded() {
     return (
       <div className="row">
-          <Route path="/prep/topic/" render={ ({ match }) => (
-            <TopicsNav />
-          )} />        
+          <Route path="/prep/topic/" render={ ({ match }) => {
+            return this.props.userRole === 'student' ?
+              <TopicsNav title="Topics" />
+              :
+              <CohortNav title="Cohorts" />
+            }
+          }/>        
           <Route path="/prep/topic/:id" render={ ({ match }) => (
             <Topic id={ match.params.id }/>
           )} />
@@ -40,6 +45,7 @@ class App extends Component {
   }
 
   render() {
+    console.log();
     return (
     <Router>
       <div>
