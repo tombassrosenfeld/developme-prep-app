@@ -1,6 +1,4 @@
 import initial from "./initial";
-import { List } from "immutable";
-import { formatUserSlug } from "../utilities/utilities";
 
 import { ONFORMELEMENTCHANGE } from "./actions";
 import { UPDATE_CREDENTIALS } from "../data/actions_API";

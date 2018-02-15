@@ -1,6 +1,5 @@
 import { connect } from "react-redux";
 import Assessment from "../components/Assessment";
-import { onChangeAssessmentAnswer } from "../data/actions_API";
 import { onClickAssessmentSubmit } from "../data/actions_API";
 
 const mapStateToProps = state => ({
