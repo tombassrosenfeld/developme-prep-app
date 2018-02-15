@@ -70,7 +70,7 @@ export default Map({
 	topics: List([
 		data, data, data, data, data
 	]),
-	user: Map({ id: 1, username: 'Peter Thomas', password: '', roles:List(['instructor', 'admin']), token: null }),
+	user: Map({ id: 1, username: 'Peter Thomas', password: '', roles:List(['student', 'admin']), token: null }),
 	
 	// isLoaded: false,
 	// loggedIn: false,
