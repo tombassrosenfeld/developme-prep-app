@@ -1,9 +1,10 @@
 import { connect } from "react-redux";
-import TopicsNav from "../components/TopicsNav";
+import TopicsNav from "../components/SideNav";
 import { onClickIcon } from "../data/actions";
 
 const mapStateToProps = state => ({
     navItems: state.get("topics"),
+  	userRole: state.getIn(['user', 'roles']).reduce((role, r) => role += r === 'student' || r === 'instructor' ? r : '', ''),
 });
 
 const mapDispatchToProps = dispatch => ({

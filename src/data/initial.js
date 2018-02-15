@@ -43,6 +43,26 @@ let data =
 // completed assessments are referenced by topic_short_title.ass.i - this should mean the status will calculate correctly
 // assessment data is stored in a completely seperate part of the state and of the database called assessment data
 
+const dummyCohorts = [
+	{
+		id: 1,
+		name: 'CF01',
+		students: List([]),
+		selected: false,
+	},
+	{
+		id: 2,
+		name: 'CF02',
+		students: List([]),
+		selected: false,
+	},
+	{
+		id: 3,
+		name: 'CF03',
+		students: List([]),
+		selected: false,
+	},
+];
 
 export default Map({
 	isLoaded: true,
@@ -50,7 +70,7 @@ export default Map({
 	topics: List([
 		data, data, data, data, data
 	]),
-	user: Map({ id: 1, username: 'Peter Thomas', password: '', roles:['instructor', 'admin'], token: null }),
+	user: Map({ id: 1, username: 'Peter Thomas', password: '', roles:List(['instructor', 'admin']), token: null }),
 	
 	// isLoaded: false,
 	// loggedIn: false,
@@ -60,4 +80,6 @@ export default Map({
 	userProgress: List([]),
 	assessmentData: Map({}),
 	errors: '',
+
+	cohorts: fromJS(dummyCohorts),
 });
