@@ -95,6 +95,19 @@ p {
 	color: $red;
 }
 
+.hyperlink {
+	padding-top: 1em;
+	padding-bottom: 1em;
+
+	font-size: 1.5em;
+	a {
+		color: $homeGreen;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
 /******************************************/
 /*Imported modules*/
 /******************************************/

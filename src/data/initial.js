@@ -52,11 +52,13 @@ const dummyCohorts = [
 				id: 1,
 				name: 'Kye Buffery',
 				progress: List([]),
+				email: 'kye.buffery@icloud.com',
 			}),
 			Map({
 				id: 2,
 				name: 'Pete Thomas',
 				progress: List([]),
+				email: 'pete.thomas@icloud.com',
 			}),
 		]),
 		selected: false,

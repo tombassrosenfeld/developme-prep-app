@@ -73,6 +73,15 @@ p {
 .fa-times-circle-o {
   color: #FF3030; }
 
+.hyperlink {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  font-size: 1.5em; }
+  .hyperlink a {
+    color: #00e6b8; }
+    .hyperlink a:hover {
+      text-decoration: underline; }
+
 /******************************************/
 /*Imported modules*/
 /******************************************/

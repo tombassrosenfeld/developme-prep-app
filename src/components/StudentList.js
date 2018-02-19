@@ -1,10 +1,11 @@
 import React from 'react';
 import ProgressBar from './ProgressBar';
 
-export default ({students, numAssessments, numTasks}) => {
-	const totalTasks = numTasks + numAssessments;
+export default ({students, numAssessments, numTasks, cohortName}) => {
+	const totalTasks = numTasks + numAssessments,
+				mailto = students.reduce((mto, student) => mto += student.get('email') + '; ' , '');
 
-	return (
+	return ( 
 	<div className="panel">
 		<div className="row">
 			<div className="col-xs-3">
@@ -36,6 +37,9 @@ export default ({students, numAssessments, numTasks}) => {
 					</div>
 				</div>
 		  	}
+		</div>
+		<div className="narrow-padding hyperlink">
+			<a href={'mailto:' +mailto}>Email {cohortName}</a>
 		</div>
 	</div>
 	);
