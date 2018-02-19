@@ -8,6 +8,7 @@ import Errors from '../containers/Errors';
 import TopicsNav from '../containers/TopicsNav';
 import CohortNav from '../containers/CohortNav';
 import Topic from '../containers/Topic';
+import Cohort from '../containers/Cohort';
 import Task from '../containers/Task';
 import Assessment from '../containers/Assessment';
 import Login from '../containers/Login';
@@ -23,7 +24,7 @@ class App extends Component {
   loaded() {
     return (
       <div className="row">
-          <Route path="/prep/topic/" render={ ({ match }) => {
+          <Route path="/" render={ ({ match }) => {
             return this.props.userRole === 'student' ?
               <TopicsNav title="Topics" />
               :
@@ -32,6 +33,9 @@ class App extends Component {
           }/>        
           <Route path="/prep/topic/:id" render={ ({ match }) => (
             <Topic id={ match.params.id }/>
+          )} />
+          <Route path="/cohort/:id" render={ ({ match }) => (
+            <Cohort id={ match.params.id }/>
           )} />
           <Route path="/prep/topic/:topic/task/:task" render={ ({ match }) => (
             <Task id={ match.params.task } topicID={ match.params.topic }/>
@@ -45,7 +49,6 @@ class App extends Component {
   }
 
   render() {
-    console.log();
     return (
     <Router>
       <div>

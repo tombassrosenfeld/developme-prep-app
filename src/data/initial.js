@@ -47,7 +47,13 @@ const dummyCohorts = [
 	{
 		id: 1,
 		name: 'CF01',
-		students: List([]),
+		students: List([
+			Map({
+				id: 1,
+				name: 'Kye Buffery',
+				progess: 0,
+			}),
+		]),
 		selected: false,
 	},
 	{
