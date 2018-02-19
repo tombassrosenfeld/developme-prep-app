@@ -10,6 +10,7 @@ import Topic from '../containers/Topic';
 import Task from '../containers/Task';
 import Assessment from '../containers/Assessment';
 import Login from '../containers/Login';
+import Welcome from '../containers/Welcome';
 
 class App extends Component {
 
@@ -22,6 +23,12 @@ class App extends Component {
   loaded() {
     return (
       <div className="row">
+          <Route exact path="/" render={ ({ match }) => (
+            <div>
+              <TopicsNav />
+              <Welcome />
+            </div>
+          )} />        
           <Route path="/prep/topic/" render={ ({ match }) => (
             <TopicsNav />
           )} />        
