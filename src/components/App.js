@@ -35,7 +35,10 @@ class App extends Component {
             <Topic id={ match.params.id }/>
           )} />
           <Route path="/cohort/:id" render={ ({ match }) => (
-            <Cohort id={ match.params.id }/>
+            this.props.userRole === 'instructor' ?
+            <Cohort id={ match.params.id }/> 
+            :
+            null
           )} />
           <Route path="/prep/topic/:topic/task/:task" render={ ({ match }) => (
             <Task id={ match.params.task } topicID={ match.params.topic }/>
