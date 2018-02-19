@@ -1,8 +1,8 @@
 import React from 'react';
 import TopicIcon from './TopicIcon';
 
-export default ({topics, onClickIcon, className}) => (
-	<div className={className}>
+export default ({topics, onClickIcon}) => (
+	<div className="col-xs-12 col-sm-4 col-md-2 col-md-offset-2 narrow-padding">
 		<div className="topics panel">
 			<div className="topics-header">
 				<div className="topics-header-icon"><i className="fa fa-2x fa-folder-o" aria-hidden="true"></i></div>

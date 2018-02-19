@@ -9,7 +9,7 @@ export default ({className, userProgress, numAssessments, numTasks, topics}) => 
 	progressPercentage = ((userProgress / totalTasks) * 100).toFixed(0) + '%';
 
 	return (
-		<div className="col-xs-12 col-sm-8 col-md-6">
+		<div className="col-xs-12 col-sm-8 col-md-6 narrow-padding">
 			<div className="topics panel">
 				<div className="welcome">
 					<div className="logo"></div>
