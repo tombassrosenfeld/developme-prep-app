@@ -11,6 +11,10 @@ export default ({cohort, id}) => (
 	  		<h1 className="topic-title">{ cohort.get('name') }</h1>
 	  		<p className="topic-description">{ cohort.getIn([id, 'description']) }</p>
 	  	</div>
-	  	<StudentList cohortName={cohort.get('name')} students={cohort.get('students')} />
+	  	<StudentList 
+	  		cohortID={id}
+	  		cohortName={cohort.get('name')} 
+	  		students={cohort.get('students')} 
+	  	/>
 	</div>
 )

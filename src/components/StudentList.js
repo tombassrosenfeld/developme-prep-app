@@ -1,7 +1,8 @@
 import React from 'react';
 import ProgressBar from './ProgressBar';
+import { Link } from "react-router-dom";
 
-export default ({students, numAssessments, numTasks, cohortName}) => {
+export default ({students, numAssessments, numTasks, cohortName, cohortID}) => {
 	const totalTasks = numTasks + numAssessments,
 				mailto = students.reduce((mto, student) => mto += student.get('email') + '; ' , '');
 
@@ -18,9 +19,13 @@ export default ({students, numAssessments, numTasks, cohortName}) => {
 		<div className="taskList">
 			{ students.size > 0 ?
 		  		students.map( (student, i) => (
-					<div className="row task" key={i}>
+					<div className="row narrow-padding" key={i}>
 						<div className="col-xs-3">
-							<p>{student.get('name')}</p>
+							<Link 
+								to={'/cohort/' + cohortID + '/' + student.get('id')}
+							>
+								{student.get('name')}
+							</Link>
 						</div>
 						<div className="col-xs-9">
 							<ProgressBar 

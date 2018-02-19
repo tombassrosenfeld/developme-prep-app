@@ -13,6 +13,7 @@ import Task from '../containers/Task';
 import Assessment from '../containers/Assessment';
 import Login from '../containers/Login';
 import Welcome from '../containers/Welcome';
+import StudentRecord from '../containers/StudentRecord';
 
 class App extends Component {
 
@@ -38,9 +39,15 @@ class App extends Component {
           <Route path="/prep/topic/:id" render={ ({ match }) => (
             <Topic id={ match.params.id }/>
           )} />
-          <Route path="/cohort/:id" render={ ({ match }) => (
+          <Route exact path="/cohort/:id" render={ ({ match }) => (
             this.props.userRole === 'instructor' ?
             <Cohort id={ match.params.id }/> 
+            :
+            null
+          )} />
+          <Route exact path="/cohort/:cohort/:student" render={ ({ match }) => (
+            this.props.userRole === 'instructor' ?
+            <StudentRecord cohortID={ match.params.cohort } studentID={ match.params.student }/> 
             :
             null
           )} />
