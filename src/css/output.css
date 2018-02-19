@@ -300,7 +300,7 @@ p {
     margin: 8px 0; }
 
 .progress {
-  margin: 10px auto;
+  margin: 0px auto 10px;
   width: 80%;
   background-color: #E5E5E5; }
 

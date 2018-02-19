@@ -1,5 +1,5 @@
 import React from 'react';
-import StudentList from '../components/StudentList';
+import StudentList from '../containers/StudentList';
 import AssessmentList from '../containers/AssessmentList';
 
 export default ({cohort, id}) => (

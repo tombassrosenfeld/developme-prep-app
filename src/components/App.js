@@ -12,6 +12,7 @@ import Cohort from '../containers/Cohort';
 import Task from '../containers/Task';
 import Assessment from '../containers/Assessment';
 import Login from '../containers/Login';
+import Welcome from '../containers/Welcome';
 
 class App extends Component {
 
@@ -31,6 +32,9 @@ class App extends Component {
               <CohortNav title="Cohorts" />
             }
           }/>        
+          <Route exact path="/" render={ ({ match }) => (
+            <Welcome userRole={this.props.userRole}/>
+          )} />
           <Route path="/prep/topic/:id" render={ ({ match }) => (
             <Topic id={ match.params.id }/>
           )} />

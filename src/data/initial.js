@@ -51,7 +51,12 @@ const dummyCohorts = [
 			Map({
 				id: 1,
 				name: 'Kye Buffery',
-				progess: 0,
+				progress: List([]),
+			}),
+			Map({
+				id: 2,
+				name: 'Pete Thomas',
+				progress: List([]),
 			}),
 		]),
 		selected: false,

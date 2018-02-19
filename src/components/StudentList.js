@@ -1,8 +1,10 @@
 import React from 'react';
-import { Link } from "react-router-dom";
-import Completed from './Completed';
+import ProgressBar from './ProgressBar';
 
-export default ({students}) => (
+export default ({students, numAssessments, numTasks}) => {
+	const totalTasks = numTasks + numAssessments;
+
+	return (
 	<div className="panel">
 		<div className="row">
 			<div className="col-xs-3">
@@ -16,10 +18,15 @@ export default ({students}) => (
 			{ students.size > 0 ?
 		  		students.map( (student, i) => (
 					<div className="row task" key={i}>
-							<div className="col-xs-4">
-								<p>{student.get('name')}</p>
-							</div>
-						<div className="col-xs-8">
+						<div className="col-xs-3">
+							<p>{student.get('name')}</p>
+						</div>
+						<div className="col-xs-9">
+							<ProgressBar 
+								value={student.get('progress').size} 
+								maxValue={totalTasks} 
+								progressPercentage={((student.get('progress').size / totalTasks) * 100).toFixed(0) + '%'} 
+							/>
 						</div>
 					</div>
 		  		)) :
@@ -31,4 +38,5 @@ export default ({students}) => (
 		  	}
 		</div>
 	</div>
-)
+	);
+}
