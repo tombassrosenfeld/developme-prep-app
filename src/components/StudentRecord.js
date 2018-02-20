@@ -25,7 +25,7 @@ export default ({student, totalTasks}) => {
 		  	</div>
 		  </div>
 		  <StudentStatus progress={progress} notDone={totalTasks - progress} />
-		  <div class="topics panel narrow-padding">
+		  <div class="topics panel">
 		  	<div class="row">
 					<div className="col-sm-8">
 						<h2 className="panel-title">Tasks</h2> 
