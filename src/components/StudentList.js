@@ -29,9 +29,9 @@ export default ({students, numAssessments, numTasks, cohortName, cohortID}) => {
 						</div>
 						<div className="col-xs-9">
 							<ProgressBar 
-								value={student.get('progress').size} 
+								value={student.get('userProgress').size} 
 								maxValue={totalTasks} 
-								progressPercentage={((student.get('progress').size / totalTasks) * 100).toFixed(0) + '%'} 
+								progressPercentage={((student.get('userProgress').size / totalTasks) * 100).toFixed(0) + '%'} 
 							/>
 						</div>
 					</div>

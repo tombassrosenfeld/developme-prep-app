@@ -11,6 +11,7 @@ export const TOPICS_DATA = Symbol("TOPICS_DATA");
 export const USER_DATA = Symbol("USER_DATA");
 export const USER_PROGRESS = Symbol("USER_PROGRESS");
 export const USER_ASSESSMENT_DATA = Symbol("USER_ASSESSMENT_DATA");
+export const SET_STUDENTS = Symbol("SET_STUDENTS");
 
 // when user submits login details, calls authenticate()
 export const authenticate = (username, password) => dispatch => {
@@ -34,7 +35,7 @@ const getData = (token) => dispatch => {
 			if(getUserRole(response.data[0].roles) === 'instructor') { //If user is instructor get all student users
 				getStudents(token)
 					.then(response => {
-						console.log(response.data);
+						dispatch(setStudents(fromJS(response.data)));
 					});
 			}
 		})
@@ -162,6 +163,11 @@ const userAssessmentData = (data) => ({
 const topicsData = (data) => ({
     type: TOPICS_DATA,
     data,
+});
+
+const setStudents = data => ({
+	type: SET_STUDENTS,
+	data,
 });
 
 // API calls

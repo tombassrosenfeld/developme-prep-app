@@ -1,4 +1,6 @@
 import initial from "./initial";
+import {List, fromJS} from "immutable";
+import {getUserRole} from '../utilities/utilities';
 
 import { ONFORMELEMENTCHANGE } from "./actions";
 import { UPDATE_CREDENTIALS } from "../data/actions_API";
@@ -6,6 +8,7 @@ import { UPDATE_ERRORS } from "../data/actions";
 import { USER_DATA } from "../data/actions_API";
 import { USER_PROGRESS} from "../data/actions_API";
 import { USER_ASSESSMENT_DATA} from "../data/actions_API";
+import { SET_STUDENTS } from "../data/actions_API";
 import { TOPICS_DATA } from "../data/actions_API";
 import { ONCLICK_ICON } from "./actions";
 import { LOGOUT } from "./actions";
@@ -40,8 +43,40 @@ const updateUserAssessmentData = (state, { data }) => {
 	return state.set('assessmentData', data);
 }
 
+const setStudents = (state, { data }) => {
+	//data == students array
+
+	//List of unique cohort names
+	let cohorts = [];
+
+	//If cohort is already in cohorts array then do not add to arr
+	data.map(student => cohorts.find(cohort => cohort === student.get('cohort')) ? null : cohorts.push(student.get('cohort')));
+
+	//Convert each cohort to an object to pass into state.
+	cohorts = cohorts.map(cohort => ({
+		name: cohort,
+		students: [],
+		selected: false
+	}));
+
+	//Add students to their cohort
+	cohorts = cohorts.map(cohort => {
+
+		data.map(student => cohort.name === student.get('cohort') ? cohort.students.push(student.toJS()) : student);
+
+		return cohort;
+
+	});
+
+	return state.set('cohorts', fromJS(cohorts)).set('isLoaded', true);
+}
+
 const topicsData = (state, { data }) => {
-	return state.set('topics', data).set('isLoaded', true);
+	if(getUserRole(state.getIn(['user', 'roles']) !== 'instructor')) {
+		return state.set('topics', data).set('isLoaded', true);
+	} else {
+		return state.set('topics', data);
+	}
 }
 
 const onClickIcon = (state, { id }) => {
@@ -61,6 +96,7 @@ export default (state = initial, action) => {
 		case USER_DATA: return updateUser(state, action);
 		case USER_PROGRESS: return updateUserProgress(state, action);
 		case USER_ASSESSMENT_DATA: return updateUserAssessmentData(state, action);
+		case SET_STUDENTS: return setStudents(state, action);
 		case TOPICS_DATA: return topicsData(state, action);
 		case ONCLICK_ICON: return onClickIcon(state, action);
 		case LOGOUT: return logOut(state);

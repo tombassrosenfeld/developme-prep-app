@@ -94,5 +94,5 @@ export default Map({
 	assessmentData: Map({}),
 	errors: '',
 
-	cohorts: fromJS(dummyCohorts),
+	cohorts: List([]),
 });

@@ -4,9 +4,7 @@ import ProgressBar from './ProgressBar';
 import StudentStatus from './StudentStatus';
 
 export default ({student, totalTasks}) => {
-
-	const progress = student.get('progress').size;
-
+	const progress = student.get('userProgress').size;
 	return (
 		<div className="col-xs-12 col-sm-8 col-md-6 narrow-padding">
 			<div className="topics panel">
@@ -25,8 +23,8 @@ export default ({student, totalTasks}) => {
 		  	</div>
 		  </div>
 		  <StudentStatus progress={progress} notDone={totalTasks - progress} />
-		  <div class="topics panel">
-		  	<div class="row">
+		  <div className="topics panel">
+		  	<div className="row">
 					<div className="col-sm-8">
 						<h2 className="panel-title">Tasks</h2> 
 					</div>

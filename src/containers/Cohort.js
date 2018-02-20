@@ -3,7 +3,7 @@ import Cohort from "../components/Cohort";
 
 const mapStateToProps = (state, {id}) => {
 	return {
-    cohort: state.get("cohorts").find(cohort => cohort.get('id') === +id),
+    cohort: state.get("cohorts").find(cohort => cohort.get('name') === id),
   }
 };
 
