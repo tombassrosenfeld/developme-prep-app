@@ -3,6 +3,7 @@ import { processTopicsData } from '../utilities/utilities';
 import { store } from '../index.js';
 import { updateErrors } from './actions';
 import { List, fromJS } from "immutable";
+import { getUserRole } from "../utilities/utilities";
 
 export const UPDATE_CREDENTIALS = Symbol("UPDATE_CREDENTIALS");
 export const UPDATE_ERRORS = Symbol("UPDATE_ERRORS");
@@ -26,13 +27,19 @@ export const authenticate = (username, password) => dispatch => {
 const getData = (token) => dispatch => {
 	getUserData(token)
 		.then( response => {
-			console.log(response);
 			dispatch(updateErrors('')); // remove any errors
 			dispatch(userData(response.data)); // update state with user data
 			dispatch(userProgress(List(response.data[0].userProgress))); // update state with user progress
 			dispatch(userAssessmentData(fromJS(response.data[0].userAssessmentData))); // update state
+			if(getUserRole(response.data[0].roles) === 'instructor') { //If user is instructor get all student users
+				getStudents(token)
+					.then(response => {
+						console.log(response.data);
+					});
+			}
 		})
 		.catch( error => {
+			console.log(error.response);
 			dispatch( updateErrors('Error: unable to retrieve user data.'));
 		});
 
@@ -44,7 +51,7 @@ const getData = (token) => dispatch => {
 		})
 		.catch( error => dispatch(updateErrors('Error: no modules or tasks available.')) );
 };
-
+  
 // when user clicks on markers
 export const onClickUserProgress = (id) => dispatch => {
 	let userProgressArr = store.getState().get('userProgress');
@@ -163,6 +170,12 @@ function getToken(username, password) {
 		username: username,
 		password: password,
 	})
+}
+
+function getStudents(token) {
+	return axios.get('/wp-json/wp/v2/users?context=edit&search=student', { // only return user data for the logged in user
+    	headers: {'Authorization': 'Bearer ' + token},
+    })
 }
 
 function getUserData(token) {

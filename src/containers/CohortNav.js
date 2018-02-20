@@ -1,10 +1,11 @@
 import { connect } from "react-redux";
 import TopicsNav from "../components/SideNav";
 import { onClickIcon } from "../data/actions";
+import { getUserRole } from "../utilities/utilities";
 
 const mapStateToProps = state => ({
     navItems: state.get("cohorts"),
-  	userRole: state.getIn(['user', 'roles']).reduce((role, r) => role += r === 'student' || r === 'instructor' ? r : '', ''),
+  	userRole: getUserRole(state.getIn(['user', 'roles'])),
 });
 
 const mapDispatchToProps = dispatch => ({
