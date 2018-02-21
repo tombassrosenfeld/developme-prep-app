@@ -50,15 +50,21 @@ const dummyCohorts = [
 		students: List([
 			Map({
 				id: 1,
+				cohort : "CF01",
+				description : "" ,
 				name: 'Kye Buffery',
-				progress: List(['', '', '']),
 				email: 'kye.buffery@icloud.com',
+				userAssessmentData : {} ,
+				userProgress :  List(['', '', '']),
 			}),
 			Map({
 				id: 2,
+				cohort : "CF01",
+				description : "" ,
 				name: 'Pete Thomas',
-				progress: List(['', '', '', '', '', '']),
 				email: 'pete.thomas@icloud.com',
+				userAssessmentData : {} ,
+				userProgress :  List(['', '', '', '', '', '']),
 			}),
 		]),
 		selected: false,
@@ -84,6 +90,7 @@ export default Map({
 	// 	data, data, data, data, data
 	// ]),
 	// user: Map({ id: 1, username: 'Peter Thomas', password: '', roles:List(['instructor', 'admin']), token: null }),
+	// cohorts: fromJS(dummyCohorts),
 	
 	isLoaded: false,
 	loggedIn: false,

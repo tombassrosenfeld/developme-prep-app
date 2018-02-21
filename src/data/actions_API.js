@@ -36,6 +36,10 @@ const getData = (token) => dispatch => {
 				getStudents(token)
 					.then(response => {
 						dispatch(setStudents(fromJS(response.data)));
+					})
+					.catch( error => {
+						console.log(error.response);
+						dispatch( updateErrors('Error: unable to retrieve students data.'));
 					});
 			}
 		})
