@@ -2,6 +2,8 @@ import React from 'react';
 import AssessmentList from '../containers/AssessmentList';
 import ProgressBar from './ProgressBar';
 import StudentStatus from './StudentStatus';
+import TaskListInstructor from '../containers/TaskListInstructor';
+import TopicList from '../containers/TopicList';
 
 export default ({student, totalTasks}) => {
 	const progress = student.get('userProgress').size;
@@ -23,15 +25,7 @@ export default ({student, totalTasks}) => {
 		  	</div>
 		  </div>
 		  <StudentStatus progress={progress} notDone={totalTasks - progress} />
-		  <div className="topics panel">
-		  	<div className="row">
-					<div className="col-sm-8">
-						<h2 className="panel-title">Tasks</h2> 
-					</div>
-					<div className="col-sm-4">
-					</div>
-				</div>
-		  </div>
+		  <TopicList />
 		</div>
 	)
 }

@@ -11,7 +11,7 @@ export default ({title, navItems, onClickIcon, userRole}) => (
 				{ navItems.map((navItem, i) => (
 					<SideNavItem 
 						key={ i } 
-						id={ navItem.get('name') } 
+						id={ userRole === 'student' ? navItem.get('id') : navItem.get('name') } 
 						title={ userRole === 'student' ? navItem.get('short_title') : navItem.get('name') }
 						selected={ navItem.get('selected') } 
 						onClick={ () => onClickIcon(i) }

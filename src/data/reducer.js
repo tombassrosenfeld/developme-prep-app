@@ -72,15 +72,7 @@ const setStudents = (state, { data }) => {
 }
 
 const topicsData = (state, { data }) => {
-	const role = getUserRole(state.getIn(['user', 'roles']));
-
-	//Additional loading for instructor so only set loaded true here if student
-	if(role === 'student') {
-		return state.set('topics', data).set('isLoaded', true);
-	} 
-
-	return state.set('topics', data);
-
+	return state.set('topics', data).set('isLoaded', true);
 }
 
 const onClickIcon = (state, { id }) => {
