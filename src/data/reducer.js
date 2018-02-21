@@ -72,11 +72,14 @@ const setStudents = (state, { data }) => {
 }
 
 const topicsData = (state, { data }) => {
-	if(getUserRole(state.getIn(['user', 'roles']) !== 'instructor')) {
+	const role = getUserRole(state.getIn(['user', 'roles']));
+
+	if(role === 'student') {
 		return state.set('topics', data).set('isLoaded', true);
-	} else {
-		return state.set('topics', data);
-	}
+	} 
+
+	return state.set('topics', data);
+
 }
 
 const onClickIcon = (state, { id }) => {
