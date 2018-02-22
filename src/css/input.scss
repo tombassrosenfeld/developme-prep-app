@@ -72,7 +72,13 @@ p {
 }
 
 .error-message-container {
-	margin: 10px 0;
+	position: fixed;
+	bottom: 10px;
+	left: 25px;
+	z-index: 5;
+
+	width: calc(100% - 20px);
+
 	padding: 8px 0;
 	background-color: $red;
 	cursor: pointer;
@@ -126,3 +132,4 @@ p {
 @import 'modules/taskList';
 @import 'modules/task';
 @import 'modules/assessment';
+@import 'modules/welcome';
