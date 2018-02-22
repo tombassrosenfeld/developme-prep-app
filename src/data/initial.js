@@ -84,22 +84,23 @@ const dummyCohorts = [
 ];
 
 export default Map({
-	isLoaded: true,
-	loggedIn: true,
-	topics: List([
-		data, data, data, data, data
-	]),
-	user: Map({ id: 1, username: 'Peter Thomas', password: '', roles:List(['instructor', 'admin']), token: null }),
-	cohorts: fromJS(dummyCohorts),
+	// isLoaded: true,
+	// loggedIn: true,
+	// topics: List([
+	// 	data, data, data, data, data
+	// ]),
+	// user: Map({ id: 1, username: 'Peter Thomas', password: '', roles:List(['instructor', 'admin']), token: null }),
+	// cohorts: fromJS(dummyCohorts),
 	
-	// isLoaded: false,
-	// loggedIn: false,
-	// topics: List([]),
-	// user: Map({ id: '', username: '', password: '', roles: [], user_display_name: '', user_email: '', token: null }),
+	isLoaded: false,
+	cohortsLoaded: false,
+	loggedIn: false,
+	topics: List([]),
+	user: Map({ id: '', username: '', password: '', roles: [], user_display_name: '', user_email: '', token: null }),
 	
 	userProgress: List([]),
 	assessmentData: Map({}),
 	errors: '',
 
-	// cohorts: List([]),
+	cohorts: List([]),
 });

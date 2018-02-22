@@ -6,6 +6,7 @@ import { getUserRole } from "../utilities/utilities";
 const mapStateToProps = state => ({
 	loggedIn: state.get('loggedIn'),
   isLoaded: state.get("isLoaded"),
+  cohortsLoaded: state.get("cohortsLoaded"),
   userRole: getUserRole(state.getIn(['user', 'roles'])),
 });
 

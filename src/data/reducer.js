@@ -68,7 +68,7 @@ const setStudents = (state, { data }) => {
 
 	});
 
-	return state.set('cohorts', fromJS(cohorts)).set('isLoaded', true);
+	return state.set('cohorts', fromJS(cohorts)).set('cohortsLoaded', true);
 }
 
 const topicsData = (state, { data }) => {

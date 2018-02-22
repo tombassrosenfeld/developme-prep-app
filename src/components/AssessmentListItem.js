@@ -1,20 +1,22 @@
 import React from 'react';
 
 export default ({i, assessment, onClick, questions}) => (
-	<div className="row task">
-		<div className="col-xs-12">
-  		<p 
-  			className="taskList-task-title"
-  			onClick={() => onClick(assessment.get('assessment_title'))}
-  		>
-  		{i + 1}. {assessment.get('assessment_title')}
-  		</p>
+	<div>
+		<div className="row task">
+			<div className="col-xs-12">
+	  		<h3
+	  			className="taskList-task-title"
+	  			onClick={() => onClick(assessment.get('assessment_title'))}
+	  		>
+	  		{i + 1}. {assessment.get('assessment_title')}
+	  		</h3>
+			</div>
 		</div>
-		<div className="col-xs-12">
+		<div className="row">
 			{questions ? questions.map((question, i) => (
-
-				<p key={i}>{question.get('question')}</p>
-
+				<div className="col-xs-12">
+					<p key={i}>{question.get('question')}</p>
+				</div>
 			)) : null}
 		</div>
 	</div>

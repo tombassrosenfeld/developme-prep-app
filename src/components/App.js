@@ -46,10 +46,10 @@ class App extends Component {
             null
           )} />
           <Route exact path="/cohort/:cohort/:student" render={ ({ match }) => (
-            this.props.userRole === 'instructor' ?
+            this.props.userRole === 'instructor' && this.props.cohortsLoaded ?
             <StudentRecord cohortID={ match.params.cohort } studentID={ match.params.student }/> 
             :
-            null
+            this.loading()
           )} />
           <Route path="/prep/topic/:topic/task/:task" render={ ({ match }) => (
             <Task id={ match.params.task } topicID={ match.params.topic }/>

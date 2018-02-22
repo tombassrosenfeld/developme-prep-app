@@ -6,8 +6,6 @@ export default ({students, numAssessments, numTasks, cohortName, cohortID}) => {
 	const totalTasks = numTasks + numAssessments,
 				mailto = students.reduce((mto, student) => mto += student.get('email') + '; ' , '');
 
-				console.log(students.toJS());
-
 	return ( 
 	<div className="panel">
 		<div className="row">
