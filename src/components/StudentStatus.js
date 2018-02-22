@@ -1,5 +1,4 @@
 import React from 'react';
-import { calculateTopicStatus } from '../utilities/utilities';
 
 export default ({progress, notDone}) => (
 	<div className="topicStatus panel">

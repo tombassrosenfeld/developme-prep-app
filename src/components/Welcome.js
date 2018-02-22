@@ -1,6 +1,4 @@
 import React from 'react';
-import { Link } from "react-router-dom";
-import ModulesNav from "./ModulesNav";
 import ProgressBar from "./ProgressBar";
 
 export default ({className, userProgress, numAssessments, numTasks, topics, userRole}) => {

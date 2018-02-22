@@ -1,6 +1,5 @@
 import initial from "./initial";
-import {List, fromJS} from "immutable";
-import {getUserRole} from '../utilities/utilities';
+import {fromJS} from "immutable";
 
 import { ONFORMELEMENTCHANGE } from "./actions";
 import { UPDATE_CREDENTIALS } from "../data/actions_API";

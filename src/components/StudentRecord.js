@@ -1,8 +1,6 @@
 import React from 'react';
-import AssessmentList from '../containers/AssessmentList';
 import ProgressBar from './ProgressBar';
 import StudentStatus from './StudentStatus';
-import TaskListInstructor from '../containers/TaskListInstructor';
 import TopicList from '../containers/TopicList';
 
 export default ({student, totalTasks}) => {

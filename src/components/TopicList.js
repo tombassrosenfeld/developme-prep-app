@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
-import Completed from './Completed';
 import TopicListItem from './TopicListItem';
 import AssessmentListItem from './AssessmentListItem';
 
