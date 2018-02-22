@@ -18,6 +18,8 @@ class TopicList extends Component {
 
 	changeAssessment(title) {
 
+		console.log(title);
+
 		const selectedAssessment = this.state.selectedTopic.get('assessments').find(assessment => assessment.get('assessment_title') === title);
 
 		console.log(selectedAssessment.toJS());
@@ -27,6 +29,7 @@ class TopicList extends Component {
 
 	changeTopic(id) {
 
+
 		const selectedTopic = this.props.topics.find(topic => topic.get('id') === id);
 
 		this.setState({selectedTopic});
@@ -34,6 +37,7 @@ class TopicList extends Component {
 
 	render() {
 		const {selectedTopic, selectedAssessment} = this.state;
+
 		return (
 			<div>
 				<div className="panel">
@@ -67,7 +71,14 @@ class TopicList extends Component {
 		  			</div>
 					</div>
 					{ selectedTopic.get('assessments').size > 0 ?
-				  		selectedTopic.get('assessments').map( (assessment, i) => <AssessmentListItem key={i} i={i} assessment={assessment} onClick={this.changeAssessment} questions={selectedAssessment ? selectedAssessment.get('questions') : null}/>) :
+				  		selectedTopic.get('assessments').map( (assessment, i) => <AssessmentListItem 
+				  			key={i} i={i} 
+				  			assessment={assessment} 
+				  			onClick={this.changeAssessment} 
+				  			questions={selectedAssessment ? selectedAssessment.get('questions') : null}
+				  			topicTitle={selectedTopic.get('short_title')}
+				  			studentAssessmentData={this.props.student.get('userAssessmentData')}
+				  		/>) :
 				  		<div className="row task">
 				  			<div className="col-xs-10">
 									<p className="taskList-task-title">There are currently no assessments for this topic.</p>
