@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TopicListItem from './TopicListItem';
 import AssessmentListItem from './AssessmentListItem';
+import SelectedTopicHeader from './SelectedTopicHeader';
 
 class TopicList extends Component {
 
@@ -16,18 +17,12 @@ class TopicList extends Component {
 
 	changeAssessment(title) {
 
-		console.log(title);
-
 		const selectedAssessment = this.state.selectedTopic.get('assessments').find(assessment => assessment.get('assessment_title') === title);
-
-		console.log(selectedAssessment.toJS());
 
 		this.setState({selectedAssessment});
 	}
 
 	changeTopic(id) {
-
-
 		const selectedTopic = this.props.topics.find(topic => topic.get('id') === id);
 
 		this.setState({selectedTopic});
@@ -60,23 +55,17 @@ class TopicList extends Component {
 				</div>
 				{selectedTopic ? 
 				<div className="panel">
-					<div className="row">
-						<div className="col-xs-12">
-							<h2 className="panel-title">{selectedTopic.get('short_title')}</h2> 
-						</div>
-						<div className="col-xs-12">
-		  				<p className="topic-description">Assessments for this topic:</p>
-		  			</div>
-					</div>
+					<SelectedTopicHeader title={selectedTopic.get('short_title')}/>
 					{ selectedTopic.get('assessments').size > 0 ?
-				  		selectedTopic.get('assessments').map( (assessment, i) => <AssessmentListItem 
+				  		selectedTopic.get('assessments').map( (assessment, i) => (
+				  		<AssessmentListItem 
 				  			key={i} i={i} 
 				  			assessment={assessment} 
-				  			onClick={this.changeAssessment} 
+					  			onClick={this.changeAssessment} 
 				  			questions={selectedAssessment ? selectedAssessment.get('questions') : null}
 				  			topicTitle={selectedTopic.get('short_title')}
 				  			studentAssessmentData={this.props.student.get('userAssessmentData')}
-				  		/>) :
+				  		/>)) :
 				  		<div className="row task">
 				  			<div className="col-xs-10">
 									<p className="taskList-task-title">There are currently no assessments for this topic.</p>
@@ -90,5 +79,6 @@ class TopicList extends Component {
 		)
 	}
 }
+
 
 export default TopicList;

@@ -290,6 +290,14 @@ p {
   .submit-assessment .btn-submit {
     font-size: 14px; }
 
+/************************************
+INSTRUCTOR VIEW
+************************************/
+.question-answer {
+  border-top: 1px solid #E5E5E5;
+  margin-top: 10px;
+  padding-top: 10px; }
+
 .welcome .logo {
   display: block;
   position: static;

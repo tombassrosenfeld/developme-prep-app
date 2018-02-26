@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import StudentRecord from "../components/instructor/StudentRecord";
+import StudentRecord from "../../components/instructor/StudentRecord";
 
 const mapStateToProps = (state, {cohortID, studentID}) => {
 	return {
