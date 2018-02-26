@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TopicListItem from './TopicListItem';
-import SelectedTopic from './instructor/SelectedTopic';
+import SelectedTopic from './SelectedTopic';
 
 class TopicList extends Component {
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import ProgressBar from '../ProgressBar';
 import StudentStatus from '../StudentStatus';
-import TopicList from '../../containers/TopicList';
+import TopicList from '../../containers/instructor/TopicList';
 
 export default ({student, totalTasks}) => {
 	const progress = student.get('userProgress').size;

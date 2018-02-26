@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import TopicList from "../components/TopicList";
+import TopicList from "../../components/instructor/TopicList";
 
 const mapStateToProps = state => ({
     topics: state.get("topics"),
