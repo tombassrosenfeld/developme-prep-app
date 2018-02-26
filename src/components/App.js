@@ -40,7 +40,7 @@ class App extends Component {
             <Topic id={ match.params.id }/>
           )} />
           <Route exact path="/cohort/:id" render={ ({ match }) => (
-            this.props.userRole === 'instructor' ?
+            this.props.userRole === 'instructor' && this.props.cohortsLoaded ?
             <Cohort id={ match.params.id }/> 
             :
             null

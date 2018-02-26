@@ -330,7 +330,7 @@ INSTRUCTOR VIEW
 .question-answer {
   border-top: 1px solid #E5E5E5;
   margin: 10px 0;
-  padding-top: 10px; }
+  padding: 10px 0; }
   .question-answer:first-of-type {
     border-top: none; }
   .question-answer .question {

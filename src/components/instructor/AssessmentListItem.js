@@ -14,8 +14,8 @@ export default ({i, assessment, onClick, questions, studentAssessmentData, topic
 	  		</p>
 			</div>
 			{questions ? 
-			<div className="col-xs-12">
-	  		<p className="panel-title questions-header">Questions:</p>
+			<div>
+	  		<p className="panel-title questions-header">Questions</p>
 			</div> : null }
 			<div className="col-xs-12">
 				{questions ? questions.map((question, i) => {
@@ -25,13 +25,13 @@ export default ({i, assessment, onClick, questions, studentAssessmentData, topic
 					//Condition which prevents undefined error if tasks are added after the student has completed the assessment
 					//studentsAnswers[i] can be 0 so can't check for existence but can check agaisnt the difference between the 2 array lengths
 					return studentAnswers[i] + answers.length - studentAnswers.length  ? (
-						<div className="row question-answer">
-							<div className="col-xs-10 question" key={i}>
+						<div className="row question-answer" key={question.get('question')}>
+							<div className="col-xs-10 question">
 								<p>
 									<strong>{i+1}: </strong> 
 									{question.get('question')}
 								</p>
-								<p><strong>Students answer: </strong>{answers[studentAnswers[i]+1].answer_choice}</p>
+								<p><strong>Student's answer: </strong>{answers[studentAnswers[i]+1].answer_choice}</p>
 								<p><strong>Correct answer: </strong>{answers[correctAnswer].answer_choice}</p>
 							</div>
 							<div className="col-xs-2" key={i}>
