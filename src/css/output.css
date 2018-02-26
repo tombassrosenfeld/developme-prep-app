@@ -217,6 +217,40 @@ p {
 @media only screen and (max-width: 500px) {
   .marker.topicStatus-marker .fa {
     float: right; } }
+/************************************
+INSTRUCTOR VIEW
+************************************/
+.student-topic-status .taskList-task-title {
+  padding: .25em .5em;
+  font-size: 1.25em;
+  cursor: pointer; }
+  .student-topic-status .taskList-task-title strong {
+    color: #00e6b8; }
+.student-topic-status:hover .taskList-task-title, .student-topic-status:hover strong {
+  color: #FFF; }
+.student-topic-status .icons {
+  padding: .25em 0; }
+  .student-topic-status .icons i {
+    display: block;
+    height: 20px;
+    width: 20px;
+    margin: 0 auto; }
+
+.selected-topic .assessment-item {
+  padding: 1em 0;
+  cursor: pointer; }
+  .selected-topic .assessment-item .questions-header {
+    margin: 0;
+    text-align: center; }
+  .selected-topic .assessment-item .task .taskList-task-title {
+    font-size: 1.25em; }
+    .selected-topic .assessment-item .task .taskList-task-title strong {
+      color: #00e6b8; }
+  .selected-topic .assessment-item .task:hover strong, .selected-topic .assessment-item .task:hover .taskList-task-title {
+    color: #FFF; }
+.selected-topic .task {
+  padding-bottom: 15px; }
+
 .taskList {
   padding-bottom: 10px; }
 
@@ -295,8 +329,19 @@ INSTRUCTOR VIEW
 ************************************/
 .question-answer {
   border-top: 1px solid #E5E5E5;
-  margin-top: 10px;
+  margin: 10px 0;
   padding-top: 10px; }
+  .question-answer:first-of-type {
+    border-top: none; }
+  .question-answer .question {
+    padding-left: 0;
+    padding-right: 0; }
+    .question-answer .question p:first-of-type {
+      font-size: 1.25em; }
+      .question-answer .question p:first-of-type strong {
+        color: #00e6b8; }
+  .question-answer p:last-of-type {
+    margin-bottom: 0; }
 
 .welcome .logo {
   display: block;

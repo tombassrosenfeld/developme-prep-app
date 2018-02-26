@@ -30,6 +30,8 @@ class TopicList extends Component {
 	render() {
 		const {selectedTopic, selectedAssessment} = this.state;
 
+		const studentProgress = this.props.student.get('userProgress');
+
 		return (
 			<div>
 				<div className="panel">
@@ -43,9 +45,16 @@ class TopicList extends Component {
 					</div>
 					<div className="taskList">
 						{ this.props.topics.size > 0 ?
-					  		this.props.topics.map( (topic, i) => <TopicListItem key={i} i={i} title={topic.get('short_title')} onClick={() => this.changeTopic(topic.get('id'))}/>) :
+					  		this.props.topics.map( (topic, i) => (
+					  			<TopicListItem 
+					  				key={i} i={i} 
+					  				title={topic.get('short_title')} 
+					  				onClick={() => this.changeTopic(topic.get('id'))} 
+					  				totalTasks={topic.get('assessments').size + topic.get('tasks').size} 
+					  				topicProgress={studentProgress.filter(task => task.includes(topic.get('short_title'))).size}
+					  			/>)) :
 					  		<div className="row task">
-					  			<div className="col-xs-10">
+					  			<div className="col-xs-12">
 										<p className="taskList-task-title">There are currently no topics for this student</p>
 									</div>
 								</div>
@@ -53,7 +62,7 @@ class TopicList extends Component {
 					</div>
 				</div>
 				{selectedTopic ? 
-				<div className="panel">
+				<div>
 					<SelectedTopic 
 						selectedTopic={selectedTopic} 
 						selectedAssessment={selectedAssessment} 
