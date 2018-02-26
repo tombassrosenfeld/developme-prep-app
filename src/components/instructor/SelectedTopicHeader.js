@@ -1,5 +1,4 @@
 import React from 'react';
-import AssessmentListItem from './AssessmentListItem';
 
 export default ({title}) => (
 	<div className="row">

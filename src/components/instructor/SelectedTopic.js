@@ -1,24 +1,18 @@
 import React from 'react';
-import AssessmentListItem from './AssessmentListItem';
+import AssessmentListItem from '../AssessmentListItem';
+import SelectedTopicHeader from './SelectedTopicHeader';
 
-export default ({student, totalTasks}) => (
+export default ({selectedTopic, selectedAssessment, student, onClick}) => (
 	<div className="panel">
-		<div className="row">
-			<div className="col-xs-12">
-				<h2 className="panel-title">{selectedTopic.get('short_title')}</h2> 
-			</div>
-			<div className="col-xs-12">
-				<p className="topic-description">Assessments for this topic:</p>
-			</div>
-		</div>
+		<SelectedTopicHeader title={selectedTopic.get('short_title')}/>
 		{ selectedTopic.get('assessments').size > 0 ?
 	  		selectedTopic.get('assessments').map( (assessment, i) => <AssessmentListItem 
 	  			key={i} i={i} 
 	  			assessment={assessment} 
-	  			onClick={this.changeAssessment} 
+	  			onClick={onClick} 
 	  			questions={selectedAssessment ? selectedAssessment.get('questions') : null}
 	  			topicTitle={selectedTopic.get('short_title')}
-	  			studentAssessmentData={this.props.student.get('userAssessmentData')}
+	  			studentAssessmentData={student.get('userAssessmentData')}
 	  		/>) :
 	  		<div className="row task">
 	  			<div className="col-xs-10">
