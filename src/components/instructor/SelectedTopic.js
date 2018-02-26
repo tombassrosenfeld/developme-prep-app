@@ -1,5 +1,5 @@
 import React from 'react';
-import AssessmentListItem from '../AssessmentListItem';
+import AssessmentListItem from './AssessmentListItem';
 import SelectedTopicHeader from './SelectedTopicHeader';
 
 export default ({selectedTopic, selectedAssessment, student, onClick}) => (

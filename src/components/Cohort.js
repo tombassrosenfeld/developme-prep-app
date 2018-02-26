@@ -1,5 +1,5 @@
 import React from 'react';
-import StudentList from '../containers/StudentList';
+import StudentList from '../containers/instructor/StudentList';
 
 export default ({cohort, id}) => (
 	<div className="col-xs-12 col-sm-8 col-md-6 narrow-padding">

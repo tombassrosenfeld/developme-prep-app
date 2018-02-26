@@ -8,7 +8,7 @@ import Errors from '../containers/Errors';
 import TopicsNav from '../containers/TopicsNav';
 import CohortNav from '../containers/instructor/CohortNav';
 import Topic from '../containers/Topic';
-import Cohort from '../containers/Cohort';
+import Cohort from '../containers/instructor/Cohort';
 import Task from '../containers/Task';
 import Assessment from '../containers/Assessment';
 import Login from '../containers/Login';

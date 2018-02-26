@@ -5,7 +5,6 @@ import TopicList from '../../containers/instructor/TopicList';
 
 export default ({student, totalTasks}) => {
 	const progress = student.get('userProgress').size;
-	console.log(student.toJS());
 	return (
 		<div className="col-xs-12 col-sm-8 col-md-6 narrow-padding">
 			<div className="topics panel">
