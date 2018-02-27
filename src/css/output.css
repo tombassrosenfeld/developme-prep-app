@@ -50,7 +50,11 @@ p {
     margin: 30px 0 20px 0; }
 
 .error-message-container {
-  margin: 10px 0;
+  position: fixed;
+  bottom: 10px;
+  left: 25px;
+  z-index: 5;
+  width: calc(100% - 20px);
   padding: 8px 0;
   background-color: #FF3030;
   cursor: pointer;
