@@ -16,7 +16,7 @@ class App extends Component {
 
   loading() {
     return (
-      <p>loading</p> // TODO: make this better
+      <i class="fa fa-spinner loading" aria-hidden="true"></i> // TODO: make this better
     )
   }
 

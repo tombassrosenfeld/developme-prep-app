@@ -31,6 +31,7 @@ p {
   font-weight: 300; }
 
 .app {
+  position: relative;
   padding-top: 20px;
   padding-bottom: 40px; }
 
@@ -77,6 +78,19 @@ p {
 .fa-times-circle-o {
   color: #FF3030; }
 
+.loading {
+  padding: 1em;
+  margin-left: calc(50% - 1.5em);
+  color: #00e6b8;
+  font-size: 10em;
+  opacity: 0.8;
+  animation: spin 2s infinite linear; }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
 /******************************************/
 /*Imported modules*/
 /******************************************/
