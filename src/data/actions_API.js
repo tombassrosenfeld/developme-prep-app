@@ -32,7 +32,9 @@ const getData = (token) => dispatch => {
 			dispatch(userData(response.data)); // update state with user data
 			dispatch(userProgress(List(response.data[0].userProgress))); // update state with user progress
 			dispatch(userAssessmentData(fromJS(response.data[0].userAssessmentData))); // update state
-			if(getUserRole(response.data[0].roles) === 'instructor') { //If user is instructor get all student users
+			let role = getUserRole(response.data[0].roles);
+			if(role === 'instructor') { //If user is instructor get all student users
+				console.log('hello');
 				getStudents(token)
 					.then(response => {
 						dispatch(setStudents(fromJS(response.data)));
