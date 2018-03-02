@@ -2,10 +2,10 @@ import React from 'react';
 import AssessmentListItem from './AssessmentListItem';
 import SelectedTopicHeader from './SelectedTopicHeader';
 
-export default ({selectedTopic, selectedAssessment, student, onClick}) => (
-	<div className="panel selected-topic">
+export default ({selectedTopic, selectedAssessment, student, onClick}) => {
+	return (<div className="panel selected-topic">
 		<SelectedTopicHeader title={selectedTopic.get('short_title')}/>
-		{ selectedTopic.get('assessments').size > 0 ?
+		{ selectedTopic.get('assessments').size > 0 && student.get('userAssessmentData').size ?
 	  		selectedTopic.get('assessments').map( (assessment, i) => (
 	  		<AssessmentListItem 
 	  			key={i} i={i} 
@@ -17,12 +17,20 @@ export default ({selectedTopic, selectedAssessment, student, onClick}) => (
 	  		/>)) :
 	  		<div className="row task">
 	  			<div className="col-xs-10">
-						<p className="taskList-task-title">There are currently no assessments for this topic.</p>
+						<p className="taskList-task-title">
+						{
+							selectedTopic.get('assessments').size ? 'This student has no assessment data for this topic' : 'There are currently no assessments for this topic.'
+						}
+						</p>
 					</div>
 				</div>
 		}				  	
 	</div>
-)
+	)
+}
+
+							
+
 
 
 
