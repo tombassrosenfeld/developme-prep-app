@@ -21,18 +21,17 @@ export default ({i, assessment, onClick, questions, studentAssessmentData, topic
 				{questions ? questions.map((question, i) => {
 					const answers = question.get('answers').toJS(),
 								correctAnswer = +question.get('correct_answer');
-
-					//Condition which prevents undefined error if tasks are added after the student has completed the assessment
-					//studentsAnswers[i] can be 0 so can't check for existence but can check agaisnt the difference between the 2 array lengths
-					return studentAnswers[i] + answers.length - studentAnswers.length  ? (
+					//If studentAnswers does not have a value at the index, then do no not run this code. 
+					//+ answers.length - studentAnswers.length - is used as studentAnswers[i] can be 0, which returns false.
+					return studentAnswers[i] + answers.length - studentAnswers.length || answers.length === studentAnswers.length ? (
 						<div className="row question-answer" key={question.get('question')}>
 							<div className="col-xs-10 question">
 								<p>
 									<strong>{i+1}: </strong> 
 									{question.get('question')}
 								</p>
-								<p><strong>Student's answer: </strong>{answers[studentAnswers[i]+1].answer_choice}</p>
-								<p><strong>Correct answer: </strong>{answers[correctAnswer].answer_choice}</p>
+								<p><strong>Student's answer: </strong>{answers[studentAnswers[i]].answer_choice}</p>
+								<p><strong>Correct answer: </strong>{answers[correctAnswer-1].answer_choice}</p>
 							</div>
 							<div className="col-xs-2" key={i}>
 								<div className="marker topicStatus-marker">
