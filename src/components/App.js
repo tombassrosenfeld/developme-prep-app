@@ -6,11 +6,14 @@ import {
 import Header from '../containers/Header';
 import Errors from '../containers/Errors';
 import TopicsNav from '../containers/TopicsNav';
+import CohortNav from '../containers/instructor/CohortNav';
 import Topic from '../containers/Topic';
+import Cohort from '../containers/instructor/Cohort';
 import Task from '../containers/Task';
 import Assessment from '../containers/Assessment';
 import Login from '../containers/Login';
 import Welcome from '../containers/Welcome';
+import StudentRecord from '../containers/instructor/StudentRecord';
 
 class App extends Component {
 
@@ -23,17 +26,30 @@ class App extends Component {
   loaded() {
     return (
       <div className="row">
+          <Route path="/" render={ ({ match }) => {
+            return this.props.userRole === 'student' ?
+              <TopicsNav title="Topics" />
+              :
+              <CohortNav title="Cohorts" />
+            }
+          }/>        
           <Route exact path="/" render={ ({ match }) => (
-            <div>
-              <TopicsNav />
-              <Welcome />
-            </div>
-          )} />        
-          <Route path="/prep/topic/" render={ ({ match }) => (
-            <TopicsNav />
-          )} />        
+            <Welcome userRole={this.props.userRole}/>
+          )} />
           <Route path="/prep/topic/:id" render={ ({ match }) => (
             <Topic id={ match.params.id }/>
+          )} />
+          <Route exact path="/cohort/:id" render={ ({ match }) => (
+            this.props.userRole === 'instructor' && this.props.cohortsLoaded ?
+            <Cohort id={ match.params.id }/> 
+            :
+            null
+          )} />
+          <Route exact path="/cohort/:cohort/:student" render={ ({ match }) => (
+            this.props.userRole === 'instructor' && this.props.cohortsLoaded ?
+            <StudentRecord cohortID={ match.params.cohort } studentID={ match.params.student }/> 
+            :
+            this.loading()
           )} />
           <Route path="/prep/topic/:topic/task/:task" render={ ({ match }) => (
             <Task id={ match.params.task } topicID={ match.params.topic }/>

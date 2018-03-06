@@ -32,4 +32,5 @@ export const calculateTopicStatus = (userProgress, topic) => {
 	return topicStatus;
 }
 
-
+//Returns if student or instructor
+export const getUserRole = (rolesArr) => rolesArr.reduce((role, r) => role += r === 'student' || r === 'instructor' ? r : '', '');
