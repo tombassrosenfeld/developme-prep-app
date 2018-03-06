@@ -19,7 +19,7 @@ class App extends Component {
 
   loading() {
     return (
-      <i class="fa fa-spinner loading" aria-hidden="true"></i> // TODO: make this better
+      <i className="fa fa-spinner loading" aria-hidden="true"></i> // TODO: make this better
     )
   }
 
@@ -43,13 +43,17 @@ class App extends Component {
             this.props.userRole === 'instructor' && this.props.cohortsLoaded ?
             <Cohort id={ match.params.id }/> 
             :
-            null
+            <Welcome userRole="student"/>
           )} />
           <Route exact path="/cohort/:cohort/:student" render={ ({ match }) => (
             this.props.userRole === 'instructor' && this.props.cohortsLoaded ?
-            <StudentRecord cohortID={ match.params.cohort } studentID={ match.params.student }/> 
+            <StudentRecord 
+              cohortID={ match.params.cohort } 
+              studentID={ match.params.student }
+              userRole={this.props.userRole}
+            /> 
             :
-            this.loading()
+            this.props.userRole === 'instructor' ? this.loading() : <Welcome userRole="student"/>
           )} />
           <Route path="/prep/topic/:topic/task/:task" render={ ({ match }) => (
             <Task id={ match.params.task } topicID={ match.params.topic }/>
