@@ -71,6 +71,10 @@ const setStudents = (state, { data }) => {
 }
 
 const topicsData = (state, { data }) => {
+	// Sort function for topic
+	data = data.sort((a,b) => {
+		return a.get('order') - b.get('order');
+	});
 	return state.set('topics', data).set('isLoaded', true);
 }
 

@@ -7,6 +7,7 @@ export const processTopicsData = (modulesData) => {
 	let data = modulesData.map((item, i) => ({
 									id: i, 
 									title: item.title.rendered, 
+									order: item.acfs.topic_order,
 									short_title: item.acfs.short_title,
 									description: item.acfs.description,
 									tasks: item.acfs.tasks ? item.acfs.tasks : [],
