@@ -34,7 +34,6 @@ const getData = (token) => dispatch => {
 			dispatch(userAssessmentData(fromJS(response.data[0].userAssessmentData))); // update state
 			let role = getUserRole(response.data[0].roles);
 			if(role === 'instructor') { //If user is instructor get all student users
-				console.log('hello');
 				getStudents(token)
 					.then(response => {
 						dispatch(setStudents(fromJS(response.data)));

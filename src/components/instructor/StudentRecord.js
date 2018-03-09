@@ -3,9 +3,9 @@ import ProgressBar from '../ProgressBar';
 import StudentStatus from './StudentStatus';
 import TopicList from '../../containers/instructor/TopicList';
 
-export default ({student, totalTasks}) => {
+export default ({student, totalTasks, userRole}) => {
 	const progress = student.get('userProgress').size;
-	return (
+	return userRole === 'instructor' ? (
 		<div className="col-xs-12 col-sm-8 col-md-6 narrow-padding">
 			<div className="topics panel">
 				<div className="topics-header">
@@ -25,6 +25,6 @@ export default ({student, totalTasks}) => {
 		  <StudentStatus progress={progress} notDone={totalTasks - progress} />
 		  <TopicList student={student}/>
 		</div>
-	)
+	) : null;
 }
 
