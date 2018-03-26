@@ -2,6 +2,7 @@ import React from 'react';
 import TaskList from '../containers/TaskList';
 import TopicStatus from '../containers/TopicStatus';
 import AssessmentList from '../containers/AssessmentList';
+const Parser = require('html-react-parser');
 
 export default ({id, topic}) => (
 	<div className="col-xs-12 col-sm-8 col-md-6 narrow-padding">
@@ -16,4 +17,4 @@ export default ({id, topic}) => (
 	  	<AssessmentList id={ id }/>
 	  	<TopicStatus topic={ topic }/>
 	</div>
-)
+);
