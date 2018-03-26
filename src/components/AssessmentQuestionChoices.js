@@ -1,7 +1,6 @@
 import React from 'react';
 
-export default ({choices, topicTitle, assessmentID, questionID, userAssessmentData, onChangeAssessmentAnswer }) => (
-	choices.map( (answer, answerID) => (
+export default ({choices, topicTitle, assessmentID, questionID, userAssessmentData, onChangeAssessmentAnswer }) => choices.map( (answer, answerID) => answer.get('answer_choice') ? (
 		<div className="radio" key={answerID}>
 			<label>
             	<input 
@@ -20,5 +19,4 @@ export default ({choices, topicTitle, assessmentID, questionID, userAssessmentDa
 		 		{answer.get('answer_choice')}
          	</label>
         </div>
-	))
-)
+	) : null);
