@@ -103,6 +103,19 @@ p {
 	color: $red;
 }
 
+.hyperlink {
+	padding-top: 1em;
+	padding-bottom: 1em;
+
+	font-size: 1.5em;
+	a {
+		color: $homeGreen;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
 .loading {
 	padding: 1em;
 	margin-left: calc(50% - 1.5em);
@@ -133,3 +146,4 @@ p {
 @import 'modules/task';
 @import 'modules/assessment';
 @import 'modules/welcome';
+@import 'modules/progress-bar';

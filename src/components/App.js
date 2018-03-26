@@ -6,34 +6,54 @@ import {
 import Header from '../containers/Header';
 import Errors from '../containers/Errors';
 import TopicsNav from '../containers/TopicsNav';
+import CohortNav from '../containers/instructor/CohortNav';
 import Topic from '../containers/Topic';
+import Cohort from '../containers/instructor/Cohort';
 import Task from '../containers/Task';
 import Assessment from '../containers/Assessment';
 import Login from '../containers/Login';
 import Welcome from '../containers/Welcome';
+import StudentRecord from '../containers/instructor/StudentRecord';
 
 class App extends Component {
 
   loading() {
     return (
-      <i class="fa fa-spinner loading" aria-hidden="true"></i> // TODO: make this better
+      <i className="fa fa-spinner loading" aria-hidden="true"></i> // TODO: make this better
     )
   }
 
   loaded() {
     return (
       <div className="row">
+          <Route path="/" render={ ({ match }) => {
+            return this.props.userRole === 'student' ?
+              <TopicsNav title="Topics" />
+              :
+              <CohortNav title="Cohorts" />
+            }
+          }/>        
           <Route exact path="/" render={ ({ match }) => (
-            <div>
-              <TopicsNav />
-              <Welcome />
-            </div>
-          )} />        
-          <Route path="/prep/topic/" render={ ({ match }) => (
-            <TopicsNav />
-          )} />        
+            <Welcome userRole={this.props.userRole}/>
+          )} />
           <Route path="/prep/topic/:id" render={ ({ match }) => (
             <Topic id={ match.params.id }/>
+          )} />
+          <Route exact path="/cohort/:id" render={ ({ match }) => (
+            this.props.userRole === 'instructor' && this.props.cohortsLoaded ?
+            <Cohort id={ match.params.id }/> 
+            :
+            <Welcome userRole="student"/>
+          )} />
+          <Route exact path="/cohort/:cohort/:student" render={ ({ match }) => (
+            this.props.userRole === 'instructor' && this.props.cohortsLoaded ?
+            <StudentRecord 
+              cohortID={ match.params.cohort } 
+              studentID={ match.params.student }
+              userRole={this.props.userRole}
+            /> 
+            :
+            this.props.userRole === 'instructor' ? this.loading() : <Welcome userRole="student"/>
           )} />
           <Route path="/prep/topic/:topic/task/:task" render={ ({ match }) => (
             <Task id={ match.params.task } topicID={ match.params.topic }/>

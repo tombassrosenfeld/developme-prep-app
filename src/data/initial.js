@@ -43,6 +43,45 @@ let data =
 // completed assessments are referenced by topic_short_title.ass.i - this should mean the status will calculate correctly
 // assessment data is stored in a completely seperate part of the state and of the database called assessment data
 
+const dummyCohorts = [
+	{
+		id: 1,
+		name: 'CF01',
+		students: List([
+			Map({
+				id: 1,
+				cohort : "CF01",
+				description : "" ,
+				name: 'Kye Buffery',
+				email: 'kye.buffery@icloud.com',
+				userAssessmentData : {} ,
+				userProgress :  List(['', '', '']),
+			}),
+			Map({
+				id: 2,
+				cohort : "CF01",
+				description : "" ,
+				name: 'Pete Thomas',
+				email: 'pete.thomas@icloud.com',
+				userAssessmentData : {} ,
+				userProgress :  List(['', '', '', '', '', '']),
+			}),
+		]),
+		selected: false,
+	},
+	{
+		id: 2,
+		name: 'CF02',
+		students: List([]),
+		selected: false,
+	},
+	{
+		id: 3,
+		name: 'CF03',
+		students: List([]),
+		selected: false,
+	},
+];
 
 export default Map({
 	// isLoaded: true,
@@ -50,14 +89,18 @@ export default Map({
 	// topics: List([
 	// 	data, data, data, data, data
 	// ]),
-	// user: Map({ id: 1, username: 'Peter Thomas', password: '', token: null }),
+	// user: Map({ id: 1, username: 'Peter Thomas', password: '', roles:List(['instructor', 'admin']), token: null }),
+	// cohorts: fromJS(dummyCohorts),
 	
 	isLoaded: false,
+	cohortsLoaded: false,
 	loggedIn: false,
 	topics: List([]),
-	user: Map({ id: '', username: '', password: '', user_display_name: '', user_email: '', token: null }),
+	user: Map({ id: '', username: '', password: '', roles: [], user_display_name: '', user_email: '', token: null }),
 	
 	userProgress: List([]),
 	assessmentData: Map({}),
 	errors: '',
+
+	cohorts: List([]),
 });
