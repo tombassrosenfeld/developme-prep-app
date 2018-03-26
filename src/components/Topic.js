@@ -13,7 +13,7 @@ export default ({id, topics}) => {
 					<div className="topics-header-icon"><i className="fa fa-2x fa-file-o" aria-hidden="true"></i></div>
 				</div>
 		  		<h1 className="topic-title">{ topics.getIn([id, 'short_title']) } <small>{ topics.getIn([id, 'title']) }</small></h1>
-		  		<p className="topic-description">{ Parser(topics.getIn([id, 'description'])) }</p>
+		  		<div className="topic-description">{ Parser(topics.getIn([id, 'description'])) }</div>
 		  	</div>
 		  	<TaskList id={ id }/>
 		  	<AssessmentList id={ id }/>
