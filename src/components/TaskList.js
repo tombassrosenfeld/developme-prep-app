@@ -2,9 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import Completed from './Completed';
 
-export default ({topic, userProgress, onClickUserProgress}) => {
-	console.log(topic.toJS());
-	return (
+export default ({topic, userProgress, onClickUserProgress}) => (
 	<div className="panel">
 		<div className="row">
 			<div className="col-xs-10">
@@ -39,5 +37,4 @@ export default ({topic, userProgress, onClickUserProgress}) => {
 		  	}
 		</div>
 	</div>
-	)
-}
+)
