@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
 import Topic from "../components/Topic";
 
-const mapStateToProps = state => ({
-    topics: state.get("topics"),
+const mapStateToProps = (state, {id}) => ({
+    topic: state.get("topics").find(topic => topic.get('id') === +id),
 });
 
 export default connect(mapStateToProps)(Topic);

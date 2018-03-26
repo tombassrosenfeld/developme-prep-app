@@ -14,7 +14,7 @@ export default ({title, navItems, onClickIcon, userRole}) => (
 						id={ userRole === 'student' ? navItem.get('id') : navItem.get('name') } 
 						title={ userRole === 'student' ? navItem.get('short_title') : navItem.get('name') }
 						selected={ navItem.get('selected') } 
-						onClick={ () => onClickIcon(i) }
+						onClick={ () => onClickIcon(userRole === 'student' ? navItem.get('id') : i) }
 						route={ userRole === 'student' ? '/prep/topic/' : '/cohort/'}
 					/>
 				)) }
