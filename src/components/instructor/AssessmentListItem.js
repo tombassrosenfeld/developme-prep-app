@@ -1,9 +1,9 @@
 import React from 'react';
 
 export default ({i, assessment, onClick, questions, studentAssessmentData, topicTitle}) => {
-	const studentAnswersForAssessment = studentAssessmentData.get(topicTitle).find((assessment, index) => i === index),
-				studentAnswers = studentAnswersForAssessment.get('answers').toJS();
-	return (
+	const studentAnswersForAssessment = studentAssessmentData.get(topicTitle) ? studentAssessmentData.get(topicTitle).find((assessment, index) => i === index) : null,
+				studentAnswers = studentAnswersForAssessment ? studentAnswersForAssessment.get('answers').toJS() : null;
+	return studentAnswers ? (
 		<div className="row assessment-item">
 			<div className="col-xs-12 task">
 	  		<p 
@@ -46,5 +46,10 @@ export default ({i, assessment, onClick, questions, studentAssessmentData, topic
 				}) : null}
 			</div>
 		</div>
-	)
+	) : <div className="row">
+				<div className="col-xs-12">
+					<p>This student has not taken any of the assessments for this topic yet.</p>
+				</div>
+			</div>
+			
 }
