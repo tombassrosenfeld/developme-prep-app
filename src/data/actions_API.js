@@ -1,6 +1,5 @@
 import axios from '../data/axios';
 import { processTopicsData } from '../utilities/utilities';
-import { store } from '../index.js';
 import { updateErrors } from './actions';
 import { List, fromJS } from "immutable";
 import { getUserRole } from "../utilities/utilities";
@@ -25,8 +24,9 @@ export const authenticate = (username, password) => dispatch => {
 };
 
 // if authentication is successful, calls getdata()
-const getData = (token) => dispatch => {
-	getUserData(token)
+const getData = (token) => (dispatch, getState) => {
+	let userEmail = getState().getIn(['user', 'user_email']);
+	getUserData(token, userEmail)
 		.then( response => {
 			dispatch(updateErrors('')); // remove any errors
 			dispatch(userData(response.data)); // update state with user data
@@ -59,8 +59,8 @@ const getData = (token) => dispatch => {
 };
   
 // when user clicks on markers
-export const onClickUserProgress = (id) => dispatch => {
-	let userProgressArr = store.getState().get('userProgress');
+export const onClickUserProgress = (id) => (dispatch, getState) => {
+	let userProgressArr = getState().get('userProgress');
 	var savedUserProgressArr = userProgressArr;
 
 	if (!userProgressArr.includes(id)) {
@@ -71,9 +71,12 @@ export const onClickUserProgress = (id) => dispatch => {
 	}
 	
 	dispatch(userProgress(userProgressArr));// dispatch to state
+
+	let userID = getState().getIn(['user', 'id']);
+	let token = getState().getIn(['user', 'token']);
 	
 	// post to api
-	postUserProgress(userProgressArr)
+	postUserProgress(userProgressArr, userID, token)
 		.then( response => {
 			dispatch(updateErrors(''));
 		})
@@ -85,17 +88,20 @@ export const onClickUserProgress = (id) => dispatch => {
 }
 
 // when user clicks an answer in the assessment
-export const onChangeAssessmentAnswer = (topic, assessmentID, questionID, answerID) => dispatch => {
+export const onChangeAssessmentAnswer = (topic, assessmentID, questionID, answerID) => (dispatch, getState) => {
 	//get assessment data from the state
-	let userAssessmentDataObj = store.getState().get('assessmentData');
+	let userAssessmentDataObj = getState().get('assessmentData');
 	let savedUserAssessmentDataObj = userAssessmentDataObj;
+	let userID = getState().getIn(['user', 'id']);
+	let token = getState().getIn(['user', 'token']);
+
 
 	userAssessmentDataObj = userAssessmentDataObj.setIn([topic, assessmentID, 'answers', questionID], answerID);
 	
 	dispatch(userAssessmentData(userAssessmentDataObj)); // dispatch to state
 
 	// post to api
-	postUserAssessmentData(userAssessmentDataObj)
+	postUserAssessmentData(userAssessmentDataObj, userID, token)
 		.then( response => dispatch(updateErrors('')) )// remove any errors
 		.catch( error => {
 			// if failed to update, roll back to previous state
@@ -104,29 +110,34 @@ export const onChangeAssessmentAnswer = (topic, assessmentID, questionID, answer
 		})
 }
 
-export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, userAnswers) => dispatch => {
+export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, userAnswers) => (dispatch, getState) => {
 	// mark assessment and update assessmentData
 	let answers = assessment.get('questions').map((question, i) => question.get('correct_answer') - 1);
 	let correctAnswers = answers.filter((answer, i) => answer === userAnswers.get(i));
-	let assessmentData = store.getState().get('assessmentData');
+	let assessmentData = getState().get('assessmentData');
 	let savedAssessmentData = assessmentData;
 	assessmentData = assessmentData.setIn([topicTitle, assessmentID, 'result'], correctAnswers.size);
 	
 	dispatch(userAssessmentData(assessmentData)); // dispatch to state
 
 	// update user progress data
-	let userProgressArr = store.getState().get('userProgress'); 
+	let userProgressArr = getState().get('userProgress'); 
 	var savedUserProgressArr = userProgressArr; 
 	let assessmentKey = topicTitle + '.assess.' + assessmentID;
+	let userID = getState().getIn(['user', 'id']);
+	let token = getState().getIn(['user', 'token']);
 	userProgressArr = !userProgressArr.includes(assessmentKey) ? userProgressArr.push(assessmentKey) : userProgressArr;
 	dispatch(userProgress(userProgressArr));// dispatch to state
 
 	// post to api - if any part of the process fails revert back
-	postUserAssessmentData(assessmentData.toJS())
+	postUserAssessmentData(assessmentData.toJS(), userID, token)
 		.then( response => {
 			dispatch(updateErrors(''));	
 			// post user progress
-			postUserProgress(userProgressArr)
+
+			
+
+			postUserProgress(userProgressArr, userID, token)
 				.then( response => {
 					dispatch(updateErrors(''))
 				})
@@ -186,32 +197,27 @@ function getToken(username, password) {
 function getStudents(token) {
 	return axios.get('/wp-json/wp/v2/users?context=edit&search=student', { // only return user data for the logged in user
     	headers: {'Authorization': 'Bearer ' + token},
-    })
+  })
 }
 
-function getUserData(token) {
-	let userEmail = store.getState().getIn(['user', 'user_email']);
+function getUserData(token, userEmail) {
 	return axios.get('/wp-json/wp/v2/users?context=edit&search=' + userEmail, { // only return user data for the logged in user
-    	headers: {'Authorization': 'Bearer ' + token},
-    })
+  	headers: {'Authorization': 'Bearer ' + token},
+  })
 }
 
-function postUserProgress(data) {
-	let userID = store.getState().getIn(['user', 'id']);
-	let token = store.getState().getIn(['user', 'token']);
+function postUserProgress(data, userID, token) {
 	axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 	return axios.post('/wp-json/cf/prep/' + userID + '/progress', {
     	data: data,
-    })
+  })
 }
 
-function postUserAssessmentData(data) {
-	let userID = store.getState().getIn(['user', 'id']);
-	let token = store.getState().getIn(['user', 'token']);
+function postUserAssessmentData(data, userID, token) {
 	axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 	return axios.post('/wp-json/cf/prep/' + userID + '/assessment', {
     	data: data,
-    })
+  })
 }
 
 function getTopics() {

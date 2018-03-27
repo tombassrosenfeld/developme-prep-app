@@ -23,3 +23,5 @@ Gemfile.lock
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+src/css/.sass-cache/
