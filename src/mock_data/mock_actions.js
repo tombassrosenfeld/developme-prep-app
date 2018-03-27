@@ -1,8 +1,19 @@
-import {UPDATE_CREDENTIALS, USER_DATA, TOPICS_DATA, USER_PROGRESS} from '../data/actions_API';
+import {UPDATE_CREDENTIALS, USER_DATA, TOPICS_DATA, USER_PROGRESS, USER_ASSESSMENT_DATA, SET_STUDENTS} from '../data/actions_API';
+import {ONCLICK_ICON} from '../data/actions';
+import {fromJS, Map, List} from 'immutable';
 
 /***********************************
 MOCK API DATA
 ***********************************/
+
+const onClickIcon = (state, { id }) => {
+	
+}
+
+export const updateSelectedTopic = {
+	type: ONCLICK_ICON,
+	id: 1,
+}
 
 export const updateCredentialsAction = {
 	type: UPDATE_CREDENTIALS,
@@ -12,6 +23,255 @@ export const updateCredentialsAction = {
 	user_email: "test@gmail.com",
 	user_nicename: "teststudent2",
 	}
+}
+
+export const setStudents = {
+	type: SET_STUDENTS,
+	data: fromJS([  
+	  {  
+	    "id":13,
+	    "username":"peteTestStudent",
+	    "name":"Student User",
+	    "first_name":"Student",
+	    "last_name":"User",
+	    "email":"peteTestStudent@gmail.com",
+	    "url":"",
+	    "description":"",
+	    "link":"https:\/\/resources.developme.training\/author\/peteteststudent\/",
+	    "locale":"en_GB",
+	    "nickname":"peteTestStudent",
+	    "slug":"peteteststudent",
+	    "roles":[  
+	      "student"
+	    ],
+	    "registered_date":"2018-03-02T14:26:12+00:00",
+	    "capabilities":{  
+	      "edit_users":true,
+	      "list_users":true,
+	      "student":true
+	    },
+	    "extra_capabilities":{  
+	      "student":true
+	    },
+	    "avatar_urls":{  
+	      "24":"https:\/\/secure.gravatar.com\/avatar\/9ff2ba8630e5788d8e4edfd9f976bd18?s=24&d=mm&r=g",
+	      "48":"https:\/\/secure.gravatar.com\/avatar\/9ff2ba8630e5788d8e4edfd9f976bd18?s=48&d=mm&r=g",
+	      "96":"https:\/\/secure.gravatar.com\/avatar\/9ff2ba8630e5788d8e4edfd9f976bd18?s=96&d=mm&r=g"
+	    },
+	    "meta":[  
+
+	    ],
+	    "userProgress":[  
+	      "PHP.0",
+	      "SQL.assess.0",
+	      "SQL.0",
+	      "Equipment.0",
+	      "HTML.assess.0",
+	      "JS.assess.0"
+	    ],
+	    "userAssessmentData":{  
+	      "PHP":[  
+	        {  
+	          "answers":[  
+	            2
+	          ]
+	        }
+	      ],
+	      "SQL":[  
+	        {  
+	          "answers":[  
+	            0,
+	            0,
+	            2,
+	            3
+	          ],
+	          "result":3
+	        }
+	      ],
+	      "HTML":[  
+	        {  
+	          "answers":[  
+	            0,
+	            1,
+	            1,
+	            0,
+	            1,
+	            2,
+	            0,
+	            0
+	          ],
+	          "result":6
+	        }
+	      ],
+	      "JS":[  
+	        {  
+	          "answers":[  
+	            2,
+	            0,
+	            2,
+	            3,
+	            1,
+	            0
+	          ],
+	          "result":2
+	        }
+	      ]
+	    },
+	    "cohort":"CF01",
+	    "_links":{  
+	      "self":[  
+	        {  
+	          "href":"https:\/\/resources.developme.training\/wp-json\/wp\/v2\/users\/13"
+	        }
+	      ],
+	      "collection":[  
+	        {  
+	          "href":"https:\/\/resources.developme.training\/wp-json\/wp\/v2\/users"
+	        }
+	      ]
+	    }
+	  },
+	  {  
+	    "id":14,
+	    "username":"testStudent2",
+	    "name":"test student",
+	    "first_name":"test",
+	    "last_name":"student",
+	    "email":"test@gmail.com",
+	    "url":"",
+	    "description":"",
+	    "link":"https:\/\/resources.developme.training\/author\/teststudent2\/",
+	    "locale":"en_GB",
+	    "nickname":"testStudent2",
+	    "slug":"teststudent2",
+	    "roles":[  
+	      "student"
+	    ],
+	    "registered_date":"2018-03-02T15:27:54+00:00",
+	    "capabilities":{  
+	      "edit_users":true,
+	      "list_users":true,
+	      "student":true
+	    },
+	    "extra_capabilities":{  
+	      "student":true
+	    },
+	    "avatar_urls":{  
+	      "24":"https:\/\/secure.gravatar.com\/avatar\/1aedb8d9dc4751e229a335e371db8058?s=24&d=mm&r=g",
+	      "48":"https:\/\/secure.gravatar.com\/avatar\/1aedb8d9dc4751e229a335e371db8058?s=48&d=mm&r=g",
+	      "96":"https:\/\/secure.gravatar.com\/avatar\/1aedb8d9dc4751e229a335e371db8058?s=96&d=mm&r=g"
+	    },
+	    "meta":[  
+
+	    ],
+	    "userProgress":[  
+	      "JS.assess.0",
+	      "JS.0",
+	      "JS.1",
+	      "Equipment.0",
+	      "PHP.0",
+	      "PHP.assess.0",
+	      "Command Line.0",
+	      "CSS.0",
+	      "Command Line.assess.0"
+	    ],
+	    "userAssessmentData":{  
+	      "JS":[  
+	        {  
+	          "answers":[  
+	            3,
+	            2,
+	            1,
+	            3,
+	            0,
+	            3
+	          ],
+	          "result":1
+	        }
+	      ],
+	      "PHP":[  
+	        {  
+	          "answers":[  
+	            1,
+	            0,
+	            1,
+	            0,
+	            2
+	          ],
+	          "result":4
+	        }
+	      ],
+	      "Command Line":[  
+	        {  
+	          "answers":[  
+	            0,
+	            0,
+	            0,
+	            0,
+	            1
+	          ],
+	          "result":3
+	        }
+	      ]
+	    },
+	    "cohort":"CF02",
+	    "_links":{  
+	      "self":[  
+	        {  
+	          "href":"https:\/\/resources.developme.training\/wp-json\/wp\/v2\/users\/14"
+	        }
+	      ],
+	      "collection":[  
+	        {  
+	          "href":"https:\/\/resources.developme.training\/wp-json\/wp\/v2\/users"
+	        }
+	      ]
+	    }
+	  }
+	])
+}
+
+export const updateUserAssessmentData = {
+	type: USER_ASSESSMENT_DATA,
+	data: {  
+      "JS":[  
+        {  
+          "answers":[  
+            3,
+            2,
+            1,
+            3,
+            0,
+            3
+          ],
+          "result":1
+        }
+      ],
+      "PHP":[  
+        {  
+          "answers":[  
+            1,
+            0,
+            1,
+            0,
+            2
+          ],
+          "result":4
+        }
+      ],
+      "Command Line":[  
+        {  
+          "answers":[  
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "result":3
+        }
+      ]
+    },
 }
 
 
