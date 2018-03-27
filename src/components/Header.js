@@ -2,9 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import ModulesNav from "./ModulesNav";
 
-export default ({user, loggedIn, logOut, userRole}) => {
-	console.log(user.toJS());
-	return (
+export default ({user, loggedIn, logOut, userRole}) => (
 	<div>
 		<div className="row top-nav">
 			<div className="col-xs-12">
@@ -27,5 +25,4 @@ export default ({user, loggedIn, logOut, userRole}) => {
 		{ loggedIn? <ModulesNav text={userRole === 'student' ? 'Preparation' : 'Students'} /> : null }
 
 	</div>
-	)
-}
+)
