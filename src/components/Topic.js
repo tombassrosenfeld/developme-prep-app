@@ -11,10 +11,10 @@ export default ({id, topic}) => (
 				<div className="topics-header-icon"><i className="fa fa-2x fa-file-o" aria-hidden="true"></i></div>
 			</div>
 	  		<h1 className="topic-title">{ topic.get('short_title') } <small>{ topic.get('title') }</small></h1>
-	  		<p className="topic-description">{ topic.get('description') }</p>
+	  		<div className="topic-description">{ Parser(topic.get('description')) }</div>
 	  	</div>
-	  	<TaskList id={ id }/>
-	  	<AssessmentList id={ id }/>
+	  	<TaskList topic={ topic }/>
+	  	<AssessmentList topic={ topic } />
 	  	<TopicStatus topic={ topic }/>
 	</div>
 );

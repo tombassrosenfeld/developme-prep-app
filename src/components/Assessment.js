@@ -4,35 +4,35 @@ import AssessmentSubmit from '../containers/AssessmentSubmit';
 import AssessmentHeader from './AssessmentHeader';
 import { List } from "immutable";
 
-export default ({ id, topicID, topics, userAssessmentData}) => (
+export default ({ id, topic, userAssessmentData}) => (
 	<div className="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-4 narrow-padding">
 		<AssessmentHeader 
 			assessmentID={id}
-			assessmentTitle={topics.getIn([topicID, 'assessments', id, 'assessment_title'])}
-			result={userAssessmentData.getIn([topics.getIn([topicID, 'short_title']), id, 'result']) }
-			totalQuestions={topics.getIn([topicID, 'assessments', id, 'questions']).size}
+			assessmentTitle={topic.getIn(['assessments', id, 'assessment_title'])}
+			result={userAssessmentData.getIn([topic.getIn(['short_title']), id, 'result']) }
+			totalQuestions={topic.getIn(['assessments', id, 'questions']).size}
 		/>
 
 		<div className="assessment-questions">
-		  	{ topics.getIn([topicID, 'assessments', id, 'questions']).map( (question, questionID) => (
+		  	{ topic.getIn(['assessments', id, 'questions']).map( (question, questionID) => (
 				<AssessmentQuestion 
 					key={questionID} 
 					question={question} 
 					questionID={questionID}
 					assessmentID={id}
-					topicTitle={topics.getIn([topicID, 'short_title'])}
+					topicTitle={topic.getIn(['short_title'])}
 				/>
 			)) }
 		</div>
 
-		{ userAssessmentData.getIn([topics.getIn([topicID, 'short_title']), id, 'result']) == null ? 
+		{ userAssessmentData.getIn([topic.getIn(['short_title']), id, 'result']) == null ? 
 			<AssessmentSubmit 
 				assessmentID={id}
-				assessment={topics.getIn([topicID, 'assessments', id])}
-				topicTitle={topics.getIn([topicID, 'short_title'])}
+				assessment={topic.getIn(['assessments', id])}
+				topicTitle={topic.getIn(['short_title'])}
 				userAnswers={
-					userAssessmentData.getIn([topics.getIn([topicID, 'short_title']), id, 'answers']) ?
-					userAssessmentData.getIn([topics.getIn([topicID, 'short_title']), id, 'answers']) : List([])
+					userAssessmentData.getIn([topic.getIn(['short_title']), id, 'answers']) ?
+					userAssessmentData.getIn([topic.getIn(['short_title']), id, 'answers']) : List([])
 				}
 			/>
 			: null
