@@ -135,8 +135,6 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 			dispatch(updateErrors(''));	
 			// post user progress
 
-			
-
 			postUserProgress(userProgressArr, userID, token)
 				.then( response => {
 					dispatch(updateErrors(''))
