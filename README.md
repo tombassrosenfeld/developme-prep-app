@@ -8,8 +8,8 @@ In the src/data/axios.js file, change baseURL to the address of your local envir
 
 To run this app in production mode:  
 Fetch all files from the repository:  
-In the root folder, run `npm install` to install all dependencies listed in the package.json file.  
-Run `npm start` to start the app in production mode.  
+In the root folder, run `yarn add` to install all dependencies listed in the package.json file.  
+Run `yarn start` to start the app in production mode.  
   
 ## Sass
 The app uses sass to modularize the css. Navigate to the css folder and run:  
