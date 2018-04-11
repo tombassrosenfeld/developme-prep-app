@@ -38,10 +38,10 @@ class Assessment extends Component {
 					assessmentTitle={topic.getIn(['assessments', id, 'assessment_title'])}
 					result={userAssessmentData.getIn([topic.getIn(['short_title']), id, 'result']) }
 					totalQuestions={topic.getIn(['assessments', id, 'questions']).size}
-					retake={this.state.retake}
-					retakeOnClick={this.retakeOnClick}
 					assessment={topic.getIn(['assessments', id])}
 					topicTitle={topic.getIn(['short_title'])}
+					retake={this.state.retake}
+					retakeOnClick={this.retakeOnClick}
 				/>
 
 				<div className="assessment-questions">
@@ -67,7 +67,6 @@ class Assessment extends Component {
 							userAssessmentData.getIn([topic.getIn(['short_title']), id, 'answers']) : List([])
 						}
 						onSubmit={this.onSubmit}
-						retake={this.state.retake}
 					/> : null}
 			</div>
 		)
