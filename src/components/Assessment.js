@@ -31,6 +31,8 @@ class Assessment extends Component {
 
 		const { id, topic, userAssessmentData } = this.props;
 
+		console.log(userAssessmentData.getIn([topic.getIn(['short_title']), id, 'result']));
+
 		return (
 			<div className="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-4 narrow-padding">
 				<AssessmentHeader 
@@ -42,6 +44,7 @@ class Assessment extends Component {
 					topicTitle={topic.getIn(['short_title'])}
 					retake={this.state.retake}
 					retakeOnClick={this.retakeOnClick}
+					hasAnswered={userAssessmentData.getIn([topic.getIn(['short_title']), id, 'answers'])}
 				/>
 
 				<div className="assessment-questions">
