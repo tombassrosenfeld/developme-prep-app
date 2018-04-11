@@ -16,19 +16,12 @@ export default ({questionID, question, assessmentID, topicTitle, userAssessmentD
 			</div>
 			<div className="col-xs-10 resource-info">
 				<h2 className="panel-title">{questionID + 1}. {question.get('question')}</h2>
-				{userAssessmentData.getIn([topicTitle, assessmentID, 'result']) == null ? 
-					<AssessmentQuestionChoices 
+				{ <AssessmentQuestionChoices 
 						choices={question.get('answers')}
 						topicTitle={topicTitle}
 						assessmentID={assessmentID}
 						questionID={questionID}
-					/>
-					:
-					<div>
-						<p>Correct answer: {question.getIn(['answers', question.get('correct_answer') - 1, 'answer_choice'])}</p>
-						<p>Your answer: {question.getIn(['answers', userAssessmentData.getIn([topicTitle, assessmentID, 'answers', questionID]), 'answer_choice'])}</p>
-					</div>
-				}
+					/> }
 			</div>
 		</div>
   	</div>

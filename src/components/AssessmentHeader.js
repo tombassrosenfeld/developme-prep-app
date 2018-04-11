@@ -10,7 +10,7 @@ export default ({ assessmentID, assessmentTitle, result, totalQuestions}) => (
   			{result != null ?
 				<div className="col-xs-6">
 					<h2 className="pull-right">
-						{ "Your score: " + result + " / " + totalQuestions }
+						{ "Your previous score: " + result + " / " + totalQuestions }
 					</h2>
 				</div>
 				: null
