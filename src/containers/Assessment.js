@@ -9,6 +9,9 @@ const mapStateToProps = (state, {topicID}) => ({
 
 const mapDispatchToProps = dispatch => ({
 	onClickAssessmentSubmit: (topicTitle, assessmentID, assessment, userAnswers) => dispatch(onClickAssessmentSubmit(topicTitle, assessmentID, assessment, userAnswers)),
+	deleteAssessmentDataForTopic: (topicTitle, assessmentID, assessment, userAnswers, retake) => {
+		dispatch(onClickAssessmentSubmit(topicTitle, assessmentID, assessment, userAnswers, retake));
+	},
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Assessment);

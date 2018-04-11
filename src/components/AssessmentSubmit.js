@@ -1,17 +1,17 @@
 import React from 'react';
 
-export default ({topicTitle, assessmentID, assessment, userAnswers, onClickAssessmentSubmit}) => (
+export default ({topicTitle, assessmentID, assessment, userAnswers, onSubmit, onClickAssessmentSubmit}) => (
 	<div className="panel submit-assessment">
 		<div className="row">
 			<div className="col-xs-12">
 				<button 
 					className="btn btn-default btn-logout btn-submit" 
-					onClick={ () => onClickAssessmentSubmit(
+					onClick={ () => {onClickAssessmentSubmit(
 						topicTitle,
 						assessmentID,
 						assessment,
 						userAnswers
-					) }
+					); onSubmit();} }
 				>Submit</button>
 			</div>
 		</div>
