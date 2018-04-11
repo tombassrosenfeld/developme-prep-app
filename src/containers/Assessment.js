@@ -8,7 +8,7 @@ const mapStateToProps = (state, {topicID}) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-	onClickAssessmentSubmit: (topicTitle, assessmentID, assessment, userAnswers) => dispatch(onClickAssessmentSubmit(topicTitle, assessmentID, assessment, userAnswers)),
+	onClickAssessmentSubmit: (topicTitle, assessmentID, assessment, userAnswers) => dispatch(onClickAssessmentSubmit(topicTitle, assessmentID, assessment, userAnswers, false)),
 	deleteAssessmentDataForTopic: (topicTitle, assessmentID, assessment, userAnswers, retake) => {
 		dispatch(onClickAssessmentSubmit(topicTitle, assessmentID, assessment, userAnswers, retake));
 	},

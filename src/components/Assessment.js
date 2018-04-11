@@ -31,8 +31,6 @@ class Assessment extends Component {
 
 		const { id, topic, userAssessmentData } = this.props;
 
-		console.log(userAssessmentData.getIn([topic.getIn(['short_title']), id, 'result']));
-
 		return (
 			<div className="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-4 narrow-padding">
 				<AssessmentHeader 

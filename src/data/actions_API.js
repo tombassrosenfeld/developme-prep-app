@@ -118,7 +118,18 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 	let savedAssessmentData = assessmentData;
 	assessmentData = assessmentData.setIn([topicTitle, assessmentID, 'result'], correctAnswers.size);
 	assessmentData = retake ? assessmentData.setIn([topicTitle, assessmentID, 'answers'], List([])) : assessmentData;
-	
+	let attemptsForTopic = 0;
+
+	if(!retake) {
+		if(assessmentData.getIn([topicTitle, assessmentID, 'attempts'])) {
+			attemptsForTopic = assessmentData.getIn([topicTitle, assessmentID, 'attempts']);
+			attemptsForTopic += 1;
+		} else {
+			attemptsForTopic = 1;
+		}	
+		assessmentData = assessmentData.setIn([topicTitle, assessmentID, 'attempts'], attemptsForTopic);
+	}
+
 	dispatch(userAssessmentData(assessmentData)); // dispatch to state
 
 	// update user progress data
