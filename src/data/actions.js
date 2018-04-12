@@ -3,6 +3,7 @@ export const ONFORMELEMENTCHANGE = Symbol("ONFORMELEMENTCHANGE");
 export const ONCLICK_ICON = Symbol("ONCLICK_ICON");
 export const UPDATE_ERRORS = Symbol("UPDATE_ERRORS");
 export const DELETE_ASSESSMENT_DATA = Symbol("DELETE_ASSESSMENT_DATA");
+export const GET_ARCHIVED_ASSESSMENT_DATA = Symbol("GET_ARCHIVED_ASSESSMENT_DATA");
 
 export const logOut = () => ({
 	type: LOGOUT,
@@ -32,3 +33,10 @@ export const deleteAssessmentData = (topicTitle, assessmentID, assessment) => ({
 	assessmentID,
 	assessment
 });
+
+export const getArchivedAssessmentData = (topicTitle, assessmentID, assessment) => ({
+	type: GET_ARCHIVED_ASSESSMENT_DATA,
+	topicTitle, 
+	assessmentID,
+	assessment
+})

@@ -1,6 +1,6 @@
 import initial from "./initial";
 import {fromJS} from "immutable";
-import { ONFORMELEMENTCHANGE, UPDATE_ERRORS, LOGOUT, ONCLICK_ICON, DELETE_ASSESSMENT_DATA } from "../data/actions";
+import { ONFORMELEMENTCHANGE, UPDATE_ERRORS, LOGOUT, ONCLICK_ICON, DELETE_ASSESSMENT_DATA, GET_ARCHIVED_ASSESSMENT_DATA } from "../data/actions";
 import { USER_DATA, UPDATE_CREDENTIALS, USER_PROGRESS, USER_ASSESSMENT_DATA, SET_STUDENTS, TOPICS_DATA } from "../data/actions_API";
 
 const updateUsernameAndPassword = (state, { id, val }) => {
@@ -81,8 +81,13 @@ const logOut = (state) => {
 }
 
 const deleteAssessmentData = (state, {topicTitle, assessmentID, assessment}) => {
-	const answers = state.getIn(['assessmentData', topicTitle, assessmentID, 'answers']).map(answer => null);
-	return state.setIn(['assessmentData', topicTitle, assessmentID, 'answers'], answers);
+	const answers = state.getIn(['assessmentData', topicTitle, assessmentID, 'answers']);
+	const answersRemoved = answers.map(answer => null);
+	return state.setIn(['assessmentData', topicTitle, assessmentID, 'answers'], answersRemoved).set('archivedData', answers);
+}
+
+const getArchivedAssessmentData = (state, {topicTitle, assessmentID, assessment}) => {
+	return state.setIn(['assessmentData', topicTitle, assessmentID, 'answers'], state.get('archivedData'));
 }
 
 export default (state = initial, action) => {
@@ -94,6 +99,7 @@ export default (state = initial, action) => {
 		case USER_PROGRESS: return updateUserProgress(state, action);
 		case USER_ASSESSMENT_DATA: return updateUserAssessmentData(state, action);
 		case DELETE_ASSESSMENT_DATA: return deleteAssessmentData(state, action);
+		case GET_ARCHIVED_ASSESSMENT_DATA: return getArchivedAssessmentData(state, action);
 		case SET_STUDENTS: return setStudents(state, action);
 		case TOPICS_DATA: return topicsData(state, action);
 		case ONCLICK_ICON: return onClickIcon(state, action);

@@ -19,7 +19,6 @@ class Assessment extends Component {
 	retakeOnClick() {
 		const { id, topic, deleteAssessmentData } = this.props;
 
-		// Call to function to wipe state assessment data for topic
 		deleteAssessmentData(topic.getIn(['short_title']), id, topic.getIn(['assessments', id]));
 
 		this.setState({retake: true});
@@ -30,11 +29,9 @@ class Assessment extends Component {
 	}
 
 	onCancel() {
-		const { id, topic } = this.props;
+		const { id, topic, getArchivedAssessmentData } = this.props;
 
-		//Call to function to fetch api userAssessmentData
-
-		console.log('cancel');
+		getArchivedAssessmentData(topic.getIn(['short_title']), id, topic.getIn(['assessments', id]));
 
 		this.setState({retake: false})
 	}
