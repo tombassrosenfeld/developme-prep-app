@@ -1,8 +1,9 @@
 import React from 'react';
 import AssessmentQuestionChoices from '../containers/AssessmentQuestionChoices'
 
-export default ({questionID, question, assessmentID, topicTitle, userAssessmentData, retake }) => (
-	<div className="panel" >
+export default ({questionID, question, assessmentID, topicTitle, userAssessmentData, retake }) => {
+	// console.log(userAssessmentData.toJS());
+	return (<div className="panel" >
 		<div className="row">
 			<div className="col-xs-2 resource-icon-container .marker">
 				{userAssessmentData.getIn([topicTitle, assessmentID, 'result']) == null || retake ? 
@@ -32,5 +33,5 @@ export default ({questionID, question, assessmentID, topicTitle, userAssessmentD
 				}
 			</div>
 		</div>
-  	</div>
-)
+  	</div>)
+}

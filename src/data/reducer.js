@@ -1,16 +1,7 @@
 import initial from "./initial";
 import {fromJS} from "immutable";
-
-import { ONFORMELEMENTCHANGE } from "./actions";
-import { UPDATE_CREDENTIALS } from "../data/actions_API";
-import { UPDATE_ERRORS } from "../data/actions";
-import { USER_DATA } from "../data/actions_API";
-import { USER_PROGRESS} from "../data/actions_API";
-import { USER_ASSESSMENT_DATA} from "../data/actions_API";
-import { SET_STUDENTS } from "../data/actions_API";
-import { TOPICS_DATA } from "../data/actions_API";
-import { ONCLICK_ICON } from "./actions";
-import { LOGOUT } from "./actions";
+import { ONFORMELEMENTCHANGE, UPDATE_ERRORS, LOGOUT, ONCLICK_ICON, DELETE_ASSESSMENT_DATA } from "../data/actions";
+import { USER_DATA, UPDATE_CREDENTIALS, USER_PROGRESS, USER_ASSESSMENT_DATA, SET_STUDENTS, TOPICS_DATA } from "../data/actions_API";
 
 const updateUsernameAndPassword = (state, { id, val }) => {
 	return state.setIn(['user', id], val);
@@ -89,6 +80,11 @@ const logOut = (state) => {
 	return state.set('loggedIn', false);
 }
 
+const deleteAssessmentData = (state, {topicTitle, assessmentID, assessment}) => {
+	const answers = state.getIn(['assessmentData', topicTitle, assessmentID, 'answers']).map(answer => null);
+	return state.setIn(['assessmentData', topicTitle, assessmentID, 'answers'], answers);
+}
+
 export default (state = initial, action) => {
 	switch (action.type) {
 		case ONFORMELEMENTCHANGE: return updateUsernameAndPassword(state, action);
@@ -97,6 +93,7 @@ export default (state = initial, action) => {
 		case USER_DATA: return updateUser(state, action);
 		case USER_PROGRESS: return updateUserProgress(state, action);
 		case USER_ASSESSMENT_DATA: return updateUserAssessmentData(state, action);
+		case DELETE_ASSESSMENT_DATA: return deleteAssessmentData(state, action);
 		case SET_STUDENTS: return setStudents(state, action);
 		case TOPICS_DATA: return topicsData(state, action);
 		case ONCLICK_ICON: return onClickIcon(state, action);

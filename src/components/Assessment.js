@@ -13,19 +13,32 @@ class Assessment extends Component {
 
 		this.retakeOnClick = this.retakeOnClick.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
+		this.onCancel = this.onCancel.bind(this);
 	}
 
 	retakeOnClick() {
-		const { id, topic, userAssessmentData } = this.props;
+		const { id, topic, deleteAssessmentData } = this.props;
 
-		this.props.deleteAssessmentDataForTopic(topic.getIn(['short_title']), id, topic.getIn(['assessments', id]), List([]), true);
+		// Call to function to wipe state assessment data for topic
+		deleteAssessmentData(topic.getIn(['short_title']), id, topic.getIn(['assessments', id]));
 
 		this.setState({retake: true});
 	}
 
-	onSubmit() {
+	onSubmit(userAnswers) {
 		this.setState({retake: false})
 	}
+
+	onCancel() {
+		const { id, topic } = this.props;
+
+		//Call to function to fetch api userAssessmentData
+
+		console.log('cancel');
+
+		this.setState({retake: false})
+	}
+
 
 	render() {
 
@@ -68,6 +81,8 @@ class Assessment extends Component {
 							userAssessmentData.getIn([topic.getIn(['short_title']), id, 'answers']) : List([])
 						}
 						onSubmit={this.onSubmit}
+						retake={this.state.retake}
+						onCancel={this.onCancel}
 					/> : null}
 			</div>
 		)
