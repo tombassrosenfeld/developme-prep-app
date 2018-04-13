@@ -50,7 +50,6 @@ class Assessment extends Component {
 					topicTitle={topic.getIn(['short_title'])}
 					retake={this.state.retake}
 					retakeOnClick={this.retakeOnClick}
-					hasAnswered={userAssessmentData.getIn([topic.getIn(['short_title']), id, 'answers'])}
 				/>
 
 				<div className="assessment-questions">

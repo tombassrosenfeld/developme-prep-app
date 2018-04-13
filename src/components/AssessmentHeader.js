@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default ({ assessmentID, assessmentTitle, result, totalQuestions, retake, retakeOnClick, hasAnswered}) => (
+export default ({ assessmentID, assessmentTitle, result, totalQuestions, retake, retakeOnClick}) => (
 	<div className="panel">
 		<h1>{+assessmentID + 1}. { assessmentTitle }</h1>
-		{!retake && hasAnswered ? (
+		{!retake && result ? (
 			<div class="retake-text">
 				<p>You can retake the assessment by clicking the button below. You will lose your existing answers if you do this.</p>
 				<button className="btn btn-default btn-logout btn-submit retake-button" onClick={retakeOnClick}>Retake</button>
