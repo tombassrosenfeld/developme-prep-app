@@ -4,7 +4,7 @@ export default ({ assessmentID, assessmentTitle, result, totalQuestions, retake,
 	<div className="panel">
 		<h1>{+assessmentID + 1}. { assessmentTitle }</h1>
 		{!retake && result ? (
-			<div class="retake-text">
+			<div className="retake-text">
 				<p>You can retake the assessment by clicking the button below. You will lose your existing answers if you do this.</p>
 				<button className="btn btn-default btn-logout btn-submit retake-button" onClick={retakeOnClick}>Retake</button>
 			</div>
