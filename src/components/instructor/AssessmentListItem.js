@@ -2,8 +2,8 @@ import React from 'react';
 
 export default ({i, assessment, onClick, questions, studentAssessmentData, topicTitle}) => {
 	const studentAnswersForAssessment = studentAssessmentData.get(topicTitle) ? studentAssessmentData.get(topicTitle).find((assessment, index) => i === index) : null,
-				studentAnswers = studentAnswersForAssessment.get('answers') ? studentAnswersForAssessment.get('answers').toJS() : null,
-				attemptsForAssessment = studentAnswersForAssessment.get('attempts');
+				studentAnswers = studentAnswersForAssessment ? studentAnswersForAssessment.get('answers').toJS() : null,
+				attemptsForAssessment = studentAnswersForAssessment ? studentAnswersForAssessment.get('attempts') : null;
 
 	return attemptsForAssessment ? (
 		<div className="row assessment-item">
