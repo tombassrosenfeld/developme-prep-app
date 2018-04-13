@@ -10,7 +10,6 @@ class Assessment extends Component {
 		this.state = {
 			retake: false,
 		}
-
 		this.retakeOnClick = this.retakeOnClick.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 		this.onCancel = this.onCancel.bind(this);
@@ -35,7 +34,6 @@ class Assessment extends Component {
 
 		this.setState({retake: false})
 	}
-
 
 	render() {
 

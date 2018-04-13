@@ -97,7 +97,7 @@ export default Map({
 	
 	userProgress: List([]),
 	assessmentData: Map({}),
-	archivedData: List([]),
+	archivedAssessmentData: List([]),
 	errors: '',
 
 	cohorts: List([]),

@@ -83,11 +83,11 @@ const logOut = (state) => {
 const deleteAssessmentData = (state, {topicTitle, assessmentID, assessment}) => {
 	const answers = state.getIn(['assessmentData', topicTitle, assessmentID, 'answers']);
 	const answersRemoved = answers.map(answer => null);
-	return state.setIn(['assessmentData', topicTitle, assessmentID, 'answers'], answersRemoved).set('archivedData', answers);
+	return state.setIn(['assessmentData', topicTitle, assessmentID, 'answers'], answersRemoved).set('archivedAssessmentData', answers);
 }
 
 const getArchivedAssessmentData = (state, {topicTitle, assessmentID, assessment}) => {
-	return state.setIn(['assessmentData', topicTitle, assessmentID, 'answers'], state.get('archivedData'));
+	return state.setIn(['assessmentData', topicTitle, assessmentID, 'answers'], state.get('archivedAssessmentData'));
 }
 
 export default (state = initial, action) => {

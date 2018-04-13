@@ -110,25 +110,22 @@ export const onChangeAssessmentAnswer = (topic, assessmentID, questionID, answer
 		})
 }
 
-export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, userAnswers, retake) => (dispatch, getState) => {
+export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, userAnswers) => (dispatch, getState) => {
 	// mark assessment and update assessmentData
 	let answers = assessment.get('questions').map((question, i) => question.get('correct_answer') - 1);
 	let correctAnswers = answers.filter((answer, i) => answer === userAnswers.get(i));
 	let assessmentData = getState().get('assessmentData');
 	let savedAssessmentData = assessmentData;
 	assessmentData = assessmentData.setIn([topicTitle, assessmentID, 'result'], correctAnswers.size);
-	assessmentData = retake ? assessmentData.setIn([topicTitle, assessmentID, 'answers'], List([])) : assessmentData;
 	let attemptsForTopic = 0;
 
-	if(!retake) {
-		if(assessmentData.getIn([topicTitle, assessmentID, 'attempts'])) {
-			attemptsForTopic = assessmentData.getIn([topicTitle, assessmentID, 'attempts']);
-			attemptsForTopic += 1;
-		} else {
-			attemptsForTopic = 1;
-		}	
-		assessmentData = assessmentData.setIn([topicTitle, assessmentID, 'attempts'], attemptsForTopic);
-	}
+	if(assessmentData.getIn([topicTitle, assessmentID, 'attempts'])) {
+		attemptsForTopic = assessmentData.getIn([topicTitle, assessmentID, 'attempts']);
+		attemptsForTopic += 1;
+	} else {
+		attemptsForTopic = 1;
+	}	
+	assessmentData = assessmentData.setIn([topicTitle, assessmentID, 'attempts'], attemptsForTopic);
 
 	dispatch(userAssessmentData(assessmentData)); // dispatch to state
 
