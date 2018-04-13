@@ -22,5 +22,5 @@ export default ({ assessmentID, assessmentTitle, result, totalQuestions, retake,
 			: null
 			}
 		</div>
-  	</div>
+	</div>
 )
