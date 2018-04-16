@@ -5,7 +5,7 @@ export default ({title, navItems, onClickIcon, userRole}) => (
 	<div className="col-xs-12 col-sm-4 col-md-2 col-md-offset-2 narrow-padding">
 		<div className="topics panel">
 			<div className="topics-header">
-				<div className="topics-header-icon"><i className="fa fa-2x fa-folder-o" aria-hidden="true"></i></div>
+				<div className="topics-header-icon"><i className={userRole === 'student' ? "fa fa-2x fa-folder" : "fa fa-2x fas fa-graduation-cap"} aria-hidden="true"></i></div>
 			</div>
 			<h2 className="topics-title">{title}</h2>
 				{ navItems.map((navItem, i) => (

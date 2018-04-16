@@ -17,7 +17,7 @@
 
 .btn-logout {
 	background-color: $homeGreen;
-	color: #FFF;
+	color: $black;
 	border: none;
 	font-size: 10px;
 }
@@ -58,8 +58,8 @@
 	margin: 0 1px;
 	cursor: pointer;
 }
-.fa-user-o {
-	color: $white;
+.user-icon {
+	color: $black;
 	font-size: 20px;
 	padding: 3px 10px 0 0;
 }
