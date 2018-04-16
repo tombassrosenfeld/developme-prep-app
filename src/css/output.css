@@ -116,7 +116,7 @@ p {
 
 .btn-logout {
   background-color: #00e6b8;
-  color: #FFF;
+  color: #404040;
   border: none;
   font-size: 10px; }
 
@@ -152,8 +152,8 @@ p {
   margin: 0 1px;
   cursor: pointer; }
 
-.fa-user-o {
-  color: #FFF;
+.user-icon {
+  color: #404040;
   font-size: 20px;
   padding: 3px 10px 0 0; }
 
@@ -201,6 +201,13 @@ p {
   background-color: #00e6b8;
   color: #404040;
   font-weight: bold; }
+
+.email-div {
+  display: flex; }
+
+.email-link {
+  align-self: center;
+  margin-left: 10px; }
 
 .topic-title {
   margin: 24px 0 16px 0;
