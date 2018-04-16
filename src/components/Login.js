@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default ({user, authenticate, onFormElementChange}) => (
-	<div className="row">
+	<div className="row login-form">
 		<form onSubmit={ (e) => authenticate(e, user.get('username'), user.get('password'))}>
 			<div className="col-sm-5">	
 				<div className="form-group">
