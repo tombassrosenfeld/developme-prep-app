@@ -9,9 +9,13 @@ export default ({user, loggedIn, logOut, userRole}) => (
 				<Link className="home-link" to="/">
 					<div className="logo"></div>
 		  		</Link>	
-		  		<Link className="home-link" to="/">
-				{ loggedIn? <button className="btn btn-default pull-right btn-logout" onClick={ () => logOut() }>Log Out</button> : null}
-				</Link>
+		  
+				{ loggedIn? 
+					<Link className="home-link" to="/">
+						<button className="btn btn-default pull-right btn-logout" onClick={ () => logOut() }>Log Out
+						</button> 
+					</Link>
+					: null}
 				{ loggedIn? <i className="fa user-icon fa-user pull-right" aria-hidden="true"></i> : null }
 				
 			</div>
