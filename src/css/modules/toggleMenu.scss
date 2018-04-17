@@ -1,0 +1,20 @@
+.navWide {
+	display: none;
+}
+.navNarrow {
+	.narrowLink {
+		display: none;
+		.topics-icon-title {
+			display: block;
+		}
+	}
+}
+.center-div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.center-icon {
+	width: 40px;
+	height: 40px;
+}

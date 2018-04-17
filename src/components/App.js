@@ -15,6 +15,9 @@ import Login from '../containers/Login';
 import Welcome from '../containers/Welcome';
 import StudentRecord from '../containers/instructor/StudentRecord';
 
+
+import MenuToggle from '../components/MenuToggle';
+
 class App extends Component {
 
   loading() {
@@ -37,7 +40,8 @@ class App extends Component {
             <Welcome userRole={this.props.userRole}/>
           )} />
           <Route path="/prep/topic/:id" render={ ({ match }) => (
-            <Topic id={ match.params.id }/>
+
+            <MenuToggle id={ match.params.id } />
           )} />
           <Route exact path="/cohort/:id" render={ ({ match }) => (
             this.props.userRole === 'instructor' && this.props.cohortsLoaded ?

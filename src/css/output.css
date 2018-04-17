@@ -209,6 +209,23 @@ p {
   align-self: center;
   margin-left: 10px; }
 
+.navWide {
+  display: none; }
+
+.navNarrow .narrowLink {
+  display: none; }
+  .navNarrow .narrowLink .topics-icon-title {
+    display: block; }
+
+.center-div {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.center-icon {
+  width: 40px;
+  height: 40px; }
+
 .topic-title {
   margin: 24px 0 16px 0;
   padding: 0 10px;
