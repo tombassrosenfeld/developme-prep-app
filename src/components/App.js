@@ -40,8 +40,7 @@ class App extends Component {
             <Welcome userRole={this.props.userRole}/>
           )} />
           <Route path="/prep/topic/:id" render={ ({ match }) => (
-
-            <MenuToggle id={ match.params.id } />
+            <Topic id={ match.params.id }/>
           )} />
           <Route exact path="/cohort/:id" render={ ({ match }) => (
             this.props.userRole === 'instructor' && this.props.cohortsLoaded ?

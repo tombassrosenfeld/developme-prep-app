@@ -13,7 +13,7 @@ class MenuToggle extends Component {
 		const current = this.state.toggle;
 		this.setState({toggle: !current})
 		let menuLinks = document.querySelector('.narrowLinks')
-		this.state.toggle ? menuLinks.style.display = 'block' : menuLinks.style.display = 'none'
+
 	}
 	render() {
 		const {title, navItems, onClickIcon, userRole} = this.props;
@@ -27,7 +27,8 @@ class MenuToggle extends Component {
 							</div>
 							<p>Click here to expand {userRole === 'student' ? "Topics" : "Cohorts"} </p>
 						</div>
-						
+
+						{this.state.toggle ? 
 						<div className="narrowLinks">
 						<h2 className="topics-title">{title}</h2>
 							{ navItems.map((navItem, i) => (
@@ -41,6 +42,8 @@ class MenuToggle extends Component {
 								/>
 							)) }
 						</div>
+						: null }
+
 					</div>
 				</div>
 			</nav>
