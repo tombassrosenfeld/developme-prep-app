@@ -16,8 +16,6 @@ import Welcome from '../containers/Welcome';
 import StudentRecord from '../containers/instructor/StudentRecord';
 
 
-import MenuToggle from '../components/MenuToggle';
-
 class App extends Component {
 
   loading() {

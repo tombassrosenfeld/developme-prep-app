@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import MenuToggle from "../components/MenuToggle";
+import SideNav from "../components/SideNav";
 import { onClickIcon } from "../data/actions";
 
 const mapStateToProps = state => ({
@@ -11,4 +11,4 @@ const mapDispatchToProps = dispatch => ({
 	onClickIcon: (id) => dispatch(onClickIcon(id)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(MenuToggle);
+export default connect(mapStateToProps, mapDispatchToProps)(SideNav);
