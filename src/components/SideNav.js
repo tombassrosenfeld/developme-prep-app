@@ -15,10 +15,7 @@ class SideNav extends Component {
 	switch() {
 		const current = this.state.toggle;
 		this.setState({toggle: !current})
-		var element = document.getElementById("menu");
 		this.setState({ height: this.state.height === 0 ? 'auto' : 0 })
-		const hamburger = document.querySelector(".hamburger");
-    	hamburger.classList.toggle("is-active");
 	}
 	render() {
 		const {title, navItems, onClickIcon, userRole} = this.props;
