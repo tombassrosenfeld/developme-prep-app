@@ -168,7 +168,7 @@ p {
     margin: 0 auto; } }
 
 .topics {
-  padding-bottom: 0; }
+  padding-bottom: 0px; }
 
 .topics-header {
   border-bottom: 1px solid #E5E5E5; }
@@ -885,6 +885,11 @@ p {
 .toggle-p {
   font-size: 1.25em;
   margin: 0; }
+
+#menu {
+  overflow: hidden;
+  border: 1px solid #ddd;
+  width: auto; }
 
 .topic-title {
   margin: 24px 0 16px 0;
