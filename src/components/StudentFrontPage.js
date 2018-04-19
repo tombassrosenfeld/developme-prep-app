@@ -1,24 +1,29 @@
 import React from 'react';
 import ProgressBar from "./ProgressBar";
+import UncompletedTasks from "./UncompletedTasks";
 
 export default ({userProgress, numAssessments, numTasks, topics}) => {
 
 	const totalTasks = numTasks + numAssessments,
-	progressPercentage = ((userProgress / totalTasks) * 100).toFixed(0) + '%';
-	console.log(topics);
-	console.log(userProgress);
+	progressPercentage = ((userProgress.size / totalTasks) * 100).toFixed(0) + '%';
+
 	return (
 		<div>
 
-		{ userProgress > 0 ?
+		{ userProgress.size > 0 ?
 			<div className="topics panel">
 				<div>
 					<h2 className="text-center panel-title">Your progress so far</h2>
 					<ProgressBar 
-						text={"Progress against all tasks and assessments. (" + userProgress +"/"+ totalTasks + ")"}
-						value={userProgress} 
+						text={"Progress against all tasks and assessments. (" + userProgress.size +"/"+ totalTasks + ")"}
+						value={userProgress.size} 
 						maxValue={totalTasks} 
 						progressPercentage={progressPercentage} 
+					/>
+					<UncompletedTasks 
+						maxValue={totalTasks} 
+						userProgress={userProgress} 
+						topics={topics} 
 					/>
 				</div>
 
