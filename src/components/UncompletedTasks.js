@@ -15,7 +15,13 @@ console.log(userProgressValueArray.toJS())
 			<p className="topic-description">The {maxValue - userProgress.size} tasks you have left to complete are:</p>
 	  		<ul>
 		  		{topics.map((topic, i) => 
-		  			<li key={i}>{topic.get('short_title')}</li>
+		  			<li key={i}>{topic.get('short_title')}
+		  				<ol>
+				  			{topic.get('tasks').map((taskItem, i)=>
+			  					<li key={i}>{taskItem.get('task')}</li>
+			  				)}
+				  		</ol>
+				  	</li>
 		  		)}
 
 	  		</ul>
@@ -23,8 +29,3 @@ console.log(userProgressValueArray.toJS())
 	</div>
 	)
 }
-		  	// 	{topic.get('tasks').map((task, j)=>
-					// <ol>
-					// 	<li key={j}>{task}</li>
-					// </ol>
-  			// 	}
