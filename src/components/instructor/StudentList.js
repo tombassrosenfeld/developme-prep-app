@@ -43,8 +43,11 @@ export default ({students, numAssessments, numTasks, cohortName, cohortID}) => {
 				</div>
 		  	}
 		</div>
-		<div className="narrow-padding hyperlink">
-			<a href={'mailto:' +mailto}>Email {cohortName}</a>
+		<div className="narrow-padding hyperlink email-div">
+			<div>
+				<i className="fa fa-2x fas fa-envelope" aria-hidden="true"></i>
+			</div>
+			<a href={'mailto:' +mailto} className="email-link">Email {cohortName} </a>
 		</div>
 	</div>
 	);

@@ -88,10 +88,6 @@ p {
 	color: #FFF;
 	margin-bottom: 0;
 }
-.btn-login {
-	position: relative;
-	right: 8px
-}
 
 .fa {
 	font-size: 20px;
@@ -140,7 +136,11 @@ p {
 /*Imported modules*/
 /******************************************/
 @import 'modules/header';
+@import 'modules/login';
 @import 'modules/topicsNav';
+@import 'modules/icons';
+@import 'modules/hamburgers/hamburgers';
+@import 'modules/toggleMenu';
 @import 'modules/topic';
 @import 'modules/taskList';
 @import 'modules/task';

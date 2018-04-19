@@ -65,10 +65,6 @@ p {
   color: #FFF;
   margin-bottom: 0; }
 
-.btn-login {
-  position: relative;
-  right: 8px; }
-
 .fa {
   font-size: 20px; }
 
@@ -120,7 +116,7 @@ p {
 
 .btn-logout {
   background-color: #00e6b8;
-  color: #FFF;
+  color: #404040;
   border: none;
   font-size: 10px; }
 
@@ -156,8 +152,8 @@ p {
   margin: 0 1px;
   cursor: pointer; }
 
-.fa-user-o {
-  color: #FFF;
+.user-icon {
+  color: #404040;
   font-size: 20px;
   padding: 3px 10px 0 0; }
 
@@ -165,8 +161,14 @@ p {
 @media only screen and (max-width: 768px) {
   .header-loggedIn {
     display: none; } }
+@media only screen and (min-width: 768px) {
+  .login-form {
+    width: 80%;
+    padding-top: 0;
+    margin: 0 auto; } }
+
 .topics {
-  padding-bottom: 0; }
+  padding-bottom: 0px; }
 
 .topics-header {
   border-bottom: 1px solid #E5E5E5; }
@@ -199,6 +201,111 @@ p {
   background-color: #00e6b8;
   color: #404040;
   font-weight: bold; }
+
+.email-div {
+  display: flex; }
+
+.email-link {
+  align-self: center;
+  margin-left: 10px; }
+
+/*!
+ * Hamburgers
+ * @description Tasty CSS-animated hamburgers
+ * @author Jonathan Suh @jonsuh
+ * @site https://jonsuh.com/hamburgers
+ * @link https://github.com/jonsuh/hamburgers
+ */
+.hamburger {
+  padding: 15px 15px;
+  display: inline-block;
+  cursor: pointer;
+  transition-property: opacity, filter;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+  font: inherit;
+  color: inherit;
+  text-transform: none;
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  overflow: visible; }
+  .hamburger:hover {
+    opacity: 0.7; }
+
+.hamburger-box {
+  width: 20px;
+  height: 18px;
+  display: inline-block;
+  position: relative; }
+
+.hamburger-inner {
+  display: block;
+  top: 50%;
+  margin-top: -2px; }
+  .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+    width: 20px;
+    height: 4px;
+    background-color: #000;
+    border-radius: 4px;
+    position: absolute;
+    transition-property: transform;
+    transition-duration: 0.15s;
+    transition-timing-function: ease; }
+  .hamburger-inner::before, .hamburger-inner::after {
+    content: "";
+    display: block; }
+  .hamburger-inner::before {
+    top: -7px; }
+  .hamburger-inner::after {
+    bottom: -7px; }
+
+/*
+ * Collapse
+ */
+.hamburger--collapse .hamburger-inner {
+  top: auto;
+  bottom: 0;
+  transition-duration: 0.13s;
+  transition-delay: 0.13s;
+  transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19); }
+  .hamburger--collapse .hamburger-inner::after {
+    top: -14px;
+    transition: top 0.2s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1), opacity 0.1s linear; }
+  .hamburger--collapse .hamburger-inner::before {
+    transition: top 0.12s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1), transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19); }
+.hamburger--collapse.is-active .hamburger-inner {
+  transform: translate3d(0, -7px, 0) rotate(-45deg);
+  transition-delay: 0.22s;
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
+  .hamburger--collapse.is-active .hamburger-inner::after {
+    top: 0;
+    opacity: 0;
+    transition: top 0.2s cubic-bezier(0.33333, 0, 0.66667, 0.33333), opacity 0.1s 0.22s linear; }
+  .hamburger--collapse.is-active .hamburger-inner::before {
+    top: 0;
+    transform: rotate(-90deg);
+    transition: top 0.1s 0.16s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.13s 0.25s cubic-bezier(0.215, 0.61, 0.355, 1); }
+
+.navWide {
+  display: none; }
+
+.toggle-div {
+  display: flex;
+  align-items: center; }
+
+.toggle-icon {
+  width: 40px;
+  height: 40px; }
+
+.toggle-p {
+  font-size: 1.25em;
+  margin: 0; }
+
+#menu {
+  overflow: hidden;
+  border: 1px solid #ddd;
+  width: auto; }
 
 .topic-title {
   margin: 24px 0 16px 0;
