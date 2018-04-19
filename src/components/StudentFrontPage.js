@@ -5,9 +5,11 @@ export default ({userProgress, numAssessments, numTasks, topics}) => {
 
 	const totalTasks = numTasks + numAssessments,
 	progressPercentage = ((userProgress / totalTasks) * 100).toFixed(0) + '%';
-
+	console.log(topics);
+	console.log(userProgress);
 	return (
 		<div>
+
 		{ userProgress > 0 ?
 			<div className="topics panel">
 				<div>
@@ -19,6 +21,7 @@ export default ({userProgress, numAssessments, numTasks, topics}) => {
 						progressPercentage={progressPercentage} 
 					/>
 				</div>
+
 			</div>
 			:
 			<div className="topics panel">

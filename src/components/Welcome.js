@@ -21,6 +21,7 @@ export default ({className, userProgress, numAssessments, numTasks, topics, user
   		</div>
 			{ userRole === 'student' ?
 			<StudentFrontPage
+				topics = {topics}
 				userProgress = {userProgress}
 				numAssessments = {numAssessments}
 				numTasks = {numTasks}
