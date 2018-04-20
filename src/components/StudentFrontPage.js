@@ -1,6 +1,6 @@
 import React from 'react';
 import ProgressBar from "./ProgressBar";
-import UncompletedTasks from "./UncompletedTasks";
+import UncompletedTasks from "../containers/UncompletedTasks";
 
 export default ({userProgress, numAssessments, numTasks, topics}) => {
 
@@ -20,11 +20,7 @@ export default ({userProgress, numAssessments, numTasks, topics}) => {
 						maxValue={totalTasks} 
 						progressPercentage={progressPercentage} 
 					/>
-					<UncompletedTasks 
-						maxValue={totalTasks} 
-						userProgress={userProgress} 
-						topics={topics} 
-					/>
+					<UncompletedTasks />
 				</div>
 
 			</div>

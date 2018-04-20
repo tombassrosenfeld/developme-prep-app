@@ -1,33 +1,36 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
-export default ({userProgress, topics, maxValue }) => {
-console.log(topics.toJS());
-const completedShortTitles = userProgress.map(el=>el.split('.')[0]); 
+export default ({userProgress, uncompletedTopics }) => {
 
-topics = topics.filter(topic => completedShortTitles.reduce((isComplete, shortTitle) => shortTitle !== topic.get('short_title'), false));
 	return (
 		<div className="topics panel">
 			<div className="topics-header">
 				<div className="topics-header-icon"><i className="fa fa-2x fa-file" aria-hidden="true"></i></div>
 			</div>
-			<p className="topic-description">The {maxValue - userProgress.size} tasks you have left to complete are:</p>
-			{/* JUST DISPLAYING ALL SHORT TITLES AND THEIR TASKS */}
+			<p className="topic-description">These are the next 3 tasks you have left to complete:</p>
+
 	  		<ul className='uncompleted-tasks-list'>
-		  		{topics.map((topic, i) => 
+		  		{uncompletedTopics.map((topic, i) => 
 		  			<li key={i} className='short-title'><h5>{topic.get('short_title')}</h5>
 		  				<p className='task-p'>-tasks:</p>
 		  				<ol>
-				  			{topic.get('tasks').map((taskItem, i)=>
-			  					<li key={i}>{taskItem.get('task')}</li>
-			  				)}
+		  					<Link to={ '/prep/topic/' + topic.get('id') + '/task/' + i }>
+					  			{topic.get('tasks').map((taskItem, i)=>
+				  					<li key={i}>{taskItem.get('task')}</li>
+				  				)}	
+			  				</Link>
+			  				
 				  		</ol>
 				  		{topic.get('assessments').size > 0 ?
 				  			<div>
 						  		<p className='assessment-p'>-assessments:</p>
 						  		<ol>
-						  			{topic.get('assessments').map((assessmentItem, i)=>
-					  					<li key={i}>{assessmentItem.get('assessment_title')}</li>
-					  				)}
+						  			<Link to={ '/prep/topic/' + topic.get('id') + '/assessment/' + i }>
+							  			{topic.get('assessments').map((assessmentItem, i)=>
+						  					<li key={i}>{assessmentItem.get('assessment_title')}</li>
+						  				)}
+					  				</Link>
 						  		</ol>
 					  		</div>
 					  		: null
@@ -37,5 +40,5 @@ topics = topics.filter(topic => completedShortTitles.reduce((isComplete, shortTi
 	  		</ul>
 
 	  	</div>
-	)
+	);
 }
