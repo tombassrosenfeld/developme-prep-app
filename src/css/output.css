@@ -307,6 +307,18 @@ p {
   border: 1px solid #ddd;
   width: auto; }
 
+.task-p {
+  margin: 10px 0px 0px; }
+
+.assessment-p {
+  margin: 10px 0px 0px; }
+
+.uncompleted-tasks-list > li h5 {
+  font-weight: bold; }
+
+.uncompleted-tasks-list li li {
+  color: #00e6b8; }
+
 .topic-title {
   margin: 24px 0 16px 0;
   padding: 0 10px;
