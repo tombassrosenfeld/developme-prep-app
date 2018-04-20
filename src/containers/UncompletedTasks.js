@@ -8,7 +8,7 @@ const mapStateToProps = state => {
 	let topics = state.get('topics');
 	let uncompletedTopicsArray = topics.filter(topic => completedShortTitles.reduce((isComplete, shortTitle) => shortTitle !== topic.get('short_title'), false));
 	console.log(uncompletedTopicsArray.toJS());
-	var uncompletedTopics = uncompletedTopicsArray.slice(0, 3);
+	var uncompletedTopics = uncompletedTopicsArray.slice(0, 2);
 	console.log(uncompletedTopics.toJS());
 	return {
 		userProgress: userProgress,

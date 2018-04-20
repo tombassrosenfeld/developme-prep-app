@@ -8,7 +8,7 @@ export default ({userProgress, uncompletedTopics }) => {
 			<div className="topics-header">
 				<div className="topics-header-icon"><i className="fa fa-2x fa-file" aria-hidden="true"></i></div>
 			</div>
-			<p className="topic-description">These are the next 3 tasks you have left to complete:</p>
+			<p className="topic-description">These are the next 2 topics you have left to complete:</p>
 
 	  		<ul className='uncompleted-tasks-list'>
 		  		{uncompletedTopics.map((topic, i) => 
