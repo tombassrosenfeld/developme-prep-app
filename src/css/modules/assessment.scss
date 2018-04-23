@@ -15,8 +15,6 @@
 
 .submit-assessment {
 	padding: 10px;
-	display: flex;
-	justify-content: center;
 	.btn-submit {
 		font-size: 14px;
 	}
@@ -29,6 +27,14 @@
 .retake-button {	
 	font-size: 1em;
 	margin-left: 10px;
+}
+
+.assessment-buttons {
+	display: flex;
+	justify-content: space-between;
+	.btn-cancel {
+		border: none;
+	}	
 }
 
 /************************************

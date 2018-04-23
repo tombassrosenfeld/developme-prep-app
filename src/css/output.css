@@ -442,9 +442,7 @@ INSTRUCTOR VIEW
     padding: 0 40px; }
 
 .submit-assessment {
-  padding: 10px;
-  display: flex;
-  justify-content: center; }
+  padding: 10px; }
   .submit-assessment .btn-submit {
     font-size: 14px; }
 
@@ -454,6 +452,12 @@ INSTRUCTOR VIEW
 .retake-button {
   font-size: 1em;
   margin-left: 10px; }
+
+.assessment-buttons {
+  display: flex;
+  justify-content: space-between; }
+  .assessment-buttons .btn-cancel {
+    border: none; }
 
 /************************************
 INSTRUCTOR VIEW
