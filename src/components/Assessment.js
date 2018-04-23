@@ -23,7 +23,7 @@ class Assessment extends Component {
 		this.setState({retake: true});
 	}
 
-	onSubmit(userAnswers) {
+	onSubmit() {
 		this.setState({retake: false})
 	}
 
@@ -39,12 +39,17 @@ class Assessment extends Component {
 
 		const { id, topic, userAssessmentData } = this.props;
 
+		if(userAssessmentData.getIn([topic.getIn(['short_title']), id])) {
+			console.log(userAssessmentData.getIn([topic.getIn(['short_title']), id]).toJS());
+		}
+
 		return (
 			<div className="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-4 narrow-padding">
 				<AssessmentHeader 
 					assessmentID={id}
 					assessmentTitle={topic.getIn(['assessments', id, 'assessment_title'])}
 					result={userAssessmentData.getIn([topic.getIn(['short_title']), id, 'result']) }
+					answers={userAssessmentData.getIn([topic.getIn(['short_title']), id, 'answers'])}
 					totalQuestions={topic.getIn(['assessments', id, 'questions']).size}
 					assessment={topic.getIn(['assessments', id])}
 					topicTitle={topic.getIn(['short_title'])}
