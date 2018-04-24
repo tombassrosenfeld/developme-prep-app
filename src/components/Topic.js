@@ -2,6 +2,7 @@ import React from 'react';
 import TaskList from '../containers/TaskList';
 import TopicStatus from '../containers/TopicStatus';
 import AssessmentList from '../containers/AssessmentList';
+import Issues from './Issues';
 const Parser = require('html-react-parser');
 
 export default ({id, topic}) => (
@@ -16,5 +17,6 @@ export default ({id, topic}) => (
 	  	<TaskList topic={ topic }/>
 	  	<AssessmentList topic={ topic } />
 	  	<TopicStatus topic={ topic }/>
+	  	<Issues/>
 	</div>
 );

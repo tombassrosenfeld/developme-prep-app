@@ -21,27 +21,29 @@ class Issues extends Component {
 		const { height } = this.state;
 
 		return (
+			<div className="row col-12 narrow-padding">
 
-			<div className="topics panel">
-				<div className="topics panel report-issue">
-					<h2 className="topic-title report-issue-title">
-						
-						<span onClick={ this.switch }>Click Here </span> 
-			
-						to Report an Issue
-					</h2>
+				<div className="topics panel">
+					<div className="topics panel report-issue">
+						<h2 className="topic-title report-issue-title">
+							
+							<span onClick={ this.switch }>Click Here </span> 
+				
+							to Report an Issue
+						</h2>
+					</div>
+
+						<AnimateHeight
+							duration={ 500 }
+				        	height={ height }
+				        >	
+							<div className="topics panel">
+								<IssuesForm 
+									onCancel = { this.switch }
+								/>
+							</div>
+						</AnimateHeight>				
 				</div>
-
-					<AnimateHeight
-						duration={ 500 }
-			        	height={ height }
-			        >	
-						<div className="topics panel">
-							<IssuesForm 
-								onCancel = { this.switch }
-							/>
-						</div>
-					</AnimateHeight>				
 			</div>
 		);
 	}

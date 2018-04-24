@@ -7,13 +7,12 @@ export default ({ onClick, onCancel, onFormElementChange }) => (
 		<form>
 				<div className="form-group">
 					<label>Issue Report for: </label>
-				    <input 
-				    	type="text" 
-				    	className="form-control" 
-				    	id="issue" 
-				    	placeholder="issue" 
-				    	onChange={ (e) => onFormElementChange(e.target.id, e.target.value) }
-				    />
+					<select className="form-control">
+						<option value="technical-issue">Technical Issue</option>
+						<option value="tasks-assessments">Tasks or Assessments</option>
+						<option selected value="usability">Usability</option>
+						<option value="other">Other</option>
+					</select>
 				</div>
 				<div className="form-group">
 					<label>Description: </label>
