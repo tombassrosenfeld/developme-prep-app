@@ -396,9 +396,17 @@ INSTRUCTOR VIEW
   display: flex;
   justify-content: center; }
 
+.btn-submit {
+  background-color: #00e6b8; }
+
 #issue-description {
   padding-top: 10px;
   padding-bottom: 100px; }
+
+.popup-close {
+  float: right;
+  position: relative;
+  top: -20px; }
 
 .taskList {
   padding-bottom: 10px; }

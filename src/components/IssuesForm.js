@@ -1,8 +1,9 @@
 import React from 'react';
 
-export default ({ onClick, onCancel }) => (
+export default ({ onClick, onCancel, onFormElementChange }) => (
 
 	<div className="row issues-form col-xs-12 col-sm-8 col-md-6 narrow-padding">
+		<button className="popup-close" onClick={ onCancel }>✖</button>
 		<form>
 				<div className="form-group">
 					<label>Issue Report for: </label>
@@ -11,7 +12,7 @@ export default ({ onClick, onCancel }) => (
 				    	className="form-control" 
 				    	id="issue" 
 				    	placeholder="issue" 
-				    	// onChange={ (e) => onFormElementChange(e.target.id, e.target.value) }
+				    	onChange={ (e) => onFormElementChange(e.target.id, e.target.value) }
 				    />
 				</div>
 				<div className="form-group">
@@ -21,8 +22,7 @@ export default ({ onClick, onCancel }) => (
 				    	className="form-control" 
 				    	id="issue-description" 
 				    	placeholder="Enter description of problem here" 
-				    	// value={ user.get('password') }
-				    	// onChange={ (e) => onFormElementChange(e.target.id, e.target.value) }
+				    	onChange={ (e) => onFormElementChange(e.target.id, e.target.value) }
 				    />
 				</div>
 				<div className="form-group">
@@ -31,7 +31,7 @@ export default ({ onClick, onCancel }) => (
 				    	type="name" 
 				    	className="form-control" 
 				    	id="issue-name"  
-				    	// onChange={ (e) => onFormElementChange(e.target.id, e.target.value) }
+				    	onChange={ (e) => onFormElementChange(e.target.id, e.target.value) }
 				    />
 				</div>
 				<div className="form-group">
@@ -40,12 +40,11 @@ export default ({ onClick, onCancel }) => (
 				    	type="email" 
 				    	className="form-control" 
 				    	id="issue-email" 
-				    	// onChange={ (e) => onFormElementChange(e.target.id, e.target.value) }
+				    	onChange={ (e) => onFormElementChange(e.target.id, e.target.value) }
 				    />
 				</div>
 				<div className="issue-buttons">	
-					<button className="btn btn-primary" onClick={ onClick }>submit</button>
-					<button className="btn btn-danger" onClick={ onCancel }>cancel</button>
+					<button className="btn btn-submit" onClick={ onClick }>submit</button>
 				</div>
 		</form>
 	</div>

@@ -26,7 +26,7 @@ class Issues extends Component {
 				<div className="topics panel report-issue">
 					<h2 className="topic-title report-issue-title">
 						
-						<span onClick={this.switch}>Click Here </span> 
+						<span onClick={ this.switch }>Click Here </span> 
 			
 						to Report an Issue
 					</h2>
@@ -38,7 +38,7 @@ class Issues extends Component {
 			        >	
 						<div className="topics panel">
 							<IssuesForm 
-								onCancel = {this.switch}
+								onCancel = { this.switch }
 							/>
 						</div>
 					</AnimateHeight>				
