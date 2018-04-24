@@ -22,7 +22,7 @@ class SideNav extends Component {
 		const { height } = this.state;
 
 		return (
-			<nav>
+			<nav id='student-nav'>
 				<div className="navNarrow col-xs-12 col-sm-4 col-md-2 col-md-offset-2 narrow-padding">
 					<div className="topics panel">
 						<div className="topics-header toggle-div">

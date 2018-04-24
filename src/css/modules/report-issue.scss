@@ -1,0 +1,15 @@
+.report-issue {
+	margin-top: 20px;
+	display: flex;
+	justify-content: center;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+}
+.report-issue-title span {
+	color: $homeGreen;
+}
+.issues-form {
+	position: relative;
+	margin-top: 20px;
+	background-color: #F7F7F7;
+}
