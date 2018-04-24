@@ -1,15 +1,27 @@
 .report-issue {
-	margin-top: 20px;
 	display: flex;
 	justify-content: center;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	width: 100%;
 
 }
 .report-issue-title span {
 	color: $homeGreen;
 }
 .issues-form {
-	position: relative;
-	margin-top: 20px;
-	background-color: #F7F7F7;
+	margin: 20px auto;
+	background-color: #E5E5E5;
+	width: 100%;
+	border: 1px solid #E5E5E5;
+	padding: 10px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.issue-buttons {
+	display: flex;
+	justify-content: center;
+}
+#issue-description {
+	padding-top: 10px;
+	padding-bottom: 100px;
 }

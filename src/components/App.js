@@ -13,8 +13,6 @@ import Task from '../containers/Task';
 import Assessment from '../containers/Assessment';
 import Login from '../containers/Login';
 import Welcome from '../containers/Welcome';
-import Issues from './Issues';
-import IssuesForm from './IssuesForm';
 import StudentRecord from '../containers/instructor/StudentRecord';
 
 

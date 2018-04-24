@@ -1,36 +1,52 @@
 import React from 'react';
 
-export default () => (
+export default ({ onClick, onCancel }) => (
 
-	<div className="row issues-form">
+	<div className="row issues-form col-xs-12 col-sm-8 col-md-6 narrow-padding">
 		<form>
-			<div className="col-sm-5">	
 				<div className="form-group">
+					<label>Issue Report for: </label>
 				    <input 
-				    	type="name" 
+				    	type="text" 
 				    	className="form-control" 
-				    	id="username" 
-				    	placeholder="username" 
-				    	// value={ user.get('username') }
+				    	id="issue" 
+				    	placeholder="issue" 
 				    	// onChange={ (e) => onFormElementChange(e.target.id, e.target.value) }
 				    />
 				</div>
-			</div>
-			<div className="col-sm-5">	
 				<div className="form-group">
+					<label>Description: </label>
 				    <input 
-				    	type="password" 
+				    	type="textarea" 
 				    	className="form-control" 
-				    	id="password" 
-				    	placeholder="password" 
+				    	id="issue-description" 
+				    	placeholder="Enter description of problem here" 
 				    	// value={ user.get('password') }
 				    	// onChange={ (e) => onFormElementChange(e.target.id, e.target.value) }
 				    />
 				</div>
-			</div>
-			<div className="col-sm-2">	
-				<input className="btn btn-default btn-login btn-block" type="submit" />
-			</div>
+				<div className="form-group">
+					<label>Your name here: </label>
+				    <input 
+				    	type="name" 
+				    	className="form-control" 
+				    	id="issue-name"  
+				    	// onChange={ (e) => onFormElementChange(e.target.id, e.target.value) }
+				    />
+				</div>
+				<div className="form-group">
+					<label>Your email here: </label>
+				    <input 
+				    	type="email" 
+				    	className="form-control" 
+				    	id="issue-email" 
+				    	// onChange={ (e) => onFormElementChange(e.target.id, e.target.value) }
+				    />
+				</div>
+				<div className="issue-buttons">	
+					<button className="btn btn-primary" onClick={ onClick }>submit</button>
+					<button className="btn btn-danger" onClick={ onCancel }>cancel</button>
+				</div>
 		</form>
 	</div>
 )

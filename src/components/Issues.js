@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
-import IssuesForm from './IssuesForm';
+import IssuesForm from '../containers/IssuesForm';
 import AnimateHeight from 'react-animate-height';
 
 class Issues extends Component {
@@ -23,32 +22,27 @@ class Issues extends Component {
 
 		return (
 
-				<div className="navNarrow col-xs-12 col-sm-4 col-md-2 col-md-offset-2 narrow-padding">
-					<div className="topics panel">
-						<div className="topics panel report-issue">
-							<h2 className="topic-title report-issue-title">
-								
-								<span onClick={this.switch}>Click Here </span> 
-					
-								to Report an Issue
-							</h2>
-						</div>
-
-							<AnimateHeight
-								duration={ 500 }
-					        	height={ height }
-					        >	
-								<div className="narrowLinks">
-								<h2 className="topics-title"></h2>
-								
-										<IssuesForm 
-				
-										/>
-
-								</div>
-							</AnimateHeight>				
-					</div>
+			<div className="topics panel">
+				<div className="topics panel report-issue">
+					<h2 className="topic-title report-issue-title">
+						
+						<span onClick={this.switch}>Click Here </span> 
+			
+						to Report an Issue
+					</h2>
 				</div>
+
+					<AnimateHeight
+						duration={ 500 }
+			        	height={ height }
+			        >	
+						<div className="topics panel">
+							<IssuesForm 
+								onCancel = {this.switch}
+							/>
+						</div>
+					</AnimateHeight>				
+			</div>
 		);
 	}
 }

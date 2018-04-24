@@ -1,6 +1,5 @@
 import React from 'react';
 import ProgressBar from "./ProgressBar";
-import { Link } from "react-router-dom";
 import Issues from './Issues';
 
 export default ({className, userProgress, numAssessments, numTasks, topics, userRole}) => {
@@ -14,11 +13,11 @@ export default ({className, userProgress, numAssessments, numTasks, topics, user
 				<div className="welcome">
 					<div className="logo"></div>
 					<h1 className="topic-title text-center">Coding Fellowship Student App</h1>
-					<div className="welcome-banner">
-					</div>
+					<div className="welcome-banner"></div>
+					
 	  			<p className="topic-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+		  		</div>
 	  		</div>
-  		</div>
 			
 			{ userRole === 'student' ?
 			<div>
