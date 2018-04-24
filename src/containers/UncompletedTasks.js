@@ -7,9 +7,7 @@ const mapStateToProps = state => {
 	let completedShortTitles = userProgress.map(el=>el.split('.')[0]); 
 	let topics = state.get('topics');
 
-	let tasks = topics.map(topic => topic.get('tasks').size);
-	let assessments = topics.map(topic => topic.get('assessments').size);
-	let lengthArray = tasks.map((num, i)=> num + assessments.get(i));
+	let lengthArray = topics.map(topic => topic.get('tasks').size + topic.get('assessments').size);
 
 	// OBJECT FOR EACH TOPIC AND ITS LENGTH OF TASKS+ASSESSMENTS
 	let titles = topics.map(topic => topic.get('short_title'));

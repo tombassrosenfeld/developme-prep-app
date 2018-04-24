@@ -6,9 +6,11 @@
 }
 .uncompleted-tasks-list {
 	padding-bottom: 20px;
+	display: flex;
+	justify-content: center;
 }
 .uncompleted-tasks-list-item {
-	text-align: center;
+	padding: 0px 40px;
 	margin: 0;
 }
 .uncompleted-tasks-list-item h5 {
