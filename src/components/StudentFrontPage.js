@@ -1,6 +1,5 @@
 import React from 'react';
 import ProgressBar from "./ProgressBar";
-import UncompletedTasks from "../containers/UncompletedTasks";
 
 export default ({userProgress, numAssessments, numTasks, topics}) => {
 
@@ -20,7 +19,6 @@ export default ({userProgress, numAssessments, numTasks, topics}) => {
 						maxValue={totalTasks} 
 						progressPercentage={progressPercentage} 
 					/>
-					<UncompletedTasks />
 				</div>
 
 			</div>
@@ -29,8 +27,8 @@ export default ({userProgress, numAssessments, numTasks, topics}) => {
 				<h2 className="text-center panel-title">How to use the app</h2>
 				<ul className="instructions">
 					<li>Use the sidebar navigation to view each topic</li>
-					<li>Each topic has a number of tasks for you to complete. Be sure to take a look at the resources for each task. Mark a task as complete when you're done</li>
-					<li>When you're ready, have a go at the assessments for each topic</li>
+					<li>Each topic has a number of tasks for you to complete. Be sure to take a look at the resources for each task. Mark a task as complete when you&apos;re done</li>
+					<li>When you&apos;re ready, have a go at the assessments for each topic</li>
 					<li>Feel free to use other resources too. The more preparation you put in, the more you will get out of the Coding Fellowship!</li>
 				</ul>
 			</div>

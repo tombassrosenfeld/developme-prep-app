@@ -309,10 +309,20 @@ p {
 
 .uncompleted-topic-description {
   font-weight: bold;
-  margin: 20px 0px; }
+  margin: 20px 0px;
+  text-align: center; }
+
+.uncompleted-tasks-list {
+  padding-bottom: 20px; }
 
 .uncompleted-tasks-list-item {
-  padding-left: 10px; }
+  text-align: center;
+  margin: 0; }
+
+.uncompleted-tasks-list-item h5 {
+  text-decoration: underline;
+  color: #00e6b8;
+  font-weight: bold; }
 
 .topic-title {
   margin: 24px 0 16px 0;
