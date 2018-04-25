@@ -147,9 +147,9 @@ p {
 .bottom-nav-module {
   display: inline-block;
   background-color: #00e6b8;
-  padding: 0 5px;
-  border-radius: 1px;
-  margin: 0 1px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 0 5px;
   cursor: pointer; }
 
 .user-icon {
@@ -161,6 +161,16 @@ p {
 @media only screen and (max-width: 768px) {
   .header-loggedIn {
     display: none; } }
+.home-div {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.fa-home {
+  color: #404040;
+  font-size: 22px; }
+
 @media only screen and (min-width: 768px) {
   .login-form {
     width: 80%;

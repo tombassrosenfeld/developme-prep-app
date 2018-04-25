@@ -53,9 +53,9 @@
 .bottom-nav-module {
 	display: inline-block;
 	background-color: $homeGreen;
-	padding: 0 5px;
-	border-radius: 1px;
-	margin: 0 1px;
+	padding: 5px 10px;
+	border-radius: 5px;
+	margin: 0 5px;
 	cursor: pointer;
 }
 .user-icon {
@@ -72,3 +72,13 @@
 	}
 }
 
+.home-div {
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.fa-home {
+	color: $black;
+	font-size: 22px;
+}
