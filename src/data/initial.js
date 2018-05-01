@@ -99,6 +99,6 @@ export default Map({
 	assessmentData: Map({}),
 	archivedAssessmentData: List([]),
 	errors: '',
-
 	cohorts: List([]),
+	issues: false,
 });

@@ -1,10 +1,13 @@
 import { connect } from 'react-redux';
 import IssuesForm from '../components/IssuesForm';
-import { onFormElementChange } from '../data/actions';
+import { onIssueFormSubmit } from "../data/actions_API";
 
 
 const mapDispatchToProps = dispatch => ({
-	onFormElementChange: (id, val) => dispatch(onFormElementChange(id, val)),
+	submitIssue: (data) => {
+		console.log(data);
+		dispatch(onIssueFormSubmit(data));
+	}
 });
 
 export default connect(null, mapDispatchToProps)(IssuesForm);

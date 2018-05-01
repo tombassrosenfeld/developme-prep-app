@@ -17,9 +17,9 @@ class Issues extends Component {
 		this.setState({toggle: !current})
 		this.setState({ height: this.state.height === 0 ? 'auto' : 0 })
 	}
+
 	render() {
 		const { height } = this.state;
-
 		return (
 			<div className="row col-12 narrow-padding">
 
@@ -48,9 +48,13 @@ class Issues extends Component {
 		);
 	}
 }
-
-
-
 export default Issues; 
+
+// issueSubject = {issue.getIn(['issues', 'subject'])}
+// issueDescription = { issues.getIn(['issues', 'description'])}
+// issuesName = {issues.getIn(['issues', 'name'])}
+// issuesEmail = {issues.getIn(['issues', 'email'])}
+
+
 
 

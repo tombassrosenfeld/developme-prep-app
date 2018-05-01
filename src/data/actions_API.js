@@ -1,6 +1,6 @@
 import axios from '../data/axios';
 import { processTopicsData } from '../utilities/utilities';
-import { updateErrors } from './actions';
+import { updateErrors, updateIssue } from './actions';
 import { List, fromJS } from "immutable";
 import { getUserRole } from "../utilities/utilities";
 
@@ -110,6 +110,28 @@ export const onChangeAssessmentAnswer = (topic, assessmentID, questionID, answer
 		})
 }
 
+
+
+
+
+export const onIssueFormSubmit = data => (dispatch, getState )=> {
+	let userEmail = getState().getIn(['user', 'user_email']);
+	
+	data.email = userEmail;
+	//So you need to add the email as a property to the data object that is a parameter to this function e.g. data.email = .... (unless it's immutable)
+
+	postIssue()
+		.then( response => {
+			// Don't worry about this bit for now
+			console.log(response.data);
+		})
+		.catch( error => dispatch(updateErrors('Post was not submitted, please check for errors')) )
+};
+
+
+
+
+
 export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, userAnswers) => (dispatch, getState) => {
 	// mark assessment and update assessmentData
 	let answers = assessment.get('questions').map((question, i) => question.get('correct_answer') - 1);
@@ -163,6 +185,7 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 		} );
 }
 
+
 const updateCredentials = (data) => ({
 	type: UPDATE_CREDENTIALS, 
 	data,
@@ -194,6 +217,7 @@ const setStudents = data => ({
 });
 
 // API calls
+
 function getToken(username, password) {
 	return axios.post('/wp-json/jwt-auth/v1/token', { 
 		username: username,
@@ -230,3 +254,10 @@ function postUserAssessmentData(data, userID, token) {
 function getTopics() {
 	return axios.get('/wp-json/wp/v2/cf_preparation');
 } 
+
+//So it calls this function and if successful runs the .then() stuff
+function postIssue(data) {
+	return axios.post('/wp-json/wp/v2/issue', { 
+		data,
+	})
+}
