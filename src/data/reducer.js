@@ -1,6 +1,6 @@
 import initial from "./initial";
 import {fromJS} from "immutable";
-import { ONFORMELEMENTCHANGE, UPDATE_ERRORS, LOGOUT, ONCLICK_ICON, DELETE_ASSESSMENT_DATA, GET_ARCHIVED_ASSESSMENT_DATA, UPDATEISSUE } from "../data/actions";
+import { ONFORMELEMENTCHANGE, UPDATE_ERRORS, LOGOUT, ONCLICK_ICON, DELETE_ASSESSMENT_DATA, GET_ARCHIVED_ASSESSMENT_DATA, UPDATEISSUE, UPDATEISSUEFALSE } from "../data/actions";
 import { USER_DATA, UPDATE_CREDENTIALS, USER_PROGRESS, USER_ASSESSMENT_DATA, SET_STUDENTS, TOPICS_DATA } from "../data/actions_API";
 
 const updateUsernameAndPassword = (state, { id, val }) => {
@@ -94,6 +94,9 @@ const getArchivedAssessmentData = (state, {topicTitle, assessmentID, assessment}
 const updateIssue = (state) => {
 	return state.set('issue', true);
 }
+const updateIssueFalse = (state) => {
+	return state.set('issue', false);
+}
 
 
 export default (state = initial, action) => {
@@ -111,6 +114,7 @@ export default (state = initial, action) => {
 		case ONCLICK_ICON: return onClickIcon(state, action);
 		case LOGOUT: return logOut(state);
 		case UPDATEISSUE: return updateIssue(state);
+		case UPDATEISSUEFALSE: return updateIssueFalse(state);
 		default: return state;
 	}
 };

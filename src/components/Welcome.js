@@ -1,6 +1,6 @@
 import React from 'react';
 import ProgressBar from "./ProgressBar";
-import Issues from './Issues';
+import Issues from '../containers/Issues';
 
 export default ({className, userProgress, numAssessments, numTasks, topics, userRole}) => {
 

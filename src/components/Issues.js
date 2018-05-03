@@ -13,6 +13,7 @@ class Issues extends Component {
 	}
 
 	switch() {
+		this.props.changeIssueState();
 		const current = this.state.toggle;
 		this.setState({toggle: !current})
 		this.setState({ height: this.state.height === 0 ? 'auto' : 0 })
@@ -20,6 +21,7 @@ class Issues extends Component {
 
 	render() {
 		const { height } = this.state;
+		
 		return (
 			<div className="row col-12 narrow-padding">
 

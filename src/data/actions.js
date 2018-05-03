@@ -5,6 +5,7 @@ export const UPDATE_ERRORS = Symbol("UPDATE_ERRORS");
 export const DELETE_ASSESSMENT_DATA = Symbol("DELETE_ASSESSMENT_DATA");
 export const GET_ARCHIVED_ASSESSMENT_DATA = Symbol("GET_ARCHIVED_ASSESSMENT_DATA");
 export const UPDATEISSUE = Symbol("UPDATEISSUE");
+export const UPDATEISSUEFALSE = Symbol("UPDATEISSUEFALSE");
 
 export const logOut = () => ({
 	type: LOGOUT,
@@ -44,4 +45,8 @@ export const getArchivedAssessmentData = (topicTitle, assessmentID, assessment) 
 
 export const updateIssue = () => ({
 	type: UPDATEISSUE,
+})
+
+export const updateIssueFalse = () => ({
+	type: UPDATEISSUEFALSE,
 })
