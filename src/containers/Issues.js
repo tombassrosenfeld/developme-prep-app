@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Issues from '../components/Issues';
 
 const mapStateToProps = state => ({
-	issues: state.get('issues')
+	issue: state.get('issue')
 })
 
 export default connect(mapStateToProps)(Issues);

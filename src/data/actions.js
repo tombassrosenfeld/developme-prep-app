@@ -43,5 +43,5 @@ export const getArchivedAssessmentData = (topicTitle, assessmentID, assessment) 
 })
 
 export const updateIssue = () => ({
-	type: updateIssue,
+	type: UPDATEISSUE,
 })

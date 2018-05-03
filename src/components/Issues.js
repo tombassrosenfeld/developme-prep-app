@@ -50,11 +50,6 @@ class Issues extends Component {
 }
 export default Issues; 
 
-// issueSubject = {issue.getIn(['issues', 'subject'])}
-// issueDescription = { issues.getIn(['issues', 'description'])}
-// issuesName = {issues.getIn(['issues', 'name'])}
-// issuesEmail = {issues.getIn(['issues', 'email'])}
-
 
 
 

@@ -25,38 +25,42 @@ class IssuesForm extends Component {
     		return data;
     	}, {});
     	this.props.submitIssue(data);
-    	const submitted = this.state.submitted;
-    	this.setState({ submitted: !submitted })
     }
     disabled() {
     	return !this.state.issues.every(({ value })=> value);
     }
     render() {
-    	const { onCancel } = this.props;
+    	const { onCancel, issue } = this.props;
+        console.log(issue);
     	return (
-    		<div className="row issues-form col-xs-12 col-sm-8 col-md-6 narrow-padding">
-			<button className="popup-close" onClick={ onCancel }>✖</button>
-				<form onSubmit={ this.submit }>
-					{ this.state.issues.map(({ name, value }, i) => (
-						<div className="form-group">
-							<label>{ name }</label>
-						    <input 
-						    	key={ i }
-						    	type="textarea" 
-						    	className="form-control" 
-						    	id={"issue-" + name }
-						    	placeholder={"Enter " +  name + " of issue here"} 
-						    	onChange={ e => this.change(e, i) }
-						    />
-						</div>
-					))}
-					
-				
-					<div className="issue-buttons">	
-						<button className="btn btn-submit" disabled={ this.disabled() }>submit</button>
-					</div>	
-				</form>
-			</div>
+            <div>
+        		{ !issue ?
+                <div className="row issues-form col-xs-12 col-sm-8 col-md-6 narrow-padding">
+    			<button className="popup-close" onClick={ onCancel }>✖</button>
+    				<form onSubmit={ this.submit }>
+    					{ this.state.issues.map(({ name, value }, i) => (
+    						<div className="form-group">
+    							<label>{ name }</label>
+    						    <input 
+    						    	key={ i }
+    						    	type="textarea" 
+    						    	className="form-control" 
+    						    	id={"issue-" + name }
+    						    	placeholder={"Enter " +  name + " of issue here"} 
+    						    	onChange={ e => this.change(e, i) }
+    						    />
+    						</div>
+    					))}
+    					
+    				
+    					<div className="issue-buttons">	
+    						<button className="btn btn-submit" disabled={ this.disabled() }>submit</button>
+    					</div>	
+    				</form>
+    			</div>
+                : <p className='onsubmit-text'>Thank you for submitting your form. We have contacted the administrator.</p> }
+
+            </div>
     	)
     }
 }

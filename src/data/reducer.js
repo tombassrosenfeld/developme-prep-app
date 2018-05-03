@@ -92,7 +92,7 @@ const getArchivedAssessmentData = (state, {topicTitle, assessmentID, assessment}
 
 
 const updateIssue = (state) => {
-	return state.set('issues', true);
+	return state.set('issue', true);
 }
 
 

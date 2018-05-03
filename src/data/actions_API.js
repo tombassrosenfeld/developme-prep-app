@@ -16,6 +16,7 @@ export const SET_STUDENTS = Symbol("SET_STUDENTS");
 export const authenticate = (username, password) => dispatch => {
 	getToken(username, password)
 		.then( response => {
+			// console.log(response.data);
 			dispatch(updateErrors('')); // remove any errors
 			dispatch(updateCredentials(response.data)); // dispatches token and credentials to state
 			dispatch(getData(response.data.token)); // and immediately calls api for module and user data
@@ -116,14 +117,12 @@ export const onChangeAssessmentAnswer = (topic, assessmentID, questionID, answer
 
 export const onIssueFormSubmit = data => (dispatch, getState )=> {
 	let userEmail = getState().getIn(['user', 'user_email']);
-	
-	data.email = userEmail;
-	//So you need to add the email as a property to the data object that is a parameter to this function e.g. data.email = .... (unless it's immutable)
 
-	postIssue()
+
+	data.email = userEmail;
+	postIssue(data)
 		.then( response => {
-			// Don't worry about this bit for now
-			console.log(response.data);
+			dispatch(updateIssue());// Don't worry about this bit for now
 		})
 		.catch( error => dispatch(updateErrors('Post was not submitted, please check for errors')) )
 };
@@ -255,9 +254,8 @@ function getTopics() {
 	return axios.get('/wp-json/wp/v2/cf_preparation');
 } 
 
-//So it calls this function and if successful runs the .then() stuff
 function postIssue(data) {
-	return axios.post('/wp-json/wp/v2/issue', { 
-		data,
+	return axios.post('/wp-json/cf/issue', { 
+		data: data,
 	})
 }

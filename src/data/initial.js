@@ -100,5 +100,5 @@ export default Map({
 	archivedAssessmentData: List([]),
 	errors: '',
 	cohorts: List([]),
-	issues: false,
+	issue: false,
 });
