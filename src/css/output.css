@@ -321,7 +321,7 @@ p {
   padding: 0px 40px;
   margin: 0; }
 
-.uncompleted-tasks-list-item h5 {
+.uncompleted-tasks-list-item a {
   text-decoration: underline;
   color: #00e6b8;
   font-weight: bold; }

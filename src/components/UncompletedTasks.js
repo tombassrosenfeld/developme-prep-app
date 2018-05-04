@@ -9,9 +9,11 @@ export default ({userProgress, uncompletedTopics }) => {
 	  		<div className='uncompleted-tasks-list'>
 		  		{uncompletedTopics.map((topic, i) => 
 		  			<div key={i} className='uncompleted-tasks-list-item'>
-			  			<Link to={ '/prep/topic/' + topic.get('id') }>
-			  				<h5>{topic.get('short_title')}</h5>
-			  			</Link>		
+		  				<h5>
+				  			<Link to={ '/prep/topic/' + topic.get('id') }>
+				  				{topic.get('short_title')}
+				  			</Link>	
+			  			</h5>	
 				  	</div>
 		  		)}
 	  		</div>
