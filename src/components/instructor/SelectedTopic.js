@@ -5,14 +5,15 @@ import SelectedTopicHeader from './SelectedTopicHeader';
 
 export default ({selectedTopic, selectedAssessment, student, onClick}) => {
 	return (<div className="panel selected-topic">
+
 		<SelectedTopicHeader title={selectedTopic.get('short_title')}/>
 		<StudentTasksRemaining
 			selectedTopic = { selectedTopic }
 			selectedAssessment = { selectedAssessment }
 			student = { student }
 			onClick = { onClick }
-
 		/>
+		<p>Assessments:</p>
 		{ selectedTopic.get('assessments').size > 0 && student.get('userAssessmentData').size ?
 	  		selectedTopic.get('assessments').map( (assessment, i) => (
 	  		<AssessmentListItem 

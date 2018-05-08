@@ -5,8 +5,9 @@ export default ({title}) => (
 		<div className="col-xs-12">
 			<h2 className="panel-title">{title}</h2> 
 		</div>
+
 		<div className="col-xs-12">
-			<p className="topic-description">Assessments for this topic:</p>
+			<p className="topic-description">Tasks and Assessments for this topic:</p>
 		</div>
 	</div>
 )
