@@ -2,8 +2,8 @@ import React from 'react';
 import SelectedTopicHeader from './SelectedTopicHeader';
 
 export default ({selectedTopic, selectedAssessment, student, onClick}) => {
-	// console.log(selectedTopic.toJS());
-	// console.log(student.toJS());
+	console.log(selectedTopic.toJS());
+	console.log(student.toJS());
 	const topic = selectedTopic.get('short_title');
 	const allTopicTasks = selectedTopic.get('tasks');
 	const completedTasks = student.get('userProgress');
@@ -14,13 +14,13 @@ export default ({selectedTopic, selectedAssessment, student, onClick}) => {
 
 	// uncompletedShortTitles.indexOf(task > -1)
 	 //tasks uncompleted for the given topic
-	console.log(allTopicTasks.toJS());
-	console.log(completedShortTitles.toJS());
-	console.log(uncompletedShortTitles.toJS());
-	console.log(filteredTopicTasks.toJS());
+	// console.log(allTopicTasks.toJS());
+	// console.log(completedShortTitles.toJS());
+	// console.log(uncompletedShortTitles.toJS());
+	// console.log(filteredTopicTasks.toJS());
 	return (
 		<div className="panel selected-topic">
-			<p>Tasks:</p>
+			<p>Tasks to Complete:</p>
 			{ allTopicTasks.size !== completedShortTitles.size ?
 				
 		  		filteredTopicTasks.map(topic => 
