@@ -2,8 +2,8 @@ import React from 'react';
 import SelectedTopicHeader from './SelectedTopicHeader';
 
 export default ({selectedTopic, selectedAssessment, student, onClick}) => {
-	console.log(selectedTopic.toJS());
-	console.log(student.toJS());
+	// console.log(selectedTopic.toJS());
+	// console.log(student.toJS());
 	const topic = selectedTopic.get('short_title');
 	const allTopicTasks = selectedTopic.get('tasks');
 	const completedTasks = student.get('userProgress');
@@ -23,10 +23,11 @@ export default ({selectedTopic, selectedAssessment, student, onClick}) => {
 			<p>Tasks to Complete:</p>
 			{ allTopicTasks.size !== completedShortTitles.size ?
 				
-		  		filteredTopicTasks.map(topic => 
+		  		filteredTopicTasks.map((topic, i) => 
 				<div className="row task">
-		  			<div className="col-xs-10">
+		  			<div className="col-xs-10 task">
 						<p className="taskList-task-title">
+						<strong>{i + 1}</strong>.
 						{ topic.get('task') }
 						</p>
 					</div>
