@@ -1,19 +1,25 @@
 import React from 'react';
-import StudentTasksRemaining from './StudentTasksRemaining';
 import AssessmentListItem from './AssessmentListItem';
 import SelectedTopicHeader from './SelectedTopicHeader';
 
 export default ({selectedTopic, selectedAssessment, student, onClick}) => {
-	return (<div className="panel selected-topic">
-		<SelectedTopicHeader title={selectedTopic.get('short_title')}/>
-		<StudentTasksRemaining
-			selectedTopic = { selectedTopic }
-			selectedAssessment = { selectedAssessment }
-			student = { student }
-			onClick = { onClick }
+	console.log(selectedTopic.toJS());
+	// console.log(student.toJS());
+	const topic = selectedTopic.get('short_title');
+	const allTasks = selectedTopic.get('tasks');
+	const completedTasks = student.get('userProgress');
 
-		/>
-		{ selectedTopic.get('assessments').size > 0 && student.get('userAssessmentData').size ?
+	const completedShortTitles = completedTasks.filter(el=>el.indexOf('.assess') === -1).filter(el=>el.indexOf(topic) > -1); //tasks completed for the given topic
+	
+	console.log(allTasks.toJS());
+	console.log(completedShortTitles.toJS());
+
+	return (
+		<div className="panel selected-topic">
+		
+
+
+		{ allTasks.size !== completedShortTitles.size ?
 	  		selectedTopic.get('assessments').map( (assessment, i) => (
 	  		<AssessmentListItem 
 	  			key={i} i={i} 
@@ -27,7 +33,7 @@ export default ({selectedTopic, selectedAssessment, student, onClick}) => {
 	  			<div className="col-xs-10">
 						<p className="taskList-task-title">
 						{
-							selectedTopic.get('assessments').size ? 'This student has no assessment data for this topic' : 'There are currently no assessments for this topic.'
+							selectedTopic.get('tasks').size ? 'This student has finished all of the tasks in this topic' : 'There are currently no assessments for this topic.'
 						}
 						</p>
 					</div>
