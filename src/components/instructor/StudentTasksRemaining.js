@@ -36,7 +36,7 @@ export default ({selectedTopic, selectedAssessment, student, onClick}) => {
 		  			<div className="col-xs-10">
 							<p className="taskList-task-title">
 							{
-								selectedTopic.get('tasks').size ? 'This student has finished all of the tasks in this topic' : 'There are currently no assessments for this topic.'
+								selectedTopic.get('tasks').size ? 'This student has finished all of the tasks in this topic' : 'There are currently no tasks for this topic.'
 							}
 							</p>
 					</div>
