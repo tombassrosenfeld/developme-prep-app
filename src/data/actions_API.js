@@ -16,7 +16,6 @@ export const SET_STUDENTS = Symbol("SET_STUDENTS");
 export const authenticate = (username, password) => dispatch => {
 	getToken(username, password)
 		.then( response => {
-			console.log(response.data);
 		
 			dispatch(updateErrors('')); // remove any errors
 			dispatch(updateCredentials(response.data)); // dispatches token and credentials to state

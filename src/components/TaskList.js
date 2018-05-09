@@ -13,7 +13,6 @@ export default ({topic, userProgress, onClickUserProgress}) => (
 			</div>
 		</div>
 		<div className="taskList">
-		{console.log(topic.toJS())}
 			{ topic.get('tasks').size > 0 ?
 		  		topic.get('tasks').map( (task, i) => (
 					<div className="row task" key={i}>
