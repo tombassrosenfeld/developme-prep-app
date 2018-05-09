@@ -1,4 +1,5 @@
 import React from 'react';
+import UncompletedTasks from "../containers/UncompletedTasks";
 
 export default ({text, value, maxValue, progressPercentage}) => (
 	<div>
@@ -9,5 +10,6 @@ export default ({text, value, maxValue, progressPercentage}) => (
 		    <span className="sr-only">{progressPercentage} Complete</span>
 		  </div>
 		</div>
+		<UncompletedTasks />
 	</div>
 )
