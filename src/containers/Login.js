@@ -5,6 +5,7 @@ import { onFormElementChange } from "../data/actions";
 
 const mapStateToProps = state => ({
    user: state.get('user'),
+   forgotPassword: state.get('forgotPassword'),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -12,7 +13,7 @@ const mapDispatchToProps = dispatch => ({
     	e.preventDefault();
     	dispatch(authenticate(username, password))
     },
-    onFormElementChange: (id, val) => dispatch(onFormElementChange(id, val)),
+    onFormElementChange: (id, val) => dispatch(onFormElementChange(id, val)),	
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

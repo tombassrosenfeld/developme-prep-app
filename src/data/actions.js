@@ -1,4 +1,6 @@
 export const LOGOUT = Symbol("LOGOUT");
+export const TOGGLEFORGOT = Symbol("TOGGLEFORGOT");
+export const UPDATEFORGOT = Symbol("UPDATEFORGOT");
 export const ONFORMELEMENTCHANGE = Symbol("ONFORMELEMENTCHANGE");
 export const ONCLICK_ICON = Symbol("ONCLICK_ICON");
 export const UPDATE_ERRORS = Symbol("UPDATE_ERRORS");
@@ -8,7 +10,12 @@ export const GET_ARCHIVED_ASSESSMENT_DATA = Symbol("GET_ARCHIVED_ASSESSMENT_DATA
 export const logOut = () => ({
 	type: LOGOUT,
 })
-
+export const toggleForgot = () => ({
+	type: TOGGLEFORGOT,
+})
+export const updateForgot = () => ({
+	type: UPDATEFORGOT,
+})
 // binding of login form to state
 export const onFormElementChange = (id, val) => ({
 	type: ONFORMELEMENTCHANGE,

@@ -1,6 +1,6 @@
 import axios from '../data/axios';
 import { processTopicsData } from '../utilities/utilities';
-import { updateErrors } from './actions';
+import { updateErrors, updateForgot } from './actions';
 import { List, fromJS } from "immutable";
 import { getUserRole } from "../utilities/utilities";
 
@@ -163,6 +163,19 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 		} );
 }
 
+
+export const onForgotFormSubmit = data => (dispatch, getState )=> {
+	let userEmail = getState().getIn(['user', 'user_email']);
+
+
+	data.email = userEmail;
+	postForgotForm(data)
+		.then( response => {
+			dispatch(updateForgot());// Don't worry about this bit for now
+		})
+		.catch( error => dispatch(updateErrors('Post was not submitted, please check for errors')) )
+};
+
 const updateCredentials = (data) => ({
 	type: UPDATE_CREDENTIALS, 
 	data,
@@ -230,3 +243,9 @@ function postUserAssessmentData(data, userID, token) {
 function getTopics() {
 	return axios.get('/wp-json/wp/v2/cf_preparation');
 } 
+
+function postForgotForm(data) {
+	return axios.post('/wp-json/cf/forgotpassword', { 
+		data: data,
+	})
+}

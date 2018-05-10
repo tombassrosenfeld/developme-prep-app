@@ -534,4 +534,26 @@ INSTRUCTOR VIEW
 .progress-bar {
   background-color: #00e6b8; }
 
+.forgot-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto; }
+
+.forgot-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 70%; }
+
+.forgot-password-text {
+  margin-top: 10px;
+  color: #00e6b8;
+  text-decoration: underline; }
+  @media only screen and (min-width: 768px) {
+    .forgot-password-text {
+      text-align: left;
+      margin-left: 20px; } }
+
 /*# sourceMappingURL=output.css.map */

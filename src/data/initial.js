@@ -101,4 +101,5 @@ export default Map({
 	errors: '',
 
 	cohorts: List([]),
+	forgotPassword: true,
 });

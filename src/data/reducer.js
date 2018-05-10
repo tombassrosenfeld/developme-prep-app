@@ -1,6 +1,6 @@
 import initial from "./initial";
 import {fromJS} from "immutable";
-import { ONFORMELEMENTCHANGE, UPDATE_ERRORS, LOGOUT, ONCLICK_ICON, DELETE_ASSESSMENT_DATA, GET_ARCHIVED_ASSESSMENT_DATA } from "../data/actions";
+import { ONFORMELEMENTCHANGE, UPDATE_ERRORS, LOGOUT, TOGGLEFORGOT, UPDATEFORGOT, ONCLICK_ICON, DELETE_ASSESSMENT_DATA, GET_ARCHIVED_ASSESSMENT_DATA } from "../data/actions";
 import { USER_DATA, UPDATE_CREDENTIALS, USER_PROGRESS, USER_ASSESSMENT_DATA, SET_STUDENTS, TOPICS_DATA } from "../data/actions_API";
 
 const updateUsernameAndPassword = (state, { id, val }) => {
@@ -79,7 +79,12 @@ const onClickIcon = (state, { id }) => {
 const logOut = (state) => {
 	return state.set('loggedIn', false);
 }
-
+const toggleForgot = (state) => {
+	return state.set('forgotPassword', false);
+}
+const updateForgot = (state) => {
+	return state.set('forgotPassword', true);
+}
 const deleteAssessmentData = (state, {topicTitle, assessmentID, assessment}) => {
 	const answers = state.getIn(['assessmentData', topicTitle, assessmentID, 'answers']);
 	const answersRemoved = answers.map(answer => null);
@@ -104,6 +109,8 @@ export default (state = initial, action) => {
 		case TOPICS_DATA: return topicsData(state, action);
 		case ONCLICK_ICON: return onClickIcon(state, action);
 		case LOGOUT: return logOut(state);
+		case TOGGLEFORGOT: return toggleForgot(state);
+		case UPDATEFORGOT: return updateForgot(state);
 		default: return state;
 	}
 };
