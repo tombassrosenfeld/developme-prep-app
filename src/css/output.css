@@ -542,7 +542,7 @@ INSTRUCTOR VIEW
 
 .forgot-form {
   display: inline-block;
-  margin: 0 auto;
+  margin: 10px auto;
   background: white;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -601,5 +601,13 @@ INSTRUCTOR VIEW
   @media only screen and (min-width: 768px) {
     .forgot-form-cancel {
       display: inline-block; } }
+
+.onsubmit-text {
+  text-align: center;
+  color: #00e6b8;
+  font-weight: bold;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 0.8em; }
 
 /*# sourceMappingURL=output.css.map */

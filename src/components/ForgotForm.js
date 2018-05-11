@@ -5,45 +5,43 @@ class ForgotForm extends Component {
         super(props);
 
         this.state = {
-            email: [
-	    		{ name: "Enter Email to Reset Password", value: "" },
+            person: [
+	    		{ name: "email", value: "" },
 			],
         }
 
         this.submit = this.submit.bind(this);
     }
     change(e, i) {
-    	const email = this.state.email.slice();
-    	email[i].value = e.target.value;
-    	this.setState({ email: email });
+    	const person = this.state.person.slice();
+    	person[i].value = e.target.value;
+    	this.setState({ person: person });
     }
     submit(e) {
     	e.preventDefault();
-    	const data = this.state.email.reduce((data, { name, value })=> {
+    	const data = this.state.person.reduce((data, { name, value })=> {
     		data[name] = value;
     		return data;
     	}, {});
     	this.props.onForgotFormSubmit(data);
+        console.log(data);
     }
     disabled() {
-    	return !this.state.email.every(({ value })=> value);
+    	return !this.state.person.every(({ value })=> value);
     }
     render() {
     	const { onCancel, forgotPassword } = this.props;
-        console.log(forgotPassword);
     	return (
             <div  className="forgot-form">
         		{ !forgotPassword ?
                 <div>
     				<form onSubmit={ this.submit }>
-    					{ this.state.email.map(({ name, value }, i) => (
-    						<div className='forgot-form-input'>
-    							<label>{ name }</label>
+    					{ this.state.person.map(({ name, value }, i) => (
+    						<div className='forgot-form-input' key={ i }>
+    							<label>Please enter your email to reset your password: </label>
     						    <input 
-    						    	key={ i }
     						    	type="email" 
     						    	className="form-control" 
-    						    	id={"forgotPassword-" + name }
     						    	placeholder={"test@test.com"} 
     						    	onChange={ e => this.change(e, i) }
     						    />

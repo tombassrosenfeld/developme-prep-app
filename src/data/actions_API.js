@@ -165,15 +165,11 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 
 
 export const onForgotFormSubmit = data => (dispatch, getState )=> {
-	let userEmail = getState().getIn(['user', 'user_email']);
-
-
-	data.email = userEmail;
 	postForgotForm(data)
 		.then( response => {
-			dispatch(updateForgot());// Don't worry about this bit for now
+			dispatch(updateForgot());
 		})
-		.catch( error => dispatch(updateErrors('Post was not submitted, please check for errors')) )
+		.catch( error => dispatch(updateErrors('Request was not submitted, please check for errors')) )
 };
 
 const updateCredentials = (data) => ({

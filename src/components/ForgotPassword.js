@@ -21,7 +21,7 @@ class ForgotPassword extends Component {
 		const { height } = this.state;
 		return (
 			<div className="forgot-form-input-container">
-				<p className="forgot-password-text"onClick={ this.switch }>Forgot Password</p>
+				<p className= {!this.state.toggle ? "forgot-password-text": "hidden"} onClick={ this.switch }>Forgot Password</p>
 	
 				<AnimateHeight
 					duration={ 500 }
