@@ -32,13 +32,12 @@ class ForgotForm extends Component {
     	const { onCancel, forgotPassword } = this.props;
         console.log(forgotPassword);
     	return (
-            <div>
+            <div  className="forgot-form">
         		{ !forgotPassword ?
-                <div className="forgot-form">
-    			<button className="popup-close" onClick={ onCancel }>✖</button>
+                <div>
     				<form onSubmit={ this.submit }>
     					{ this.state.email.map(({ name, value }, i) => (
-    						<div>
+    						<div className='forgot-form-input'>
     							<label>{ name }</label>
     						    <input 
     						    	key={ i }
@@ -51,11 +50,14 @@ class ForgotForm extends Component {
     						</div>
     					))}
     					
-    				
-    					<div className="forgotPassword-buttons">	
-    						<button className="btn btn-submit" disabled={ this.disabled() }>submit</button>
-    					</div>	
+    				    <div className="forgot-form-button-container">    
+        					<div className="forgot-form-button">	
+        						<button className="btn btn-submit" disabled={ this.disabled() }>submit</button>
+        					</div>	
+                            <p className="forgot-form-cancel" onClick={ onCancel }>Cancel</p>
+                        </div>  
     				</form>
+                    
     			</div>
                 : <p className='onsubmit-text'>Please check your email to reset your password.</p> }
 

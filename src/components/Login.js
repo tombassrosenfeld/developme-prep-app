@@ -34,10 +34,8 @@ export default ({user, authenticate, onFormElementChange, forgotPassword }) => (
 				</div>
 			</form>
 		</div>
-		<div className='login-form forgot-form-container'>
-			<div className="col-sm-12">
-				<ForgotPassword />
-			</div>
+		<div className='forgot-form-container'>
+			<ForgotPassword />
 		</div>	
 	</div>
 )

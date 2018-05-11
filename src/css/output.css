@@ -541,19 +541,65 @@ INSTRUCTOR VIEW
   margin: 0 auto; }
 
 .forgot-form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
   margin: 0 auto;
-  width: 70%; }
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%; }
+  @media only screen and (min-width: 768px) {
+    .forgot-form {
+      margin: 0 auto;
+      align-items: center; } }
 
 .forgot-password-text {
   margin-top: 10px;
   color: #00e6b8;
-  text-decoration: underline; }
+  text-decoration: underline;
+  text-align: center; }
   @media only screen and (min-width: 768px) {
     .forgot-password-text {
       text-align: left;
       margin-left: 20px; } }
+
+.forgot-form-input {
+  width: 90%;
+  margin: 10px auto; }
+  @media only screen and (min-width: 768px) {
+    .forgot-form-input {
+      width: 75%;
+      display: inline-block;
+      padding: 5%; } }
+
+.forgot-form-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px auto; }
+  @media only screen and (min-width: 768px) {
+    .forgot-form-button-container {
+      display: inline-block; } }
+
+.forgot-form-input-container {
+  width: 100%; }
+  @media only screen and (min-width: 768px) {
+    .forgot-form-input-container {
+      padding: 10px;
+      width: 75%;
+      margin: 0 auto; } }
+
+.forgot-form-button {
+  margin-right: 10px; }
+  @media only screen and (min-width: 768px) {
+    .forgot-form-button {
+      display: inline-block; } }
+
+.forgot-form-cancel {
+  text-decoration: underline;
+  color: blue;
+  margin: 0; }
+  @media only screen and (min-width: 768px) {
+    .forgot-form-cancel {
+      display: inline-block; } }
 
 /*# sourceMappingURL=output.css.map */
