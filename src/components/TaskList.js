@@ -18,7 +18,9 @@ export default ({topic, userProgress, onClickUserProgress}) => (
 					<div className="row task" key={i}>
 				  		<Link to={ '/prep/topic/' + topic.get('id') + '/task/' + i }>
 							<div className="col-xs-10">
-					  			<p className="taskList-task-title">{i + 1}. { task.get('task') }</p>
+					  			<p className="taskList-task-title">{i + 1}. { task.get('task') }
+					  			</p>
+
 							</div>
 			  			</Link>
 						<div className="col-xs-2">
