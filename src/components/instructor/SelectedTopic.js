@@ -13,7 +13,7 @@ export default ({selectedTopic, selectedAssessment, student, onClick}) => {
 			student = { student }
 			onClick = { onClick }
 		/>
-		<p>Assessments:</p>
+		<h2 className="panel-title">Assessments:</h2>
 		{ selectedTopic.get('assessments').size > 0 && student.get('userAssessmentData').size ?
 	  		selectedTopic.get('assessments').map( (assessment, i) => (
 	  		<AssessmentListItem 

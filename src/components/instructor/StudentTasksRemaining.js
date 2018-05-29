@@ -20,7 +20,7 @@ export default ({selectedTopic, selectedAssessment, student, onClick}) => {
 	// console.log(filteredTopicTasks.toJS());
 	return (
 		<div className="panel selected-topic">
-			<p>Tasks to Complete:</p>
+			<h2 className="panel-title">Tasks to Complete:</h2>
 			{ allTopicTasks.size !== completedShortTitles.size ?
 				
 		  		filteredTopicTasks.map((topic, i) => 
