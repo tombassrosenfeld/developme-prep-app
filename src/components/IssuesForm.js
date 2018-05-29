@@ -6,18 +6,20 @@ class IssuesForm extends Component {
 
         this.state = {
             issues: [
-	    		{ name: "type", value: "" },
-	   			{ name: "description", value: "" },
+	    		{ name: "Issue", value: "" },
+	   			{ name: "Description", value: "" },
 			],
         }
 
         this.submit = this.submit.bind(this);
     }
+
     change(e, i) {
     	const issues = this.state.issues.slice();
     	issues[i].value = e.target.value;
     	this.setState({ issues: issues });
     }
+
     submit(e) {
     	e.preventDefault();
     	const data = this.state.issues.reduce((data, { name, value })=> {
@@ -26,17 +28,18 @@ class IssuesForm extends Component {
     	}, {});
     	this.props.submitIssue(data);
     }
+
     disabled() {
     	return !this.state.issues.every(({ value })=> value);
     }
+
     render() {
     	const { onCancel, issue } = this.props;
-        console.log(issue);
     	return (
             <div>
         		{ !issue ?
-                <div className="row issues-form col-xs-12 col-sm-8 col-md-6 narrow-padding">
-    			<button className="popup-close" onClick={ onCancel }>✖</button>
+                <div className="issues-form">
+                    <button className="popup-close" onClick={ onCancel }>✖</button>
     				<form onSubmit={ this.submit }>
     					{ this.state.issues.map(({ name, value }, i) => (
     						<div className="form-group">
@@ -54,7 +57,7 @@ class IssuesForm extends Component {
     					
     				
     					<div className="issue-buttons">	
-    						<button className="btn btn-submit" disabled={ this.disabled() }>submit</button>
+    						<button className="btn btn-submit" disabled={ this.disabled() }>Submit</button>
     					</div>	
     				</form>
     			</div>
@@ -65,13 +68,3 @@ class IssuesForm extends Component {
     }
 }
 export default IssuesForm;
-
-// <div className="form-group">
-// 	<label>Issue Report for: </label>
-// 	<select className="form-control">
-// 		<option value="technical-issue">Technical Issue</option>
-// 		<option value="tasks-assessments">Tasks or Assessments</option>
-// 		<option selected value="usability">Usability</option>
-// 		<option value="other">Other</option>
-// 	</select>
-// </div>

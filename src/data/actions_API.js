@@ -111,13 +111,8 @@ export const onChangeAssessmentAnswer = (topic, assessmentID, questionID, answer
 		})
 }
 
-
-
-
-
 export const onIssueFormSubmit = data => (dispatch, getState )=> {
 	let userEmail = getState().getIn(['user', 'user_email']);
-
 
 	data.email = userEmail;
 	postIssue(data)
@@ -126,10 +121,6 @@ export const onIssueFormSubmit = data => (dispatch, getState )=> {
 		})
 		.catch( error => dispatch(updateErrors('Post was not submitted, please check for errors')) )
 };
-
-
-
-
 
 export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, userAnswers) => (dispatch, getState) => {
 	// mark assessment and update assessmentData
@@ -255,7 +246,7 @@ function getTopics() {
 } 
 
 function postIssue(data) {
-	return axios.post('/wp-json/cf/issue', { 
+	return axios.post('/wp-json/cf/prep/issue', { 
 		data: data,
 	})
 }

@@ -379,13 +379,17 @@ INSTRUCTOR VIEW
   display: flex;
   justify-content: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  width: 100%; }
+  width: 100%;
+  cursor: pointer; }
+
+.report-issue-title {
+  margin: 10px 0; }
 
 .report-issue-title span {
   color: #00e6b8; }
 
 .issues-form {
-  margin: 20px auto;
+  margin: 0px auto;
   background-color: #E5E5E5;
   width: 100%;
   border: 1px solid #E5E5E5;
@@ -406,7 +410,8 @@ INSTRUCTOR VIEW
 .popup-close {
   float: right;
   position: relative;
-  top: -20px; }
+  top: -6px;
+  border-radius: 5px; }
 
 .onsubmit-text {
   margin-top: 20px;
