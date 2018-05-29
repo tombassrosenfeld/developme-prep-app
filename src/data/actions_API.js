@@ -40,7 +40,6 @@ const getData = (token) => (dispatch, getState) => {
 						dispatch(setStudents(fromJS(response.data)));
 					})
 					.catch( error => {
-						console.log(error.response);
 						dispatch( updateErrors('Error: unable to retrieve students data.'));
 					});
 			}
@@ -127,7 +126,7 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 		attemptsForTopic = 1;
 	}	
 	assessmentData = assessmentData.setIn([topicTitle, assessmentID, 'attempts'], attemptsForTopic);
-
+	console.log(assessmentData.toJS());
 	dispatch(userAssessmentData(assessmentData)); // dispatch to state
 
 	// update user progress data
