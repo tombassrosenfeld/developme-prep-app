@@ -16,7 +16,6 @@ export const SET_STUDENTS = Symbol("SET_STUDENTS");
 export const authenticate = (username, password) => dispatch => {
 	getToken(username, password)
 		.then( response => {
-			// console.log(response.data);
 			dispatch(updateErrors('')); // remove any errors
 			dispatch(updateCredentials(response.data)); // dispatches token and credentials to state
 			dispatch(getData(response.data.token)); // and immediately calls api for module and user data
@@ -40,7 +39,6 @@ const getData = (token) => (dispatch, getState) => {
 						dispatch(setStudents(fromJS(response.data)));
 					})
 					.catch( error => {
-						console.log(error.response);
 						dispatch( updateErrors('Error: unable to retrieve students data.'));
 					});
 			}
@@ -138,7 +136,7 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 		attemptsForTopic = 1;
 	}	
 	assessmentData = assessmentData.setIn([topicTitle, assessmentID, 'attempts'], attemptsForTopic);
-
+	console.log(assessmentData.toJS());
 	dispatch(userAssessmentData(assessmentData)); // dispatch to state
 
 	// update user progress data

@@ -1,3 +1,5 @@
+@import url(bootstrap-3.3.7/css/bootstrap.min.css);
+@import url(font-awesome-4.7.0/css/font-awesome.min.css);
 /******************************************/
 /*Colour names*/
 /******************************************/
@@ -147,9 +149,9 @@ p {
 .bottom-nav-module {
   display: inline-block;
   background-color: #00e6b8;
-  padding: 0 5px;
-  border-radius: 1px;
-  margin: 0 1px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 0 5px;
   cursor: pointer; }
 
 .user-icon {
@@ -161,6 +163,17 @@ p {
 @media only screen and (max-width: 768px) {
   .header-loggedIn {
     display: none; } }
+.home-div {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none !important; }
+
+.fa-home {
+  color: #404040;
+  font-size: 22px; }
+
 @media only screen and (min-width: 768px) {
   .login-form {
     width: 80%;
@@ -306,6 +319,25 @@ p {
   overflow: hidden;
   border: 1px solid #ddd;
   width: auto; }
+
+.uncompleted-topic-description {
+  font-weight: bold;
+  margin: 20px 0px;
+  text-align: center; }
+
+.uncompleted-tasks-list {
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: center; }
+
+.uncompleted-tasks-list-item {
+  padding: 0px 40px;
+  margin: 0; }
+
+.uncompleted-tasks-list-item a {
+  text-decoration: underline;
+  color: #00e6b8;
+  font-weight: bold; }
 
 .topic-title {
   margin: 24px 0 16px 0;
