@@ -1,8 +1,5 @@
 .forgot-form {
-    padding-top: 20px;
-    position: relative;
-
-
+    padding-top: 8px;
     @at-root #{&}__label {
     	color: $homeGreen;
     	font-weight: 500;

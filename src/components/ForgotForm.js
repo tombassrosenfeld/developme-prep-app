@@ -29,7 +29,7 @@ class ForgotForm extends Component {
     	return !this.state.person.every(({ value })=> value);
     }
     render() {
-    	const { onCancel, forgotPassword } = this.props;
+    	const { forgotPassword } = this.props;
     	return (
             <div className="row forgot-form">
         		{ !forgotPassword ?
@@ -46,12 +46,9 @@ class ForgotForm extends Component {
                             </div>
                         </div>
     					
-    				    <div className="col-xs-6 col-xs-offset-3 col-sm-2 col-sm-offset-0">
+    				    <div className="col-sm-2">
                             <input className="btn btn-default btn-login btn-block" type="submit" disabled={ this.disabled() } value="Reset"/>
                         </div>  
-                        <div className="col-xs-3 col-sm-1 col-sm-offset-0">
-                            <button className="btn btn-default forgot-form__close" aria-label="Close forgot password" onClick={ onCancel }>&times;</button>
-                        </div>
     				</form>
                     
                 : <p className='onsubmit-text'>Please check your email to reset your password.</p> }

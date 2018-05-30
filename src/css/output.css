@@ -535,8 +535,7 @@ INSTRUCTOR VIEW
   background-color: #00e6b8; }
 
 .forgot-form {
-  padding-top: 20px;
-  position: relative; }
+  padding-top: 8px; }
   .forgot-form__label {
     color: #00e6b8;
     font-weight: 500; }
