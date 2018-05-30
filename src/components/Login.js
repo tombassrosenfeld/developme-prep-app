@@ -3,9 +3,9 @@ import ForgotPassword from '../containers/ForgotPassword';
 
 export default ({user, authenticate, onFormElementChange, forgotPassword }) => (
 	<div>
-		<div className="row login-form">
+		<div className="row">
 			<form onSubmit={ (e) => authenticate(e, user.get('username'), user.get('password'))}>
-				<div className="col-sm-5">	
+				<div className="col-sm-4 col-sm-offset-1">	
 					<div className="form-group">
 					    <input 
 					    	type="name" 
@@ -17,7 +17,7 @@ export default ({user, authenticate, onFormElementChange, forgotPassword }) => (
 					    />
 					</div>
 				</div>
-				<div className="col-sm-5">	
+				<div className="col-sm-4">	
 					<div className="form-group">
 					    <input 
 					    	type="password" 
@@ -34,8 +34,6 @@ export default ({user, authenticate, onFormElementChange, forgotPassword }) => (
 				</div>
 			</form>
 		</div>
-		<div className='forgot-form-container'>
-			<ForgotPassword />
-		</div>	
+		<ForgotPassword />	
 	</div>
 )
