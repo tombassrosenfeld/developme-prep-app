@@ -5,12 +5,6 @@
     	font-weight: 500;
     }
 }
-
-.forgot-form__buttons {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
 .forgot-password-text {
 	cursor: pointer;
 	color: $homeGreen;
@@ -23,8 +17,5 @@
 .onsubmit-text {
 	text-align: center;
 	color: $homeGreen;
-	font-weight: bold;
-	padding: 10px;
-	margin-top: 10px;
-	font-size: 0.8em;
+	font-size: 16px;
 }

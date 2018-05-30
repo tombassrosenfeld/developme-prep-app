@@ -19,14 +19,11 @@ class ForgotForm extends Component {
     }
     submit(e) {
     	e.preventDefault();
-    	const data = this.state.person.reduce((data, { name, value })=> {
-    		data[name] = value;
-    		return data;
-    	}, {});
+    	const data = {email: this.state.person.value};
     	this.props.onForgotFormSubmit(data);
     }
     disabled() {
-    	return !this.state.person.every(({ value })=> value);
+    	return !this.state.person.value;
     }
     render() {
     	const { forgotPassword } = this.props;
@@ -51,7 +48,7 @@ class ForgotForm extends Component {
                         </div>  
     				</form>
                     
-                : <p className='onsubmit-text'>Please check your email to reset your password.</p> }
+                : <p className='onsubmit-text'>Your request has been submitted. We will get back to you very soon.</p> }
 
             </div>
     	)

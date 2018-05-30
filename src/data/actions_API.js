@@ -165,6 +165,7 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 
 
 export const onForgotFormSubmit = data => (dispatch, getState )=> {
+	dispatch(updateErrors(''));
 	postForgotForm(data)
 		.then( response => {
 			dispatch(updateForgot());
@@ -241,7 +242,7 @@ function getTopics() {
 } 
 
 function postForgotForm(data) {
-	return axios.post('/wp-json/cf/forgotpassword', { 
+	return axios.post('/wp-json/cf/prep/forgotpassword', { 
 		data: data,
 	})
 }
