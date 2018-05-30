@@ -1,24 +1,19 @@
-.forgot-form-container {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin: 0 auto;	
-}
 .forgot-form {
-	display: inline-block;
-	margin: 10px auto;
 	background: white;
 	border: 1px solid #ccc;
     border-radius: 4px;
-	width: 100%;
 	@media only screen and (min-width : 768px) {
 		margin: 0 auto;
 		align-items: center;
 	}
 }
 .forgot-password-text {
+	cursor: pointer;
 	color: $homeGreen;
 	text-align: center;
+	@media only screen and (max-width : 768px) {
+		margin: 20px 0;
+	}
 }
 .forgot-form-input {
 	width: 90%;

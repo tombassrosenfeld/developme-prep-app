@@ -12,9 +12,9 @@ class ForgotForm extends Component {
 
         this.submit = this.submit.bind(this);
     }
-    change(e, i) {
-    	const person = this.state.person.slice();
-    	person[i].value = e.target.value;
+    change(e) {
+    	const person = this.state.person;
+    	person.value = e.target.value;
     	this.setState({ person: person });
     }
     submit(e) {
@@ -24,7 +24,6 @@ class ForgotForm extends Component {
     		return data;
     	}, {});
     	this.props.onForgotFormSubmit(data);
-        console.log(data);
     }
     disabled() {
     	return !this.state.person.every(({ value })=> value);
@@ -32,21 +31,20 @@ class ForgotForm extends Component {
     render() {
     	const { onCancel, forgotPassword } = this.props;
     	return (
-            <div  className="forgot-form">
+            <div className="row forgot-form">
         		{ !forgotPassword ?
-                <div>
-    				<form onSubmit={ this.submit }>
-    					{ this.state.person.map(({ name, value }, i) => (
-    						<div className='forgot-form-input' key={ i }>
+                    <form onSubmit={ this.submit }>
+                        <div className="col-sm-4 col-sm-offset-1">  
+                            <div className="form-group">
     							<label>Please enter your email to reset your password: </label>
     						    <input 
     						    	type="email" 
     						    	className="form-control" 
     						    	placeholder={"test@test.com"} 
-    						    	onChange={ e => this.change(e, i) }
+    						    	onChange={ e => this.change(e) }
     						    />
-    						</div>
-    					))}
+                            </div>
+                        </div>
     					
     				    <div className="forgot-form-button-container">    
         					<div className="forgot-form-button">	
@@ -56,7 +54,6 @@ class ForgotForm extends Component {
                         </div>  
     				</form>
                     
-    			</div>
                 : <p className='onsubmit-text'>Please check your email to reset your password.</p> }
 
             </div>

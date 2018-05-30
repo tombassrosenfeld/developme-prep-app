@@ -21,10 +21,10 @@ class ForgotPassword extends Component {
 		const { height } = this.state;
 		return (
 			<div className="row">
-			<div className="col-xs-2 col-xs-offset-9">
-				<p className= {!this.state.toggle ? "forgot-password-text": "hidden"} onClick={ this.switch }>Forgot Password</p>
-			</div>
-	
+				<div className="col-sm-2 col-sm-offset-9">
+					<p className= {!this.state.toggle ? "forgot-password-text": "hidden"} onClick={ this.switch }>Forgot Password</p>
+				</div>
+		
 				<AnimateHeight
 					duration={ 500 }
 		        	height={ height }
@@ -32,7 +32,6 @@ class ForgotPassword extends Component {
 					<ForgotForm 
 						onCancel = { this.switch }
 					/>
-
 				</AnimateHeight>
 			</div>
 		);
