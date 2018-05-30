@@ -34,24 +34,24 @@ class ForgotForm extends Component {
             <div className="row forgot-form">
         		{ !forgotPassword ?
                     <form onSubmit={ this.submit }>
-                        <div className="col-sm-4 col-sm-offset-1">  
+                        <div className="col-sm-8 col-sm-offset-1">  
                             <div className="form-group">
-    							<label>Please enter your email to reset your password: </label>
-    						    <input 
-    						    	type="email" 
-    						    	className="form-control" 
-    						    	placeholder={"test@test.com"} 
-    						    	onChange={ e => this.change(e) }
-    						    />
+                                <input 
+                                    type="email" 
+                                    className="form-control" 
+                                    placeholder={"test@test.com"} 
+                                    onChange={ e => this.change(e) }
+                                />
+    							<label className="forgot-form__label">Please re-enter your email to reset your password: </label>
                             </div>
                         </div>
     					
-    				    <div className="forgot-form-button-container">    
-        					<div className="forgot-form-button">	
-        						<button className="btn btn-submit" disabled={ this.disabled() }>submit</button>
-        					</div>	
-                            <p className="forgot-form-cancel" onClick={ onCancel }>Cancel</p>
+    				    <div className="col-xs-6 col-xs-offset-3 col-sm-2 col-sm-offset-0">
+                            <input className="btn btn-default btn-login btn-block" type="submit" disabled={ this.disabled() } value="Reset"/>
                         </div>  
+                        <div className="col-xs-3 col-sm-1 col-sm-offset-0">
+                            <button className="btn btn-default forgot-form__close" aria-label="Close forgot password" onClick={ onCancel }>&times;</button>
+                        </div>
     				</form>
                     
                 : <p className='onsubmit-text'>Please check your email to reset your password.</p> }

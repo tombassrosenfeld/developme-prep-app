@@ -20,11 +20,13 @@ class ForgotPassword extends Component {
 	render() {
 		const { height } = this.state;
 		return (
-			<div className="row">
-				<div className="col-sm-2 col-sm-offset-9">
-					<p className= {!this.state.toggle ? "forgot-password-text": "hidden"} onClick={ this.switch }>Forgot Password</p>
+			<div>
+				<div className="row">
+					<div className="col-sm-2 col-sm-offset-9">
+						<p className= {!this.state.toggle ? "forgot-password-text": "hidden"} onClick={ this.switch }>Forgot Password</p>
+					</div>
 				</div>
-		
+			
 				<AnimateHeight
 					duration={ 500 }
 		        	height={ height }

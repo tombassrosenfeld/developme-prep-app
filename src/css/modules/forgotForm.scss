@@ -1,11 +1,18 @@
 .forgot-form {
-	background: white;
-	border: 1px solid #ccc;
-    border-radius: 4px;
-	@media only screen and (min-width : 768px) {
-		margin: 0 auto;
-		align-items: center;
-	}
+    padding-top: 20px;
+    position: relative;
+
+
+    @at-root #{&}__label {
+    	color: $homeGreen;
+    	font-weight: 500;
+    }
+}
+
+.forgot-form__buttons {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .forgot-password-text {
 	cursor: pointer;
@@ -13,46 +20,6 @@
 	text-align: center;
 	@media only screen and (max-width : 768px) {
 		margin: 20px 0;
-	}
-}
-.forgot-form-input {
-	width: 90%;
-	margin: 10px auto;
-	@media only screen and (min-width : 768px) {
-		width: 75%;
-		display: inline-block;
-		padding: 5%;
-	}
-}
-.forgot-form-button-container {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin: 10px auto;
-	@media only screen and (min-width : 768px) {
-		display: inline-block;
-	}
-}
-.forgot-form-input-container {
-	width: 100%;
-	@media only screen and (min-width : 768px) {
-		padding: 10px;
-		width: 75%;
-		margin: 0 auto;
-	}
-}
-.forgot-form-button {
-	margin-right: 10px;
-	@media only screen and (min-width : 768px) {
-		display: inline-block;
-	}
-}
-.forgot-form-cancel {
-	text-decoration: underline;
-	color: blue;
-	margin: 0;
-	@media only screen and (min-width : 768px) {
-		display: inline-block;
 	}
 }
 
