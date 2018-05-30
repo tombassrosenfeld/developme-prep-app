@@ -35,7 +35,9 @@ class App extends Component {
             }
           }/>        
           <Route exact path="/" render={ ({ match }) => (
+            <div>
             <Welcome userRole={this.props.userRole}/>
+            </div>
           )} />
           <Route path="/prep/topic/:id" render={ ({ match }) => (
             <Topic id={ match.params.id }/>

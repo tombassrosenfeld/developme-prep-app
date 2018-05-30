@@ -1,6 +1,6 @@
 import axios from '../data/axios';
 import { processTopicsData } from '../utilities/utilities';
-import { updateErrors, updateForgot } from './actions';
+import { updateErrors, updateIssue, updateForgot } from './actions';
 import { List, fromJS } from "immutable";
 import { getUserRole } from "../utilities/utilities";
 
@@ -39,7 +39,6 @@ const getData = (token) => (dispatch, getState) => {
 						dispatch(setStudents(fromJS(response.data)));
 					})
 					.catch( error => {
-						console.log(error.response);
 						dispatch( updateErrors('Error: unable to retrieve students data.'));
 					});
 			}
@@ -110,6 +109,17 @@ export const onChangeAssessmentAnswer = (topic, assessmentID, questionID, answer
 		})
 }
 
+export const onIssueFormSubmit = data => (dispatch, getState )=> {
+	let userEmail = getState().getIn(['user', 'user_email']);
+
+	data.email = userEmail;
+	postIssue(data)
+		.then( response => {
+			dispatch(updateIssue());// Don't worry about this bit for now
+		})
+		.catch( error => dispatch(updateErrors('Post was not submitted, please check for errors')) )
+};
+
 export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, userAnswers) => (dispatch, getState) => {
 	// mark assessment and update assessmentData
 	let answers = assessment.get('questions').map((question, i) => question.get('correct_answer') - 1);
@@ -126,7 +136,7 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 		attemptsForTopic = 1;
 	}	
 	assessmentData = assessmentData.setIn([topicTitle, assessmentID, 'attempts'], attemptsForTopic);
-
+	console.log(assessmentData.toJS());
 	dispatch(userAssessmentData(assessmentData)); // dispatch to state
 
 	// update user progress data
@@ -162,7 +172,6 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 			return dispatch(userProgress(savedUserProgressArr));
 		} );
 }
-
 
 export const onForgotFormSubmit = data => (dispatch, getState )=> {
 	dispatch(updateErrors(''));
@@ -204,6 +213,7 @@ const setStudents = data => ({
 });
 
 // API calls
+
 function getToken(username, password) {
 	return axios.post('/wp-json/jwt-auth/v1/token', { 
 		username: username,
@@ -243,6 +253,11 @@ function getTopics() {
 
 function postForgotForm(data) {
 	return axios.post('/wp-json/cf/prep/forgotpassword', { 
+		data: data,
+	})
+}
+function postIssue(data) {
+	return axios.post('/wp-json/cf/prep/issue', { 
 		data: data,
 	})
 }

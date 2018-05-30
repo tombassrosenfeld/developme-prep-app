@@ -4882,7 +4882,6 @@ jsbn@~0.1.0:
   resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-0.1.1.tgz#a5e654c2e5a2deb5f201d96cefbca80c0ef2f513"
 
 jsdom@^11.5.1:
-
   version "11.8.0"
   resolved "https://registry.yarnpkg.com/jsdom/-/jsdom-11.8.0.tgz#a52e9a7d2b931284f62c80dad5f17d7390499d8b"
   dependencies:
@@ -7093,6 +7092,10 @@ react@*, react@^16.0.0:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.0"
+
+reactjs-popup@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/reactjs-popup/-/reactjs-popup-1.1.1.tgz#a0619ba6a309aea379df6e82afc110efea180560"
 
 read-cmd-shim@^1.0.1, read-cmd-shim@~1.0.1:
   version "1.0.1"
