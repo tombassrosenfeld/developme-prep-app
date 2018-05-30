@@ -5,25 +5,21 @@ class ForgotForm extends Component {
         super(props);
 
         this.state = {
-            person: [
-	    		{ name: "email", value: "" },
-			],
+            email: '',
         }
 
         this.submit = this.submit.bind(this);
     }
     change(e) {
-    	const person = this.state.person;
-    	person.value = e.target.value;
-    	this.setState({ person: person });
+    	this.setState({ email: e.target.value });
     }
     submit(e) {
     	e.preventDefault();
-    	const data = {email: this.state.person.value};
+    	const data = {email: this.state.email};
     	this.props.onForgotFormSubmit(data);
     }
     disabled() {
-    	return !this.state.person.value;
+    	return !this.state.email;
     }
     render() {
     	const { forgotPassword } = this.props;
