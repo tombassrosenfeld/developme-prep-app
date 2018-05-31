@@ -36,24 +36,24 @@ class SideNav extends Component {
 							<p className="toggle-p">{userRole === 'student' ? "Topics" : "Cohorts"} </p>
 						</div>
 
-							<AnimateHeight
-								duration={ 500 }
-					        	height={ height }
-					        >	
-								<div className="narrowLinks">
-								<h2 className="topics-title">{title}</h2>
-									{ navItems.map((navItem, i) => (
-										<SideNavItem 
-											key={ i } 
-											id={ userRole === 'student' ? navItem.get('id') : navItem.get('name') } 
-											title={ userRole === 'student' ? navItem.get('short_title') : navItem.get('name') }
-											selected={ navItem.get('selected') } 
-											onClick={ () => onClickIcon(userRole === 'student' ? navItem.get('id') : i) }
-											route={ userRole === 'student' ? '/prep/topic/' : '/cohort/'}
-										/>
-									)) }
-								</div>
-							</AnimateHeight>				
+						<AnimateHeight
+							duration={ 500 }
+				        	height={ height }
+				        >	
+							<div className="narrowLinks">
+							<h2 className="topics-title">{title}</h2>
+								{ navItems.map((navItem, i) => (
+									<SideNavItem 
+										key={ i } 
+										id={ userRole === 'student' ? navItem.get('id') : navItem.get('name') } 
+										title={ userRole === 'student' ? navItem.get('short_title') : navItem.get('name') }
+										selected={ navItem.get('selected') } 
+										onClick={ () => onClickIcon(userRole === 'student' ? navItem.get('id') : i) }
+										route={ userRole === 'student' ? '/prep/topic/' : '/cohort/'}
+									/>
+								)) }
+							</div>
+						</AnimateHeight>				
 					</div>
 				</div>
 			</nav>

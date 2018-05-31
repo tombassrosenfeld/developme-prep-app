@@ -24,9 +24,9 @@ class MenuToggle extends Component {
 						<div className="topics-header toggle-div" onClick={this.switch}>
 							<div className="topics-header-icon toggle-icon">
 								<button class="hamburger hamburger--collapse" type="button">
-								  <span class="hamburger-box">
-								    <span class="hamburger-inner"></span>
-								  </span>
+								  	<span class="hamburger-box">
+								    	<span class="hamburger-inner"></span>
+								  	</span>
 								</button>
 							</div>
 							<p className="toggle-p">{userRole === 'student' ? "Topics" : "Cohorts"} </p>
@@ -34,7 +34,7 @@ class MenuToggle extends Component {
 
 						{this.state.toggle ? 
 						<div className="narrowLinks">
-						<h2 className="topics-title">{title}</h2>
+							<h2 className="topics-title">{title}</h2>
 							{ navItems.map((navItem, i) => (
 								<SideNavItem 
 									key={ i } 
