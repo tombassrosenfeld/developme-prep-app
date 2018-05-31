@@ -27,7 +27,7 @@ export default ({selectedTopic, selectedAssessment, student, onClick}) => {
 				<div className="row task">
 		  			<div className="col-xs-10">
 						<p className="taskList-task-title">
-						<strong>{i + 1}</strong>.
+						<strong>{i + 1}. </strong>
 						{ topic.get('task') }
 						</p>
 					</div>

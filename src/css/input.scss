@@ -30,7 +30,7 @@ a {
 a, a:hover, a:active {
 	text-decoration: none;
 	color: $black;
-	font-weight: bolder;
+	// font-weight: bolder;
 }
 
 h1 {
@@ -112,7 +112,6 @@ p {
 	padding-top: 1em;
 	padding-bottom: 1em;
 
-	font-size: 1.5em;
 	a {
 		color: $homeGreen;
 		&:hover {

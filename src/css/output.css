@@ -15,8 +15,7 @@ a {
 
 a, a:hover, a:active {
   text-decoration: none;
-  color: #404040;
-  font-weight: bolder; }
+  color: #404040; }
 
 h1 {
   font-size: 24px; }
@@ -81,8 +80,7 @@ p {
 
 .hyperlink {
   padding-top: 1em;
-  padding-bottom: 1em;
-  font-size: 1.5em; }
+  padding-bottom: 1em; }
   .hyperlink a {
     color: #00e6b8; }
     .hyperlink a:hover {
@@ -218,7 +216,8 @@ p {
   font-weight: bold; }
 
 .email-div {
-  display: flex; }
+  display: flex;
+  justify-content: center; }
 
 .email-link {
   align-self: center;
@@ -385,13 +384,6 @@ INSTRUCTOR VIEW
     color: #00e6b8; }
 .student-topic-status:hover .taskList-task-title, .student-topic-status:hover strong {
   color: #FFF; }
-.student-topic-status .icons {
-  padding: .25em 0; }
-  .student-topic-status .icons i {
-    display: block;
-    height: 20px;
-    width: 20px;
-    margin: 0 auto; }
 
 .selected-topic .assessment-item {
   padding: 1em 0;
@@ -399,12 +391,10 @@ INSTRUCTOR VIEW
   .selected-topic .assessment-item .questions-header {
     margin: 0;
     text-align: center; }
-  .selected-topic .assessment-item .task .taskList-task-title {
-    font-size: 1.25em; }
-    .selected-topic .assessment-item .task .taskList-task-title strong {
-      color: #00e6b8; }
-  .selected-topic .assessment-item .task:hover strong, .selected-topic .assessment-item .task:hover .taskList-task-title {
-    color: #FFF; }
+  .selected-topic .assessment-item .attempts {
+    text-align: right; }
+  .selected-topic .assessment-item .attempts:hover, .selected-topic .assessment-item .task:hover {
+    background-color: transparent; }
 .selected-topic .task {
   padding-bottom: 15px; }
 

@@ -15,12 +15,8 @@ export default ({i, assessment, onClick, questions, studentAssessmentData, topic
 	  		<strong>{i + 1}</strong>. {assessment.get('assessment_title')}
 	  		</p>
 			</div>
-			<div className="col-xs-4 task">
-	  		<p 
-	  			className="taskList-task-title"
-	  		>
-	  		Attempts: {attemptsForAssessment}
-	  		</p>
+			<div className="col-xs-4">
+	  			<p className="attempts">Attempts: {attemptsForAssessment}</p>
 			</div>
 			{questions ? 
 			<div>
