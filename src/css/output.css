@@ -452,7 +452,8 @@ INSTRUCTOR VIEW
 
 .task:hover p {
   background-color: #00e6b8;
-  color: #404040; }
+  color: #404040;
+  cursor: pointer; }
 
 .marker {
   display: flex;
