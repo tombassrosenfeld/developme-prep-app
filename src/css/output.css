@@ -52,6 +52,9 @@ p {
     font-weight: 600;
     margin: 30px 0 20px 0; }
 
+.panel:last-of-type {
+  border-bottom: 1px solid #E5E5E5; }
+
 .error-message-container {
   position: fixed;
   bottom: 10px;
@@ -201,7 +204,6 @@ p {
 .topics-icon {
   background-color: #E5E5E5;
   margin: 0;
-  border-bottom: 1px solid #FFF;
   border-bottom: 1px solid #FFF;
   color: #404040;
   font-size: 20px; }
@@ -423,8 +425,7 @@ INSTRUCTOR VIEW
   background-color: #E5E5E5;
   width: 100%;
   border: 1px solid #E5E5E5;
-  padding: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); }
+  padding: 10px; }
 
 .issue-buttons {
   display: flex;
@@ -461,8 +462,7 @@ INSTRUCTOR VIEW
 
 .task:hover p {
   background-color: #00e6b8;
-  color: #404040;
-  font-weight: bolder; }
+  color: #404040; }
 
 .marker {
   display: flex;
@@ -485,8 +485,7 @@ INSTRUCTOR VIEW
 .task-resources .panel:hover {
   background-color: #00e6b8; }
   .task-resources .panel:hover p, .task-resources .panel:hover .resource-icon {
-    color: #404040;
-    font-weight: bolder; }
+    color: #404040; }
 
 .resource-icon-container {
   display: flex;
