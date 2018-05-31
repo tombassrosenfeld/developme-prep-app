@@ -2,6 +2,7 @@
 	background-color: $lighterGrey;
 	color: $darkGrey;
 	padding-bottom: 10px;
+	border-bottom: 1px solid #FFF;
 	.panel-title {
 		margin: 10px 0 5px 0;
 		padding-left: 0;
@@ -10,6 +11,7 @@
 		padding-left: 0;	
 	}
 }
+
 .task-resources .panel:hover {
 	background-color: $homeGreen;
 	p, .resource-icon {

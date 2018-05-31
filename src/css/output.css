@@ -46,7 +46,7 @@ p {
   border: 1px solid #E5E5E5;
   border-bottom: 1px solid #FFF;
   border-radius: 0; }
-  .panel h1, .panel h2, .panel p {
+  .panel h1, .panel h2, .panel h3, .panel h4, .panel p, .panel ul {
     padding: 0 10px; }
   .panel .panel-title {
     font-weight: 600;
@@ -475,7 +475,8 @@ INSTRUCTOR VIEW
 .task-resources .panel {
   background-color: #E5E5E5;
   color: #4d4d4d;
-  padding-bottom: 10px; }
+  padding-bottom: 10px;
+  border-bottom: 1px solid #FFF; }
   .task-resources .panel .panel-title {
     margin: 10px 0 5px 0;
     padding-left: 0; }
