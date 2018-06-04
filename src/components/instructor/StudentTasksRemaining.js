@@ -1,5 +1,4 @@
 import React from 'react';
-import SelectedTopicHeader from './SelectedTopicHeader';
 
 export default ({selectedTopic, selectedAssessment, student, onClick}) => {
 	// console.log(selectedTopic.toJS());

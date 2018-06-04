@@ -1,5 +1,4 @@
 import React from 'react';
-import ProgressBar from "./ProgressBar";
 import Issues from '../containers/Issues';
 import StudentFrontPage from './StudentFrontPage';
 
