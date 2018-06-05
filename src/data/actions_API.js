@@ -136,7 +136,6 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 		attemptsForTopic = 1;
 	}	
 	assessmentData = assessmentData.setIn([topicTitle, assessmentID, 'attempts'], attemptsForTopic);
-	console.log(assessmentData.toJS());
 	dispatch(userAssessmentData(assessmentData)); // dispatch to state
 
 	// update user progress data

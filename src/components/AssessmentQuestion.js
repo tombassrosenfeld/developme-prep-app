@@ -1,5 +1,6 @@
 import React from 'react';
-import AssessmentQuestionChoices from '../containers/AssessmentQuestionChoices'
+import AssessmentQuestionChoices from '../containers/AssessmentQuestionChoices';
+import CodeSnippet from './CodeSnippet';
 
 export default ({questionID, question, assessmentID, topicTitle, userAssessmentData, retake }) => {
 	return (<div className="panel" >
@@ -16,6 +17,7 @@ export default ({questionID, question, assessmentID, topicTitle, userAssessmentD
 			</div>
 			<div className="col-xs-10 resource-info">
 				<h2 className="panel-title">{questionID + 1}. {question.get('question')}</h2>
+				{question.get('code_snippet') ? <CodeSnippet snippet={question.get('code_snippet')} /> : null}
 				{userAssessmentData.getIn([topicTitle, assessmentID, 'result']) == null || retake ? 
 					<AssessmentQuestionChoices 
 						choices={question.get('answers')}

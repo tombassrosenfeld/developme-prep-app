@@ -1,9 +1,12 @@
 import React from 'react';
+import CodeSnippet from '../CodeSnippet';
 
 export default ({i, assessment, onClick, questions, studentAssessmentData, topicTitle}) => {
 	const studentAnswersForAssessment = studentAssessmentData.get(topicTitle) ? studentAssessmentData.get(topicTitle).find((assessment, index) => i === index) : null,
 				studentAnswers = studentAnswersForAssessment ? studentAnswersForAssessment.get('answers').toJS() : null,
 				attemptsForAssessment = studentAnswersForAssessment ? studentAnswersForAssessment.get('attempts') : null;
+
+				console.log(studentAnswers);
 
 	return attemptsForAssessment ? (
 		<div className="panel">
@@ -40,9 +43,9 @@ export default ({i, assessment, onClick, questions, studentAssessmentData, topic
 										<i className="fa fa-times-circle-o" aria-hidden="true"></i>
 									}
 								</div>
-
 								<div className="col-xs-10 resource-info">
 									<h2 className="panel-title">{i+1}. {question.get('question')}</h2>
+									{question.get('code_snippet') ? <CodeSnippet snippet={question.get('code_snippet')} /> : null}
 									<div>
 										<p><strong>Student's answer: </strong>{answers[studentAnswers[i]].answer_choice}</p>
 										<p><strong>Correct answer: </strong>{answers[correctAnswer-1].answer_choice}</p>
