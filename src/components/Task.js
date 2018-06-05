@@ -19,6 +19,7 @@ export default ({ id, topicID, topic}) => {
 	  					description={resource.get('description')}
 	  					type={resource.get('resource_type')}
 	  					link={resource.get('link')}
+	  					duration={resource.get('duration') ? resource.get('duration') : null}
 	  				/>
 				)) 
 				: null

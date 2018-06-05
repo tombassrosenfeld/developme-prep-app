@@ -35,3 +35,16 @@
 		margin: 0
 	}
 }
+
+.resource-duration {
+	padding: 1em 2em;
+	text-align: center;
+	i {
+		display: block;
+		margin-bottom: 5px;
+	}
+	.duration {
+		padding: 0;
+	}
+
+}

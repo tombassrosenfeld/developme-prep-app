@@ -493,6 +493,15 @@ INSTRUCTOR VIEW
   .resource-info p {
     margin: 0; }
 
+.resource-duration {
+  padding: 1em 2em;
+  text-align: center; }
+  .resource-duration i {
+    display: block;
+    margin-bottom: 5px; }
+  .resource-duration .duration {
+    padding: 0; }
+
 .assessment-questions .panel {
   background-color: #E5E5E5;
   color: #4d4d4d;
