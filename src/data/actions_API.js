@@ -247,7 +247,7 @@ function postUserAssessmentData(data, userID, token) {
 }
 
 function getTopics() {
-	return axios.get('/wp-json/wp/v2/cf_preparation');
+	return axios.get('/wp-json/wp/v2/cf_preparation/');
 } 
 
 function postForgotForm(data) {
