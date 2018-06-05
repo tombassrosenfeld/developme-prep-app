@@ -35,7 +35,7 @@ class ForgotForm extends Component {
                                     placeholder={"test@test.com"} 
                                     onChange={ e => this.change(e) }
                                 />
-    							<label className="forgot-form__label">Please re-enter your email to reset your password: </label>
+    							<label className="forgot-form__label">Please enter your email to reset your password: </label>
                             </div>
                         </div>
     					

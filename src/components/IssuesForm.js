@@ -6,8 +6,8 @@ class IssuesForm extends Component {
 
         this.state = {
             issues: [
-	    		{ name: "Issue", value: "" },
-	   			{ name: "Description", value: "" },
+	    		{ name: "subject", value: "" },
+	   			{ name: "description", value: "" },
 			],
         }
 
@@ -42,10 +42,9 @@ class IssuesForm extends Component {
                     <button className="popup-close" onClick={ onCancel }>✖</button>
     				<form onSubmit={ this.submit }>
     					{ this.state.issues.map(({ name, value }, i) => (
-    						<div className="form-group">
+    						<div key={i} className="form-group">
     							<label>{ name }</label>
     						    <input 
-    						    	key={ i }
     						    	type="textarea" 
     						    	className="form-control" 
     						    	id={"issue-" + name }
