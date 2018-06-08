@@ -2,7 +2,7 @@ import React from 'react';
 
 export default ({errors, dismissErrors}) => (
 	<div 
-		className="row error-message-container" 
+		className="error-message-container" 
 		style={{ display: errors? 'block' : 'none' }}
 		onClick={ () => dismissErrors() }
 	>

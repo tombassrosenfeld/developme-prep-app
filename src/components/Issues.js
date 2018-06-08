@@ -6,38 +6,32 @@ class Issues extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			toggle: false,
-			height: 0,
+			showForm: false,
 		};
 		this.switch = this.switch.bind(this);
 	}
 
 	switch() {
 		this.props.changeIssueState();
-		const current = this.state.toggle;
-		this.setState({toggle: !current})
-		this.setState({ height: this.state.height === 0 ? 'auto' : 0 })
+		this.setState({showForm: !this.state.showForm})
 	}
 
 	render() {
-		const { height } = this.state;
-		
+		const formStyle = {
+			transition: 'all .25s ease-in',
+			opacity: this.state.showForm ? 1 : 0,
+		}
 		return (
 			<div className="topics panel">
-				<div className="report-issue">
+				<IssuesForm 
+					formStyle={formStyle}
+					onCancel={ this.switch }
+				/>
+				<div className="report-issue" onClick={ this.switch }>
 					<h2 className="topic-title report-issue-title">
-						<span onClick={ this.switch }>Click here </span>to report an issue
+						<span>Click here </span>to report an issue
 					</h2>
-				</div>
-
-				<AnimateHeight
-					duration={ 500 }
-		        	height={ height }
-		        >	
-					<IssuesForm 
-						onCancel = { this.switch }
-					/>
-				</AnimateHeight>				
+				</div>				
 			</div>
 		);
 	}

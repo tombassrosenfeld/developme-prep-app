@@ -34,9 +34,9 @@ class IssuesForm extends Component {
     }
 
     render() {
-    	const { onCancel, issue } = this.props;
+    	const { onCancel, issue, formStyle } = this.props;
     	return (
-            <div>
+            <div style={formStyle}>
         		{ !issue ?
                 <div className="issues-form">
                     <button className="popup-close" onClick={ onCancel }>✖</button>
@@ -44,13 +44,13 @@ class IssuesForm extends Component {
     					{ this.state.issues.map(({ name, value }, i) => (
     						<div key={i} className="form-group">
     							<label>{ name }</label>
-    						    <input 
-    						    	type="textarea" 
-    						    	className="form-control" 
-    						    	id={"issue-" + name }
-    						    	placeholder={"Enter " +  name + " of issue here"} 
-    						    	onChange={ e => this.change(e, i) }
-    						    />
+                                <textarea
+                                    className="form-control" 
+                                    id={"issue-" + name }
+                                    placeholder={"Enter " +  name + " of issue here"} 
+                                    onChange={ e => this.change(e, i) }
+                                >
+                                </textarea>
     						</div>
     					))}
     					

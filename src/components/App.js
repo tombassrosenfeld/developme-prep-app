@@ -4,6 +4,7 @@ import {
     Route,
 } from "react-router-dom";
 import Header from '../containers/Header';
+import Footer from '../components/Footer';
 import Errors from '../containers/Errors';
 import TopicsNav from '../containers/TopicsNav';
 import CohortNav from '../containers/instructor/CohortNav';
@@ -75,12 +76,13 @@ class App extends Component {
       <div>
         <div className="container-fluid">
           <Header />
-          <Errors />
           <div className="app">
             { this.props.loggedIn ? null : <Login /> }
             { this.props.loggedIn ? this.props.isLoaded? this.loaded() : this.loading() : null }
           </div>
         </div>  
+        <Errors />
+        <Footer />
       </div>
     </Router>
     );

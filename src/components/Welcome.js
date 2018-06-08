@@ -1,5 +1,4 @@
 import React from 'react';
-import Issues from '../containers/Issues';
 import StudentFrontPage from './StudentFrontPage';
 
 export default ({className, userProgress, numAssessments, numTasks, topics, userRole}) => {
@@ -28,7 +27,6 @@ export default ({className, userProgress, numAssessments, numTasks, topics, user
 				/>
 				:
 				null }
-				<Issues /> 
 			</div>		
 		</div>
 	)
