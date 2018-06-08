@@ -4,6 +4,7 @@ import App from './containers/App';
 import { createStore, compose } from "redux";
 import { Provider } from "react-redux";
 import reducer from "./data/reducer";
+import HttpsRedirect from 'react-https-redirect';
 import './css/output.css';
 
 // import necessary to make asynchronous actions using thunks, for API calls
@@ -18,7 +19,9 @@ const store = createStore(
 
 ReactDOM.render(
 	<Provider store={ store }>
-		<App /> 
+        <HttpsRedirect>
+			<App /> 
+        </HttpsRedirect>
 	</Provider>,
 
 	document.getElementById('root')
