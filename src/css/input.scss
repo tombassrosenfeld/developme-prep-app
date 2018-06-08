@@ -56,6 +56,10 @@ p {
 	padding-top: 20px;
 	padding-bottom: 40px;
 }
+
+.container-fluid {
+	padding-bottom: calc(63px + 1em);
+}
 .narrow-padding {
 	padding: 0 10px;
 }

@@ -36,6 +36,9 @@ p {
   padding-top: 20px;
   padding-bottom: 40px; }
 
+.container-fluid {
+  padding-bottom: calc(63px + 1em); }
+
 .narrow-padding {
   padding: 0 10px; }
 
@@ -414,7 +417,8 @@ INSTRUCTOR VIEW
   width: 100%;
   cursor: pointer;
   padding: 1em 0;
-  background-color: #FFF; }
+  background-color: #FFF;
+  border-top: 1px solid #E5E5E5; }
 
 .report-issue-title {
   margin: 10px 0; }
