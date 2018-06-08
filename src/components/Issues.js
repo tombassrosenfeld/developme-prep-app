@@ -18,8 +18,7 @@ class Issues extends Component {
 
 	render() {
 		const formStyle = {
-			transition: 'all .25s ease-in',
-			opacity: this.state.showForm ? 1 : 0,
+			display: this.state.showForm ? 'block' : 'none',
 		}
 		return (
 			<div className="topics panel">
