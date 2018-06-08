@@ -65,8 +65,16 @@ const setStudents = (state, { data }) => {
 }
 
 const topicsData = (state, { data }) => {
-	// Sort function for topic
-	return state.set('topics', data).set('isLoaded', true);
+	
+	const topicsWithDuration = data.map(topic => topic.set('duration', topic.get('tasks').reduce((total, task) => {
+		const resources = task.get('resources');
+		if(resources) {
+			return resources.reduce((total, resource) => resource.get('duration') ? total + +resource.get('duration') : total + 0, 0);
+		}
+		return total + 0;
+	}, 0)));
+
+	return state.set('topics', topicsWithDuration).set('isLoaded', true);
 }
 
 const onClickIcon = (state, { id }) => {
