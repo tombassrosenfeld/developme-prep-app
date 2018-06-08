@@ -113,6 +113,8 @@ export const onIssueFormSubmit = data => (dispatch, getState )=> {
 	let userEmail = getState().getIn(['user', 'user_email']);
 
 	data.email = userEmail;
+
+	console.log(data);
 	postIssue(data)
 		.then( response => {
 			dispatch(updateIssue());// Don't worry about this bit for now

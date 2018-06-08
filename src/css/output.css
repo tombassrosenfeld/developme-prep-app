@@ -448,8 +448,18 @@ INSTRUCTOR VIEW
 
 .onsubmit-text {
   margin-top: 20px;
-  text-align: center; }
+  text-align: center;
+  opacity: 0;
+  animation: 3s linear 0s fade; }
 
+@keyframes fade {
+  0% {
+    opacity: 1; }
+  90% {
+    opacity: 1; }
+  100% {
+    display: none;
+    opacity: 0; } }
 .taskList {
   padding-bottom: 10px; }
 

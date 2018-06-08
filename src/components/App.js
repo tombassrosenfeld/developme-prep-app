@@ -82,7 +82,7 @@ class App extends Component {
           </div>
         </div>  
         <Errors />
-        <Footer />
+        {this.props.loggedIn ? <Footer /> : null }
       </div>
     </Router>
     );
