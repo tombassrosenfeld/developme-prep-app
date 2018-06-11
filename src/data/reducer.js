@@ -121,10 +121,6 @@ const updateIssueFalse = (state) => {
 const updateSharedCode = (state, action) => {
 	let tasks = state.getIn(['sharedCode', action.topicTitle]) ? state.getIn(['sharedCode', action.topicTitle]) : List([]);
 	tasks = tasks.set(action.taskID, Map({code: action.code, approved: false}));
-	console.log(state.get('sharedCode').toJS());
-	// return state.setIn(['sharedCode', action.topicTitle, action.taskID, 'code'], action.code)
-	// 			.setIn(['sharedCode', action.topicTitle, action.taskID, 'approved'], false)
-	// 			.setIn(['sharedCode', action.topicTitle, action.taskID, 'attempts'], attempts + 1);
 	return state.setIn(['sharedCode', action.topicTitle], tasks);
 }
 

@@ -29,6 +29,7 @@ const getData = (token) => (dispatch, getState) => {
 	let userEmail = getState().getIn(['user', 'user_email']);
 	getUserData(token, userEmail)
 		.then( response => {
+			console.log(response);
 			dispatch(updateErrors('')); // remove any errors
 			dispatch(userData(response.data)); // update state with user data
 			dispatch(userProgress(List(response.data[0].userProgress))); // update state with user progress
@@ -175,7 +176,7 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 
 export const onClickSharedCodeSubmit = () => (dispatch, getState) => {
 	dispatch(updateErrors(''));
-	let data = getState().get('sharedCode');
+	let data = getState().get('sharedCode').toJS();
 	let userID = getState().getIn(['user', 'id']);
 	let token = getState().getIn(['user', 'token']);
 	postUserSharedCode(data, userID, token)
