@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ({ topicTitle, taskID, sharedCode, onChangeSharedCode }) => {
+export default ({ topicTitle, taskID, sharedCode, onChangeSharedCode, onClickSharedCodeSubmit }) => {
 	return (
 	  	<div className="panel">
 	  		<div className="form-group share-code">
@@ -8,10 +8,10 @@ export default ({ topicTitle, taskID, sharedCode, onChangeSharedCode }) => {
 			  	<textarea 
 			  		className="form-control share-code__textarea" 
 			  		rows="5"
-			  		value={sharedCode.getIn([topicTitle, taskID]) ? sharedCode.getIn([topicTitle, taskID]) : ""}
+			  		value={sharedCode.getIn([topicTitle, taskID]) ? sharedCode.getIn([topicTitle, taskID, 'code']) : ""}
 			  		onChange={(e) => onChangeSharedCode(e.target.value, topicTitle, taskID)}
 			  	></textarea>
-				<button className="btn btn-default btn-logout btn-submit">Save</button>
+				<button className="btn btn-default btn-logout btn-submit" onClick={() => onClickSharedCodeSubmit()}>Save</button>
 			</div>
 	  	</div>
 	)

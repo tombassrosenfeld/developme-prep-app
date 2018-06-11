@@ -174,6 +174,16 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 		} );
 }
 
+export const onClickSharedCodeSubmit = () => (dispatch, getState) => {
+	dispatch(updateErrors(''));
+	let data = getState().get('sharedCode');
+	postUserSharedCode(data)
+		.then( response => {
+			console.log('success');
+		})
+		.catch( error => dispatch(updateErrors('Sorry, we couldn\'t submit your code at this time. Please try again.')) )
+}
+
 export const onForgotFormSubmit = data => (dispatch, getState )=> {
 	dispatch(updateErrors(''));
 	postForgotForm(data)
@@ -246,6 +256,12 @@ function postUserAssessmentData(data, userID, token) {
 	return axios.post('/wp-json/cf/prep/' + userID + '/assessment', {
     	data: data,
   })
+}
+
+function postUserSharedCode(data) {
+	return axios.post('/wp-json/cf/prep/sharedCode', {
+		data: data,
+	})
 }
 
 function getTopics() {

@@ -110,8 +110,8 @@ const updateIssueFalse = (state) => {
 }
 
 const updateSharedCode = (state, action) => {
-	console.log(state.get('sharedCode').toJS());
-	return state.setIn(['sharedCode', action.topicTitle, action.taskID], action.code);
+	return state.setIn(['sharedCode', action.topicTitle, action.taskID, 'code'], action.code)
+				.setIn(['sharedCode', action.topicTitle, action.taskID, 'approved'], false);
 }
 
 
