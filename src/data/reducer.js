@@ -1,5 +1,5 @@
 import initial from "./initial";
-import {fromJS} from "immutable";
+import {List, Map, fromJS} from "immutable";
 
 import { ONFORMELEMENTCHANGE, UPDATE_ERRORS, LOGOUT, ONCLICK_ICON, DELETE_ASSESSMENT_DATA, GET_ARCHIVED_ASSESSMENT_DATA, UPDATEISSUE, UPDATEISSUEFALSE, TOGGLEFORGOT, UPDATEFORGOT, UPDATESHAREDCODE} from "../data/actions";
 import { USER_DATA, UPDATE_CREDENTIALS, USER_PROGRESS, USER_ASSESSMENT_DATA, USER_SHARED_CODE, SET_STUDENTS, TOPICS_DATA } from "../data/actions_API";
@@ -41,15 +41,24 @@ const updateUserSharedCode = (state, {data}) => {
 }
 
 const setStudents = (state, { data }) => {
-	//data == students array
+	let cohorts = orderByCohort(data);
+	let studentsToMark = searchForMarking(data);
+	return state.set('cohorts', fromJS(cohorts)).set('cohortsLoaded', true);
+}
 
+const searchForMarking = (data) => {
+	data.map((student) => {
+	})
+}
+
+const orderByCohort = (data) => {
 	//List of unique cohort names
 	let cohorts = [];
 
 	//If cohort is already in cohorts array then do not add to arr
 	data.map(student => cohorts.find(cohort => cohort === student.get('cohort')) ? null : cohorts.push(student.get('cohort')));
 
-	//Convert each cohort to an object to pass into state.
+	// Convert each cohort to an object to pass into state.
 	cohorts = cohorts.map(cohort => ({
 		name: cohort,
 		students: [],
@@ -58,14 +67,11 @@ const setStudents = (state, { data }) => {
 
 	//Add students to their cohort
 	cohorts = cohorts.map(cohort => {
-
 		data.map(student => cohort.name === student.get('cohort') ? cohort.students.push(student.toJS()) : student);
-
 		return cohort;
-
 	});
 
-	return state.set('cohorts', fromJS(cohorts)).set('cohortsLoaded', true);
+	return cohorts;
 }
 
 const topicsData = (state, { data }) => {
@@ -113,10 +119,13 @@ const updateIssueFalse = (state) => {
 }
 
 const updateSharedCode = (state, action) => {
-	let attempts = state.getIn(['sharedCode', action.topicTitle, action.taskID, 'attempts']) ? state.getIn(['sharedCode', action.topicTitle, action.taskID, 'attempts']) : 0;
-	return state.setIn(['sharedCode', action.topicTitle, action.taskID, 'code'], action.code)
-				.setIn(['sharedCode', action.topicTitle, action.taskID, 'approved'], false)
-				.setIn(['sharedCode', action.topicTitle, action.taskID, 'attempts'], attempts + 1);
+	let tasks = state.getIn(['sharedCode', action.topicTitle]) ? state.getIn(['sharedCode', action.topicTitle]) : List([]);
+	tasks = tasks.set(action.taskID, Map({code: action.code, approved: false}));
+	console.log(state.get('sharedCode').toJS());
+	// return state.setIn(['sharedCode', action.topicTitle, action.taskID, 'code'], action.code)
+	// 			.setIn(['sharedCode', action.topicTitle, action.taskID, 'approved'], false)
+	// 			.setIn(['sharedCode', action.topicTitle, action.taskID, 'attempts'], attempts + 1);
+	return state.setIn(['sharedCode', action.topicTitle], tasks);
 }
 
 

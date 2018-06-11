@@ -35,7 +35,7 @@ const getData = (token) => (dispatch, getState) => {
 			dispatch(userAssessmentData(fromJS(response.data[0].userAssessmentData))); // update state
 			dispatch(userSharedCode(fromJS(response.data[0].userSharedCode))); // update state
 			let role = getUserRole(response.data[0].roles);
-			if(role === 'instructor') { //If user is instructor get all student users
+			if(role === 'instructor') { // If user is instructor get all student users
 				getStudents(token)
 					.then(response => {
 						dispatch(setStudents(fromJS(response.data)));
@@ -112,10 +112,8 @@ export const onChangeAssessmentAnswer = (topic, assessmentID, questionID, answer
 
 export const onIssueFormSubmit = data => (dispatch, getState )=> {
 	let userEmail = getState().getIn(['user', 'user_email']);
-
 	data.email = userEmail;
 
-	console.log(data);
 	postIssue(data)
 		.then( response => {
 			dispatch(updateIssue());// Don't worry about this bit for now

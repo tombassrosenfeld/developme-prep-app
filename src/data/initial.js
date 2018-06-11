@@ -9,6 +9,7 @@ export default Map({
 	userProgress: List([]),
 	assessmentData: Map({}),
 	sharedCode: Map({}),
+	studentsToMark: List([]),
 	archivedAssessmentData: List([]),
 	errors: '',
 	cohorts: List([]),
