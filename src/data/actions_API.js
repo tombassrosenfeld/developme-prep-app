@@ -10,6 +10,7 @@ export const TOPICS_DATA = Symbol("TOPICS_DATA");
 export const USER_DATA = Symbol("USER_DATA");
 export const USER_PROGRESS = Symbol("USER_PROGRESS");
 export const USER_ASSESSMENT_DATA = Symbol("USER_ASSESSMENT_DATA");
+export const USER_SHARED_CODE = Symbol("USER_SHARED_CODE");
 export const SET_STUDENTS = Symbol("SET_STUDENTS");
 
 // when user submits login details, calls authenticate()
@@ -32,6 +33,7 @@ const getData = (token) => (dispatch, getState) => {
 			dispatch(userData(response.data)); // update state with user data
 			dispatch(userProgress(List(response.data[0].userProgress))); // update state with user progress
 			dispatch(userAssessmentData(fromJS(response.data[0].userAssessmentData))); // update state
+			dispatch(userSharedCode(fromJS(response.data[0].userSharedCode))); // update state
 			let role = getUserRole(response.data[0].roles);
 			if(role === 'instructor') { //If user is instructor get all student users
 				getStudents(token)
@@ -50,7 +52,6 @@ const getData = (token) => (dispatch, getState) => {
 	// gets modules and tasks
 	getTopics()
 		.then( response => {
-			console.log(response.data);
 			dispatch(updateErrors('')); // remove any errors
 		    dispatch(topicsData(processTopicsData(response.data))); // update state
 		})
@@ -177,9 +178,11 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 export const onClickSharedCodeSubmit = () => (dispatch, getState) => {
 	dispatch(updateErrors(''));
 	let data = getState().get('sharedCode');
-	postUserSharedCode(data)
+	let userID = getState().getIn(['user', 'id']);
+	let token = getState().getIn(['user', 'token']);
+	postUserSharedCode(data, userID, token)
 		.then( response => {
-			console.log('success');
+			dispatch(updateErrors(''));
 		})
 		.catch( error => dispatch(updateErrors('Sorry, we couldn\'t submit your code at this time. Please try again.')) )
 }
@@ -210,6 +213,11 @@ const userProgress = (data) => ({
 
 const userAssessmentData = (data) => ({
 	type: USER_ASSESSMENT_DATA,
+	data,
+})
+
+const userSharedCode = (data) => ({
+	type: USER_SHARED_CODE,
 	data,
 })
 
@@ -258,8 +266,9 @@ function postUserAssessmentData(data, userID, token) {
   })
 }
 
-function postUserSharedCode(data) {
-	return axios.post('/wp-json/cf/prep/sharedCode', {
+function postUserSharedCode(data, userID, token) {
+	axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+	return axios.post('/wp-json/cf/prep/' + userID + '/sharedcode', {
 		data: data,
 	})
 }

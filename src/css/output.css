@@ -3,6 +3,9 @@
 /******************************************/
 /*Colour names*/
 /******************************************/
+.green {
+  color: #00e6b8; }
+
 /******************************************/
 /*Generic*/
 /******************************************/
@@ -101,6 +104,8 @@ p {
   padding: 10px; }
   .share-code .share-code__textarea {
     margin-bottom: 10px; }
+  .share-code .share-code__message {
+    text-align: center; }
 
 @keyframes spin {
   0% {
