@@ -1,5 +1,6 @@
 import React from 'react';
 import TaskResource from './TaskResource';
+import TaskShareCode from './TaskShareCode';
 const Parser = require('html-react-parser');
 
 export default ({ id, topicID, topic}) => {
@@ -25,15 +26,6 @@ export default ({ id, topicID, topic}) => {
 				: null
 	  		}
 	  	</div>
-	  	{topic.getIn(['tasks', id, 'share_code']) ? 
-		  	<div className="panel">
-		  		<h2 className="panel-title">Show your code</h2>
-		  		<div class="form-group share-code">
-				  	<label>Paste your code or a link to a working example on Codepen.io in the box below, then click save.</label>
-				  	<textarea class="form-control" rows="5"></textarea>
-				</div>
-		  	</div>
-		  	: null
-	  	}
+	  	{topic.getIn(['tasks', id, 'share_code']) ? <TaskShareCode /> : null }
 	</div>
 }
