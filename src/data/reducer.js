@@ -113,8 +113,10 @@ const updateIssueFalse = (state) => {
 }
 
 const updateSharedCode = (state, action) => {
+	let attempts = state.getIn(['sharedCode', action.topicTitle, action.taskID, 'attempts']) ? state.getIn(['sharedCode', action.topicTitle, action.taskID, 'attempts']) : 0;
 	return state.setIn(['sharedCode', action.topicTitle, action.taskID, 'code'], action.code)
-				.setIn(['sharedCode', action.topicTitle, action.taskID, 'approved'], false);
+				.setIn(['sharedCode', action.topicTitle, action.taskID, 'approved'], false)
+				.setIn(['sharedCode', action.topicTitle, action.taskID, 'attempts'], attempts + 1);
 }
 
 
