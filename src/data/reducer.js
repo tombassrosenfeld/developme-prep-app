@@ -1,7 +1,7 @@
 import initial from "./initial";
 import {fromJS} from "immutable";
 
-import { ONFORMELEMENTCHANGE, UPDATE_ERRORS, LOGOUT, ONCLICK_ICON, DELETE_ASSESSMENT_DATA, GET_ARCHIVED_ASSESSMENT_DATA, UPDATEISSUE, UPDATEISSUEFALSE, TOGGLEFORGOT, UPDATEFORGOT } from "../data/actions";
+import { ONFORMELEMENTCHANGE, UPDATE_ERRORS, LOGOUT, ONCLICK_ICON, DELETE_ASSESSMENT_DATA, GET_ARCHIVED_ASSESSMENT_DATA, UPDATEISSUE, UPDATEISSUEFALSE, TOGGLEFORGOT, UPDATEFORGOT, UPDATESHAREDCODE} from "../data/actions";
 import { USER_DATA, UPDATE_CREDENTIALS, USER_PROGRESS, USER_ASSESSMENT_DATA, SET_STUDENTS, TOPICS_DATA } from "../data/actions_API";
 
 const updateUsernameAndPassword = (state, { id, val }) => {
@@ -109,6 +109,11 @@ const updateIssueFalse = (state) => {
 	return state.set('issue', false);
 }
 
+const updateSharedCode = (state, action) => {
+	console.log(state.get('sharedCode').toJS());
+	return state.setIn(['sharedCode', action.topicTitle, action.taskID], action.code);
+}
+
 
 export default (state = initial, action) => {
 	switch (action.type) {
@@ -128,6 +133,7 @@ export default (state = initial, action) => {
 		case UPDATEFORGOT: return updateForgot(state);
 		case UPDATEISSUE: return updateIssue(state);
 		case UPDATEISSUEFALSE: return updateIssueFalse(state);
+		case UPDATESHAREDCODE: return updateSharedCode(state, action);
 		default: return state;
 	}
 };

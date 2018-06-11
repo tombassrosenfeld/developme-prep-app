@@ -135,6 +135,9 @@ p {
 
 .share-code {
 	padding: 10px;
+	#{&}__textarea {
+		margin-bottom: 10px;
+	}
 }
 
 @keyframes spin {
