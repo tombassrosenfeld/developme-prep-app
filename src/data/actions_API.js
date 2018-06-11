@@ -44,13 +44,13 @@ const getData = (token) => (dispatch, getState) => {
 			}
 		})
 		.catch( error => {
-			console.log(error.response);
 			dispatch( updateErrors('Error: unable to retrieve user data.'));
 		});
 
 	// gets modules and tasks
 	getTopics()
 		.then( response => {
+			console.log(response.data);
 			dispatch(updateErrors('')); // remove any errors
 		    dispatch(topicsData(processTopicsData(response.data))); // update state
 		})
