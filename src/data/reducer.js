@@ -8,6 +8,7 @@ const updateUsernameAndPassword = (state, { id, val }) => {
 	return state.setIn(['user', id], val);
 }
 
+// FROM API
 const updateCredentials = (state, { data }) => {
 	return state.setIn(['user', 'token'], data.token)
 				.setIn(['user', 'user_display_name'], data.user_display_name)
@@ -36,6 +37,7 @@ const updateUserAssessmentData = (state, { data }) => {
 	return state.set('assessmentData', data);
 }
 
+// From API
 const updateUserSharedCode = (state, {data}) => {
 	return state.set('sharedCode', data);
 }
