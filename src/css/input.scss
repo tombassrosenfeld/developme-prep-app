@@ -18,6 +18,13 @@ $lightestGrey: #F7F7F7;
 	color: $homeGreen;
 }
 
+.bgrd-green {
+	background-color: $homeGreen;
+}
+
+.bgrd-grey {
+	background-color: $lightGrey;	
+}
 /******************************************/
 /*Generic*/
 /******************************************/
@@ -146,6 +153,10 @@ p {
 	#{&}__message {
 		text-align: center;
 	}
+}
+
+.btn-submit {
+	background-color: #00e6b8;
 }
 
 @keyframes spin {

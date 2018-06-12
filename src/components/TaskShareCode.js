@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default ({ topicTitle, taskID, sharedCode, onChangeSharedCode, onClickSharedCodeSubmit, onClickSharedCodeSave }) => {
-	console.log(sharedCode.getIn([topicTitle, taskID]).toJS());
+	console.log(sharedCode.toJS());
 	let code = sharedCode.getIn([topicTitle, taskID, 'code']);
 	let pending = sharedCode.getIn([topicTitle, taskID, 'pending']);
 	let newFeedback = sharedCode.getIn([topicTitle, taskID, 'newFeedback']);
@@ -23,8 +23,8 @@ export default ({ topicTitle, taskID, sharedCode, onChangeSharedCode, onClickSha
 					<p className="share-code__message green">Your code been reviewed. Please read the feedback shown below and put any suggestions into practice in your next coding exercise.</p> 
 					: null
 				}
-				<button className="btn btn-default btn-logout btn-submit" onClick={() => onClickSharedCodeSave(topicTitle, taskID)}>Save</button>
-				<button className="btn btn-default btn-logout btn-submit pull-right" onClick={() => onClickSharedCodeSubmit(topicTitle, taskID)}>Submit</button>
+				<button className="btn btn-default btn-logout bgrd-grey" onClick={() => onClickSharedCodeSave(topicTitle, taskID)}>Save</button>
+				<button className="btn btn-default btn-logout bgrd-green pull-right" onClick={() => onClickSharedCodeSubmit(topicTitle, taskID)}>Submit</button>
 			</div>
 	  	</div>
 	)

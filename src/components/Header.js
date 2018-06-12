@@ -12,7 +12,7 @@ export default ({user, loggedIn, logOut, userRole}) => (
 		  
 				{ loggedIn? 
 					<Link className="home-link" to="/">
-						<button className="btn btn-default pull-right btn-logout" onClick={ () => logOut() }>Log Out
+						<button className="btn btn-default pull-right btn-logout bgrd-green" onClick={ () => logOut() }>Log Out
 						</button> 
 					</Link>
 					: null}

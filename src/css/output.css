@@ -6,6 +6,12 @@
 .green {
   color: #00e6b8; }
 
+.bgrd-green {
+  background-color: #00e6b8; }
+
+.bgrd-grey {
+  background-color: #C9C9C9; }
+
 /******************************************/
 /*Generic*/
 /******************************************/
@@ -110,6 +116,9 @@ p {
   .share-code .share-code__message {
     text-align: center; }
 
+.btn-submit {
+  background-color: #00e6b8; }
+
 @keyframes spin {
   0% {
     transform: rotate(0deg); }
@@ -134,7 +143,6 @@ p {
   display: inline-block; }
 
 .btn-logout {
-  background-color: #00e6b8;
   color: #404040;
   border: none;
   font-size: 10px; }
@@ -449,9 +457,6 @@ INSTRUCTOR VIEW
 .issue-buttons {
   display: flex;
   justify-content: center; }
-
-.btn-submit {
-  background-color: #00e6b8; }
 
 #issue-description {
   padding-top: 10px;
