@@ -10,8 +10,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	onChangeSharedCode: (code, topicTitle, taskID) => dispatch(updateSharedCode(code, topicTitle, taskID)),
-	onClickSharedCodeSubmit: () => dispatch(onClickSharedCodeSubmit()),
-	onClickSharedCodeSave: () => dispatch(onClickSharedCodeSave()),
+	onClickSharedCodeSubmit: (topicTitle, taskID) => dispatch(onClickSharedCodeSubmit(topicTitle, taskID)),
+	onClickSharedCodeSave: (topicTitle, taskID) => dispatch(onClickSharedCodeSave(topicTitle, taskID)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TaskShareCode);

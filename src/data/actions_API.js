@@ -29,7 +29,6 @@ const getData = (token) => (dispatch, getState) => {
 	let userEmail = getState().getIn(['user', 'user_email']);
 	getUserData(token, userEmail)
 		.then( response => {
-			console.log(response);
 			dispatch(updateErrors('')); // remove any errors
 			dispatch(userData(response.data)); // update state with user data
 			dispatch(userProgress(List(response.data[0].userProgress))); // update state with user progress
@@ -174,28 +173,34 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 		} );
 }
 
-export const onClickSharedCodeSubmit = () => (dispatch, getState) => {
+export const onClickSharedCodeSubmit = (topicTitle, taskID) => (dispatch, getState) => {
 	dispatch(updateErrors(''));
-	let data = getState().get('sharedCode').toJS();
+	dispatch(updateMessage(''));
+	let data = getState().get('sharedCode');
+	data = data.setIn([topicTitle, taskID, 'pending'], true);
 	let userID = getState().getIn(['user', 'id']);
 	let token = getState().getIn(['user', 'token']);
-	postUserSharedCode(data, userID, token)
+	postUserSharedCode(data.toJS(), userID, token)
 		.then( response => {
 			dispatch(updateErrors(''));
 			dispatch(updateMessage('You\'re code has been submitted and will be marked by an instructor soon!'));
+			dispatch(userSharedCode(fromJS(response.data))); // update state
 		})
 		.catch( error => dispatch(updateErrors('Sorry, we couldn\'t submit your code at this time. Please try again.')) )
 }
 
-export const onClickSharedCodeSave = () => (dispatch, getState) => {
+export const onClickSharedCodeSave = (topicTitle, taskID) => (dispatch, getState) => {
 	dispatch(updateErrors(''));
-	let data = getState().get('sharedCode').toJS();
+	dispatch(updateMessage(''));
+	let data = getState().get('sharedCode');
+	data = data.setIn([topicTitle, taskID, 'newFeedback'], false); // assume if they are saving that they have read any feedback
 	let userID = getState().getIn(['user', 'id']);
 	let token = getState().getIn(['user', 'token']);
-	postUserSharedCode(data, userID, token)
+	postUserSharedCode(data.toJS(), userID, token)
 		.then( response => {
 			dispatch(updateErrors(''));
 			dispatch(updateMessage('You\'re code has been saved!'));
+			dispatch(userSharedCode(fromJS(response.data))); // update state
 		})
 		.catch( error => dispatch(updateErrors('Sorry, we couldn\'t save your code at this time. Please try again.')) )
 }
