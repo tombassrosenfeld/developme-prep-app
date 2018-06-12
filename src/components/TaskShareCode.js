@@ -1,9 +1,9 @@
 import React from 'react';
 
 export default ({ topicTitle, taskID, sharedCode, onChangeSharedCode, onClickSharedCodeSubmit }) => {
-	let approved = sharedCode.getIn([topicTitle, taskID, 'approved']);
 	let code = sharedCode.getIn([topicTitle, taskID, 'code']);
-	let pending = !code && !approved;
+	let pending = sharedCode.getIn([topicTitle, taskID, 'pending']);
+	let newFeedback = sharedCode.getIn([topicTitle, taskID, 'newFeedback']);
 	return (
 	  	<div className="panel">
 	  		<div className="form-group share-code">
@@ -11,14 +11,14 @@ export default ({ topicTitle, taskID, sharedCode, onChangeSharedCode, onClickSha
 			  	<textarea 
 			  		className="form-control share-code__textarea" 
 			  		rows="5"
-			  		value={sharedCode.getIn([topicTitle, taskID, 'code']) ? code : ""}
+			  		value={code ? code : ""}
 			  		onChange={(e) => onChangeSharedCode(e.target.value, topicTitle, taskID)}
 			  	></textarea>
 				{pending ? 
 					<p className="share-code__message green">Your code has been submitted and will be reviewed by an instructor very soon.</p> 
 					: null
 				}
-				{approved ? 
+				{newFeedback ? 
 					<p className="share-code__message green">Your code been reviewed. Please read the feedback shown below and put any suggestions into practice in your next coding exercise.</p> 
 					: null
 				}

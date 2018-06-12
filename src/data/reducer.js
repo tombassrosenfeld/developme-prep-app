@@ -122,10 +122,9 @@ const updateIssueFalse = (state) => {
 
 const updateSharedCode = (state, action) => {
 	let tasks = state.getIn(['sharedCode', action.topicTitle]) ? state.getIn(['sharedCode', action.topicTitle]) : List([]);
-	tasks = tasks.set(action.taskID, Map({code: action.code, approved: false}));
+	tasks = tasks.set(action.taskID, Map({code: action.code}));
 	return state.setIn(['sharedCode', action.topicTitle], tasks);
 }
-
 
 export default (state = initial, action) => {
 	switch (action.type) {
