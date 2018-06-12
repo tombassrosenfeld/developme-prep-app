@@ -6,6 +6,7 @@ import {
 import Header from '../containers/Header';
 import Footer from '../components/Footer';
 import Errors from '../containers/Errors';
+import Messages from '../containers/Messages';
 import TopicsNav from '../containers/TopicsNav';
 import CohortNav from '../containers/instructor/CohortNav';
 import Topic from '../containers/Topic';
@@ -82,6 +83,7 @@ class App extends Component {
           </div>
         </div>  
         <Errors />
+        <Messages />
         {this.props.loggedIn ? <Footer /> : null }
       </div>
     </Router>

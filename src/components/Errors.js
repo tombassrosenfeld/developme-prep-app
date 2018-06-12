@@ -2,12 +2,12 @@ import React from 'react';
 
 export default ({errors, dismissErrors}) => (
 	<div 
-		className="error-message-container" 
+		className="message-container message-container__red" 
 		style={{ display: errors? 'block' : 'none' }}
 		onClick={ () => dismissErrors() }
 	>
 		<div className="col-xs-12">
-			<p className="error-message">{ errors }</p>
+			<p className="message">{ errors }</p>
 		</div>	
 	</div>
 )

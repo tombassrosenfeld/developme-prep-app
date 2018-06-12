@@ -60,18 +60,21 @@ p {
 .panel:last-of-type {
   border-bottom: 1px solid #E5E5E5; }
 
-.error-message-container {
+.message-container {
   position: fixed;
   top: 10px;
   left: 10px;
   z-index: 5;
   width: calc(100% - 20px);
   padding: 8px 0;
-  background-color: #FF3030;
+  background-color: #00e6b8;
   cursor: pointer;
   border-radius: 4px; }
 
-.error-message {
+.message-container__red {
+  background-color: #FF3030; }
+
+.message {
   color: #FFF;
   margin-bottom: 0; }
 
