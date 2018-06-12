@@ -1,7 +1,7 @@
 import initial from "./initial";
 import {List, Map, fromJS} from "immutable";
 
-import { ONFORMELEMENTCHANGE, UPDATE_ERRORS, LOGOUT, ONCLICK_ICON, DELETE_ASSESSMENT_DATA, GET_ARCHIVED_ASSESSMENT_DATA, UPDATEISSUE, UPDATEISSUEFALSE, TOGGLEFORGOT, UPDATEFORGOT, UPDATESHAREDCODE} from "../data/actions";
+import { ONFORMELEMENTCHANGE, UPDATE_ERRORS, UPDATE_MESSAGE, LOGOUT, ONCLICK_ICON, DELETE_ASSESSMENT_DATA, GET_ARCHIVED_ASSESSMENT_DATA, UPDATEISSUE, UPDATEISSUEFALSE, TOGGLEFORGOT, UPDATEFORGOT, UPDATESHAREDCODE} from "../data/actions";
 import { USER_DATA, UPDATE_CREDENTIALS, USER_PROGRESS, USER_ASSESSMENT_DATA, USER_SHARED_CODE, SET_STUDENTS, TOPICS_DATA } from "../data/actions_API";
 
 const updateUsernameAndPassword = (state, { id, val }) => {
@@ -18,6 +18,11 @@ const updateCredentials = (state, { data }) => {
 
 const updateErrors = (state, { errorMessage }) => {
 	return state.set('errors', errorMessage);
+}
+
+const updateMessage = (state, { message }) => {
+	console.log(message);
+	return state.set('message', message);
 }
 
 const updateUser = (state, { data }) => {
@@ -131,6 +136,7 @@ export default (state = initial, action) => {
 		case ONFORMELEMENTCHANGE: return updateUsernameAndPassword(state, action);
 		case UPDATE_CREDENTIALS: return updateCredentials(state, action);
 		case UPDATE_ERRORS: return updateErrors(state, action);
+		case UPDATE_MESSAGE: return updateMessage(state, action);
 		case USER_DATA: return updateUser(state, action);
 		case USER_PROGRESS: return updateUserProgress(state, action);
 		case USER_ASSESSMENT_DATA: return updateUserAssessmentData(state, action);

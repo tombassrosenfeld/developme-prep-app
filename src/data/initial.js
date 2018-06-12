@@ -12,6 +12,7 @@ export default Map({
 	studentsToMark: List([]),
 	archivedAssessmentData: List([]),
 	errors: '',
+	messages: '',
 	cohorts: List([]),
 	forgotPassword: true,
 	issue: false,

@@ -4,6 +4,7 @@ export const UPDATEFORGOT = Symbol("UPDATEFORGOT");
 export const ONFORMELEMENTCHANGE = Symbol("ONFORMELEMENTCHANGE");
 export const ONCLICK_ICON = Symbol("ONCLICK_ICON");
 export const UPDATE_ERRORS = Symbol("UPDATE_ERRORS");
+export const UPDATE_MESSAGE = Symbol("UPDATE_MESSAGE");
 export const DELETE_ASSESSMENT_DATA = Symbol("DELETE_ASSESSMENT_DATA");
 export const GET_ARCHIVED_ASSESSMENT_DATA = Symbol("GET_ARCHIVED_ASSESSMENT_DATA");
 export const UPDATEISSUE = Symbol("UPDATEISSUE");
@@ -35,6 +36,11 @@ export const onClickIcon = (id) => ({
 export const updateErrors = (errorMessage) => ({
 	type: UPDATE_ERRORS,
 	errorMessage,
+})
+
+export const updateMessage = (message) => ({
+	type: UPDATE_MESSAGE,
+	message,
 })
 
 export const deleteAssessmentData = (topicTitle, assessmentID, assessment) => ({

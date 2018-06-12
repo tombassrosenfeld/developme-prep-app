@@ -1,11 +1,11 @@
 import axios from '../data/axios';
 import { processTopicsData } from '../utilities/utilities';
-import { updateErrors, updateIssue, updateForgot } from './actions';
+import { updateErrors, updateMessage, updateIssue, updateForgot } from './actions';
 import { List, fromJS } from "immutable";
 import { getUserRole } from "../utilities/utilities";
 
 export const UPDATE_CREDENTIALS = Symbol("UPDATE_CREDENTIALS");
-export const UPDATE_ERRORS = Symbol("UPDATE_ERRORS");
+// export const UPDATE_ERRORS = Symbol("UPDATE_ERRORS");
 export const TOPICS_DATA = Symbol("TOPICS_DATA");
 export const USER_DATA = Symbol("USER_DATA");
 export const USER_PROGRESS = Symbol("USER_PROGRESS");
@@ -182,8 +182,22 @@ export const onClickSharedCodeSubmit = () => (dispatch, getState) => {
 	postUserSharedCode(data, userID, token)
 		.then( response => {
 			dispatch(updateErrors(''));
+			dispatch(updateMessage('You\'re code has been submitted and will be marked by an instructor soon!'));
 		})
 		.catch( error => dispatch(updateErrors('Sorry, we couldn\'t submit your code at this time. Please try again.')) )
+}
+
+export const onClickSharedCodeSave = () => (dispatch, getState) => {
+	dispatch(updateErrors(''));
+	let data = getState().get('sharedCode').toJS();
+	let userID = getState().getIn(['user', 'id']);
+	let token = getState().getIn(['user', 'token']);
+	postUserSharedCode(data, userID, token)
+		.then( response => {
+			dispatch(updateErrors(''));
+			dispatch(updateMessage('You\'re code has been saved!'));
+		})
+		.catch( error => dispatch(updateErrors('Sorry, we couldn\'t save your code at this time. Please try again.')) )
 }
 
 export const onForgotFormSubmit = data => (dispatch, getState )=> {
