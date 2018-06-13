@@ -43,7 +43,7 @@ class App extends Component {
             </div>
           )} />
           <Route path="/marking/" render={ ({ match }) => (
-            <Marking />
+            this.props.userRole === 'instructor' && this.props.cohortsLoaded ? <Marking /> : null
           )} />          
           <Route path="/prep/topic/:id" render={ ({ match }) => (
             <Topic id={ match.params.id }/>

@@ -55,6 +55,12 @@ const setStudents = (state, { data }) => {
 
 const searchForMarking = (data) => {
 	data.map((student) => {
+		// check if any of their shared code is pending
+		// if so store student id in state
+		let sharedCode = student.get('userSharedCode');
+		let hasMarking = false;
+		sharedCode.map((topic) => topic.reduce((task) => if (task.get('pending') return true, false)));
+		// console.log(hasMarking);
 	})
 }
 
