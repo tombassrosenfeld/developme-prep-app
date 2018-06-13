@@ -5,7 +5,7 @@ import { logOut } from "../data/actions";
 const mapStateToProps = state => ({
 	loggedIn: state.get('loggedIn'),
 	user: state.get('user'),
-  userRole: state.getIn(['user', 'roles']).reduce((role, r) => role += r === 'student' || r === 'instructor' ? r : '', ''),
+  	userRole: state.getIn(['user', 'roles']).reduce((role, r) => role += r === 'student' || r === 'instructor' ? r : '', ''),
 });
 
 const mapDispatchToProps = dispatch => ({

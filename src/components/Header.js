@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import ModulesNav from "./ModulesNav";
+import ModulesNav from "../containers/ModulesNav";
 
 export default ({user, loggedIn, logOut, userRole}) => (
 	<div>
@@ -29,7 +29,7 @@ export default ({user, loggedIn, logOut, userRole}) => (
 			</div>
 		</div>
 
-		{ loggedIn? <ModulesNav text={userRole === 'student' ? 'Preparation' : 'Students'} /> : null }
+		{ loggedIn? <ModulesNav userRole={userRole} /> : null }
 
 	</div>
 )

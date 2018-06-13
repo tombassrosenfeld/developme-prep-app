@@ -47,14 +47,15 @@
 .bottom-nav {
 	background-color: $lightGrey;
 	text-align: center;
+	padding: 2px;
 }
 
 .bottom-nav-module {
 	display: inline-block;
 	background-color: $homeGreen;
 	padding: 5px 10px;
-	border-radius: 5px;
-	margin: 0 5px;
+	border-radius: 2px;
+	margin: 0 1px;
 	cursor: pointer;
 }
 .user-icon {
@@ -71,13 +72,13 @@
 	}
 }
 
-.home-div {
-	padding: 4px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-decoration: none !important;
-}
+// .home-div {
+// 	padding: 4px;
+// 	display: flex;
+// 	justify-content: center;
+// 	align-items: center;
+// 	text-decoration: none !important;
+// }
 
 .fa-home {
 	color: $black;
