@@ -127,7 +127,7 @@ const updateIssueFalse = (state) => {
 
 const updateSharedCode = (state, action) => {
 	let tasks = state.getIn(['sharedCode', action.topicTitle]) ? state.getIn(['sharedCode', action.topicTitle]) : List([]);
-	tasks = tasks.set(action.taskID, Map({code: action.code}));
+	tasks = tasks.setIn([action.taskID, 'code'], action.code);
 	return state.setIn(['sharedCode', action.topicTitle], tasks);
 }
 
