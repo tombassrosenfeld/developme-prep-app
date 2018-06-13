@@ -170,7 +170,8 @@ p {
 .bottom-nav {
   background-color: #C9C9C9;
   text-align: center;
-  padding: 2px; }
+  padding: 2px;
+  min-height: 30px; }
 
 .bottom-nav-module {
   display: inline-block;

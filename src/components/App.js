@@ -16,6 +16,7 @@ import Assessment from '../containers/Assessment';
 import Login from '../containers/Login';
 import Welcome from '../containers/Welcome';
 import StudentRecord from '../containers/instructor/StudentRecord';
+import Marking from '../containers/instructor/Marking';
 
 
 class App extends Component {
@@ -41,6 +42,9 @@ class App extends Component {
             <Welcome userRole={this.props.userRole}/>
             </div>
           )} />
+          <Route path="/marking/" render={ ({ match }) => (
+            <Marking />
+          )} />          
           <Route path="/prep/topic/:id" render={ ({ match }) => (
             <Topic id={ match.params.id }/>
           )} />
