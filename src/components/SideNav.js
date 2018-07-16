@@ -8,8 +8,10 @@ class SideNav extends Component {
 		this.state = {
 			toggle: false,
 			height: 0,
+			activeIcon: null,
 		};
 		this.switch = this.switch.bind(this);
+		this.onClick = this.onClick.bind(this);
 	}
 
 	switch() {
@@ -17,9 +19,14 @@ class SideNav extends Component {
 		this.setState({toggle: !current})
 		this.setState({ height: this.state.height === 0 ? 'auto' : 0 })
 	}
+
+	onClick(i) {
+		this.setState({activeIcon: i})
+	}
+
 	render() {
 		const {title, navItems, onClickIcon, userRole} = this.props;
-		const { height } = this.state;
+		const { height, activeIcon } = this.state;
 
 		return (
 			<nav id='student-nav'>
@@ -45,10 +52,11 @@ class SideNav extends Component {
 								{ navItems.map((navItem, i) => (
 									<SideNavItem 
 										key={ i } 
+										active={i === activeIcon}
 										id={ userRole === 'student' ? navItem.get('id') : navItem.get('name') } 
 										title={ userRole === 'student' ? navItem.get('short_title') : navItem.get('name') }
 										selected={ navItem.get('selected') } 
-										onClick={ () => onClickIcon(userRole === 'student' ? navItem.get('id') : i) }
+										onClick={ () => {onClickIcon(userRole === 'student' ? navItem.get('id') : i); this.onClick(i); } }
 										route={ userRole === 'student' ? '/prep/topic/' : '/cohort/'}
 									/>
 								)) }

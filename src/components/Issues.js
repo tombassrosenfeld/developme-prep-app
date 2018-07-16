@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import IssuesForm from '../containers/IssuesForm';
-import AnimateHeight from 'react-animate-height';
 
 class Issues extends Component {
 	constructor(props) {

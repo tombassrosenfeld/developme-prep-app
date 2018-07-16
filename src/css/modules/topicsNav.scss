@@ -29,8 +29,12 @@
 	color: $darkGrey;
 }
 
-.topics-icon:hover {
+.topics-icon:hover, .topics-icon.active {
 	background-color: $homeGreen;
 	color: $black;
 	font-weight: bold;
+	text-decoration: none;
+	h2 {
+		text-decoration: none;
+	}
 }

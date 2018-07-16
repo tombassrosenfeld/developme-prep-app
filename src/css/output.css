@@ -223,10 +223,13 @@ p {
   margin: 10px 0;
   color: #4d4d4d; }
 
-.topics-icon:hover {
+.topics-icon:hover, .topics-icon.active {
   background-color: #00e6b8;
   color: #404040;
-  font-weight: bold; }
+  font-weight: bold;
+  text-decoration: none; }
+  .topics-icon:hover h2, .topics-icon.active h2 {
+    text-decoration: none; }
 
 .email-div {
   display: flex;
