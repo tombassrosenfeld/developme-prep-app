@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import Header from '../containers/Header';
 import Footer from '../components/Footer';
+import Register from '../components/Register';
 import Errors from '../containers/Errors';
 import TopicsNav from '../containers/TopicsNav';
 import CohortNav from '../containers/instructor/CohortNav';
@@ -43,6 +44,7 @@ class App extends Component {
           <Route path="/prep/topic/:id" render={ ({ match }) => (
             <Topic id={ match.params.id }/>
           )} />
+          <Route path="/register" component={Register} />
           <Route exact path="/cohort/:id" render={ ({ match }) => (
             this.props.userRole === 'instructor' && this.props.cohortsLoaded ?
             <Cohort id={ match.params.id }/> 

@@ -2,22 +2,24 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import ModulesNav from "./ModulesNav";
 
-export default ({user, loggedIn, logOut, userRole}) => (
+export default ({user, loggedIn, logOut, userRole, setRegistering}) => (
 	<div>
 		<div className="row top-nav">
 			<div className="col-xs-12">
 				<Link className="home-link" to="/">
 					<div className="logo"></div>
-		  		</Link>	
-		  
+		  		</Link>			  
 				{ loggedIn? 
 					<Link className="home-link" to="/">
 						<button className="btn btn-default pull-right btn-logout" onClick={ () => logOut() }>Log Out
 						</button> 
 					</Link>
-					: null}
-				{ loggedIn? <i className="fa user-icon fa-user pull-right" aria-hidden="true"></i> : null }
-				
+					: 
+					<button className="btn btn-default pull-right btn-logout" onClick={ setRegistering }>Register
+					</button> 
+					}
+				{ loggedIn? <i className="fa user-icon fa-user pull-right" aria-hidden="true"></i> : <i className="fa user-icon fa-user-plus pull-right" aria-hidden="true"></i>} 
+
 			</div>
 		</div>
 

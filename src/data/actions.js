@@ -1,4 +1,5 @@
 export const LOGOUT = Symbol("LOGOUT");
+export const SET_REGISTERING = Symbol("SET_REGISTERING");
 export const TOGGLEFORGOT = Symbol("TOGGLEFORGOT");
 export const UPDATEFORGOT = Symbol("UPDATEFORGOT");
 export const ONFORMELEMENTCHANGE = Symbol("ONFORMELEMENTCHANGE");
@@ -11,6 +12,9 @@ export const UPDATEISSUEFALSE = Symbol("UPDATEISSUEFALSE");
 
 export const logOut = () => ({
 	type: LOGOUT,
+})
+export const setRegistering = () => ({
+	type: SET_REGISTERING,
 })
 export const toggleForgot = () => ({
 	type: TOGGLEFORGOT,

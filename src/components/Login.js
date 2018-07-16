@@ -1,9 +1,11 @@
 import React from 'react';
 import ForgotPassword from '../containers/ForgotPassword';
+import Register from './Register';
 
-export default ({user, authenticate, onFormElementChange, forgotPassword }) => (
+export default ({user, authenticate, onFormElementChange, forgotPassword, registering }) => (
 	<div>
 		<div className="row">
+			{!registering ?
 			<form onSubmit={ (e) => authenticate(e, user.get('username'), user.get('password'))}>
 				<div className="col-sm-4 col-sm-offset-1">	
 					<div className="form-group">
@@ -32,8 +34,8 @@ export default ({user, authenticate, onFormElementChange, forgotPassword }) => (
 				<div className="col-sm-2">	
 					<input className="btn btn-default btn-login btn-block" type="submit" />
 				</div>
-			</form>
+			</form> : <Register /> }
 		</div>
-		<ForgotPassword />	
+		{!registering ? <ForgotPassword />	: null}
 	</div>
 )

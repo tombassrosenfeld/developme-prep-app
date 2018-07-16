@@ -6,6 +6,7 @@ import { onFormElementChange } from "../data/actions";
 const mapStateToProps = state => ({
    user: state.get('user'),
    forgotPassword: state.get('forgotPassword'),
+   registering: state.get('registering')
 });
 
 const mapDispatchToProps = dispatch => ({
