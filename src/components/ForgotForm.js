@@ -31,7 +31,7 @@ class ForgotForm extends Component {
             <div className="row forgot-form">
         		{ !forgotPassword || !resetSuccess ?
                     <form onSubmit={ this.submit }>
-                        <div className="col-sm-12 col-sm-offset-1">  
+                        <div className="col-sm-6 col-sm-offset-1">  
                             <h2 className="forgot-form__header">Reset your password</h2>
                         </div>
                         <div className="col-sm-6 col-sm-offset-1">  

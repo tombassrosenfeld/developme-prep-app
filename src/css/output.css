@@ -618,7 +618,9 @@ INSTRUCTOR VIEW
   background-color: #00e6b8; }
 
 .forgot-form {
-  padding-top: 8px; }
+  margin: 1em -15px;
+  padding: 1.5em 0 1em;
+  background-color: #FFF; }
   .forgot-form__label {
     color: #404040;
     font-weight: 500; }
@@ -633,6 +635,10 @@ INSTRUCTOR VIEW
   @media only screen and (max-width: 768px) {
     .forgot-password-text {
       margin: 20px 0; } }
+
+.forgot-form__header {
+  margin: 0;
+  padding: 0; }
 
 .forgot-form__message {
   text-align: center;

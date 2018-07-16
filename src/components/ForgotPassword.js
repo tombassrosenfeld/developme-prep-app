@@ -26,7 +26,6 @@ class ForgotPassword extends Component {
 						<p className= "forgot-password-text" onClick={ this.switch }>Forgot Password</p>
 					</div>
 				</div>
-			
 				<AnimateHeight
 					duration={ 500 }
 		        	height={ height }
