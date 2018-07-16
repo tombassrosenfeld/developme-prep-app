@@ -3,7 +3,8 @@ import ForgotPassword from "../components/ForgotPassword";
 import { toggleForgot } from "../data/actions";
 
 const mapStateToProps = state => ({
-   forgotPassword: state.get('forgotPassword'),
+	resetSuccess: state.get('resetSuccess'),
+   	forgotPassword: state.get('forgotPassword'),
 });
 const mapDispatchToProps = dispatch => ({
 	toggleForgot: () => dispatch(toggleForgot()),

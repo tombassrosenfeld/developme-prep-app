@@ -622,6 +622,9 @@ INSTRUCTOR VIEW
   .forgot-form__label {
     color: #404040;
     font-weight: 500; }
+  .forgot-form__header {
+    padding: 0 0 1em;
+    font-size: 1.25em; }
 
 .forgot-password-text {
   cursor: pointer;
@@ -631,9 +634,14 @@ INSTRUCTOR VIEW
     .forgot-password-text {
       margin: 20px 0; } }
 
-.onsubmit-text {
+.forgot-form__message {
   text-align: center;
-  color: #00e6b8;
   font-size: 16px; }
+
+.forgot-form__message--success {
+  color: #00e6b8; }
+
+.forgot-form__message--fail {
+  color: #FF3030; }
 
 /*# sourceMappingURL=output.css.map */

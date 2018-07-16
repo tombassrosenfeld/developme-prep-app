@@ -15,8 +15,9 @@ export const logOut = () => ({
 export const toggleForgot = () => ({
 	type: TOGGLEFORGOT,
 })
-export const updateForgot = () => ({
+export const updateForgot = data => ({
 	type: UPDATEFORGOT,
+	data: data,
 })
 // binding of login form to state
 export const onFormElementChange = (id, val) => ({

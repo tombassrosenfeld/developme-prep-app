@@ -86,10 +86,12 @@ const logOut = (state) => {
 	return state.set('loggedIn', false);
 }
 const toggleForgot = (state) => {
-	return state.set('forgotPassword', false);
+	return state.set('forgotPassword', false).set('resetSuccess', false);
 }
-const updateForgot = (state) => {
-	return state.set('forgotPassword', true);
+const updateForgot = (state, {data}) => {
+	const success = data.success;
+	const forgotMessage = data.message;
+	return state.set('forgotPassword', true).set('resetSuccess', success).set('forgotPasswordMessage', forgotMessage);
 }
 const deleteAssessmentData = (state, {topicTitle, assessmentID, assessment}) => {
 	const answers = state.getIn(['assessmentData', topicTitle, assessmentID, 'answers']);
@@ -125,7 +127,7 @@ export default (state = initial, action) => {
 		case ONCLICK_ICON: return onClickIcon(state, action);
 		case LOGOUT: return logOut(state);
 		case TOGGLEFORGOT: return toggleForgot(state);
-		case UPDATEFORGOT: return updateForgot(state);
+		case UPDATEFORGOT: return updateForgot(state, action);
 		case UPDATEISSUE: return updateIssue(state);
 		case UPDATEISSUEFALSE: return updateIssueFalse(state);
 		default: return state;

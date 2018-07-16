@@ -178,7 +178,7 @@ export const onForgotFormSubmit = data => (dispatch, getState )=> {
 	dispatch(updateErrors(''));
 	postForgotForm(data)
 		.then( response => {
-			dispatch(updateForgot());
+			dispatch(updateForgot(response.data));
 		})
 		.catch( error => dispatch(updateErrors('Request was not submitted, please check for errors')) )
 };

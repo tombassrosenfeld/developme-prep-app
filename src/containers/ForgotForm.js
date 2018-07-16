@@ -4,7 +4,9 @@ import { onForgotFormSubmit } from "../data/actions_API";
 
 
 const mapStateToProps = state => ({
-	forgotPassword: state.get('forgotPassword')
+	forgotPassword: state.get('forgotPassword'),
+	resetSuccess: state.get('resetSuccess'),
+	forgotPasswordMessage: state.get('forgotPasswordMessage'),
 });
 
 const mapDispatchToProps = dispatch => ({
