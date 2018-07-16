@@ -7,7 +7,7 @@ export default ({id, selected, title, onClick, route, active }) => (
 			className={active ? "active topics-icon row" : "topics-icon row" }
 			onClick={ onClick } 
 		>
-			<h2 className="topics-icon-title">{ title }</h2>
+			<h2 className="topics-icon-title"><span>{ title }</span></h2>
 		</div>
     </Link>
 )
