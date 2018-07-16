@@ -132,6 +132,14 @@ p {
 	animation: spin 2s infinite linear;
 }
 
+
+/* remember to define focus styles! */
+*:focus {
+	outline: none !important;
+  	-webkit-box-shadow: none !important;
+  	box-shadow: none !important;
+}
+
 @keyframes spin {
 	0% {
 		transform: rotate(0deg);
