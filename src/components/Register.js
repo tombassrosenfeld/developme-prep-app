@@ -21,6 +21,7 @@ class ForgotForm extends Component {
 					value: '',
 				}
 			],
+			errorMessage: '',
 		}
 		this.onSubmit = this.onSubmit.bind(this);
 	}
@@ -33,13 +34,32 @@ class ForgotForm extends Component {
 	}
 	onSubmit(e) {
 		e.preventDefault();
-		this.props.onSubmit(this.state.fields.map(field => ({
-			data: field.label,
-			value: field.value
-		})));
+		const fields = this.state.fields;
+		const fieldsHaveValues = fields.every(field => field.value);
+		let errorMessage = '';
+
+		//If password length is < 8
+		if(fields[2].value.length < 8) {
+			errorMessage = 'Your password must be a minimum of 8 characters';
+		}
+
+		if(!fieldsHaveValues) {
+			errorMessage = 'Please enter values for all of the fields';
+		}
+
+
+		if(!errorMessage) {
+			this.props.onSubmit(fields.map(field => ({
+				data: field.label,
+				value: field.value
+			})));
+		}
+
+		this.setState({errorMessage});
+
 	}
 	render() {
-		const {fields} = this.state;
+		const {fields, errorMessage} = this.state;
 		const {cancel} = this.props;
 		return (
 			<div class="col-xs-12"> 
@@ -57,6 +77,9 @@ class ForgotForm extends Component {
 							    />
 							</div>
 						</div> )}
+						<div className="col-xs-12 col-sm-6 col-md-8">
+						{errorMessage ? <p className="registration-validation">{errorMessage}</p> : null}
+						</div>
 						<div className="col-xs-12 col-sm-3 col-md-2">
 							<input className="btn btn-default btn-login btn-block btn-submit" type="submit" />
 						</div>
