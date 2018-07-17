@@ -14,4 +14,6 @@ export default Map({
 	cohorts: List([]),
 	forgotPassword: true,
 	issue: false,
+	registering: false,
+	userRegistered: false,
 });

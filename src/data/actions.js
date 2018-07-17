@@ -1,5 +1,6 @@
 export const LOGOUT = Symbol("LOGOUT");
 export const SET_REGISTERING = Symbol("SET_REGISTERING");
+export const SET_USER_REGISTERED = Symbol("SET_USER_REGISTERED");
 export const CANCEL_REGISTRATION = Symbol("CANCEL_REGISTRATION");
 export const TOGGLEFORGOT = Symbol("TOGGLEFORGOT");
 export const UPDATEFORGOT = Symbol("UPDATEFORGOT");
@@ -16,6 +17,10 @@ export const logOut = () => ({
 })
 export const setRegistering = () => ({
 	type: SET_REGISTERING,
+})
+export const setUserRegistered = data => ({
+	type: SET_USER_REGISTERED,
+	data,
 })
 export const cancelRegistration = () => ({
 	type: CANCEL_REGISTRATION,

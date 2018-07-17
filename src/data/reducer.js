@@ -1,8 +1,8 @@
 import initial from "./initial";
 import {fromJS} from "immutable";
 
-import { ONFORMELEMENTCHANGE, UPDATE_ERRORS, LOGOUT, SET_REGISTERING, CANCEL_REGISTRATION, ONCLICK_ICON, DELETE_ASSESSMENT_DATA, GET_ARCHIVED_ASSESSMENT_DATA, UPDATEISSUE, UPDATEISSUEFALSE, TOGGLEFORGOT, UPDATEFORGOT } from "../data/actions";
-import { USER_DATA, UPDATE_CREDENTIALS, USER_PROGRESS, USER_ASSESSMENT_DATA, SET_STUDENTS, TOPICS_DATA } from "../data/actions_API";
+import { ONFORMELEMENTCHANGE, UPDATE_ERRORS, LOGOUT, SET_REGISTERING, SET_USER_REGISTERED, CANCEL_REGISTRATION, ONCLICK_ICON, DELETE_ASSESSMENT_DATA, GET_ARCHIVED_ASSESSMENT_DATA, UPDATEISSUE, UPDATEISSUEFALSE, TOGGLEFORGOT, UPDATEFORGOT } from "../data/actions";
+import { USER_DATA, UPDATE_CREDENTIALS, USER_PROGRESS, USER_ASSESSMENT_DATA, SET_STUDENTS, TOPICS_DATA} from "../data/actions_API";
 
 const updateUsernameAndPassword = (state, { id, val }) => {
 	return state.setIn(['user', id], val);
@@ -87,7 +87,23 @@ const logOut = (state) => {
 }
 
 const setRegistering = (state) => {
-	return state.set('registering', true);
+	return state.set('registering', true).set('userRegistered', false);
+}
+
+const setUserRegistered = (state, {data}) => {
+
+	if(typeof data === 'object') {
+		data = fromJS(data);
+		const errorMessage = data.reduce((str, error) => str += error.get(0) + ' ', 'Error: ');
+
+		return state.set('errors', errorMessage);
+	}
+
+	if(typeof data === 'string') {
+		return state.set('registering', false).set('userRegistered', true);
+	}
+
+	return state.set('errors', 'Error: Unknown server response, please try again.');
 }
 
 const cancelRegistration = (state) => {
@@ -112,14 +128,12 @@ const getArchivedAssessmentData = (state, {topicTitle, assessmentID, assessment}
 	return state.setIn(['assessmentData', topicTitle, assessmentID, 'answers'], state.get('archivedAssessmentData'));
 }
 
-
 const updateIssue = (state) => {
 	return state.set('issue', true);
 }
 const updateIssueFalse = (state) => {
 	return state.set('issue', false);
 }
-
 
 export default (state = initial, action) => {
 	switch (action.type) {
@@ -136,6 +150,7 @@ export default (state = initial, action) => {
 		case ONCLICK_ICON: return onClickIcon(state, action);
 		case LOGOUT: return logOut(state);
 		case SET_REGISTERING: return setRegistering(state);
+		case SET_USER_REGISTERED: return setUserRegistered(state, action);
 		case CANCEL_REGISTRATION: return cancelRegistration(state);
 		case TOGGLEFORGOT: return toggleForgot(state);
 		case UPDATEFORGOT: return updateForgot(state, action);

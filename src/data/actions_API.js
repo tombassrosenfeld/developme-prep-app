@@ -1,6 +1,6 @@
 import axios from '../data/axios';
 import { processTopicsData } from '../utilities/utilities';
-import { updateErrors, updateIssue, updateForgot } from './actions';
+import { updateErrors, updateIssue, updateForgot, setUserRegistered } from './actions';
 import { List, fromJS } from "immutable";
 import { getUserRole } from "../utilities/utilities";
 
@@ -27,9 +27,9 @@ export const authenticate = (username, password) => dispatch => {
 export const registerUser = data => (dispatch)=> {
 	postUserData(data)
 		.then( response => {
-			console.log(response.data);
+			dispatch(setUserRegistered(response.data));
 		})
-		.catch( error => dispatch(updateErrors('Unable to register user, please check for errors')) )
+		.catch( error => dispatch(updateErrors('Error: unable to create new user account.')) )
 };
 
 // if authentication is successful, calls getdata()
@@ -261,7 +261,6 @@ function getTopics() {
 } 
 
 function postUserData(data) {
-	console.log(data);
 	return axios.post('/wp-json/cf/prep/register-user', { 
 		data: data,
 	})

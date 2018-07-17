@@ -200,6 +200,13 @@ p {
     padding-top: 0;
     margin: 0 auto; } }
 
+.register-confirmation {
+  margin-top: 2em;
+  padding: 1em;
+  background-color: #00e6b8;
+  border-radius: 5px;
+  color: #FFF; }
+
 .topics {
   padding-bottom: 0px; }
 
