@@ -11,6 +11,7 @@ export const USER_DATA = Symbol("USER_DATA");
 export const USER_PROGRESS = Symbol("USER_PROGRESS");
 export const USER_ASSESSMENT_DATA = Symbol("USER_ASSESSMENT_DATA");
 export const SET_STUDENTS = Symbol("SET_STUDENTS");
+export const REGISTER_USER = Symbol("REGISTER_USER");
 
 // when user submits login details, calls authenticate()
 export const authenticate = (username, password) => dispatch => {
@@ -21,6 +22,14 @@ export const authenticate = (username, password) => dispatch => {
 			dispatch(getData(response.data.token)); // and immediately calls api for module and user data
 		})
 		.catch( error => dispatch(updateErrors('Unable to log you in! Please check your details.')) )
+};
+
+export const registerUser = data => (dispatch)=> {
+	postUserData(data)
+		.then( response => {
+			console.log(response.data);
+		})
+		.catch( error => dispatch(updateErrors('Unable to register user, please check for errors')) )
 };
 
 // if authentication is successful, calls getdata()
@@ -114,7 +123,6 @@ export const onIssueFormSubmit = data => (dispatch, getState )=> {
 
 	data.email = userEmail;
 
-	console.log(data);
 	postIssue(data)
 		.then( response => {
 			dispatch(updateIssue());// Don't worry about this bit for now
@@ -252,11 +260,19 @@ function getTopics() {
 	return axios.get('/wp-json/wp/v2/cf_preparation/');
 } 
 
+function postUserData(data) {
+	console.log(data);
+	return axios.post('/wp-json/cf/prep/register-user', { 
+		data: data,
+	})
+}
+
 function postForgotForm(data) {
 	return axios.post('/wp-json/cf/prep/forgotpassword', { 
 		data: data,
 	})
 }
+
 function postIssue(data) {
 	return axios.post('/wp-json/cf/prep/issue', { 
 		data: data,

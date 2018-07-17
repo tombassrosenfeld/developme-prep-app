@@ -1,7 +1,7 @@
 import initial from "./initial";
 import {fromJS} from "immutable";
 
-import { ONFORMELEMENTCHANGE, UPDATE_ERRORS, LOGOUT, SET_REGISTERING, ONCLICK_ICON, DELETE_ASSESSMENT_DATA, GET_ARCHIVED_ASSESSMENT_DATA, UPDATEISSUE, UPDATEISSUEFALSE, TOGGLEFORGOT, UPDATEFORGOT } from "../data/actions";
+import { ONFORMELEMENTCHANGE, UPDATE_ERRORS, LOGOUT, SET_REGISTERING, CANCEL_REGISTRATION, ONCLICK_ICON, DELETE_ASSESSMENT_DATA, GET_ARCHIVED_ASSESSMENT_DATA, UPDATEISSUE, UPDATEISSUEFALSE, TOGGLEFORGOT, UPDATEFORGOT } from "../data/actions";
 import { USER_DATA, UPDATE_CREDENTIALS, USER_PROGRESS, USER_ASSESSMENT_DATA, SET_STUDENTS, TOPICS_DATA } from "../data/actions_API";
 
 const updateUsernameAndPassword = (state, { id, val }) => {
@@ -90,6 +90,10 @@ const setRegistering = (state) => {
 	return state.set('registering', true);
 }
 
+const cancelRegistration = (state) => {
+	return state.set('registering', false);
+}
+
 const toggleForgot = (state) => {
 	return state.set('forgotPassword', false).set('resetSuccess', false);
 }
@@ -132,6 +136,7 @@ export default (state = initial, action) => {
 		case ONCLICK_ICON: return onClickIcon(state, action);
 		case LOGOUT: return logOut(state);
 		case SET_REGISTERING: return setRegistering(state);
+		case CANCEL_REGISTRATION: return cancelRegistration(state);
 		case TOGGLEFORGOT: return toggleForgot(state);
 		case UPDATEFORGOT: return updateForgot(state, action);
 		case UPDATEISSUE: return updateIssue(state);
