@@ -20,7 +20,7 @@ class ForgotForm extends Component {
 					type: 'password',
 					value: '',
 				}
-			]
+			],
 		}
 		this.onSubmit = this.onSubmit.bind(this);
 	}
@@ -58,7 +58,7 @@ class ForgotForm extends Component {
 							</div>
 						</div> )}
 						<div className="col-xs-12 col-sm-3 col-md-2">
-							<input className="btn btn-default btn-login btn-block" type="submit" />
+							<input className="btn btn-default btn-login btn-block btn-submit" type="submit" />
 						</div>
 						<div className="col-xs-12 col-sm-3 col-md-2">
 							<button onClick={cancel} className="btn btn-default btn-login btn-block">Cancel</button>
