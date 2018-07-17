@@ -17,7 +17,7 @@ class ForgotForm extends Component {
 				},
 				{
 					label: 'Password',
-					type: 'passwword',
+					type: 'password',
 					value: '',
 				}
 			]
