@@ -42,7 +42,7 @@ export default ({user, authenticate, onFormElementChange, forgotPassword, regist
 		{!registering ? <ForgotPassword />	: null}
 		{userRegistered ? <div className="row">
 			<div className="col-xs-12 col-sm-6 col-sm-offset-3">
-				<p className="register-confirmation text-center">Your user account has been created, please login.</p>
+				<p className="register-form__confirmation text-center">Your user account has been created, please login.</p>
 			</div>
 		</div> : null }
 	</div>

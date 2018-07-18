@@ -1,33 +1,30 @@
 .login-form {
 	@media only screen and (min-width : 768px) {
 		width: 80%;
-   	padding-top: 0;
-    margin: 0 auto;
+	   	padding-top: 0;
+	    margin: 0 auto;
 	}	 
 } 
 
 .register-form {
-	@at-root #{&}__header {
+	@at-root #{&}__validation {
+		padding: .5em;
 
+		background-color: $red;
+		border-radius: 5px;
+		color: $white;
+	}
+	@at-root #{&}__confirmation{
+		margin-top: 2em;
+		padding: 1em;
+
+		background-color: $homeGreen;
+		border-radius: 5px;
+		color: $white;
 	}
 }
 
-.registration-validation {
-	padding: .5em;
 
-	background-color: $red;
-	border-radius: 5px;
-	color: $white;
-}
-
-.register-confirmation {
-	margin-top: 2em;
-	padding: 1em;
-
-	background-color: $homeGreen;
-	border-radius: 5px;
-	color: $white;
-}
 
 .register-form {
 	@at-root #{&}__header {
@@ -41,6 +38,4 @@
 	.btn-register {
 		margin: 1em 0;
 	}
-
-
 }

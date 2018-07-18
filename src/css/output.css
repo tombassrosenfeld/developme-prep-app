@@ -200,13 +200,12 @@ p {
     padding-top: 0;
     margin: 0 auto; } }
 
-.registration-validation {
+.register-form__validation {
   padding: .5em;
   background-color: #FF3030;
   border-radius: 5px;
   color: #FFF; }
-
-.register-confirmation {
+.register-form__confirmation {
   margin-top: 2em;
   padding: 1em;
   background-color: #00e6b8;

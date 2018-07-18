@@ -83,7 +83,7 @@ class ForgotForm extends Component {
 							</div>
 						</div> )}
 						<div className="col-xs-12 col-sm-4 col-md-8">
-						{errorMessage ? <p className="registration-validation">{errorMessage}</p> : null}
+						{errorMessage ? <p className="register-form__validation">{errorMessage}</p> : null}
 						</div>
 						<div className="col-xs-12 col-sm-4 col-md-2">
 							<input className="btn btn-default btn-block btn-submit btn-register" type="submit" value="Register" />
