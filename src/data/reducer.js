@@ -103,6 +103,8 @@ const setUserRegistered = (state, {data}) => {
 		return state.set('registering', false).set('userRegistered', true);
 	}
 
+	console.log(data);
+
 	return state.set('errors', 'Error: Unknown server response, please try again.');
 }
 
