@@ -28,6 +28,7 @@ export default ({user, authenticate, onFormElementChange, forgotPassword, regist
 					    	placeholder="password" 
 					    	value={ user.get('password') }
 					    	onChange={ (e) => onFormElementChange(e.target.id, e.target.value) }
+					    	autoComplete="current-password"
 					    />
 					</div>
 				</div>

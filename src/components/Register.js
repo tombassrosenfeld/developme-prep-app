@@ -9,16 +9,19 @@ class ForgotForm extends Component {
 					label: 'Username',
 					type: 'text',
 					value: '',
+					autocomplete: ''
 				},
 								{
 					label: 'Email address',
 					type: 'email',
 					value: '',
+					autocomplete: 'email'
 				},
 				{
 					label: 'Password',
 					type: 'password',
 					value: '',
+					autocomplete: 'new-password'
 				}
 			],
 			errorMessage: '',
@@ -75,6 +78,7 @@ class ForgotForm extends Component {
 							    	id={field.label}
 							    	value={	field.value }
 							    	onChange={ (e) => this.onChange(e, i) }
+							    	autoComplete={field.autocomplete}
 							    />
 							</div>
 						</div> )}
