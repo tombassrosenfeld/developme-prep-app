@@ -180,7 +180,7 @@ export const onForgotFormSubmit = data => (dispatch, getState )=> {
 		.then( response => {
 			dispatch(updateForgot(response.data));
 		})
-		.catch( error => dispatch(updateErrors('Request was not submitted, please check for errors')) )
+		.catch( error => dispatch(updateErrors('Error: Request was not submitted, please check for errors')) )
 };
 
 const updateCredentials = (data) => ({
