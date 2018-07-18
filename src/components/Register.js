@@ -9,7 +9,7 @@ class ForgotForm extends Component {
 					label: 'Username',
 					type: 'text',
 					value: '',
-					autocomplete: ''
+					autocomplete: 'off'
 				},
 								{
 					label: 'Email address',
