@@ -13,7 +13,7 @@ export default ({ title, description, type, link, duration}) => (
 				</div>
 				{duration ? 
 				<div className="col-xs-2 resource-duration">
-					<i class="fa fa-clock-o" aria-hidden="true"></i>
+					<i className="fa fa-clock-o" aria-hidden="true"></i>
 					<p className="duration"><span>{duration < 1 ? '0'+duration : duration}</span> hours</p>
 				</div> : null }
 			</div>

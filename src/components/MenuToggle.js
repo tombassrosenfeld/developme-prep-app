@@ -23,9 +23,9 @@ class MenuToggle extends Component {
 					<div className="topics panel">
 						<div className="topics-header toggle-div" onClick={this.switch}>
 							<div className="topics-header-icon toggle-icon">
-								<button class="hamburger hamburger--collapse" type="button">
-								  	<span class="hamburger-box">
-								    	<span class="hamburger-inner"></span>
+								<button className="hamburger hamburger--collapse" type="button">
+								  	<span className="hamburger-box">
+								    	<span className="hamburger-inner"></span>
 								  	</span>
 								</button>
 							</div>

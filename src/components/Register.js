@@ -62,11 +62,11 @@ class ForgotForm extends Component {
 		const {fields, errorMessage} = this.state;
 		const {cancel} = this.props;
 		return (
-			<div class="col-xs-12"> 
-				<div class="container register-form"> 
+			<div className="col-xs-12"> 
+				<div className="container register-form"> 
 					<h2 className="register-form__header">Register</h2>
-					<form onSubmit={this.onSubmit} class="row">
-						{fields.map((field, i) => <div className="col-xs-12 col-sm-4">	
+					<form onSubmit={this.onSubmit} className="row">
+						{fields.map((field, i) => <div key={i} className="col-xs-12 col-sm-4">	
 							<div className="form-group">
 								<label>{field.label}</label>
 							    <input 

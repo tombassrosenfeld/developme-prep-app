@@ -10,14 +10,14 @@ export default ({id, topic}) => (
 			<div className="topics-header">
 				<div className="topics-header-icon"><i className="fa fa-2x fa-file" aria-hidden="true"></i></div>
 			</div>
-			<div class="row">
-				<div class="col-xs-8">
+			<div className="row">
+				<div className="col-xs-8">
 	  				<h1 className="topic-title">{ topic.get('short_title') } <small>{ topic.get('title') }</small></h1>
 	  			</div>
 	  			{topic.get('duration') ? 
-				<div class="col-xs-4 resource-duration">
-					<div class="pull-right">
-						<i class="fa fa-clock-o" aria-hidden="true"></i>
+				<div className="col-xs-4 resource-duration">
+					<div className="pull-right">
+						<i className="fa fa-clock-o" aria-hidden="true"></i>
 						<p className="duration"><span>{topic.get('duration') < 1 ? '0'+topic.get('duration') : topic.get('duration')}</span> hours</p>
 					</div>
 				</div>
