@@ -29,7 +29,11 @@ export const registerUser = data => (dispatch)=> {
 		.then( response => {
 			dispatch(setUserRegistered(response.data));
 		})
-		.catch( error => dispatch(updateErrors('Error: unable to create new user account.')) )
+		.catch( error => {
+		    if (error.response) {
+		    	dispatch(updateErrors(error.response.data.message));
+			}
+		});
 };
 
 // if authentication is successful, calls getdata()
