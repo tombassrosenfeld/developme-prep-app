@@ -91,18 +91,7 @@ const setRegistering = (state) => {
 }
 
 const setUserRegistered = (state, {data}) => {
-	if(typeof data === 'object') {
-		data = fromJS(data);
-		const errorMessage = data.reduce((str, error) => str += error.get(0) + ' ', 'Error: ');
-
-		return state.set('errors', errorMessage);
-	}
-
-	if(typeof data === 'string') {
-		return state.set('registering', false).set('userRegistered', true);
-	}
-
-	return state.set('errors', 'Error: Unknown server response, please try again.');	
+	return state.set('registering', false).set('userRegistered', true);
 }
 
 const cancelRegistration = (state) => {
@@ -148,13 +137,13 @@ export default (state = initial, action) => {
 		case TOPICS_DATA: return topicsData(state, action);
 		case ONCLICK_ICON: return onClickIcon(state, action);
 		case LOGOUT: return logOut(state);
-		case SET_REGISTERING: return setRegistering(state);
-		case SET_USER_REGISTERED: return setUserRegistered(state, action);
 		case CANCEL_REGISTRATION: return cancelRegistration(state);
 		case TOGGLEFORGOT: return toggleForgot(state);
 		case UPDATEFORGOT: return updateForgot(state, action);
 		case UPDATEISSUE: return updateIssue(state);
 		case UPDATEISSUEFALSE: return updateIssueFalse(state);
+		case SET_REGISTERING: return setRegistering(state);
+		case SET_USER_REGISTERED: return setUserRegistered(state, action);
 		default: return state;
 	}
 };
