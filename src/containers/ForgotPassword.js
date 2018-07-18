@@ -4,7 +4,7 @@ import { toggleForgot } from "../data/actions";
 
 const mapStateToProps = state => ({
 	resetSuccess: state.get('resetSuccess'),
-   	forgotPassword: state.get('forgotPassword'),
+   	showForgot: state.get('forgotPassword'),
 });
 const mapDispatchToProps = dispatch => ({
 	toggleForgot: () => dispatch(toggleForgot()),

@@ -86,7 +86,7 @@ const logOut = (state) => {
 	return state.set('loggedIn', false);
 }
 const toggleForgot = (state) => {
-	return state.set('forgotPassword', false).set('resetSuccess', false);
+	return state.set('forgotPassword', !state.get('forgotPassword')).set('resetSuccess', false);
 }
 const updateForgot = (state, {data}) => {
 	const success = data.success;
