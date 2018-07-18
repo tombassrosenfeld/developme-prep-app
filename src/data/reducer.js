@@ -91,22 +91,18 @@ const setRegistering = (state) => {
 }
 
 const setUserRegistered = (state, {data}) => {
-	console.log(data);
-	if(data) {
-		if(typeof data === 'object') {
-			data = fromJS(data);
-			const errorMessage = data.reduce((str, error) => str += error.get(0) + ' ', 'Error: ');
+	if(typeof data === 'object') {
+		data = fromJS(data);
+		const errorMessage = data.reduce((str, error) => str += error.get(0) + ' ', 'Error: ');
 
-			return state.set('errors', errorMessage);
-		}
-
-		if(typeof data === 'string') {
-			return state.set('registering', false).set('userRegistered', true);
-		}
-
-		return state.set('errors', 'Error: Unknown server response, please try again.');	
+		return state.set('errors', errorMessage);
 	}
-	return state;
+
+	if(typeof data === 'string') {
+		return state.set('registering', false).set('userRegistered', true);
+	}
+
+	return state.set('errors', 'Error: Unknown server response, please try again.');	
 }
 
 const cancelRegistration = (state) => {
