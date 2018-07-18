@@ -3,12 +3,10 @@ import React, { Component } from 'react';
 class ForgotForm extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             email: '',
             errorMessage: ''
         }
-
         this.submit = this.submit.bind(this);
     }
     onChange(e) {
@@ -24,7 +22,6 @@ class ForgotForm extends Component {
             this.props.onForgotFormSubmit(data);
             this.setState({errorMessage: ''})
         }
-
     }
     render() {
         const { forgotPassword, resetSuccess, forgotPasswordMessage } = this.props;
@@ -57,10 +54,7 @@ class ForgotForm extends Component {
                             { resetSuccess && forgotPassword ?  <p className="forgot-form__message forgot-form__message--success">{forgotPasswordMessage}</p> : null }
                         </div>
     				</form>
-                    
                 : null }
-                
-
             </div>
     	)
     }
