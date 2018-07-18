@@ -68,7 +68,7 @@ class ForgotForm extends Component {
 			<div className="col-xs-12"> 
 				<div className="container register-form"> 
 					<h2 className="register-form__header">Register</h2>
-					<form onSubmit={this.onSubmit} className="row">
+					<form onSubmit={this.onSubmit} className="row" autoComplete="off">
 						{fields.map((field, i) => <div key={i} className="col-xs-12 col-sm-4">	
 							<div className="form-group">
 								<label>{field.label}</label>
