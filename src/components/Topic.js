@@ -18,7 +18,7 @@ export default ({id, topic}) => (
 				<div class="col-xs-4 resource-duration">
 					<div class="pull-right">
 						<i class="fa fa-clock-o" aria-hidden="true"></i>
-						<p className="duration"><span>{topic.get('duration') < 1 ? '0'+topic.get('duration') : topic.get('duration')}</span> hours</p>
+						<p className="duration"><span>{topic.get('duration')}</span> hours</p>
 					</div>
 				</div>
 				: null }
