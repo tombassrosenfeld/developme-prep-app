@@ -6,6 +6,12 @@
 	}	 
 } 
 
+.register-form {
+	@at-root #{&}__header {
+
+	}
+}
+
 .registration-validation {
 	padding: .5em;
 
@@ -21,4 +27,20 @@
 	background-color: $homeGreen;
 	border-radius: 5px;
 	color: $white;
+}
+
+.register-form {
+	@at-root #{&}__header {
+		margin: 1em 0;
+		font-size: 2em;
+		text-align: center;
+	}
+}
+
+@media (max-width: 767px) {
+	.btn-register {
+		margin: 1em 0;
+	}
+
+
 }

@@ -32,7 +32,7 @@ export default ({user, authenticate, onFormElementChange, forgotPassword, regist
 					</div>
 				</div>
 				<div className="col-sm-2">	
-					<input className="btn btn-default btn-login btn-block" type="submit" />
+					<input className="btn btn-default btn-login btn-block" type="submit" value="Login" />
 				</div>
 			</form> : <Register cancel={cancel}/> }
 			<div className="col-xs-12">	

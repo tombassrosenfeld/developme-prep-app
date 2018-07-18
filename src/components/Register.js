@@ -63,9 +63,10 @@ class ForgotForm extends Component {
 		const {cancel} = this.props;
 		return (
 			<div class="col-xs-12"> 
-				<div class="container"> 
+				<div class="container register-form"> 
+					<h2 className="register-form__header">Register</h2>
 					<form onSubmit={this.onSubmit} class="row">
-						{fields.map((field, i) => <div className="col-xs-12 col-sm-6 col-md-4">	
+						{fields.map((field, i) => <div className="col-xs-12 col-sm-4">	
 							<div className="form-group">
 								<label>{field.label}</label>
 							    <input 
@@ -77,14 +78,14 @@ class ForgotForm extends Component {
 							    />
 							</div>
 						</div> )}
-						<div className="col-xs-12 col-sm-6 col-md-8">
+						<div className="col-xs-12 col-sm-4 col-md-8">
 						{errorMessage ? <p className="registration-validation">{errorMessage}</p> : null}
 						</div>
-						<div className="col-xs-12 col-sm-3 col-md-2">
-							<input className="btn btn-default btn-login btn-block btn-submit" type="submit" />
+						<div className="col-xs-12 col-sm-4 col-md-2">
+							<input className="btn btn-default btn-block btn-submit btn-register" type="submit" value="Register" />
 						</div>
-						<div className="col-xs-12 col-sm-3 col-md-2">
-							<button onClick={cancel} className="btn btn-default btn-login btn-block">Cancel</button>
+						<div className="col-xs-12 col-sm-4 col-md-2">
+							<button onClick={cancel} className="btn btn-default btn-block">Cancel</button>
 						</div>
 					</form>
 				</div>
