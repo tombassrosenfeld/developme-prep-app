@@ -51,12 +51,15 @@ class ForgotForm extends Component {
                                 <input className="btn btn-default btn-login btn-block" type="submit" value="Reset password"/>
                             </div>
                         </div>
+                        <div className="col-sm-6 col-sm-offset-3">  
+                            {errorMessage ? <p className="forgot-form__message forgot-form__message--fail">{errorMessage}</p> : null}
+                            { !resetSuccess && forgotPassword ?  <p className="forgot-form__message forgot-form__message--fail">{forgotPasswordMessage}</p> : null }
+                            { resetSuccess && forgotPassword ?  <p className="forgot-form__message forgot-form__message--success">{forgotPasswordMessage}</p> : null }
+                        </div>
     				</form>
                     
                 : null }
-                {errorMessage ? <p className="forgot-form__message forgot-form__message--fail">{errorMessage}</p> : null}
-                { !resetSuccess && forgotPassword ?  <p className="forgot-form__message forgot-form__message--fail">{forgotPasswordMessage}</p> : null }
-                { resetSuccess && forgotPassword ?  <p className="forgot-form__message forgot-form__message--success">{forgotPasswordMessage}</p> : null }
+                
 
             </div>
     	)
