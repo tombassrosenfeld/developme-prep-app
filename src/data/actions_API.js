@@ -27,6 +27,7 @@ export const authenticate = (username, password) => dispatch => {
 export const registerUser = data => (dispatch)=> {
 	postUserData(data)
 		.then( response => {
+			dispatch(updateErrors('')); // remove any errors
 			dispatch(setUserRegistered(response.data));
 		})
 		.catch( error => {
