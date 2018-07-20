@@ -87,15 +87,15 @@ const logOut = (state) => {
 }
 
 const setRegistering = (state) => {
-	return state.set('registering', true).set('userRegistered', false);
+	return state.set('isRegistering', true).set('userRegistered', false);
 }
 
 const setUserRegistered = (state, {data}) => {
-	return state.set('registering', false).set('userRegistered', true);
+	return state.set('isRegistering', false).set('userRegistered', true);
 }
 
 const cancelRegistration = (state) => {
-	return state.set('registering', false);
+	return state.set('isRegistering', false);
 }
 
 const toggleForgot = (state) => {

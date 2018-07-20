@@ -2,10 +2,10 @@ import React from 'react';
 import ForgotPassword from '../containers/ForgotPassword';
 import Register from '../containers/Register';
 
-export default ({user, authenticate, onFormElementChange, forgotPassword, registering, cancel, userRegistered }) => (
+export default ({user, authenticate, onFormElementChange, forgotPassword, isRegistering, cancel, userRegistered }) => (
 	<div>
 		<div className="row">
-			{!registering ?
+			{!isRegistering ?
 			<form onSubmit={ (e) => authenticate(e, user.get('username'), user.get('password'))}>
 				<div className="col-sm-4 col-sm-offset-1">	
 					<div className="form-group">
@@ -39,7 +39,7 @@ export default ({user, authenticate, onFormElementChange, forgotPassword, regist
 			<div className="col-xs-12">	
 			</div>
 		</div>
-		{!registering ? <ForgotPassword />	: null}
+		{!isRegistering ? <ForgotPassword />	: null}
 		{userRegistered ? <div className="row">
 			<div className="col-xs-12 col-sm-6 col-sm-offset-3">
 				<p className="register-form__confirmation text-center">Your user account has been created, please login.</p>

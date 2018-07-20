@@ -5,7 +5,7 @@ import { logOut, setRegistering, cancelRegistration } from "../data/actions";
 const mapStateToProps = state => ({
 	loggedIn: state.get('loggedIn'),
 	user: state.get('user'),
-	registering: state.get('registering'),
+	isRegistering: state.get('isRegistering'),
   	userRole: state.getIn(['user', 'roles']).reduce((role, r) => role += r === 'student' || r === 'instructor' ? r : '', ''),
 });
 

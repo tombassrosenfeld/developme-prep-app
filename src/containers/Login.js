@@ -6,7 +6,7 @@ import { onFormElementChange, cancelRegistration } from "../data/actions";
 const mapStateToProps = state => ({
    user: state.get('user'),
    forgotPassword: state.get('forgotPassword'),
-   registering: state.get('registering'),
+   isRegistering: state.get('isRegistering'),
    userRegistered: state.get('userRegistered')
 });
 
