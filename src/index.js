@@ -18,11 +18,10 @@ const store = createStore(
 );
 
 ReactDOM.render(
-	<Provider store={ store }>
-        <HttpsRedirect>
-			<App /> 
-        </HttpsRedirect>
-	</Provider>,
-
+    <HttpsRedirect>
+		<Provider store={ store }>
+				<App /> 
+		</Provider>,
+    </HttpsRedirect>
 	document.getElementById('root')
 );
