@@ -37,7 +37,7 @@ class ForgotForm extends Component {
 	}
 	onSubmit(e) {
 		e.preventDefault();
-		const fields = this.state.fields;
+		let fields = this.state.fields;
 		const fieldsHaveValues = fields.every(field => field.value);
 		let errorMessage = '';
 
@@ -51,11 +51,12 @@ class ForgotForm extends Component {
 		}
 
 
+		let data = {};
+
+		fields.forEach(field => data[field.label] = field.value);
+
 		if(!errorMessage) {
-			this.props.onSubmit(fields.map(field => ({
-				data: field.label,
-				value: field.value
-			})));
+			this.props.onSubmit(data);
 		}
 
 		this.setState({errorMessage});
