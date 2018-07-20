@@ -65,14 +65,18 @@ const setStudents = (state, { data }) => {
 }
 
 const topicsData = (state, { data }) => {
-	
-	const topicsWithDuration = data.map(topic => topic.set('duration', topic.get('tasks').reduce((total, task) => {
-		const resources = task.get('resources');
-		if(resources) {
-			return resources.reduce((total, resource) => resource.get('duration') ? total + +resource.get('duration') : total + 0, 0);
-		}
-		return total + 0;
-	}, 0)));
+
+	const topicsWithDuration = data.map(topic => {
+		let totalDuration = 0;
+		totalDuration += topic.get('tasks').reduce((total, task) => {
+			const resources = task.get('resources');
+			if(resources) {
+				return total + resources.reduce((total, resource) => resource.get('duration') ? total + +resource.get('duration') : total + 0, 0);
+			}
+			return total + 0;
+		}, 0);
+		return topic.set('duration', totalDuration);
+	}, 0);
 
 	return state.set('topics', topicsWithDuration).set('isLoaded', true);
 }
