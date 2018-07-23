@@ -1,40 +1,40 @@
 .forgot-form {
 	margin: 1em -15px;
 	padding: 1.5em 0 1em;
-	background-color: $white;
 
     @at-root #{&}__label {
     	color: $black;
     	font-weight: 500;
     }
     @at-root #{&}__header {
+		margin: 0;
     	padding: 0 0 1em;
 
     	font-size: 1.25em;
+		text-align: center;
     }
+   	@at-root #{&}__text {
+   		padding: 1em 0;
+		text-align: center;
+	}
+	@at-root #{&}__message {
+		text-align: center;
+		font-size: 16px;
+	}
+	@at-root #{&}__message--success {
+		color: $homeGreen;
+	}
+	@at-root #{&}__message--fail {
+		color: $red;
+	}
+}
+.forgot-password-btn {
+	padding: 1em 0;
 }
 .forgot-password-text {
 	cursor: pointer;
 	color: $homeGreen;
-	text-align: center;
 	@media only screen and (max-width : 768px) {
 		margin: 20px 0;
 	}
-}
-
-.forgot-form__header {
-	margin: 0;
-	padding: 0;
-}
-
-.forgot-form__message {
-	text-align: center;
-	font-size: 16px;
-}
-
-.forgot-form__message--success {
-	color: $homeGreen;
-}
-.forgot-form__message--fail {
-	color: $red;
 }
