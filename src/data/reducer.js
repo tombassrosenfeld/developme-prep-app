@@ -87,7 +87,7 @@ const onClickIcon = (state, { id }) => {
 }
 
 const logOut = (state) => {
-	return state.set('loggedIn', false);
+	return state.set('loggedIn', false).setIn(['user', 'roles'], []);
 }
 
 const setRegistering = (state) => {

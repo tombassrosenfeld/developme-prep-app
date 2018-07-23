@@ -27,15 +27,20 @@ class App extends Component {
   }
 
   loaded() {
-    return (
+    return this.props.userRole ? (
       <div className="row">
           <Route path="/" render={ ({ match }) => {
             return this.props.userRole === 'instructor' ?
               <CohortNav title="Cohorts" />
-              :
-              <TopicsNav title="Topics" />
+              : null }
             }
-          }/>        
+          />     
+          <Route path="/" render={ ({ match }) => {
+            return this.props.userRole === 'student' ?
+              <TopicsNav title="Topics" />
+              : null }
+            }
+          />        
           <Route exact path="/" render={ ({ match }) => (
             <div>
             <Welcome userRole={this.props.userRole}/>
@@ -69,7 +74,7 @@ class App extends Component {
           )} />
         
       </div>
-    )
+    ) : this.loading();
   }
 
   render() {
