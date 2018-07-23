@@ -11,15 +11,13 @@ export default ({user, loggedIn, logOut, userRole, setRegistering, isRegistering
 		  		</Link>			  
 				{ loggedIn || isRegistering ? 
 					<Link className="home-link" to="/">
-						<button className="btn btn-default pull-right btn-logout" onClick={ () => isRegistering ? cancel() : logOut() }>{isRegistering ? 'Log In' : 'Log Out'}
+						<button className="btn btn-default pull-right btn-logout" onClick={ () => isRegistering ? cancel() : logOut() }><i className="fa user-icon fa-user pull-right" aria-hidden="true"></i>{isRegistering ? 'Log In' : 'Log Out'}
 						</button> 
 					</Link>
 					: 
-					<button className="btn btn-default pull-right btn-logout" onClick={ setRegistering }>Register
+					<button className="btn btn-default pull-right btn-logout" onClick={ setRegistering }><i className="fa user-icon fa-user-plus pull-right" aria-hidden="true"></i>Register
 					</button> 
 					}
-				{ loggedIn? <i className="fa user-icon fa-user pull-right" aria-hidden="true"></i> : <i className="fa user-icon fa-user-plus pull-right" aria-hidden="true"></i>} 
-
 			</div>
 		</div>
 

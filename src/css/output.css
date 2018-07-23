@@ -108,19 +108,26 @@ p {
     transform: rotate(0deg); }
   100% {
     transform: rotate(360deg); } }
+@media (max-width: 767px) {
+  .d-none-mob {
+    display: none; } }
 /******************************************/
 /*Imported modules*/
 /******************************************/
+@media (max-width: 767px) {
+  .btn-lg-mob {
+    margin: 1em 0;
+    padding: 1em;
+    font-size: 1.25em; } }
 .top-nav {
   background-color: #C9C9C9;
-  padding: 5px 20px 0;
-  height: 37px; }
+  padding: 10px 20px; }
 
 .logo {
   position: relative;
   top: 3px;
-  width: 120px;
-  height: 22px;
+  width: 140px;
+  height: 30px;
   background-image: url("../images/developme_logo.svg");
   background-size: contain;
   background-repeat: no-repeat;
@@ -130,7 +137,7 @@ p {
   background-color: #00e6b8;
   color: #404040;
   border: none;
-  font-size: 10px; }
+  font-size: 16px; }
 
 .titles {
   text-align: center;
@@ -154,7 +161,8 @@ p {
 
 .bottom-nav {
   background-color: #C9C9C9;
-  text-align: center; }
+  text-align: center;
+  padding: 5px 20px; }
 
 .bottom-nav-module {
   display: inline-block;
@@ -162,12 +170,16 @@ p {
   padding: 5px 10px;
   border-radius: 5px;
   margin: 0 5px;
-  cursor: pointer; }
+  cursor: pointer;
+  font-size: 16px; }
+  .bottom-nav-module .fa {
+    margin-left: 5px; }
 
 .user-icon {
   color: #404040;
   font-size: 20px;
-  padding: 3px 10px 0 0; }
+  margin-left: 5px;
+  padding: 0 3px; }
 
 /* Small Devices, Tablets */
 @media only screen and (max-width: 768px) {
@@ -192,7 +204,8 @@ p {
   width: 100%; }
   .main-footer .panel {
     background-color: transparent;
-    border-top: none; }
+    border-top: none;
+    margin-bottom: 0; }
 
 @media only screen and (min-width: 768px) {
   .login-form {
@@ -230,12 +243,10 @@ p {
   text-align: center; }
 
 @media (max-width: 767px) {
-  .btn-register {
-    margin: 1em 0; }
-
   .forgot-password-link {
     padding: 1.5em 0; } }
 .topics {
+  margin-bottom: 1em;
   padding-bottom: 0px; }
 
 .topics-header {
@@ -272,6 +283,9 @@ p {
   .topics-icon:hover h2, .topics-icon.active h2 {
     text-decoration: none; }
 
+@media (max-width: 767px) {
+  .topics-icon {
+    padding: 5px 0; } }
 .email-div {
   display: flex;
   justify-content: center; }
@@ -485,7 +499,8 @@ INSTRUCTOR VIEW
   justify-content: center; }
 
 .btn-submit {
-  background-color: #00e6b8; }
+  background-color: #00e6b8;
+  color: #FFF; }
 
 #issue-description {
   padding-top: 10px;
@@ -655,5 +670,17 @@ INSTRUCTOR VIEW
 
 .progress-bar {
   background-color: #00e6b8; }
+
+@media (max-width: 767px) {
+  .student-list {
+    padding-top: 2em; }
+    .student-list .progress {
+      height: 2.5em;
+      margin: 1em 0;
+      width: 100%; }
+      .student-list .progress .progress-bar {
+        padding: .5em; }
+    .student-list .student-link {
+      font-size: 1.5em; } }
 
 /*# sourceMappingURL=output.css.map */

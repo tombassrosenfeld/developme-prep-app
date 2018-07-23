@@ -5,9 +5,8 @@ export default ({text}) => (
 	<div className="row bottom-nav">
 		<div className="col-xs-12 modules">		
 			<Link to="/" className='home-div'>
-				<i className="fa fa-home" aria-hidden="true"></i>
-				<div className="bottom-nav-module">{text}</div> 
-  		</Link>		
+				<div className="bottom-nav-module btn-logout">{text}<i className="fa fa-home" aria-hidden="true"></i></div> 
+  			</Link>		
 		</div>
 	</div>
 )

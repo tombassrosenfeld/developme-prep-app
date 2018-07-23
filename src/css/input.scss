@@ -149,9 +149,16 @@ p {
 	}
 }
 
+@media (max-width: 767px) {
+	.d-none-mob {
+		display: none;
+	}	
+}
+
 /******************************************/
 /*Imported modules*/
 /******************************************/
+@import 'modules/buttons';
 @import 'modules/header';
 @import 'modules/footer';
 @import 'modules/login';
@@ -167,3 +174,4 @@ p {
 @import 'modules/assessment';
 @import 'modules/welcome';
 @import 'modules/progress-bar';
+@import 'modules/student-list';

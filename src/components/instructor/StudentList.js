@@ -8,7 +8,7 @@ export default ({students, numAssessments, numTasks, cohortName, cohortID}) => {
 
 	return ( 
 	<div className="panel">
-		<div className="row">
+		<div className="row d-none-mob">
 			<div className="col-xs-3">
 				<h2 className="panel-title">Students</h2> 
 			</div>
@@ -16,23 +16,28 @@ export default ({students, numAssessments, numTasks, cohortName, cohortID}) => {
 				<h2 className="panel-title status-title">Progress</h2> 
 			</div>
 		</div>
-		<div className="taskList">
+		<div className="taskList student-list">
 			{ students.size > 0 ?
 		  		students.map( (student, i) => (
 					<div className="row narrow-padding" key={i}>
-						<div className="col-xs-3">
+						<div className="col-xs-12 col-sm-3">
 							<Link 
+								className="student-link"
 								to={'/cohort/' + cohortID + '/' + student.get('id')}
 							>
 								{student.get('name')}
 							</Link>
 						</div>
-						<div className="col-xs-9">
-							<ProgressBar 
-								value={student.get('userProgress').size} 
-								maxValue={totalTasks} 
-								progressPercentage={((student.get('userProgress').size / totalTasks) * 100).toFixed(0) + '%'} 
-							/>
+						<div className="col-xs-12 col-sm-9">
+							<Link 
+								to={'/cohort/' + cohortID + '/' + student.get('id')}
+							>
+								<ProgressBar 
+									value={student.get('userProgress').size} 
+									maxValue={totalTasks} 
+									progressPercentage={((student.get('userProgress').size / totalTasks) * 100).toFixed(0) + '%'} 
+								/>
+							</Link>
 						</div>
 					</div>
 		  		)) :

@@ -21,7 +21,7 @@ class SideNav extends Component {
 	}
 
 	onClick(i) {
-		this.setState({activeIcon: i})
+		this.setState({activeIcon: i, height: window.innerWidth > 767 ? 'auto' : 0})
 	}
 
 	render() {
