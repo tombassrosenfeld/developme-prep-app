@@ -361,6 +361,9 @@ p {
   color: #00e6b8;
   font-weight: bold; }
 
+.single-topic {
+  margin-bottom: 2em; }
+
 .topic-title {
   margin: 24px 0 16px 0;
   padding: 0 10px;
