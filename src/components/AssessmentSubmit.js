@@ -4,9 +4,9 @@ import AssessmentCancel from './AssessmentCancel';
 export default ({topicTitle, assessmentID, assessment, userAnswers, onSubmit, onClickAssessmentSubmit, onCancel, retake}) => (
 	<div className="panel submit-assessment">
 		<div className="row">
-			<div className="col-xs-12 assessment-buttons">
+			<div className="col-xs-12 col-md-6 assessment-buttons">
 				<button 
-					className="btn btn-default btn-logout btn-submit" 
+					className="btn btn-default btn-logout btn-submit btn-block" 
 					onClick={ () => {onClickAssessmentSubmit(
 						topicTitle,
 						assessmentID,
@@ -14,6 +14,8 @@ export default ({topicTitle, assessmentID, assessment, userAnswers, onSubmit, on
 						userAnswers
 					); onSubmit(userAnswers);} }
 				>Submit</button>
+			</div>
+			<div className="col-xs-12 col-md-6 assessment-buttons">
 				{retake ?
 				<AssessmentCancel
 					onClick={() => onCancel(userAnswers)}

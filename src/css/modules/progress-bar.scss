@@ -8,3 +8,15 @@
 .progress-bar {
 	background-color: #00e6b8; 
 }
+
+@media (max-width: 767px) {
+	.progress {
+		height: 2.5em;
+
+		margin: 1em 0;
+		width: 100%;
+		.progress-bar {
+			padding: .5em;
+		}
+	}
+}

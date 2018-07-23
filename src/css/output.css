@@ -114,11 +114,25 @@ p {
 /******************************************/
 /*Imported modules*/
 /******************************************/
+.btn-email {
+  color: #FFF;
+  text-decoration: none;
+  background-color: #00e6b8; }
+  .btn-email:link {
+    color: #FFF;
+    text-decoration: none; }
+    .btn-email:link .fa {
+      color: #404040;
+      margin-left: 5px; }
+
 @media (max-width: 767px) {
   .btn-lg-mob {
     margin: 1em 0;
     padding: 1em;
     font-size: 1.25em; } }
+@media (min-width: 768px) {
+  .btn-email {
+    width: auto; } }
 .top-nav {
   background-color: #C9C9C9;
   padding: 10px 20px; }
@@ -528,12 +542,17 @@ INSTRUCTOR VIEW
     opacity: 0; } }
 .taskList {
   padding-bottom: 10px; }
+  .taskList .taskList-task-title {
+    margin-bottom: 0;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    font-size: 1.25em; }
+  .taskList .taskList-task-marker {
+    padding-top: .5em;
+    padding-bottom: .5em; }
 
 .taskList-title {
   font-weight: bold; }
-
-.taskList-task-title {
-  margin-bottom: 0; }
 
 .status-title {
   text-align: center; }
@@ -611,11 +630,13 @@ INSTRUCTOR VIEW
 
 .retake-button {
   font-size: 1em;
-  margin-left: 10px; }
+  margin-left: 10px;
+  padding: .5em 1em; }
 
 .assessment-buttons {
-  display: flex;
-  justify-content: space-between; }
+  margin: 1em 0; }
+  .assessment-buttons button {
+    padding: 1em; }
   .assessment-buttons .btn-cancel {
     border: none; }
 
@@ -624,6 +645,18 @@ INSTRUCTOR VIEW
   color: #FFF;
   font-weight: bold;
   background-color: #404040; }
+
+.radio label {
+  display: block;
+  margin: .5em .5em 1em 0;
+  padding: .5em;
+  font-size: 1.25em;
+  background-color: #FFF; }
+.radio.active label {
+  background-color: #00e6b8;
+  color: #FFF; }
+.radio input {
+  display: none; }
 
 /************************************
 INSTRUCTOR VIEW
@@ -672,6 +705,13 @@ INSTRUCTOR VIEW
   background-color: #00e6b8; }
 
 @media (max-width: 767px) {
+  .progress {
+    height: 2.5em;
+    margin: 1em 0;
+    width: 100%; }
+    .progress .progress-bar {
+      padding: .5em; } }
+@media (max-width: 767px) {
   .student-list {
     padding-top: 2em; }
     .student-list .progress {
@@ -682,5 +722,7 @@ INSTRUCTOR VIEW
         padding: .5em; }
     .student-list .student-link {
       font-size: 1.5em; } }
+.student .student-title {
+  text-align: center; }
 
 /*# sourceMappingURL=output.css.map */

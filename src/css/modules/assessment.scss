@@ -27,11 +27,14 @@
 .retake-button {	
 	font-size: 1em;
 	margin-left: 10px;
+	padding: .5em 1em;
 }
 
 .assessment-buttons {
-	display: flex;
-	justify-content: space-between;
+	margin: 1em 0;
+	button {
+		padding: 1em;
+	}
 	.btn-cancel {
 		border: none;
 	}	
@@ -44,6 +47,27 @@
 	font-weight: bold;
 
 	background-color: $black;
+}
+
+.radio {
+	label {
+		display: block;
+		margin: .5em .5em 1em 0;
+		padding: .5em;
+		font-size: 1.25em;
+
+		background-color: $white;
+
+	}
+	&.active {
+		label {
+			background-color: $homeGreen;
+			color: $white;
+		}
+	}
+	input {
+		display: none;
+	}
 }
 
 /************************************

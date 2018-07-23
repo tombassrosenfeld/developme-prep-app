@@ -14,12 +14,14 @@ export default ({userProgress, numAssessments, numTasks, topics}) => {
 			<div className="topics panel">
 				<div>
 					<h2 className="text-center panel-title">Your progress so far</h2>
-					<ProgressBar 
-						text={"Progress against all tasks and assessments. (" + userProgress.size +"/"+ totalTasks + ")"}
-						value={userProgress.size} 
-						maxValue={totalTasks} 
-						progressPercentage={progressPercentage} 
-					/>
+					<div className="col-xs-12">
+						<ProgressBar 
+							text={"Progress against all tasks and assessments. (" + userProgress.size +"/"+ totalTasks + ")"}
+							value={userProgress.size} 
+							maxValue={totalTasks} 
+							progressPercentage={progressPercentage} 
+						/>
+					</div>
 					<UncompletedTasks />
 				</div>
 
