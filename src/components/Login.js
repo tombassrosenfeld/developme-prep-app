@@ -1,5 +1,5 @@
 import React from 'react';
-import ForgotPassword from '../containers/ForgotPassword';
+import ForgotPassword from './ForgotPassword';
 import Register from '../containers/Register';
 
 export default ({user, authenticate, onFormElementChange, forgotPassword, isRegistering, cancel, userRegistered }) => (

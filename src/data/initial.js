@@ -12,7 +12,6 @@ export default Map({
 	archivedAssessmentData: List([]),
 	errors: '',
 	cohorts: List([]),
-	forgotPassword: false,
 	issue: false,
 	isRegistering: false,
 	userRegistered: false,
