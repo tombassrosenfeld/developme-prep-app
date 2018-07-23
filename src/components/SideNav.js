@@ -40,7 +40,7 @@ class SideNav extends Component {
 								  </span>
 								</button>
 							</div>
-							<p className="toggle-p">{userRole === 'student' ? "Topics" : "Cohorts"} </p>
+							<p className="toggle-p">{userRole === 'instructor' ? "Cohorts" : "Topics"} </p>
 						</div>
 
 						<AnimateHeight
@@ -53,11 +53,11 @@ class SideNav extends Component {
 									<SideNavItem 
 										key={ i } 
 										active={i === activeIcon}
-										id={ userRole === 'student' ? navItem.get('id') : navItem.get('name') } 
-										title={ userRole === 'student' ? navItem.get('short_title') : navItem.get('name') }
+										id={ userRole === 'instructor' ? navItem.get('name') : navItem.get('id')} 
+										title={ userRole === 'instructor' ? navItem.get('name') : navItem.get('short_title') }
 										selected={ navItem.get('selected') } 
-										onClick={ () => {onClickIcon(userRole === 'student' ? navItem.get('id') : i); this.onClick(i); } }
-										route={ userRole === 'student' ? '/prep/topic/' : '/cohort/'}
+										onClick={ () => {onClickIcon(userRole === 'instructor' ? i : navItem.get('id')); this.onClick(i); } }
+										route={ userRole === 'instructor' ? '/cohort/' : '/prep/topic/'}
 									/>
 								)) }
 							</div>

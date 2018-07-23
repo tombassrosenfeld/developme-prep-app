@@ -29,7 +29,7 @@ class MenuToggle extends Component {
 								  	</span>
 								</button>
 							</div>
-							<p className="toggle-p">{userRole === 'student' ? "Topics" : "Cohorts"} </p>
+							<p className="toggle-p">{userRole === 'instructor' ? "Cohorts" : "Topics"} </p>
 						</div>
 
 						{this.state.toggle ? 
@@ -38,11 +38,11 @@ class MenuToggle extends Component {
 							{ navItems.map((navItem, i) => (
 								<SideNavItem 
 									key={ i } 
-									id={ userRole === 'student' ? navItem.get('id') : navItem.get('name') } 
-									title={ userRole === 'student' ? navItem.get('short_title') : navItem.get('name') }
+									id={ userRole === 'instructor' ? navItem.get('name') : navItem.get('id') } 
+									title={ userRole === 'instructor' ? navItem.get('name') : navItem.get('short_title') }
 									selected={ navItem.get('selected') } 
-									onClick={ () => onClickIcon(userRole === 'student' ? navItem.get('id') : i) }
-									route={ userRole === 'student' ? '/prep/topic/' : '/cohort/'}
+									onClick={ () => onClickIcon(userRole === 'instructor' ? i : navItem.get('id')) }
+									route={ userRole === 'instructor' ? '/cohort/' : '/prep/topic/'}
 								/>
 							)) }
 						</div>
@@ -54,8 +54,6 @@ class MenuToggle extends Component {
 		);
 	}
 }
-
-
 
 export default MenuToggle; 
 

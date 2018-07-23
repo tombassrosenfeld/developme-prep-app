@@ -30,10 +30,10 @@ class App extends Component {
     return (
       <div className="row">
           <Route path="/" render={ ({ match }) => {
-            return this.props.userRole === 'student' ?
-              <TopicsNav title="Topics" />
-              :
+            return this.props.userRole === 'instructor' ?
               <CohortNav title="Cohorts" />
+              :
+              <TopicsNav title="Topics" />
             }
           }/>        
           <Route exact path="/" render={ ({ match }) => (
