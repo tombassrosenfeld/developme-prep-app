@@ -3,7 +3,6 @@ export const SET_REGISTERING = Symbol("SET_REGISTERING");
 export const SET_USER_REGISTERED = Symbol("SET_USER_REGISTERED");
 export const CANCEL_REGISTRATION = Symbol("CANCEL_REGISTRATION");
 export const TOGGLEFORGOT = Symbol("TOGGLEFORGOT");
-export const UPDATEFORGOT = Symbol("UPDATEFORGOT");
 export const ONFORMELEMENTCHANGE = Symbol("ONFORMELEMENTCHANGE");
 export const ONCLICK_ICON = Symbol("ONCLICK_ICON");
 export const UPDATE_ERRORS = Symbol("UPDATE_ERRORS");
@@ -28,10 +27,7 @@ export const cancelRegistration = () => ({
 export const toggleForgot = () => ({
 	type: TOGGLEFORGOT,
 })
-export const updateForgot = data => ({
-	type: UPDATEFORGOT,
-	data: data,
-})
+
 // binding of login form to state
 export const onFormElementChange = (id, val) => ({
 	type: ONFORMELEMENTCHANGE,

@@ -212,6 +212,18 @@ p {
   border-radius: 5px;
   color: #FFF; }
 
+.forgot-password-link {
+  display: inline-block;
+  float: right;
+  padding: 0;
+  color: #00e6b8; }
+  .forgot-password-link:link {
+    text-decoration: underline; }
+  .forgot-password-link:hover {
+    color: #C9C9C9; }
+  .forgot-password-link:visited {
+    color: #00e6b8; }
+
 .register-form__header {
   margin: 1em 0;
   font-size: 2em;
@@ -219,7 +231,10 @@ p {
 
 @media (max-width: 767px) {
   .btn-register {
-    margin: 1em 0; } }
+    margin: 1em 0; }
+
+  .forgot-password-link {
+    padding: 1.5em 0; } }
 .topics {
   padding-bottom: 0px; }
 
@@ -640,37 +655,5 @@ INSTRUCTOR VIEW
 
 .progress-bar {
   background-color: #00e6b8; }
-
-.forgot-form {
-  margin: 1em -15px;
-  padding: 1.5em 0 1em; }
-  .forgot-form__label {
-    color: #404040;
-    font-weight: 500; }
-  .forgot-form__header {
-    margin: 0;
-    padding: 0 0 1em;
-    font-size: 1.25em;
-    text-align: center; }
-  .forgot-form__text {
-    padding: 1em 0;
-    text-align: center; }
-  .forgot-form__message {
-    text-align: center;
-    font-size: 16px; }
-  .forgot-form__message--success {
-    color: #00e6b8; }
-  .forgot-form__message--fail {
-    color: #FF3030; }
-
-.forgot-password-btn {
-  padding: 1em 0; }
-
-.forgot-password-text {
-  cursor: pointer;
-  color: #00e6b8; }
-  @media only screen and (max-width: 768px) {
-    .forgot-password-text {
-      margin: 20px 0; } }
 
 /*# sourceMappingURL=output.css.map */

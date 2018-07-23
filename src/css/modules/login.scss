@@ -25,6 +25,21 @@
 }
 
 
+.forgot-password-link {
+	display: inline-block;
+	float: right;
+	padding: 0;
+	color: $homeGreen;
+	&:link {
+		text-decoration: underline;
+	}
+	&:hover {
+		color: $lightGrey;
+	}
+	&:visited {
+		color: $homeGreen;
+	}
+}
 
 .register-form {
 	@at-root #{&}__header {
@@ -37,5 +52,9 @@
 @media (max-width: 767px) {
 	.btn-register {
 		margin: 1em 0;
+	}
+	.forgot-password-link {
+		padding: 1.5em 0;
+
 	}
 }

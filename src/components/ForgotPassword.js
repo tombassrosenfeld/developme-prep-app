@@ -1,14 +1,12 @@
 import React from 'react';
-import ForgotForm from '../containers/ForgotForm';
+import {baseURL} from '../data/axios';
+
+const resetLink = "wp-login.php?action=lostpassword&redirect_to=http%3A%2F%2Fresources.developme.box%2Fwp-content%2Fthemes%2Fdev-me-resources-child%2Fapp-redirect.php";
 
 export default ({toggleForgot, showForgot, resetSuccess, forgotPasswordMessage}) => (
-	<div className="container">
-		<div className="row">
-			<div className="forgot-password-btn">
-				<button className= "btn btn-default btn-login" onClick={ toggleForgot }>Forgot Password</button>
-			</div>
+	<div className="row">
+		<div className="col-xs-12">
+			<a className="forgot-password-link" href={baseURL+resetLink} target="_blank">Reset Password</a>
 		</div>
-		{showForgot ? <ForgotForm /> : null}
-        { resetSuccess && showForgot ?  <p className="forgot-form__message forgot-form__message--success">{forgotPasswordMessage}</p> : null }
 	</div>
 );

@@ -1,7 +1,7 @@
 import initial from "./initial";
 import {fromJS} from "immutable";
 
-import { ONFORMELEMENTCHANGE, UPDATE_ERRORS, LOGOUT, SET_REGISTERING, SET_USER_REGISTERED, CANCEL_REGISTRATION, ONCLICK_ICON, DELETE_ASSESSMENT_DATA, GET_ARCHIVED_ASSESSMENT_DATA, UPDATEISSUE, UPDATEISSUEFALSE, TOGGLEFORGOT, UPDATEFORGOT } from "../data/actions";
+import { ONFORMELEMENTCHANGE, UPDATE_ERRORS, LOGOUT, SET_REGISTERING, SET_USER_REGISTERED, CANCEL_REGISTRATION, ONCLICK_ICON, DELETE_ASSESSMENT_DATA, GET_ARCHIVED_ASSESSMENT_DATA, UPDATEISSUE, UPDATEISSUEFALSE } from "../data/actions";
 import { USER_DATA, UPDATE_CREDENTIALS, USER_PROGRESS, USER_ASSESSMENT_DATA, SET_STUDENTS, TOPICS_DATA} from "../data/actions_API";
 
 const updateUsernameAndPassword = (state, { id, val }) => {
@@ -102,14 +102,6 @@ const cancelRegistration = (state) => {
 	return state.set('isRegistering', false);
 }
 
-const toggleForgot = (state) => {
-	return state.set('forgotPassword', !state.get('forgotPassword')).set('resetSuccess', false);
-}
-const updateForgot = (state, {data}) => {
-	const success = data.success;
-	const forgotMessage = data.message;
-	return state.set('forgotPassword', true).set('resetSuccess', success).set('forgotPasswordMessage', forgotMessage);
-}
 const deleteAssessmentData = (state, {topicTitle, assessmentID, assessment}) => {
 	const answers = state.getIn(['assessmentData', topicTitle, assessmentID, 'answers']);
 	const answersRemoved = answers.map(answer => null);
@@ -142,8 +134,6 @@ export default (state = initial, action) => {
 		case ONCLICK_ICON: return onClickIcon(state, action);
 		case LOGOUT: return logOut(state);
 		case CANCEL_REGISTRATION: return cancelRegistration(state);
-		case TOGGLEFORGOT: return toggleForgot(state);
-		case UPDATEFORGOT: return updateForgot(state, action);
 		case UPDATEISSUE: return updateIssue(state);
 		case UPDATEISSUEFALSE: return updateIssueFalse(state);
 		case SET_REGISTERING: return setRegistering(state);

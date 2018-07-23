@@ -1,6 +1,6 @@
 import axios from '../data/axios';
 import { processTopicsData } from '../utilities/utilities';
-import { updateErrors, updateIssue, updateForgot, setUserRegistered } from './actions';
+import { updateErrors, updateIssue, setUserRegistered } from './actions';
 import { List, fromJS } from "immutable";
 import { getUserRole } from "../utilities/utilities";
 
@@ -187,15 +187,6 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 		} );
 }
 
-export const onForgotFormSubmit = data => (dispatch, getState )=> {
-	dispatch(updateErrors(''));
-	postForgotForm(data)
-		.then( response => {
-			dispatch(updateForgot(response.data));
-		})
-		.catch( error => dispatch(updateErrors('Error: Request was not submitted, please check for errors')) )
-};
-
 const updateCredentials = (data) => ({
 	type: UPDATE_CREDENTIALS, 
 	data,
@@ -267,12 +258,6 @@ function getTopics() {
 
 function postUserData(data) {
 	return axios.post('/wp-json/cf/prep/register-user', { 
-		data: data,
-	})
-}
-
-function postForgotForm(data) {
-	return axios.post('/wp-json/cf/prep/forgotpassword', { 
 		data: data,
 	})
 }
