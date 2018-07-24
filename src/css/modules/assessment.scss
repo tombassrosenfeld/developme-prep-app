@@ -18,6 +18,13 @@
 	.btn-submit {
 		font-size: 14px;
 	}
+	.btn-submit:disabled {
+		background-color: $lightGrey;
+		&:hover {
+			background-color: $lightGrey;
+			color: $white;
+		}
+	}
 }
 
 .retake-text {
