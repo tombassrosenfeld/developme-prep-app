@@ -29,9 +29,16 @@
 	color: $lightGrey;
 	font-size: 12px;
 }
+.marker.topicStatus-marker {
+	display: flex;
+	justify-content: center;
+	.fa {
+		margin-top: 15px;
+		font-size: 2em;
+	}
+}
 .marker.topicStatus-marker .fa {
-	margin-top: 12px;
-	font-size: 40px;
+
 }
 
 @media only screen and (max-width : 500px) {

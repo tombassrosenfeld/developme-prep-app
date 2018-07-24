@@ -454,9 +454,12 @@ p {
   color: #C9C9C9;
   font-size: 12px; }
 
-.marker.topicStatus-marker .fa {
-  margin-top: 12px;
-  font-size: 40px; }
+.marker.topicStatus-marker {
+  display: flex;
+  justify-content: center; }
+  .marker.topicStatus-marker .fa {
+    margin-top: 15px;
+    font-size: 2em; }
 
 @media only screen and (max-width: 500px) {
   .marker.topicStatus-marker .fa {
@@ -549,7 +552,8 @@ INSTRUCTOR VIEW
     font-size: 1.25em; }
   .taskList .taskList-task-marker {
     padding-top: .5em;
-    padding-bottom: .5em; }
+    padding-bottom: .5em;
+    text-align: center; }
 
 .taskList-title {
   font-weight: bold; }
