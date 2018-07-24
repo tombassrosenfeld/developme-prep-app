@@ -258,7 +258,11 @@ p {
 
 @media (max-width: 767px) {
   .forgot-password-link {
-    padding: 1.5em 0; } }
+    padding: 1.5em 0; }
+
+  .register-form .btn-register {
+    margin-bottom: 1em;
+    padding: 1em; } }
 .topics {
   margin-bottom: 1em;
   padding-bottom: 0px; }
@@ -571,9 +575,6 @@ INSTRUCTOR VIEW
   justify-content: center;
   cursor: pointer; }
 
-@media only screen and (max-width: 500px) {
-  .status-title {
-    float: right; } }
 .task-resources .panel {
   background-color: #E5E5E5;
   color: #4d4d4d;
@@ -728,5 +729,9 @@ INSTRUCTOR VIEW
       font-size: 1.5em; } }
 .student .student-title {
   text-align: center; }
+.student .student-header {
+  padding: 0; }
+.student .btn-email {
+  margin-left: 0; }
 
 /*# sourceMappingURL=output.css.map */

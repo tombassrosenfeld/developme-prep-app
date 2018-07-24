@@ -3,7 +3,7 @@ import React from 'react';
 export default ({progress, notDone}) => (
 	<div className="topicStatus panel">
 		<div className="row">
-			<div className="col-xs-6"><h2 className="panel-title">Completed</h2></div>
+			<div className="col-xs-5"><h2 className="panel-title">Completed</h2></div>
 			<div className="col-xs-2">
 				<p className="topicStatus-stat topicStatus-done">
 				{progress}
@@ -16,7 +16,7 @@ export default ({progress, notDone}) => (
 				</p>
 				<p className="topicStatus-label">NOT DONE</p>
 			</div>
-			<div className="col-xs-2">
+			<div className="col-xs-3">
 				<div className="marker topicStatus-marker">
 				{ notDone > 0 ? 
 					<i className="fa fa-times-circle-o" aria-hidden="true"></i> : 
