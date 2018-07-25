@@ -647,6 +647,6 @@ INSTRUCTOR VIEW
   font-size: 16px; }
 
 .marking-task {
-  padding: 10px 0; }
+  border-top: 1px solid #E5E5E5; }
 
 /*# sourceMappingURL=output.css.map */
