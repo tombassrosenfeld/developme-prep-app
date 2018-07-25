@@ -12,6 +12,12 @@
 .bgrd-grey {
   background-color: #C9C9C9; }
 
+.bgrd-red {
+  background-color: #FF3030; }
+
+.text-white {
+  color: #FFF; }
+
 /******************************************/
 /*Generic*/
 /******************************************/
@@ -641,6 +647,6 @@ INSTRUCTOR VIEW
   font-size: 16px; }
 
 .marking-task {
-  padding: 10 0; }
+  padding: 10px 0; }
 
 /*# sourceMappingURL=output.css.map */
