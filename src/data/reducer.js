@@ -103,7 +103,7 @@ const topicsData = (state, { data }) => {
 		}
 		return total + 0;
 	}, 0)));
-
+	console.log(topicsWithDuration.toJS());
 	return state.set('topics', topicsWithDuration).set('isLoaded', true);
 }
 

@@ -10,7 +10,7 @@ export default ({marking, cohorts}) => {
 		students = students.push(studentInfo);
 	});
 	return (
-		<div class="col-xs-12 col-sm-8 col-md-6 narrow-padding">
+		<div className="col-xs-12 col-sm-8 col-md-6 narrow-padding">
 			<div className="panel">
 				<div className="topics-header">
 					<div className="topics-header-icon"><i className="fa fa-2x fas fa-users" aria-hidden="true"></i></div>
@@ -19,10 +19,10 @@ export default ({marking, cohorts}) => {
 				{marking.size > 0 ? 
 					<div>
 						<p>The following students have shared code for you to review:</p>
-						<div class="taskList">
+						<div className="taskList">
 							{students.map(student => (
-								<div class="row narrow-padding">
-									<div class="col-xs-12">
+								<div className="row narrow-padding">
+									<div className="col-xs-12">
 										<Link to={'/cohort/' + student.get('cohort') + '/' + student.get('id')}>
 											{student.get('name')}
 										</Link>

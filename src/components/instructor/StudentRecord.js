@@ -2,6 +2,7 @@ import React from 'react';
 import ProgressBar from '../ProgressBar';
 import StudentStatus from './StudentStatus';
 import TopicList from '../../containers/instructor/TopicList';
+import StudentMarking from '../../containers/instructor/StudentMarking';
 
 export default ({student, totalTasks, userRole}) => {
 	const progress = student.get('userProgress').size;
@@ -28,6 +29,7 @@ export default ({student, totalTasks, userRole}) => {
 		  </div>
 		  <StudentStatus progress={progress} notDone={totalTasks - progress} />
 		  <TopicList student={student}/>
+		  <StudentMarking student={student}/>
 		</div>
 	) : null;
 }

@@ -35,3 +35,8 @@ export const calculateTopicStatus = (userProgress, topic) => {
 
 //Returns if student or instructor
 export const getUserRole = (rolesArr) => rolesArr.reduce((role, r) => role += r === 'student' || r === 'instructor' ? r : '', '');
+
+export const getTaskFromTitleAndId = (title, id, topics) => {
+	let topic = topics.toJS().find((topic) => topic.short_title == title);
+	return topic.tasks[id];
+}
