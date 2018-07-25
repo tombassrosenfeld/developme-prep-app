@@ -23,10 +23,23 @@ export default ({student, topics}) => {
 							<div>
 								<p><strong>{topic}</strong></p>
 								{sharedCode.get(topic).map((task, i) => (
-									task ? (
-										<p><i>{ Parser(getTaskFromTitleAndId(topic, i, topics).description.replace(/\\n/g, "")) }</i></p>
-									) : null
+									<div>
+										{task ? 
+											<div>
+												<i>{ Parser(getTaskFromTitleAndId(topic, i, topics).description.replace(/\\n/g, "")) }</i>
+												<p>{task.get('code')}</p>
+												<p>{task.get('pending')}</p>
+												<p>Previous Feedback</p>
+												{task.get('feedback') ? task.get('feedback').map(comment => (
+													<p>{comment}</p>
+													)) 
+													: <p>You are yet to provide feedback for this code</p>
+												}
+											</div>
+										: null}
+									</div>
 								))}
+
 							</div>
 							
 						))}
