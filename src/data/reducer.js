@@ -54,14 +54,20 @@ const setStudents = (state, { data }) => {
 }
 
 const searchForMarking = (data) => {
+	let studentsWithMarking = [];
 	data.map((student) => {
-		// check if any of their shared code is pending
-		// if so store student id in state
-		let sharedCode = student.get('userSharedCode');
+		// if student has any item pending, add their id to the list
 		let hasMarking = false;
-		sharedCode.map((topic) => topic.reduce((task) => if (task.get('pending') return true, false)));
-		// console.log(hasMarking);
-	})
+		let sharedCode = student.get('userSharedCode');
+		sharedCode.map((topic) => topic.map((task) => {
+			if(task) {
+				task.get('pending') ? hasMarking = true : null
+			};
+		}));
+		console.log(hasMarking);
+		hasMarking ? studentsWithMarking.push(student.get('id')) : null;
+	});
+	console.log(studentsWithMarking)
 }
 
 const orderByCohort = (data) => {
