@@ -19,7 +19,7 @@ export default ({progress, notDone}) => (
 			<div className="col-xs-3">
 				<div className="marker topicStatus-marker">
 				{ notDone > 0 ? 
-					<i className="fa fa-times-circle-o" aria-hidden="true"></i> : 
+					<i className="fa fa-circle-o" aria-hidden="true"></i> : 
 					<i className="fa fa-check-circle-o" aria-hidden="true"></i>
 				}
 				</div>
