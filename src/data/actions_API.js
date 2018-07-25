@@ -227,7 +227,7 @@ function getToken(username, password) {
 }
 
 function getStudents(token) {
-	return axios.get('/wp-json/wp/v2/users?context=edit&search=student', { // only return user data for the logged in user
+	return axios.get('/wp-json/wp/v2/users?context=edit&roles=student&per_page=100', { // only return user data for the logged in user
     	headers: {'Authorization': 'Bearer ' + token},
   })
 }
