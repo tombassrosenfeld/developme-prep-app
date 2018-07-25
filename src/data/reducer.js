@@ -50,11 +50,13 @@ const updateUserSharedCode = (state, {data}) => {
 const setStudents = (state, { data }) => {
 	let cohorts = orderByCohort(data);
 	let studentsToMark = searchForMarking(data);
-	return state.set('cohorts', fromJS(cohorts)).set('cohortsLoaded', true);
+	return state.set('cohorts', fromJS(cohorts))
+				.set('cohortsLoaded', true)
+				.set('studentsToMark', studentsToMark);
 }
 
 const searchForMarking = (data) => {
-	let studentsWithMarking = [];
+	let studentsWithMarking = List([]);
 	data.map((student) => {
 		// if student has any item pending, add their id to the list
 		let hasMarking = false;
@@ -64,10 +66,9 @@ const searchForMarking = (data) => {
 				task.get('pending') ? hasMarking = true : null
 			};
 		}));
-		console.log(hasMarking);
 		hasMarking ? studentsWithMarking.push(student.get('id')) : null;
 	});
-	console.log(studentsWithMarking)
+	return studentsWithMarking;
 }
 
 const orderByCohort = (data) => {
