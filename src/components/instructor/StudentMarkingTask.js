@@ -1,5 +1,6 @@
 import React from 'react';
 import { getTaskFromTitleAndId } from "../../utilities/utilities";
+import StudentMarkingForm from "./StudentMarkingForm";
 const Parser = require('html-react-parser');
 
 export default ({sharedCode, task, studentName }) => (
@@ -16,14 +17,7 @@ export default ({sharedCode, task, studentName }) => (
 		</textarea>
 
 		{sharedCode.get('pending') ? 
-			<div>
-				<p><strong>Please leave feedback for {studentName}</strong></p>
-				<textarea 
-					className="form-control share-code__textarea" 
-					rows="5" 
-				>
-				</textarea>
-			</div>
+			<StudentMarkingForm studentName={studentName} />
 		: null }
 
 		{sharedCode.get('feedback') ? 
