@@ -66,7 +66,7 @@ const searchForMarking = (data) => {
 				task.get('pending') ? hasMarking = true : null
 			};
 		}));
-		hasMarking ? studentsWithMarking.push(student.get('id')) : null;
+		studentsWithMarking = hasMarking ? studentsWithMarking.push(Map({id: student.get('id'), cohort: student.get('cohort')})) : studentsWithMarking;
 	});
 	return studentsWithMarking;
 }
