@@ -24,9 +24,10 @@ export default ({student, topics}) => {
 									<div>
 										{task ? 
 											<StudentMarkingTask 
-												sharedCode={task} 
+												answer={task} 
 												task={getTaskFromTitleAndId(topic, i, topics).description.replace(/\\n/g, "")}
-												studentName={student.get('slug')}
+												student={student}
+												sharedCode={sharedCode}
 											/>
 										: null}
 									</div>

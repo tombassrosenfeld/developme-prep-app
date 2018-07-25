@@ -8,7 +8,7 @@ class IssuesForm extends Component {
             comment: ""
         }
 
-        // this.change = this.change.bind(this);
+        // this.submit = this.submit.bind(this);
     }
 
     onChange(e) {
@@ -18,12 +18,15 @@ class IssuesForm extends Component {
     disabled() {
     	return this.state.comment == '';
     }
+    submit(e, student, sharedCode, comment) {
+        console.log([student, sharedCode, comment]);
+    }
 
     render() {
-    	const { studentName } = this.props;
+    	const { student, sharedCode } = this.props;
     	return (
             <div>
-                <p><strong>Please leave feedback for {studentName}</strong></p>
+                <p><strong>Please leave feedback for {student.get('slug')}</strong></p>
                 <textarea 
                     className="form-control share-code__textarea" 
                     rows="5" 
@@ -34,7 +37,7 @@ class IssuesForm extends Component {
                 <button 
                     className="btn btn-default btn-logout bgrd-green pull-right" 
                     style={{marginBottom: '10px'}}
-                    onClick={() => console.log('clicked')}
+                    onClick={(e) => this.submit(e, student.toJS(), sharedCode.toJS(), this.state.comment)}
                     disabled={ this.disabled() }
                 >
                 Submit</button>

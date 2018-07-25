@@ -3,27 +3,27 @@ import { getTaskFromTitleAndId } from "../../utilities/utilities";
 import StudentMarkingForm from "./StudentMarkingForm";
 const Parser = require('html-react-parser');
 
-export default ({sharedCode, task, studentName }) => (
+export default ({answer, task, student, sharedCode }) => (
 	<div className="marking-task share-code">
-		<p className="text-white bgrd-red">{ sharedCode.get('pending') ? studentName + ' has submitted this task to be marked' : ''}</p>
+		<p className="text-white bgrd-red">{ answer.get('pending') ? student.get('slug') + ' has submitted this task to be marked' : ''}</p>
 		<i>{ Parser(task) }</i>
 		
 		<p><strong>Student's answer</strong></p>
 		<textarea 
 			className="form-control share-code__textarea" 
 			rows="5" 
-			value={sharedCode.get('code')}
+			value={answer.get('code')}
 			disabled>
 		</textarea>
 
-		{sharedCode.get('pending') ? 
-			<StudentMarkingForm studentName={studentName} />
+		{answer.get('pending') ? 
+			<StudentMarkingForm student={student} sharedCode={sharedCode} />
 		: null }
 
-		{sharedCode.get('feedback') ? 
+		{answer.get('feedback') ? 
 			<div>
 				<p><strong>Previous Comments</strong></p>
-				<div>{ sharedCode.get('feedback').map(comment => <p>{comment}</p> ) }</div>
+				<div>{ answer.get('feedback').map(comment => <p>{comment}</p> ) }</div>
 			</div>
 			: null
 		}
