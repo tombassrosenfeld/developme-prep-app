@@ -10,7 +10,7 @@ export default ({selectedTopic, selectedAssessment, student, onClick}) => {
 	const filteredTopicTasks = allTopicTasks.filter((task, ind)=> uncompletedShortTitles.indexOf(ind) === -1 );
 
 	return (
-		<div className="panel selected-topic">
+		<div className="panel selected-topic"> 
 			<h2 className="panel-title">Tasks to Complete:</h2>
 			{ allTopicTasks.size !== completedShortTitles.size ?
 				

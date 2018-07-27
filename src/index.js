@@ -19,8 +19,8 @@ import { applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 export const persistConfig = {
-  key: 'root',
-  storage,
+	key: 'root',
+	storage,
 }
 
 export const rootReducer = combineReducers({root: reducer});
