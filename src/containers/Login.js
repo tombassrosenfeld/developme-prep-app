@@ -4,9 +4,9 @@ import { authenticate } from "../data/actions_API";
 import { onFormElementChange, cancelRegistration } from "../data/actions";
 
 const mapStateToProps = state => ({
-   user: state.get('user'),
-   isRegistering: state.get('isRegistering'),
-   userRegistered: state.get('userRegistered')
+   user: state.get('root').get('user'),
+   isRegistering: state.get('root').get('isRegistering'),
+   userRegistered: state.get('root').get('userRegistered')
 });
 
 const mapDispatchToProps = dispatch => ({

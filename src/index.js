@@ -1,7 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './containers/App';
+import {Map} from 'immutable';
 import { createStore, compose } from "redux";
+import {
+  combineReducers
+} from 'redux-immutable';
 import { Provider } from "react-redux";
 import reducer from "./data/reducer";
 import HttpsRedirect from 'react-https-redirect';
@@ -11,9 +15,11 @@ import './css/output.css';
 import { applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
+const rootReducer = combineReducers({root: reducer});
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
-  reducer,
+  rootReducer,
   composeEnhancers(applyMiddleware(thunk))
 );
 

@@ -6,8 +6,6 @@ export default ({i, assessment, onClick, questions, studentAssessmentData, topic
 				studentAnswers = studentAnswersForAssessment ? studentAnswersForAssessment.get('answers').toJS() : null,
 				attemptsForAssessment = studentAnswersForAssessment ? studentAnswersForAssessment.get('attempts') : null;
 
-				console.log(studentAnswers);
-
 	return attemptsForAssessment ? (
 		<div className="panel">
 			<div className="row assessment-item">

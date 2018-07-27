@@ -3,7 +3,7 @@ import Issues from '../components/Issues';
 import { updateIssueFalse } from "../data/actions";
 
 const mapStateToProps = state => ({
-	issue: state.get('issue')
+	issue: state.get('root').get('issue')
 })
 const mapDispatchToProps = dispatch => ({
 	changeIssueState: () => {

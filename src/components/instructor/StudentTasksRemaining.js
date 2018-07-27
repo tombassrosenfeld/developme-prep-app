@@ -1,8 +1,6 @@
 import React from 'react';
 
 export default ({selectedTopic, selectedAssessment, student, onClick}) => {
-	// console.log(selectedTopic.toJS());
-	// console.log(student.toJS());
 	const topic = selectedTopic.get('short_title');
 	const allTopicTasks = selectedTopic.get('tasks');
 	const completedTasks = student.get('userProgress');
@@ -11,12 +9,6 @@ export default ({selectedTopic, selectedAssessment, student, onClick}) => {
 	const uncompletedShortTitles = completedShortTitles.map(el=>Number(el.split('.')[1]));
 	const filteredTopicTasks = allTopicTasks.filter((task, ind)=> uncompletedShortTitles.indexOf(ind) === -1 );
 
-	// uncompletedShortTitles.indexOf(task > -1)
-	 //tasks uncompleted for the given topic
-	// console.log(allTopicTasks.toJS());
-	// console.log(completedShortTitles.toJS());
-	// console.log(uncompletedShortTitles.toJS());
-	// console.log(filteredTopicTasks.toJS());
 	return (
 		<div className="panel selected-topic">
 			<h2 className="panel-title">Tasks to Complete:</h2>

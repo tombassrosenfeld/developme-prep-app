@@ -4,10 +4,10 @@ import { authenticate } from "../data/actions_API";
 import { getUserRole } from "../utilities/utilities";
 
 const mapStateToProps = state => ({
-	loggedIn: state.get('loggedIn'),
-  isLoaded: state.get("isLoaded"),
-  cohortsLoaded: state.get("cohortsLoaded"),
-  userRole: getUserRole(state.getIn(['user', 'roles'])),
+	loggedIn: state.get('root').get('loggedIn'),
+	isLoaded: state.get('root').get("isLoaded"),
+	cohortsLoaded: state.get('root').get("cohortsLoaded"),
+	userRole: getUserRole(state.get('root').getIn(['user', 'roles'])),
 });
 
 const mapDispatchToProps = dispatch => ({
