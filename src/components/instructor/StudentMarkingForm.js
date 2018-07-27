@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 
-class IssuesForm extends Component {
+class StudentMarkingForm extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             comment: ""
         }
-
-        // this.submit = this.submit.bind(this);
     }
 
     onChange(e) {
@@ -18,12 +16,9 @@ class IssuesForm extends Component {
     disabled() {
     	return this.state.comment == '';
     }
-    submit(e, student, sharedCode, comment) {
-        console.log([student, sharedCode, comment]);
-    }
 
     render() {
-    	const { student, sharedCode } = this.props;
+    	const { student, topicID, taskID, onClickFeedbackSubmit } = this.props;
     	return (
             <div>
                 <p><strong>Please leave feedback for {student.get('slug')}</strong></p>
@@ -37,7 +32,7 @@ class IssuesForm extends Component {
                 <button 
                     className="btn btn-default btn-logout bgrd-green pull-right" 
                     style={{marginBottom: '10px'}}
-                    onClick={(e) => this.submit(e, student.toJS(), sharedCode.toJS(), this.state.comment)}
+                    onClick={(e) => onClickFeedbackSubmit(student, this.state.comment, topicID, taskID)}
                     disabled={ this.disabled() }
                 >
                 Submit</button>
@@ -45,4 +40,4 @@ class IssuesForm extends Component {
     	)
     }
 }
-export default IssuesForm;
+export default StudentMarkingForm;

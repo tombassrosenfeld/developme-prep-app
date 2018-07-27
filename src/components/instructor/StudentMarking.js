@@ -1,10 +1,8 @@
 import React from 'react';
 import StudentMarkingTask from "../../components/instructor/StudentMarkingTask";
 import { getTaskFromTitleAndId } from "../../utilities/utilities";
-const Parser = require('html-react-parser');
 
 export default ({student, topics}) => {
-	console.log(student.toJS());
 	const sharedCode = student.get('userSharedCode');
 	const keys = Object.keys(sharedCode.toJS());
 	return (
@@ -24,10 +22,11 @@ export default ({student, topics}) => {
 									<div>
 										{task ? 
 											<StudentMarkingTask 
+												question={getTaskFromTitleAndId(topic, i, topics).description.replace(/\\n/g, "")}
 												answer={task} 
-												task={getTaskFromTitleAndId(topic, i, topics).description.replace(/\\n/g, "")}
+												topicID={topic}
+												taskID={i}
 												student={student}
-												sharedCode={sharedCode}
 											/>
 										: null}
 									</div>

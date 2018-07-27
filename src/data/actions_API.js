@@ -11,6 +11,7 @@ export const USER_DATA = Symbol("USER_DATA");
 export const USER_PROGRESS = Symbol("USER_PROGRESS");
 export const USER_ASSESSMENT_DATA = Symbol("USER_ASSESSMENT_DATA");
 export const USER_SHARED_CODE = Symbol("USER_SHARED_CODE");
+export const SHARED_CODE_FEEDBACK = Symbol("SHARED_CODE_FEEDBACK");
 export const SET_STUDENTS = Symbol("SET_STUDENTS");
 
 // when user submits login details, calls authenticate()
@@ -206,6 +207,29 @@ export const onClickSharedCodeSave = (topicTitle, taskID) => (dispatch, getState
 		.catch( error => dispatch(updateErrors('Sorry, we couldn\'t save your code at this time. Please try again.')) )
 }
 
+export const sharedCodeFeedbackSubmit = (student, comment, topicID, taskID) => (dispatch, getState) => {
+	dispatch(updateErrors(''));
+	dispatch(updateMessage(''));
+	let data = student.get('userSharedCode');
+	let feedbackArray = data.getIn([topicID, taskID, 'feedback']) || List([]); // if no existing feedback start new array
+	feedbackArray = feedbackArray.push(comment); // add new comment
+	data = data.setIn([topicID, taskID, 'feedback'], feedbackArray)
+				.setIn([topicID, taskID, 'newFeedback'], true)
+				.setIn([topicID, taskID, 'pending'], false);
+
+	// TODO: before trying out the api call, try to update state, then add this to the .then function
+	dispatch(sharedCodeFeedback(data, student.get('cohort'), student.get('id'))); // update state
+
+	// let token = getState().getIn(['user', 'token']);				
+	// postUserSharedCode(data.toJS(), student.get('id'), token)
+	// 	.then( response => {
+	// 		dispatch(updateErrors(''));
+	// 		dispatch(updateMessage('You\'re comment has been submitted!'));
+	// 		// dispatch(userSharedCode(fromJS(response.data))); // update state
+	// 	})
+	// 	.catch( error => dispatch(updateErrors('Sorry, we couldn\'t save your feedback at this time. Please try again.')) )
+}
+
 export const onForgotFormSubmit = data => (dispatch, getState )=> {
 	dispatch(updateErrors(''));
 	postForgotForm(data)
@@ -238,6 +262,13 @@ const userAssessmentData = (data) => ({
 const userSharedCode = (data) => ({
 	type: USER_SHARED_CODE,
 	data,
+})
+
+const sharedCodeFeedback = (data, cohort, studentID) => ({
+	type: SHARED_CODE_FEEDBACK,
+	data,
+	cohort,
+	studentID,
 })
 
 const topicsData = (data) => ({

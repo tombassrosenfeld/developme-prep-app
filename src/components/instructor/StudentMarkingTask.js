@@ -1,12 +1,12 @@
 import React from 'react';
 import { getTaskFromTitleAndId } from "../../utilities/utilities";
-import StudentMarkingForm from "./StudentMarkingForm";
+import StudentMarkingForm from "../../containers/instructor/StudentMarkingForm";
 const Parser = require('html-react-parser');
 
-export default ({answer, task, student, sharedCode }) => (
+export default ({question, answer, taskID, topicID, student }) => (
 	<div className="marking-task share-code">
 		<p className="text-white bgrd-red">{ answer.get('pending') ? student.get('slug') + ' has submitted this task to be marked' : ''}</p>
-		<i>{ Parser(task) }</i>
+		<i>{ Parser(question) }</i>
 		
 		<p><strong>Student's answer</strong></p>
 		<textarea 
@@ -17,7 +17,7 @@ export default ({answer, task, student, sharedCode }) => (
 		</textarea>
 
 		{answer.get('pending') ? 
-			<StudentMarkingForm student={student} sharedCode={sharedCode} />
+			<StudentMarkingForm student={student} topicID={topicID} taskID={taskID}/>
 		: null }
 
 		{answer.get('feedback') ? 

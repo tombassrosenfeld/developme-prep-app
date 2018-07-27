@@ -2,7 +2,7 @@ import initial from "./initial";
 import {List, Map, fromJS} from "immutable";
 
 import { ONFORMELEMENTCHANGE, UPDATE_ERRORS, UPDATE_MESSAGE, LOGOUT, ONCLICK_ICON, DELETE_ASSESSMENT_DATA, GET_ARCHIVED_ASSESSMENT_DATA, UPDATEISSUE, UPDATEISSUEFALSE, TOGGLEFORGOT, UPDATEFORGOT, UPDATESHAREDCODE} from "../data/actions";
-import { USER_DATA, UPDATE_CREDENTIALS, USER_PROGRESS, USER_ASSESSMENT_DATA, USER_SHARED_CODE, SET_STUDENTS, TOPICS_DATA } from "../data/actions_API";
+import { USER_DATA, UPDATE_CREDENTIALS, USER_PROGRESS, USER_ASSESSMENT_DATA, USER_SHARED_CODE, SHARED_CODE_FEEDBACK, SET_STUDENTS, TOPICS_DATA } from "../data/actions_API";
 
 const updateUsernameAndPassword = (state, { id, val }) => {
 	return state.setIn(['user', id], val);
@@ -45,6 +45,20 @@ const updateUserAssessmentData = (state, { data }) => {
 // From API
 const updateUserSharedCode = (state, {data}) => {
 	return state.set('sharedCode', data);
+}
+
+const updateStudentSharedCodeFeedback = (state, {data, cohort, studentID}) => {
+	console.log(data.toJS());
+	// get cohorts
+	let cohorts = state.get('cohorts');
+	let cohortIndex = cohorts.toJS().findIndex(co => co.name == cohort);
+	let studentIndex = cohorts.get(cohortIndex).get('students').toJS().findIndex(student => student.id == studentID);
+	cohorts = cohorts.setIn([cohortIndex, 'students', studentIndex, 'sharedCode'], data);
+	console.log(cohorts.toJS());
+
+	return state.set('cohorts', cohorts);
+	// console.log(cohortIndex, studentIndex);
+	// return state;
 }
 
 const setStudents = (state, { data }) => {
@@ -154,6 +168,7 @@ export default (state = initial, action) => {
 		case USER_PROGRESS: return updateUserProgress(state, action);
 		case USER_ASSESSMENT_DATA: return updateUserAssessmentData(state, action);
 		case USER_SHARED_CODE: return updateUserSharedCode(state, action);
+		case SHARED_CODE_FEEDBACK: return updateStudentSharedCodeFeedback(state, action);
 		case DELETE_ASSESSMENT_DATA: return deleteAssessmentData(state, action);
 		case GET_ARCHIVED_ASSESSMENT_DATA: return getArchivedAssessmentData(state, action);
 		case SET_STUDENTS: return setStudents(state, action);
