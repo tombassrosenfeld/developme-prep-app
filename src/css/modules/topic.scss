@@ -1,3 +1,7 @@
+.single-topic {
+	margin-bottom: 2em;
+}
+
 .topic-title {
 	margin: 24px 0 16px 0;
 	padding: 0 10px;
@@ -25,9 +29,16 @@
 	color: $lightGrey;
 	font-size: 12px;
 }
+.marker.topicStatus-marker {
+	display: flex;
+	justify-content: center;
+	.fa {
+		margin-top: 15px;
+		font-size: 2em;
+	}
+}
 .marker.topicStatus-marker .fa {
-	margin-top: 12px;
-	font-size: 40px;
+
 }
 
 @media only screen and (max-width : 500px) {

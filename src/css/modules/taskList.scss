@@ -1,12 +1,22 @@
 .taskList {
 	padding-bottom: 10px;
+	.taskList-task-title {
+		margin-bottom: 0;
+		padding-top: .5em;
+		padding-bottom: .5em;
+
+		font-size: 1.25em;
+	}
+	.taskList-task-marker {
+		padding-top: .5em;
+		padding-bottom: .5em;
+		text-align: center;
+	}
 }
 .taskList-title {
 	font-weight: bold;
 }
-.taskList-task-title {
-	margin-bottom: 0;
-}
+
 .status-title {
 	text-align: center;
 }
@@ -21,11 +31,4 @@
 	display: flex;
 	justify-content: center;
 	cursor: pointer;
-}
-
-
-@media only screen and (max-width : 500px) {
-	.status-title {
-		float: right;
-	}
 }

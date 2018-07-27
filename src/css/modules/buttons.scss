@@ -1,0 +1,28 @@
+.btn-email {
+	color: $white;
+	text-decoration: none;
+
+	background-color: $homeGreen;
+	&:link {
+		color: $white;
+		text-decoration: none;
+		.fa {
+			color: $black;
+			margin-left: 5px;
+		}
+	}
+}
+@media (max-width: 767px) {
+	.btn-lg-mob {
+		margin: 1em 0;
+		padding: 1em;
+
+		font-size: 1.25em;
+	}	
+
+}
+@media (min-width: 768px) {
+	.btn-email {
+		width: auto;
+	}
+}

@@ -28,7 +28,7 @@ body {
 a {
   color: #404040; }
 
-a, a:hover, a:active {
+a, a:hover, a:active, a:link {
   text-decoration: none;
   color: #404040; }
 
@@ -125,24 +125,51 @@ p {
 .btn-submit {
   background-color: #00e6b8; }
 
+/* remember to define focus styles! */
+*:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none; }
+
 @keyframes spin {
   0% {
     transform: rotate(0deg); }
   100% {
     transform: rotate(360deg); } }
+@media (max-width: 767px) {
+  .d-none-mob {
+    display: none; } }
 /******************************************/
 /*Imported modules*/
 /******************************************/
+.btn-email {
+  color: #FFF;
+  text-decoration: none;
+  background-color: #00e6b8; }
+  .btn-email:link {
+    color: #FFF;
+    text-decoration: none; }
+    .btn-email:link .fa {
+      color: #404040;
+      margin-left: 5px; }
+
+@media (max-width: 767px) {
+  .btn-lg-mob {
+    margin: 1em 0;
+    padding: 1em;
+    font-size: 1.25em; } }
+@media (min-width: 768px) {
+  .btn-email {
+    width: auto; } }
 .top-nav {
   background-color: #C9C9C9;
-  padding: 5px 20px 0;
-  height: 37px; }
+  padding: 10px 20px; }
 
 .logo {
   position: relative;
   top: 3px;
-  width: 120px;
-  height: 22px;
+  width: 140px;
+  height: 30px;
   background-image: url("../images/developme_logo.svg");
   background-size: contain;
   background-repeat: no-repeat;
@@ -151,7 +178,7 @@ p {
 .btn-logout {
   color: #404040;
   border: none;
-  font-size: 10px; }
+  font-size: 16px; }
 
 .titles {
   text-align: center;
@@ -185,12 +212,16 @@ p {
   padding: 5px 10px;
   border-radius: 2px;
   margin: 0 1px;
-  cursor: pointer; }
+  cursor: pointer;
+  font-size: 16px; }
+  .bottom-nav-module .fa {
+    margin-left: 5px; }
 
 .user-icon {
   color: #404040;
   font-size: 20px;
-  padding: 3px 10px 0 0; }
+  margin-left: 5px;
+  padding: 0 3px; }
 
 /* Small Devices, Tablets */
 @media only screen and (max-width: 768px) {
@@ -208,7 +239,8 @@ p {
   width: 100%; }
   .main-footer .panel {
     background-color: transparent;
-    border-top: none; }
+    border-top: none;
+    margin-bottom: 0; }
 
 @media only screen and (min-width: 768px) {
   .login-form {
@@ -216,7 +248,44 @@ p {
     padding-top: 0;
     margin: 0 auto; } }
 
+.register-form__validation {
+  padding: .5em;
+  background-color: #FF3030;
+  border-radius: 5px;
+  color: #FFF; }
+.register-form__confirmation {
+  margin-top: 2em;
+  padding: 1em;
+  background-color: #00e6b8;
+  border-radius: 5px;
+  color: #FFF; }
+
+.forgot-password-link {
+  display: inline-block;
+  float: right;
+  padding: 0;
+  color: #00e6b8; }
+  .forgot-password-link:link {
+    text-decoration: underline; }
+  .forgot-password-link:hover {
+    color: #C9C9C9; }
+  .forgot-password-link:visited {
+    color: #00e6b8; }
+
+.register-form__header {
+  margin: 1em 0;
+  font-size: 2em;
+  text-align: center; }
+
+@media (max-width: 767px) {
+  .forgot-password-link {
+    padding: 1.5em 0; }
+
+  .register-form .btn-register {
+    margin-bottom: 1em;
+    padding: 1em; } }
 .topics {
+  margin-bottom: 1em;
   padding-bottom: 0px; }
 
 .topics-header {
@@ -245,11 +314,17 @@ p {
   margin: 10px 0;
   color: #4d4d4d; }
 
-.topics-icon:hover {
+.topics-icon:hover, .topics-icon.active {
   background-color: #00e6b8;
   color: #404040;
-  font-weight: bold; }
+  font-weight: bold;
+  text-decoration: none; }
+  .topics-icon:hover h2, .topics-icon.active h2 {
+    text-decoration: none; }
 
+@media (max-width: 767px) {
+  .topics-icon {
+    padding: 5px 0; } }
 .email-div {
   display: flex;
   justify-content: center; }
@@ -374,6 +449,9 @@ p {
   color: #00e6b8;
   font-weight: bold; }
 
+.single-topic {
+  margin-bottom: 2em; }
+
 .topic-title {
   margin: 24px 0 16px 0;
   padding: 0 10px;
@@ -401,9 +479,12 @@ p {
   color: #C9C9C9;
   font-size: 12px; }
 
-.marker.topicStatus-marker .fa {
-  margin-top: 12px;
-  font-size: 40px; }
+.marker.topicStatus-marker {
+  display: flex;
+  justify-content: center; }
+  .marker.topicStatus-marker .fa {
+    margin-top: 15px;
+    font-size: 2em; }
 
 @media only screen and (max-width: 500px) {
   .marker.topicStatus-marker .fa {
@@ -459,6 +540,10 @@ INSTRUCTOR VIEW
   display: flex;
   justify-content: center; }
 
+.btn-submit {
+  background-color: #00e6b8;
+  color: #FFF; }
+
 #issue-description {
   padding-top: 10px;
   padding-bottom: 100px; }
@@ -485,12 +570,18 @@ INSTRUCTOR VIEW
     opacity: 0; } }
 .taskList {
   padding-bottom: 10px; }
+  .taskList .taskList-task-title {
+    margin-bottom: 0;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    font-size: 1.25em; }
+  .taskList .taskList-task-marker {
+    padding-top: .5em;
+    padding-bottom: .5em;
+    text-align: center; }
 
 .taskList-title {
   font-weight: bold; }
-
-.taskList-task-title {
-  margin-bottom: 0; }
 
 .status-title {
   text-align: center; }
@@ -505,9 +596,6 @@ INSTRUCTOR VIEW
   justify-content: center;
   cursor: pointer; }
 
-@media only screen and (max-width: 500px) {
-  .status-title {
-    float: right; } }
 .task-resources .panel {
   background-color: #E5E5E5;
   color: #4d4d4d;
@@ -562,17 +650,24 @@ INSTRUCTOR VIEW
   padding: 10px; }
   .submit-assessment .btn-submit {
     font-size: 14px; }
+  .submit-assessment .btn-submit:disabled {
+    background-color: #C9C9C9; }
+    .submit-assessment .btn-submit:disabled:hover {
+      background-color: #C9C9C9;
+      color: #FFF; }
 
 .retake-text {
   margin: 1em 0 0; }
 
 .retake-button {
   font-size: 1em;
-  margin-left: 10px; }
+  margin-left: 10px;
+  padding: .5em 1em; }
 
 .assessment-buttons {
-  display: flex;
-  justify-content: space-between; }
+  margin: 1em 0; }
+  .assessment-buttons button {
+    padding: 1em; }
   .assessment-buttons .btn-cancel {
     border: none; }
 
@@ -581,6 +676,18 @@ INSTRUCTOR VIEW
   color: #FFF;
   font-weight: bold;
   background-color: #404040; }
+
+.radio label {
+  display: block;
+  margin: .5em .5em 1em 0;
+  padding: .5em;
+  font-size: 1.25em;
+  background-color: #FFF; }
+.radio.active label {
+  background-color: #00e6b8;
+  color: #FFF; }
+.radio input {
+  display: none; }
 
 /************************************
 INSTRUCTOR VIEW
@@ -607,11 +714,12 @@ INSTRUCTOR VIEW
   margin: 10px; }
 
 .welcome-banner {
-  height: 175px;
+  height: 250px;
   margin: 0 10px 20px;
   width: calc(100% - 20px);
-  background-image: url(https://developme.training/wp-content/uploads/2015/09/header-background-fell-june2017.jpg);
-  background-position: center 36%; }
+  background-image: url("../images/welcome-bg.jpg");
+  background-size: cover;
+  background-position: center; }
 
 .instructions {
   margin: 0 25px;
@@ -627,26 +735,32 @@ INSTRUCTOR VIEW
 .progress-bar {
   background-color: #00e6b8; }
 
-.forgot-form {
-  padding-top: 8px; }
-  .forgot-form__label {
-    color: #404040;
-    font-weight: 500; }
-
-.forgot-password-text {
-  cursor: pointer;
-  color: #00e6b8;
-  text-align: center; }
-  @media only screen and (max-width: 768px) {
-    .forgot-password-text {
-      margin: 20px 0; } }
-
-.onsubmit-text {
-  text-align: center;
-  color: #00e6b8;
-  font-size: 16px; }
-
+@media (max-width: 767px) {
+  .progress {
+    height: 2.5em;
+    margin: 1em 0;
+    width: 100%; }
+    .progress .progress-bar {
+      padding: .5em; } }
 .marking-task {
   border-top: 1px solid #E5E5E5; }
+
+@media (max-width: 767px) {
+  .student-list {
+    padding-top: 2em; }
+    .student-list .progress {
+      height: 2.5em;
+      margin: 1em 0;
+      width: 100%; }
+      .student-list .progress .progress-bar {
+        padding: .5em; }
+    .student-list .student-link {
+      font-size: 1.5em; } }
+.student .student-title {
+  text-align: center; }
+.student .student-header {
+  padding: 0; }
+.student .btn-email {
+  margin-left: 0; }
 
 /*# sourceMappingURL=output.css.map */

@@ -36,10 +36,10 @@ class TopicList extends Component {
 			<div>
 				<div className="panel">
 					<div className="row">
-						<div className="col-xs-10">
+						<div className="col-xs-9">
 							<h2 className="panel-title">Topics</h2> 
 						</div>
-						<div className="col-xs-2">
+						<div className="col-xs-3">
 							<h2 className="panel-title status-title">Done</h2> 
 						</div>
 					</div>
@@ -54,10 +54,10 @@ class TopicList extends Component {
 					  				topicProgress={studentProgress.filter(task => task.includes(topic.get('short_title'))).size}
 					  			/>)) :
 					  		<div className="row task">
-					  			<div className="col-xs-12">
-										<p className="taskList-task-title">There are currently no topics for this student</p>
-									</div>
+				  				<div className="col-xs-12">
+									<p className="taskList-task-title">There are currently no topics for this student</p>
 								</div>
+							</div>
 					  	}
 					</div>
 				</div>

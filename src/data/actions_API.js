@@ -1,6 +1,6 @@
 import axios from '../data/axios';
 import { processTopicsData } from '../utilities/utilities';
-import { updateErrors, updateMessage, updateIssue, updateForgot } from './actions';
+import { updateErrors, updateMessage, updateIssue, setUserRegistered } from './actions';
 import { List, fromJS } from "immutable";
 import { getUserRole } from "../utilities/utilities";
 
@@ -13,6 +13,7 @@ export const USER_ASSESSMENT_DATA = Symbol("USER_ASSESSMENT_DATA");
 export const USER_SHARED_CODE = Symbol("USER_SHARED_CODE");
 export const SHARED_CODE_FEEDBACK = Symbol("SHARED_CODE_FEEDBACK");
 export const SET_STUDENTS = Symbol("SET_STUDENTS");
+export const REGISTER_USER = Symbol("REGISTER_USER");
 
 // when user submits login details, calls authenticate()
 export const authenticate = (username, password) => dispatch => {
@@ -23,6 +24,19 @@ export const authenticate = (username, password) => dispatch => {
 			dispatch(getData(response.data.token)); // and immediately calls api for module and user data
 		})
 		.catch( error => dispatch(updateErrors('Unable to log you in! Please check your details.')) )
+};
+
+export const registerUser = data => (dispatch)=> {
+	postUserData(data)
+		.then( response => {
+			dispatch(updateErrors('')); // remove any errors
+			dispatch(setUserRegistered(response.data));
+		})
+		.catch( error => {
+		    if (error.response) {
+		    	dispatch(updateErrors(error.response.data.message));
+			}
+		});
 };
 
 // if authentication is successful, calls getdata()
@@ -227,15 +241,6 @@ export const sharedCodeFeedbackSubmit = (student, comment, topicID, taskID) => (
 		.catch( error => dispatch(updateErrors('Sorry, we couldn\'t save your feedback at this time. Please try again.')) )
 }
 
-export const onForgotFormSubmit = data => (dispatch, getState )=> {
-	dispatch(updateErrors(''));
-	postForgotForm(data)
-		.then( response => {
-			dispatch(updateForgot());
-		})
-		.catch( error => dispatch(updateErrors('Request was not submitted, please check for errors')) )
-};
-
 const updateCredentials = (data) => ({
 	type: UPDATE_CREDENTIALS, 
 	data,
@@ -288,7 +293,7 @@ function getToken(username, password) {
 }
 
 function getStudents(token) {
-	return axios.get('/wp-json/wp/v2/users?context=edit&search=student', { // only return user data for the logged in user
+	return axios.get('/wp-json/wp/v2/users?context=edit&roles=student&per_page=100', { // only return user data for the logged in user
     	headers: {'Authorization': 'Bearer ' + token},
   })
 }
@@ -324,11 +329,12 @@ function getTopics() {
 	return axios.get('/wp-json/wp/v2/cf_preparation/');
 } 
 
-function postForgotForm(data) {
-	return axios.post('/wp-json/cf/prep/forgotpassword', { 
+function postUserData(data) {
+	return axios.post('/wp-json/cf/prep/register-user', { 
 		data: data,
 	})
 }
+
 function postIssue(data) {
 	return axios.post('/wp-json/cf/prep/issue', { 
 		data: data,

@@ -46,10 +46,9 @@ a {
 	color: #404040;
 }
 
-a, a:hover, a:active {
+a, a:hover, a:active, a:link {
 	text-decoration: none;
 	color: $black;
-	// font-weight: bolder;
 }
 
 h1 {
@@ -167,6 +166,13 @@ p {
 	background-color: #00e6b8;
 }
 
+/* remember to define focus styles! */
+*:focus {
+	outline: none;
+  	-webkit-box-shadow: none;
+  	box-shadow: none;
+}
+
 @keyframes spin {
 	0% {
 		transform: rotate(0deg);
@@ -176,9 +182,16 @@ p {
 	}
 }
 
+@media (max-width: 767px) {
+	.d-none-mob {
+		display: none;
+	}	
+}
+
 /******************************************/
 /*Imported modules*/
 /******************************************/
+@import 'modules/buttons';
 @import 'modules/header';
 @import 'modules/footer';
 @import 'modules/login';
@@ -194,5 +207,6 @@ p {
 @import 'modules/assessment';
 @import 'modules/welcome';
 @import 'modules/progress-bar';
-@import 'modules/forgotForm';
 @import 'modules/studentMarkingTask';
+@import 'modules/student-list';
+@import 'modules/student-record';

@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import Header from '../containers/Header';
 import Footer from '../components/Footer';
+import Register from '../components/Register';
 import Errors from '../containers/Errors';
 import Messages from '../containers/Messages';
 import TopicsNav from '../containers/TopicsNav';
@@ -28,15 +29,20 @@ class App extends Component {
   }
 
   loaded() {
-    return (
+    return this.props.userRole ? (
       <div className="row">
+          <Route path="/" render={ ({ match }) => {
+            return this.props.userRole === 'instructor' ?
+              <CohortNav title="Cohorts" />
+              : null }
+            }
+          />     
           <Route path="/" render={ ({ match }) => {
             return this.props.userRole === 'student' ?
               <TopicsNav title="Topics" />
-              :
-              <CohortNav title="Cohorts" />
+              : null }
             }
-          }/>        
+          />        
           <Route exact path="/" render={ ({ match }) => (
             <div>
             <Welcome userRole={this.props.userRole}/>
@@ -48,6 +54,7 @@ class App extends Component {
           <Route path="/prep/topic/:id" render={ ({ match }) => (
             <Topic id={ match.params.id }/>
           )} />
+          <Route path="/register" component={Register} />
           <Route exact path="/cohort/:id" render={ ({ match }) => (
             this.props.userRole === 'instructor' && this.props.cohortsLoaded ?
             <Cohort id={ match.params.id }/> 
@@ -72,7 +79,7 @@ class App extends Component {
           )} />
         
       </div>
-    )
+    ) : this.loading();
   }
 
   render() {

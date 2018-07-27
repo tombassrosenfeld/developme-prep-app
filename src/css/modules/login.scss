@@ -1,7 +1,64 @@
 .login-form {
 	@media only screen and (min-width : 768px) {
 		width: 80%;
-   	padding-top: 0;
-    margin: 0 auto;
+	   	padding-top: 0;
+	    margin: 0 auto;
 	}	 
 } 
+
+.register-form {
+	@at-root #{&}__validation {
+		padding: .5em;
+
+		background-color: $red;
+		border-radius: 5px;
+		color: $white;
+	}
+	@at-root #{&}__confirmation{
+		margin-top: 2em;
+		padding: 1em;
+
+		background-color: $homeGreen;
+		border-radius: 5px;
+		color: $white;
+	}
+}
+
+
+.forgot-password-link {
+	display: inline-block;
+	float: right;
+	padding: 0;
+	color: $homeGreen;
+	&:link {
+		text-decoration: underline;
+	}
+	&:hover {
+		color: $lightGrey;
+	}
+	&:visited {
+		color: $homeGreen;
+	}
+}
+
+.register-form {
+	@at-root #{&}__header {
+		margin: 1em 0;
+		font-size: 2em;
+		text-align: center;
+	}
+}
+
+@media (max-width: 767px) {
+	.forgot-password-link {
+		padding: 1.5em 0;
+
+	}
+	.register-form {
+		.btn-register {
+			margin-bottom: 1em;
+
+			padding: 1em;
+		}
+	}
+}

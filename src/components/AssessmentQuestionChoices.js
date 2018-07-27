@@ -1,20 +1,35 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-export default ({ choices, topicTitle, assessmentID, questionID, userAssessmentData, onChangeAssessmentAnswer, retake }) => choices.map( (answer, answerID) => answer.get('answer_choice') ? (
-	<div className="radio" key={answerID}>
-		<label>
-  		<input 
-      	onChange={() => onChangeAssessmentAnswer(
-					topicTitle,
-					assessmentID,
-					questionID,
-					answerID,
-				)}
-    		type="radio" 
-    		value="option1" 
-    		checked={userAssessmentData.getIn([topicTitle, assessmentID, 'answers', questionID ]) === answerID} 
-    	/>
-				{answer.get('answer_choice')}
-   	</label>
-  </div>) : null 
-)
+class AssessmentQuestionChoices extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			active: 'none',
+		}
+	}
+	setActive(i) {
+		this.setState({active: i})
+	}
+	render() {
+		const {choices, topicTitle, assessmentID, questionID, userAssessmentData, onChangeAssessmentAnswer, retake} = this.props;
+		return choices.map( (answer, answerID) => answer.get('answer_choice') ? (
+		<div key={answerID} className={this.state.active === answerID ? 'radio active' : 'radio'}>
+			<label onClick={() => this.setActive(answerID)}>
+	  		<input 
+	      	onChange={() => onChangeAssessmentAnswer(
+						topicTitle,
+						assessmentID,
+						questionID,
+						answerID,
+					)}
+	    		type="radio" 
+	    		value="option1" 
+	    		checked={userAssessmentData.getIn([topicTitle, assessmentID, 'answers', questionID ]) === answerID} 
+	    	/>
+					{answer.get('answer_choice')}
+	   	</label>
+	  </div>) : null)
+	}
+}
+
+export default AssessmentQuestionChoices;

@@ -23,6 +23,7 @@ export default Map({
 	errors: '',
 	message: '',
 	cohorts: List([]),
-	forgotPassword: true,
 	issue: false,
+	isRegistering: false,
+	userRegistered: false,
 });

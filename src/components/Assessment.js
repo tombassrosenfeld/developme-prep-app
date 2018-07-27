@@ -9,6 +9,7 @@ class Assessment extends Component {
 		super(props);
 		this.state = {
 			retake: false,
+			submitDisabled: false,
 		}
 		this.retakeOnClick = this.retakeOnClick.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
@@ -38,6 +39,8 @@ class Assessment extends Component {
 	render() {
 
 		const { id, topic, userAssessmentData } = this.props;
+
+		const userAnswers = userAssessmentData.getIn([topic.getIn(['short_title']), id, 'answers']) ? userAssessmentData.getIn([topic.getIn(['short_title']), id, 'answers']) : List([])
 
 		return (
 			<div className="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-4 narrow-padding">
@@ -71,13 +74,11 @@ class Assessment extends Component {
 						assessmentID={id}
 						assessment={topic.getIn(['assessments', id])}
 						topicTitle={topic.getIn(['short_title'])}
-						userAnswers={
-							userAssessmentData.getIn([topic.getIn(['short_title']), id, 'answers']) ?
-							userAssessmentData.getIn([topic.getIn(['short_title']), id, 'answers']) : List([])
-						}
+						userAnswers={userAnswers}
 						onSubmit={this.onSubmit}
 						retake={this.state.retake}
 						onCancel={this.onCancel}
+						disabled={!userAnswers.size}
 					/> : null}
 			</div>
 		)

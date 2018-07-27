@@ -5,12 +5,13 @@
 }
 
 .welcome-banner {
-	height: 175px;
+	height: 250px;
 	margin: 0 10px 20px;
 	width: calc(100% - 20px);
 
-	background-image: url(https://developme.training/wp-content/uploads/2015/09/header-background-fell-june2017.jpg);
-	background-position: center 36%;
+	background-image: url('../images/welcome-bg.jpg');
+	background-size: cover;
+	background-position: center;
 }
 
 .instructions {

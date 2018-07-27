@@ -2,34 +2,34 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import ModulesNav from "../containers/ModulesNav";
 
-export default ({user, loggedIn, logOut, userRole}) => (
+export default ({user, loggedIn, logOut, userRole, setRegistering, isRegistering, cancel}) => (
 	<div>
 		<div className="row top-nav">
 			<div className="col-xs-12">
 				<Link className="home-link" to="/">
 					<div className="logo"></div>
-		  		</Link>	
-		  
-				{ loggedIn? 
+		  		</Link>			  
+				{ loggedIn || isRegistering ? 
 					<Link className="home-link" to="/">
-						<button className="btn btn-default pull-right btn-logout bgrd-green" onClick={ () => logOut() }>Log Out
+						<button className="btn btn-default pull-right btn-logout btn-submit" onClick={ () => isRegistering ? cancel() : logOut() }><i className="fa user-icon fa-user pull-right" aria-hidden="true"></i>{isRegistering ? 'Log In' : 'Log Out'}
 						</button> 
 					</Link>
-					: null}
-				{ loggedIn? <i className="fa user-icon fa-user pull-right" aria-hidden="true"></i> : null }
-				
+					: 
+					<button className="btn btn-default pull-right btn-logout btn-submit" onClick={ setRegistering }><i className="fa user-icon fa-user-plus pull-right" aria-hidden="true"></i>Register
+					</button> 
+					}
 			</div>
 		</div>
 
 		<div className="row header-body">
 			<div className="col-xs-12 titles">
 				<h1 className="header-course">Coding Fellowship |</h1>
-				<h1 className="header-username">&nbsp;{loggedIn? userRole === 'student' ? user.get('username') : 'Instructor' : 'App' }</h1>
-				{loggedIn? <h2 className="header-cohort">{userRole === 'student' ? 'Coding Fellowship ' + user.get('cohort').slice(2) : user.get('username')}</h2> : null }
+				<h1 className="header-username">&nbsp;{loggedIn? userRole === 'instructor' ? 'Instructor' :  user.get('username') : 'App' }</h1>
+				{loggedIn? <h2 className="header-cohort">{userRole === 'instructor' ? user.get('username') : user.get('cohort') ? 'Coding Fellowship ' + user.get('cohort') : 'Coding Fellowship - unknown'}</h2> : null }
 			</div>
 		</div>
 
-		{ loggedIn? <ModulesNav userRole={userRole} /> : null }
+		{ loggedIn? <ModulesNav text={userRole === 'instructor' ? 'Students' : 'Preparation' } /> : null }
 
 	</div>
 )

@@ -1,8 +1,8 @@
 import initial from "./initial";
 import {List, Map, fromJS} from "immutable";
 
-import { ONFORMELEMENTCHANGE, UPDATE_ERRORS, UPDATE_MESSAGE, LOGOUT, ONCLICK_ICON, DELETE_ASSESSMENT_DATA, GET_ARCHIVED_ASSESSMENT_DATA, UPDATEISSUE, UPDATEISSUEFALSE, TOGGLEFORGOT, UPDATEFORGOT, UPDATESHAREDCODE} from "../data/actions";
-import { USER_DATA, UPDATE_CREDENTIALS, USER_PROGRESS, USER_ASSESSMENT_DATA, USER_SHARED_CODE, SHARED_CODE_FEEDBACK, SET_STUDENTS, TOPICS_DATA } from "../data/actions_API";
+import { ONFORMELEMENTCHANGE, UPDATE_ERRORS, UPDATE_MESSAGE, LOGOUT, SET_REGISTERING, SET_USER_REGISTERED, CANCEL_REGISTRATION, ONCLICK_ICON, DELETE_ASSESSMENT_DATA, GET_ARCHIVED_ASSESSMENT_DATA, UPDATEISSUE, UPDATEISSUEFALSE, UPDATESHAREDCODE } from "../data/actions";
+import { USER_DATA, UPDATE_CREDENTIALS, USER_PROGRESS, USER_ASSESSMENT_DATA, USER_SHARED_CODE, SHARED_CODE_FEEDBACK, SET_STUDENTS, TOPICS_DATA} from "../data/actions_API";
 
 const updateUsernameAndPassword = (state, { id, val }) => {
 	return state.setIn(['user', id], val);
@@ -105,15 +105,19 @@ const orderByCohort = (data) => {
 }
 
 const topicsData = (state, { data }) => {
-	
-	const topicsWithDuration = data.map(topic => topic.set('duration', topic.get('tasks').reduce((total, task) => {
-		const resources = task.get('resources');
-		if(resources) {
-			return resources.reduce((total, resource) => resource.get('duration') ? total + +resource.get('duration') : total + 0, 0);
-		}
-		return total + 0;
-	}, 0)));
-	console.log(topicsWithDuration.toJS());
+
+	const topicsWithDuration = data.map(topic => {
+		let totalDuration = 0;
+		totalDuration += topic.get('tasks').reduce((total, task) => {
+			const resources = task.get('resources');
+			if(resources) {
+				return total + resources.reduce((total, resource) => resource.get('duration') ? total + +resource.get('duration') : total + 0, 0);
+			}
+			return total + 0;
+		}, 0);
+		return topic.set('duration', totalDuration);
+	}, 0);
+
 	return state.set('topics', topicsWithDuration).set('isLoaded', true);
 }
 
@@ -123,14 +127,21 @@ const onClickIcon = (state, { id }) => {
 }
 
 const logOut = (state) => {
-	return state.set('loggedIn', false);
+	return state.set('loggedIn', false).setIn(['user', 'roles'], []);
 }
-const toggleForgot = (state) => {
-	return state.set('forgotPassword', false);
+
+const setRegistering = (state) => {
+	return state.set('isRegistering', true).set('userRegistered', false);
 }
-const updateForgot = (state) => {
-	return state.set('forgotPassword', true);
+
+const setUserRegistered = (state, {data}) => {
+	return state.set('isRegistering', false).set('userRegistered', true);
 }
+
+const cancelRegistration = (state) => {
+	return state.set('isRegistering', false);
+}
+
 const deleteAssessmentData = (state, {topicTitle, assessmentID, assessment}) => {
 	const answers = state.getIn(['assessmentData', topicTitle, assessmentID, 'answers']);
 	const answersRemoved = answers.map(answer => null);
@@ -171,11 +182,12 @@ export default (state = initial, action) => {
 		case TOPICS_DATA: return topicsData(state, action);
 		case ONCLICK_ICON: return onClickIcon(state, action);
 		case LOGOUT: return logOut(state);
-		case TOGGLEFORGOT: return toggleForgot(state);
-		case UPDATEFORGOT: return updateForgot(state);
+		case CANCEL_REGISTRATION: return cancelRegistration(state);
 		case UPDATEISSUE: return updateIssue(state);
 		case UPDATEISSUEFALSE: return updateIssueFalse(state);
 		case UPDATESHAREDCODE: return updateSharedCode(state, action);
+		case SET_REGISTERING: return setRegistering(state);
+		case SET_USER_REGISTERED: return setUserRegistered(state, action);
 		default: return state;
 	}
 };

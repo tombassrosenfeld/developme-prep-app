@@ -8,8 +8,10 @@ class SideNav extends Component {
 		this.state = {
 			toggle: false,
 			height: 0,
+			activeIcon: null,
 		};
 		this.switch = this.switch.bind(this);
+		this.onClick = this.onClick.bind(this);
 	}
 
 	switch() {
@@ -17,9 +19,14 @@ class SideNav extends Component {
 		this.setState({toggle: !current})
 		this.setState({ height: this.state.height === 0 ? 'auto' : 0 })
 	}
+
+	onClick(i) {
+		this.setState({activeIcon: i, height: window.innerWidth > 767 ? 'auto' : 0})
+	}
+
 	render() {
 		const {title, navItems, onClickIcon, userRole} = this.props;
-		const { height } = this.state;
+		const { height, activeIcon } = this.state;
 
 		return (
 			<nav id='student-nav'>
@@ -33,7 +40,7 @@ class SideNav extends Component {
 								  </span>
 								</button>
 							</div>
-							<p className="toggle-p">{userRole === 'student' ? "Topics" : "Cohorts"} </p>
+							<p className="toggle-p">{userRole === 'instructor' ? "Cohorts" : "Topics"} </p>
 						</div>
 
 						<AnimateHeight
@@ -45,11 +52,12 @@ class SideNav extends Component {
 								{ navItems.map((navItem, i) => (
 									<SideNavItem 
 										key={ i } 
-										id={ userRole === 'student' ? navItem.get('id') : navItem.get('name') } 
-										title={ userRole === 'student' ? navItem.get('short_title') : navItem.get('name') }
+										active={i === activeIcon}
+										id={ userRole === 'instructor' ? navItem.get('name') : navItem.get('id')} 
+										title={ userRole === 'instructor' ? navItem.get('name') : navItem.get('short_title') }
 										selected={ navItem.get('selected') } 
-										onClick={ () => onClickIcon(userRole === 'student' ? navItem.get('id') : i) }
-										route={ userRole === 'student' ? '/prep/topic/' : '/cohort/'}
+										onClick={ () => {onClickIcon(userRole === 'instructor' ? i : navItem.get('id')); this.onClick(i); } }
+										route={ userRole === 'instructor' ? '/cohort/' : '/prep/topic/'}
 									/>
 								)) }
 							</div>
