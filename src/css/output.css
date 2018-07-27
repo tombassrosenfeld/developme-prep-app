@@ -653,8 +653,10 @@ INSTRUCTOR VIEW
 .code-snippet {
   margin: 1em 1.25em 1em 0;
   color: #FFF;
-  font-weight: bold;
   background-color: #404040; }
+  .code-snippet code {
+    font-family: monospace;
+    font-size: 1.25em; }
 
 .radio label {
   display: block;

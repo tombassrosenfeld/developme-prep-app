@@ -51,9 +51,12 @@
 	margin: 1em 1.25em 1em 0;
 
 	color: $white;
-	font-weight: bold;
 
 	background-color: $black;
+	code {
+		font-family: monospace;
+		font-size: 1.25em;
+	}
 }
 
 .radio {
