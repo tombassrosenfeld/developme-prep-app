@@ -29,7 +29,7 @@ export default ({user, loggedIn, logOut, userRole, setRegistering, isRegistering
 			</div>
 		</div>
 
-		{ loggedIn? <ModulesNav text={userRole === 'instructor' ? 'Students' : 'Preparation' } /> : null }
+		{ loggedIn? <ModulesNav userRole={userRole} /> : null }
 
 	</div>
 )
