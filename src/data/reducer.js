@@ -21,7 +21,6 @@ const updateErrors = (state, { errorMessage }) => {
 }
 
 const updateMessage = (state, { message }) => {
-	console.log(message);
 	return state.set('message', message);
 }
 
@@ -48,17 +47,14 @@ const updateUserSharedCode = (state, {data}) => {
 }
 
 const updateStudentSharedCodeFeedback = (state, {data, cohort, studentID}) => {
-	console.log(data.toJS());
-	// get cohorts
 	let cohorts = state.get('cohorts');
 	let cohortIndex = cohorts.toJS().findIndex(co => co.name == cohort);
 	let studentIndex = cohorts.get(cohortIndex).get('students').toJS().findIndex(student => student.id == studentID);
-	cohorts = cohorts.setIn([cohortIndex, 'students', studentIndex, 'sharedCode'], data);
-	console.log(cohorts.toJS());
-
-	return state.set('cohorts', cohorts);
-	// console.log(cohortIndex, studentIndex);
-	// return state;
+	cohorts = cohorts.setIn([cohortIndex, 'students', studentIndex, 'userSharedCode'], data);
+	let studentsToMark = state.get('studentsToMark');
+	studentsToMark = studentsToMark.filter(student => student.get('id') != studentID);
+	return state.set('cohorts', cohorts)
+				.set('studentsToMark', studentsToMark);
 }
 
 const setStudents = (state, { data }) => {

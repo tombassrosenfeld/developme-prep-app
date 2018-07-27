@@ -23,7 +23,7 @@ export default ({question, answer, taskID, topicID, student }) => (
 		{answer.get('feedback') ? 
 			<div>
 				<p><strong>Previous Comments</strong></p>
-				<div>{ answer.get('feedback').map(comment => <p>{comment}</p> ) }</div>
+				<div>{ answer.get('feedback').map(comment => <p><i>"{comment}"</i></p> ) }</div>
 			</div>
 			: null
 		}
