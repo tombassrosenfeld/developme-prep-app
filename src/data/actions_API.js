@@ -217,17 +217,14 @@ export const sharedCodeFeedbackSubmit = (student, comment, topicID, taskID) => (
 				.setIn([topicID, taskID, 'newFeedback'], true)
 				.setIn([topicID, taskID, 'pending'], false);
 
-	// TODO: before trying out the api call, try to update state, then add this to the .then function
-	dispatch(sharedCodeFeedback(data, student.get('cohort'), student.get('id'))); // update state
-
-	// let token = getState().getIn(['user', 'token']);				
-	// postUserSharedCode(data.toJS(), student.get('id'), token)
-	// 	.then( response => {
-	// 		dispatch(updateErrors(''));
-	// 		dispatch(updateMessage('You\'re comment has been submitted!'));
-	// 		// dispatch(userSharedCode(fromJS(response.data))); // update state
-	// 	})
-	// 	.catch( error => dispatch(updateErrors('Sorry, we couldn\'t save your feedback at this time. Please try again.')) )
+	let token = getState().getIn(['user', 'token']);				
+	postUserSharedCode(data.toJS(), student.get('id'), token)
+		.then( response => {
+			dispatch(updateErrors(''));
+			dispatch(updateMessage('You\'re feedback has been submitted!'));
+			dispatch(sharedCodeFeedback(data, student.get('cohort'), student.get('id'))); // update state
+		})
+		.catch( error => dispatch(updateErrors('Sorry, we couldn\'t save your feedback at this time. Please try again.')) )
 }
 
 export const onForgotFormSubmit = data => (dispatch, getState )=> {
