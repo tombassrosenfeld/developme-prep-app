@@ -1,54 +1,23 @@
 import React, {Component} from 'react';
-import { Link, DirectLink, Element , Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll';
 import StudentTasksRemaining from './StudentTasksRemaining';
 import AssessmentListItem from './AssessmentListItem';
 import SelectedTopicHeader from './SelectedTopicHeader';
+import {startScrollEvents, terminateScrollEvents, scrollWithContainer} from '../../utilities/utilities';
 
 class SelectedTopic extends Component {
 
 	componentDidMount() {
-		Events.scrollEvent.register('begin');
-		Events.scrollEvent.register('end');
-
-		this.scrollToWithContainer();
+		startScrollEvents();
+		scrollWithContainer("scroll-container-topic");
 	}
-
-	scrollTo() {
-		scroller.scrollTo('scroll-to-element', {
-			duration: 500,
-			delay: 0,
-			smooth: 'easeInOutQuart'
-		})
-	}
-
-	scrollToWithContainer() {
-
-		let goToContainer = new Promise((resolve, reject) => {
-
-			Events.scrollEvent.register('end', () => {
-				resolve();
-				Events.scrollEvent.remove('end');
-			});
-
-			scroller.scrollTo('scroll-container-topic', {
-				duration: 500,
-				delay: 0,
-				smooth: 'easeInOutQuart'
-			});
-
-		});
-	}
-
+	
 	componentWillUnmount() {
-		Events.scrollEvent.remove('begin');
-		Events.scrollEvent.remove('end');
+		terminateScrollEvents();
 	}
 
 	render() {
 		const {selectedTopic, selectedAssessment, student, onClick} = this.props;
-
-		this.scrollToWithContainer();
-
+		scrollWithContainer("scroll-container-topic");
 		return (
 			<div id="scroll-container-topic" className="panel selected-topic">
 				<SelectedTopicHeader title={selectedTopic.get('short_title')}/>
@@ -62,7 +31,7 @@ class SelectedTopic extends Component {
 				{ selectedTopic.get('assessments').size > 0 && student.get('userAssessmentData').size ?
 			  		selectedTopic.get('assessments').map( (assessment, i) => (
 			  		<AssessmentListItem 
-			  			key={i} i={i} 
+			  			key={selectedTopic.get('short_title')} i={i} 
 			  			assessment={assessment} 
 			  			onClick={onClick} 
 			  			questions={selectedAssessment ? selectedAssessment.get('questions') : null}

@@ -1,4 +1,5 @@
 import { fromJS } from "immutable";
+import { Events, scroller } from 'react-scroll';
 
 export const preventDefault =  (e) => e.preventDefault();
 
@@ -35,3 +36,31 @@ export const calculateTopicStatus = (userProgress, topic) => {
 
 //Returns if student or instructor
 export const getUserRole = (rolesArr) => rolesArr.reduce((role, r) => role += r === 'student' || r === 'instructor' ? r : '', '');
+
+export const startScrollEvents = () => {
+	Events.scrollEvent.register('begin');
+	Events.scrollEvent.register('end');
+}
+
+export const terminateScrollEvents = () => {
+	Events.scrollEvent.remove('begin');
+	Events.scrollEvent.remove('end');
+}
+
+export const scrollWithContainer = container => {
+	let goToContainer = new Promise((resolve, reject) => {
+
+		Events.scrollEvent.register('end', () => {
+			resolve();
+			Events.scrollEvent.remove('end');
+		});
+
+		scroller.scrollTo(container, {
+			duration: 500,
+			delay: 0,
+			smooth: 'easeInOutQuart'
+		});
+
+	});
+	return goToContainer;
+}

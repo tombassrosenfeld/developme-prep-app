@@ -1,56 +1,23 @@
 import React, { Component } from 'react';
-import { Link, DirectLink, Element , Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll';
 import TaskResource from './TaskResource';
-const Parser = require('html-react-parser');
+import {startScrollEvents, terminateScrollEvents, scrollWithContainer} from '../utilities/utilities';
 
-const durationFn = function(deltaTop) {
-    return deltaTop;
-};
+const Parser = require('html-react-parser');
 
 class Task extends Component {
 
 	componentDidMount() {
-		Events.scrollEvent.register('begin');
-		Events.scrollEvent.register('end');
-
-		this.scrollToWithContainer();
+		startScrollEvents();
+		scrollWithContainer("scroll-container-task");
 	}
-
-	scrollTo() {
-		scroller.scrollTo('scroll-to-element', {
-			duration: 500,
-			delay: 0,
-			smooth: 'easeInOutQuart'
-		})
-	}
-
-	scrollToWithContainer() {
-
-		let goToContainer = new Promise((resolve, reject) => {
-
-			Events.scrollEvent.register('end', () => {
-				resolve();
-				Events.scrollEvent.remove('end');
-			});
-
-			scroller.scrollTo('scroll-container-task', {
-				duration: 500,
-				delay: 0,
-				smooth: 'easeInOutQuart'
-			});
-
-		});
-	}
-
+	
 	componentWillUnmount() {
-		Events.scrollEvent.remove('begin');
-		Events.scrollEvent.remove('end');
+		terminateScrollEvents();
 	}
-
 	render() {
-		const { id, topicID, topic} = this.props;
+		const { id, topic } = this.props;
 
-		this.scrollToWithContainer();
+		scrollWithContainer("scroll-container-task");
 
 		return <div id="scroll-container-task" className="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-4 narrow-padding">
 			<div className="panel">

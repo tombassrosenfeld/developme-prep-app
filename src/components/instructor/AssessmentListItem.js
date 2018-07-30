@@ -35,7 +35,7 @@ export default ({i, assessment, onClick, questions, studentAssessmentData, topic
 					//If studentAnswers does not have a value at the index, then do no not run this code. 
 					//+ answers.length - studentAnswers.length - is used as studentAnswers[i] can be 0, which returns false.
 					return studentAnswers[i] + answers.length - studentAnswers.length || answers.length === studentAnswers.length ? (
-							<div className="panel row">
+							<div className="panel row" key={i}>
 								<div className="col-xs-2 resource-icon-container .marker">
 									{correctAnswer === studentAnswers[i]+1 && Number.isInteger(studentAnswers[i]) ? 
 										<i className="fa fa-check-circle-o" aria-hidden="true"></i> : 

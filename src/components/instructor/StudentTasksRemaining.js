@@ -15,7 +15,7 @@ export default ({selectedTopic, selectedAssessment, student, onClick}) => {
 			{ allTopicTasks.size !== completedShortTitles.size ?
 				
 		  		filteredTopicTasks.map((topic, i) => 
-				<div className="row task">
+				<div className="row task" key={i}>
 		  			<div className="col-xs-10">
 						<p className="taskList-task-title">
 						<strong>{i + 1}. </strong>
