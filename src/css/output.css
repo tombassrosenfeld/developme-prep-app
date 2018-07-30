@@ -128,7 +128,7 @@ p {
   animation: spin 2s infinite linear; }
 
 .share-code {
-  padding: 10px; }
+  padding: 0 10px 10px 10px; }
   .share-code .share-code__textarea {
     margin-bottom: 10px; }
   .share-code .share-code__message {
@@ -757,6 +757,14 @@ INSTRUCTOR VIEW
       padding: .5em; } }
 .marking-task {
   border-top: 1px solid #E5E5E5; }
+  .marking-task p {
+    padding-left: 0; }
+
+.marking-notice {
+  background-color: #FF3030;
+  color: #FFF;
+  padding: 4px;
+  border-radius: 4px; }
 
 @media (max-width: 767px) {
   .student-list {
