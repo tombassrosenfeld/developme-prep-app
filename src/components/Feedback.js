@@ -2,7 +2,7 @@ import React from 'react';
 import { List } from "immutable";
 import { Link } from "react-router-dom";
 
-export default ({sharedCode, topics}) => {
+export default ({sharedCode, topics, onClickFeedback}) => {
 	let hasNewFeedback = false;
 	topics.map(topic => {
 		sharedCode.get(topic.get('short_title')) ? 
@@ -23,7 +23,7 @@ export default ({sharedCode, topics}) => {
 							sharedCode.get(topic.get('short_title')) ? 
 								sharedCode.get(topic.get('short_title')).map((task, taskID) => (
 									task ? task.get('newFeedback') ? 
-										<Link to={'/prep/topic/' + topicID + '/task/' + taskID}>
+										<Link to={'/prep/topic/' + topicID + '/task/' + taskID} onClick={() => onClickFeedback(topic.get('short_title'), taskID)}>
 											<p>{topic.get('short_title') + ' - task ' + taskID}</p> 
 										</Link>
 									: null : null

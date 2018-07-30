@@ -221,6 +221,17 @@ export const onClickSharedCodeSave = (topicTitle, taskID) => (dispatch, getState
 		.catch( error => dispatch(updateErrors('Sorry, we couldn\'t save your code at this time. Please try again.')) )
 }
 
+export const markFeedbackRead = (topicTitle, taskID) => (dispatch, getState) => {
+	let data = getState().get('sharedCode');
+	data = data.setIn([topicTitle, taskID, 'newFeedback'], false); 
+	let userID = getState().getIn(['user', 'id']);
+	let token = getState().getIn(['user', 'token']);	
+	postUserSharedCode(data.toJS(), userID, token)
+		.then( response => {
+			dispatch(userSharedCode(fromJS(response.data))); // update state
+		});
+}
+
 export const sharedCodeFeedbackSubmit = (student, comment, topicID, taskID) => (dispatch, getState) => {
 	dispatch(updateErrors(''));
 	dispatch(updateMessage(''));

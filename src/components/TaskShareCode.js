@@ -6,33 +6,35 @@ export default ({ topicTitle, taskID, sharedCode, onChangeSharedCode, onClickSha
 	let newFeedback = sharedCode.getIn([topicTitle, taskID, 'newFeedback']);
 	let feedback = sharedCode.getIn([topicTitle, taskID, 'feedback']);
 	return (
-	  	<div className="panel">
-	  		<div className="form-group share-code">
-			  	<label>Paste your code or a link to a working example on Codepen.io in the box below. Save, or Submit for marking.</label>
-			  	<textarea 
-			  		className="form-control share-code__textarea" 
-			  		rows="5"
-			  		value={code ? code : ""}
-			  		onChange={(e) => onChangeSharedCode(e.target.value, topicTitle, taskID)}
-			  	></textarea>
-				<button className="btn btn-default btn-logout bgrd-grey" onClick={() => onClickSharedCodeSave(topicTitle, taskID)}>Save</button>
-				<button className="btn btn-default btn-logout bgrd-green pull-right" onClick={() => onClickSharedCodeSubmit(topicTitle, taskID)}>Submit</button>
-				{pending ? 
-					<p className="share-code__message green">You have submitted this code for review, an instructor will send you feedback soon.</p> 
-					: null
-				}
-				{newFeedback ? 
-					<p className="share-code__message green">Your code been reviewed. Please read the feedback shown below and put any suggestions into practice in your next coding exercise.</p> 
-					: null
-				}
-				{feedback ?
-					<div>
-						<label>Comments</label>
-						<div>{ feedback.map(comment => <p><i>"{comment}"</i></p> ) }</div>
-					</div>
-					: null
-				}
+		<div>
+		  	<div className="panel">
+		  		<div className="form-group share-code">
+				  	<label>Paste your code or a link to a working example on Codepen.io in the box below. Save, or Submit for marking.</label>
+				  	<textarea 
+				  		className="form-control share-code__textarea" 
+				  		rows="5"
+				  		value={code ? code : ""}
+				  		onChange={(e) => onChangeSharedCode(e.target.value, topicTitle, taskID)}
+				  	></textarea>
+					<button className="btn btn-default btn-logout bgrd-grey" onClick={() => onClickSharedCodeSave(topicTitle, taskID)}>Save</button>
+					<button className="btn btn-default btn-logout bgrd-green pull-right" onClick={() => onClickSharedCodeSubmit(topicTitle, taskID)}>Submit</button>
+					{pending ? 
+						<p className="share-code__message green">You have submitted this code for review, an instructor will send you feedback soon.</p> 
+						: null
+					}
+				</div>
 			</div>
-	  	</div>
+			<div className="panel">
+				<div className="share-code">
+					{feedback ?
+						<div>
+							<label>Comments</label>
+							<div>{ feedback.map(comment => <p><i>"{comment}"</i></p> ) }</div>
+						</div>
+						: null
+					}
+				</div>
+		  	</div>
+		</div>
 	)
 }
