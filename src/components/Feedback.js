@@ -2,13 +2,7 @@ import React from 'react';
 import { List } from "immutable";
 import { Link } from "react-router-dom";
 
-export default ({sharedCode, topics, onClickFeedback}) => {
-	let hasNewFeedback = false;
-	topics.map(topic => {
-		sharedCode.get(topic.get('short_title')) ? 
-			sharedCode.get(topic.get('short_title')).map(task => task ? task.get('newFeedback') ? hasNewFeedback = true : null : null)
-		: null;
-	});
+export default ({sharedCode, topics, onClickFeedback, hasNewFeedback}) => {
 	return (
 		<div className="col-xs-12 col-sm-8 col-md-6 narrow-padding">
 			<div className="panel">

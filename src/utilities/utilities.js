@@ -40,3 +40,13 @@ export const getQuestionFromTitleAndId = (title, id, topics) => {
 	let topic = topics.toJS().find((topic) => topic.short_title == title);
 	return topic.tasks[id];
 }
+
+export const hasNewFeedback = (topics, sharedCode) => {
+	let hasNewFeedback = false;
+	topics.map(topic => {
+		sharedCode.get(topic.get('short_title')) ? 
+			sharedCode.get(topic.get('short_title')).map(task => task ? task.get('newFeedback') ? hasNewFeedback = true : null : null)
+		: null;
+	});
+	return hasNewFeedback;
+}
