@@ -32,3 +32,17 @@
 	justify-content: center;
 	cursor: pointer;
 }
+
+@media (min-width: 768px) {
+	.taskList {
+		.taskList-task-title {
+			padding-top: .25em;
+			padding-bottom: .25em;
+			font-size: 1em;
+		}
+		.taskList-marker {
+			padding-top: .25em;
+			padding-bottom: .25em;
+		}
+	}
+}
