@@ -2,7 +2,7 @@ import React from 'react';
 import StudentList from '../../containers/instructor/StudentList';
 
 export default ({cohort, id, userRole}) => {
-	return userRole === 'instructor' ? (
+	return userRole === 'instructor' && cohort ? (
 		<div className="col-xs-12 col-sm-8 col-md-6 narrow-padding">
 			<div className="topics panel">
 				<div className="topics-header">
@@ -17,4 +17,4 @@ export default ({cohort, id, userRole}) => {
 		  		students={cohort.get('students')} 
 		  	/>
 		</div> ) : null;
-}
+} 

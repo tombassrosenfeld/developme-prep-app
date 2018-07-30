@@ -50,4 +50,23 @@ describe('Basic testing', () => {
 
 You can use or add addtional mock data (such as API responses, action creators) in the mock_data directory.
 
+#### Local Server - app.developme.box
+
+To test 404 handling and persisted state, you should set a separate vagrant environment for testing and deploy the app to the public folder.
+
+Create a .htaccess file in the public directory and add the following:
+
+```
+RewriteEngine on
+# Don't rewrite files or directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+# Rewrite everything else to index.html to allow html5 state linksP
+RewriteRule ^ index.html [L]
+```
+Your local server should have HTTPS enabled to mirror the production environment, visit the link below to set this up. <a href="https://docs.google.com/document/d/1mP1_DxMFs_seMqqZQ0UjEU9eR7ybebpEuw2BnLApv9w/edit?usp=sharing"">Enable HTTPS and create a SSL certificate for your local server</a>
+
+
+
 

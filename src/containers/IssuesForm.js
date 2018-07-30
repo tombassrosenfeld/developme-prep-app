@@ -4,7 +4,7 @@ import { onIssueFormSubmit } from "../data/actions_API";
 
 
 const mapStateToProps = state => ({
-	issue: state.get('issue')
+	issue: state.get('root').get('issue')
 });
 
 const mapDispatchToProps = dispatch => ({

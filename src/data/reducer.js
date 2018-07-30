@@ -12,7 +12,8 @@ const updateCredentials = (state, { data }) => {
 	return state.setIn(['user', 'token'], data.token)
 				.setIn(['user', 'user_display_name'], data.user_display_name)
 				.setIn(['user', 'user_email'], data.user_email)
-				.set('loggedIn', true);
+				.set('loggedIn', true)
+				.set('userRegistered', false);
 }
 
 const updateErrors = (state, { errorMessage }) => {
