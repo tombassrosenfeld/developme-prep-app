@@ -29,7 +29,7 @@ export default ({ topicTitle, taskID, sharedCode, onChangeSharedCode, onClickSha
 					{feedback ?
 						<div>
 							<label>Comments</label>
-							<div>{ feedback.map(comment => <p><i>"{comment}"</i></p> ) }</div>
+							<div>{ feedback.map((comment, i) => <p key={i}><i>"{comment}"</i></p> ) }</div>
 						</div>
 						: null
 					}

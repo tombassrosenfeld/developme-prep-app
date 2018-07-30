@@ -20,8 +20,8 @@ export default ({marking, cohorts}) => {
 					<div>
 						<p>The following students have shared code for you to review:</p>
 						<div className="taskList">
-							{students.map(student => (
-								<div className="row narrow-padding">
+							{students.map((student, i) => (
+								<div key={i} className="row narrow-padding">
 									<div className="col-xs-12">
 										<Link to={'/cohort/' + student.get('cohort') + '/' + student.get('id')}>
 											{student.get('name')}
