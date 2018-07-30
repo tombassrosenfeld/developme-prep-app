@@ -4,7 +4,7 @@ import StudentMarkingForm from "../../containers/instructor/StudentMarkingForm";
 const Parser = require('html-react-parser');
 
 export default ({question, answer, taskID, topicID, student }) => (
-	<div className="marking-task share-code">
+	<div className="share-code">
 		<p className="text-white bgrd-red">{ answer.get('pending') ? student.get('slug') + ' has submitted this task to be marked' : ''}</p>
 		<i>{ Parser(question) }</i>
 		

@@ -62,16 +62,17 @@ class TopicList extends Component {
 					</div>
 				</div>
 				{selectedTopic ? 
-				<div>
-					<SelectedTopic 
-						selectedTopic={selectedTopic} 
-						selectedAssessment={selectedAssessment} 
-						student={this.props.student} 
-						onClick={this.changeAssessment}
-					/>
-				</div>
-				:
-				null }
+					<div>
+						<SelectedTopic 
+							selectedTopic={selectedTopic} 
+							selectedAssessment={selectedAssessment} 
+							student={this.props.student} 
+							onClick={this.changeAssessment}
+						/>
+					</div>
+					:
+					null 
+				}
 			</div>
 		)
 	}
