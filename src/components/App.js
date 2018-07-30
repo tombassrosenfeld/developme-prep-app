@@ -18,6 +18,7 @@ import Login from '../containers/Login';
 import Welcome from '../containers/Welcome';
 import StudentRecord from '../containers/instructor/StudentRecord';
 import Marking from '../containers/instructor/Marking';
+import Feedback from '../containers/Feedback';
 
 
 class App extends Component {
@@ -50,7 +51,10 @@ class App extends Component {
           )} />
           <Route path="/marking/" render={ ({ match }) => (
             this.props.userRole === 'instructor' && this.props.cohortsLoaded ? <Marking /> : null
-          )} />          
+          )} />   
+          <Route path="/feedback/" render={ ({ match }) => (
+            this.props.userRole === 'student' ? <Feedback /> : null
+          )} />                    
           <Route path="/prep/topic/:id" render={ ({ match }) => (
             <Topic id={ match.params.id }/>
           )} />

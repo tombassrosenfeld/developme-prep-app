@@ -27,7 +27,7 @@ export default ({ topicTitle, taskID, sharedCode, onChangeSharedCode, onClickSha
 				}
 				{feedback ?
 					<div>
-						<p><strong>Comments</strong></p>
+						<label>Comments</label>
 						<div>{ feedback.map(comment => <p><i>"{comment}"</i></p> ) }</div>
 					</div>
 					: null

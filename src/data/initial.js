@@ -7,6 +7,7 @@ export default Map({
 	navItems: Map({
 		student: List([
 			Map({label: 'Home', link: '/'}),
+			Map({label: 'Feedback', link: '/feedback'}),
 		]),
 		instructor: List([
 			Map({label: 'Students', link: '/'}),
