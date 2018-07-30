@@ -226,7 +226,7 @@ export const sharedCodeFeedbackSubmit = (student, comment, topicID, taskID) => (
 	dispatch(updateMessage(''));
 	let data = student.get('userSharedCode');
 	let feedbackArray = data.getIn([topicID, taskID, 'feedback']) || List([]); // if no existing feedback start new array
-	feedbackArray = feedbackArray.push(comment); // add new comment
+	feedbackArray = feedbackArray.unshift(comment); // add new comment
 	data = data.setIn([topicID, taskID, 'feedback'], feedbackArray)
 				.setIn([topicID, taskID, 'newFeedback'], true)
 				.setIn([topicID, taskID, 'pending'], false);
