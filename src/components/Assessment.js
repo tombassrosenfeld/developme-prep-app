@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import AssessmentQuestion from '../containers/AssessmentQuestion';
 import AssessmentSubmit from '../containers/AssessmentSubmit';
 import AssessmentHeader from './AssessmentHeader';
+import { Link, DirectLink, Element , Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll';
 import { List } from "immutable";
 
 class Assessment extends Component {
@@ -15,6 +16,45 @@ class Assessment extends Component {
 		this.onSubmit = this.onSubmit.bind(this);
 		this.onCancel = this.onCancel.bind(this);
 	}
+
+	componentDidMount() {
+		Events.scrollEvent.register('begin');
+		Events.scrollEvent.register('end');
+
+		this.scrollToWithContainer();
+	}
+
+	scrollTo() {
+		scroller.scrollTo('scroll-to-element', {
+			duration: 500,
+			delay: 0,
+			smooth: 'easeInOutQuart'
+		})
+	}
+
+	scrollToWithContainer() {
+
+		let goToContainer = new Promise((resolve, reject) => {
+
+			Events.scrollEvent.register('end', () => {
+				resolve();
+				Events.scrollEvent.remove('end');
+			});
+
+			scroller.scrollTo('scroll-container-assessment', {
+				duration: 500,
+				delay: 0,
+				smooth: 'easeInOutQuart'
+			});
+
+		});
+	}
+
+	componentWillUnmount() {
+		Events.scrollEvent.remove('begin');
+		Events.scrollEvent.remove('end');
+	}
+
 
 	retakeOnClick() {
 		const { id, topic, deleteAssessmentData } = this.props;
@@ -42,8 +82,10 @@ class Assessment extends Component {
 
 		const userAnswers = userAssessmentData.getIn([topic.getIn(['short_title']), id, 'answers']) ? userAssessmentData.getIn([topic.getIn(['short_title']), id, 'answers']) : List([])
 
+		this.scrollToWithContainer();
+
 		return (
-			<div className="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-4 narrow-padding">
+			<div id="scroll-container-assessment" className="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-4 narrow-padding">
 				<AssessmentHeader 
 					assessmentID={id}
 					assessmentTitle={topic.getIn(['assessments', id, 'assessment_title'])}
