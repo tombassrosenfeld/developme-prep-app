@@ -7,7 +7,7 @@
 
 		font-size: 1.25em;
 	}
-	.taskList-task-marker {
+	.taskList-marker {
 		padding-top: .5em;
 		padding-bottom: .5em;
 		text-align: center;
@@ -31,4 +31,18 @@
 	display: flex;
 	justify-content: center;
 	cursor: pointer;
+}
+
+@media (min-width: 768px) {
+	.taskList {
+		.taskList-task-title {
+			padding-top: .25em;
+			padding-bottom: .25em;
+			font-size: 1em;
+		}
+		.taskList-marker {
+			padding-top: .25em;
+			padding-bottom: .25em;
+		}
+	}
 }
