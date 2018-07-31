@@ -1,15 +1,17 @@
 import axios from '../data/axios';
 import { processTopicsData } from '../utilities/utilities';
-import { updateErrors, updateIssue, setUserRegistered } from './actions';
+import { updateErrors, updateMessage, updateIssue, setUserRegistered } from './actions';
 import { List, fromJS } from "immutable";
 import { getUserRole } from "../utilities/utilities";
 
 export const UPDATE_CREDENTIALS = Symbol("UPDATE_CREDENTIALS");
-export const UPDATE_ERRORS = Symbol("UPDATE_ERRORS");
+// export const UPDATE_ERRORS = Symbol("UPDATE_ERRORS");
 export const TOPICS_DATA = Symbol("TOPICS_DATA");
 export const USER_DATA = Symbol("USER_DATA");
 export const USER_PROGRESS = Symbol("USER_PROGRESS");
 export const USER_ASSESSMENT_DATA = Symbol("USER_ASSESSMENT_DATA");
+export const USER_SHARED_CODE = Symbol("USER_SHARED_CODE");
+export const SHARED_CODE_FEEDBACK = Symbol("SHARED_CODE_FEEDBACK");
 export const SET_STUDENTS = Symbol("SET_STUDENTS");
 export const REGISTER_USER = Symbol("REGISTER_USER");
 
@@ -39,26 +41,27 @@ export const registerUser = data => (dispatch)=> {
 
 // if authentication is successful, calls getdata()
 const getData = (token) => (dispatch, getState) => {
-	let userEmail = getState().getIn(['user', 'user_email']);
+	let userEmail = getState().get('root').getIn(['user', 'user_email']);
 	getUserData(token, userEmail)
 		.then( response => {
 			dispatch(updateErrors('')); // remove any errors
 			dispatch(userData(response.data)); // update state with user data
 			dispatch(userProgress(List(response.data[0].userProgress))); // update state with user progress
 			dispatch(userAssessmentData(fromJS(response.data[0].userAssessmentData))); // update state
+			dispatch(userSharedCode(fromJS(response.data[0].userSharedCode))); // update state
 			let role = getUserRole(response.data[0].roles);
-			if(role === 'instructor') { //If user is instructor get all student users
+			if(role === 'instructor') { // If user is instructor get all student users
 				getStudents(token)
 					.then(response => {
 						dispatch(setStudents(fromJS(response.data)));
 					})
 					.catch( error => {
-						dispatch( updateErrors('Error: unable to retrieve students data.'));
+						console.log(error);
+						dispatch(updateErrors('Error: unable to retrieve students data.'));
 					});
 			}
 		})
 		.catch( error => {
-			console.log(error.response);
 			dispatch( updateErrors('Error: unable to retrieve user data.'));
 		});
 
@@ -73,7 +76,7 @@ const getData = (token) => (dispatch, getState) => {
   
 // when user clicks on markers
 export const onClickUserProgress = (id) => (dispatch, getState) => {
-	let userProgressArr = getState().get('userProgress');
+	let userProgressArr = getState().get('root').get('userProgress');
 	var savedUserProgressArr = userProgressArr;
 
 	if (!userProgressArr.includes(id)) {
@@ -85,8 +88,8 @@ export const onClickUserProgress = (id) => (dispatch, getState) => {
 	
 	dispatch(userProgress(userProgressArr));// dispatch to state
 
-	let userID = getState().getIn(['user', 'id']);
-	let token = getState().getIn(['user', 'token']);
+	let userID = getState().get('root').getIn(['user', 'id']);
+	let token = getState().get('root').getIn(['user', 'token']);
 	
 	// post to api
 	postUserProgress(userProgressArr, userID, token)
@@ -103,10 +106,10 @@ export const onClickUserProgress = (id) => (dispatch, getState) => {
 // when user clicks an answer in the assessment
 export const onChangeAssessmentAnswer = (topic, assessmentID, questionID, answerID) => (dispatch, getState) => {
 	//get assessment data from the state
-	let userAssessmentDataObj = getState().get('assessmentData');
+	let userAssessmentDataObj = getState().get('root').get('assessmentData');
 	let savedUserAssessmentDataObj = userAssessmentDataObj;
-	let userID = getState().getIn(['user', 'id']);
-	let token = getState().getIn(['user', 'token']);
+	let userID = getState().get('root').getIn(['user', 'id']);
+	let token = getState().get('root').getIn(['user', 'token']);
 
 
 	userAssessmentDataObj = userAssessmentDataObj.setIn([topic, assessmentID, 'answers', questionID], answerID);
@@ -124,8 +127,7 @@ export const onChangeAssessmentAnswer = (topic, assessmentID, questionID, answer
 }
 
 export const onIssueFormSubmit = data => (dispatch, getState )=> {
-	let userEmail = getState().getIn(['user', 'user_email']);
-
+	let userEmail = getState().get('root').getIn(['user', 'user_email']);
 	data.email = userEmail;
 
 	postIssue(data)
@@ -139,7 +141,7 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 	// mark assessment and update assessmentData
 	let answers = assessment.get('questions').map((question, i) => question.get('correct_answer') - 1);
 	let correctAnswers = answers.filter((answer, i) => answer === userAnswers.get(i));
-	let assessmentData = getState().get('assessmentData');
+	let assessmentData = getState().get('root').get('assessmentData');
 	let savedAssessmentData = assessmentData;
 	assessmentData = assessmentData.setIn([topicTitle, assessmentID, 'result'], correctAnswers.size);
 	let attemptsForTopic = 0;
@@ -154,11 +156,11 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 	dispatch(userAssessmentData(assessmentData)); // dispatch to state
 
 	// update user progress data
-	let userProgressArr = getState().get('userProgress'); 
+	let userProgressArr = getState().get('root').get('userProgress'); 
 	var savedUserProgressArr = userProgressArr; 
 	let assessmentKey = topicTitle + '.assess.' + assessmentID;
-	let userID = getState().getIn(['user', 'id']);
-	let token = getState().getIn(['user', 'token']);
+	let userID = getState().get('root').getIn(['user', 'id']);
+	let token = getState().get('root').getIn(['user', 'token']);
 	userProgressArr = !userProgressArr.includes(assessmentKey) ? userProgressArr.push(assessmentKey) : userProgressArr;
 	dispatch(userProgress(userProgressArr));// dispatch to state
 
@@ -187,6 +189,69 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 		} );
 }
 
+export const onClickSharedCodeSubmit = (topicTitle, taskID) => (dispatch, getState) => {
+	dispatch(updateErrors(''));
+	dispatch(updateMessage(''));
+	let data = getState().get('root').get('sharedCode');
+	data = data.setIn([topicTitle, taskID, 'pending'], true);
+	let userID = getState().get('root').getIn(['user', 'id']);
+	let token = getState().get('root').getIn(['user', 'token']);
+	postUserSharedCode(data.toJS(), userID, token)
+		.then( response => {
+			dispatch(updateErrors(''));
+			dispatch(updateMessage('You\'re code has been submitted and will be marked by an instructor soon!'));
+			dispatch(userSharedCode(fromJS(response.data))); // update state
+		})
+		.catch( error => dispatch(updateErrors('Sorry, we couldn\'t submit your code at this time. Please try again.')) )
+}
+
+export const onClickSharedCodeSave = (topicTitle, taskID) => (dispatch, getState) => {
+	dispatch(updateErrors(''));
+	dispatch(updateMessage(''));
+	let data = getState().get('root').get('sharedCode');
+	data = data.setIn([topicTitle, taskID, 'newFeedback'], false); // assume if they are saving that they have read any feedback
+	let userID = getState().get('root').getIn(['user', 'id']);
+	let token = getState().get('root').getIn(['user', 'token']);
+	postUserSharedCode(data.toJS(), userID, token)
+		.then( response => {
+			dispatch(updateErrors(''));
+			dispatch(updateMessage('You\'re code has been saved!'));
+			dispatch(userSharedCode(fromJS(response.data))); // update state
+		})
+		.catch( error => dispatch(updateErrors('Sorry, we couldn\'t save your code at this time. Please try again.')) )
+}
+
+export const markFeedbackRead = (topicTitle, taskID) => (dispatch, getState) => {
+	let data = getState().get('root').get('sharedCode');
+	data = data.setIn([topicTitle, taskID, 'newFeedback'], false); 
+	let userID = getState().get('root').getIn(['user', 'id']);
+	let token = getState().get('root').getIn(['user', 'token']);	
+	postUserSharedCode(data.toJS(), userID, token)
+		.then( response => {
+			dispatch(userSharedCode(fromJS(response.data))); // update state
+		});
+}
+
+export const sharedCodeFeedbackSubmit = (student, comment, topicID, taskID) => (dispatch, getState) => {
+	dispatch(updateErrors(''));
+	dispatch(updateMessage(''));
+	let data = student.get('userSharedCode');
+	let feedbackArray = data.getIn([topicID, taskID, 'feedback']) || List([]); // if no existing feedback start new array
+	feedbackArray = feedbackArray.unshift(comment); // add new comment
+	data = data.setIn([topicID, taskID, 'feedback'], feedbackArray)
+				.setIn([topicID, taskID, 'newFeedback'], true)
+				.setIn([topicID, taskID, 'pending'], false);
+
+	let token = getState().get('root').getIn(['user', 'token']);				
+	postUserSharedCode(data.toJS(), student.get('id'), token)
+		.then( response => {
+			dispatch(updateErrors(''));
+			dispatch(updateMessage('You\'re feedback has been submitted!'));
+			dispatch(sharedCodeFeedback(data, student.get('cohort'), student.get('id'))); // update state
+		})
+		.catch( error => dispatch(updateErrors('Sorry, we couldn\'t save your feedback at this time. Please try again.')) )
+}
+
 const updateCredentials = (data) => ({
 	type: UPDATE_CREDENTIALS, 
 	data,
@@ -205,6 +270,18 @@ const userProgress = (data) => ({
 const userAssessmentData = (data) => ({
 	type: USER_ASSESSMENT_DATA,
 	data,
+})
+
+const userSharedCode = (data) => ({
+	type: USER_SHARED_CODE,
+	data,
+})
+
+const sharedCodeFeedback = (data, cohort, studentID) => ({
+	type: SHARED_CODE_FEEDBACK,
+	data,
+	cohort,
+	studentID,
 })
 
 const topicsData = (data) => ({
@@ -250,6 +327,13 @@ function postUserAssessmentData(data, userID, token) {
 	return axios.post('/wp-json/cf/prep/' + userID + '/assessment', {
     	data: data,
   })
+}
+
+function postUserSharedCode(data, userID, token) {
+	axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+	return axios.post('/wp-json/cf/prep/' + userID + '/sharedcode', {
+		data: data,
+	})
 }
 
 function getTopics() {

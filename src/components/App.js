@@ -7,6 +7,7 @@ import Header from '../containers/Header';
 import Footer from '../components/Footer';
 import Register from '../components/Register';
 import Errors from '../containers/Errors';
+import Messages from '../containers/Messages';
 import TopicsNav from '../containers/TopicsNav';
 import CohortNav from '../containers/instructor/CohortNav';
 import Topic from '../containers/Topic';
@@ -16,6 +17,8 @@ import Assessment from '../containers/Assessment';
 import Login from '../containers/Login';
 import Welcome from '../containers/Welcome';
 import StudentRecord from '../containers/instructor/StudentRecord';
+import Marking from '../containers/instructor/Marking';
+import Feedback from '../containers/Feedback';
 
 
 class App extends Component {
@@ -46,6 +49,12 @@ class App extends Component {
             <Welcome userRole={this.props.userRole}/>
             </div>
           )} />
+          <Route path="/marking/" render={ ({ match }) => (
+            this.props.userRole === 'instructor' && this.props.cohortsLoaded ? <Marking /> : null
+          )} />   
+          <Route path="/feedback/" render={ ({ match }) => (
+            this.props.userRole === 'student' ? <Feedback /> : null
+          )} />                    
           <Route path="/prep/topic/:id" render={ ({ match }) => (
             <Topic id={ match.params.id }/>
           )} />
@@ -89,6 +98,7 @@ class App extends Component {
           </div>
         </div>  
         <Errors />
+        <Messages />
         {this.props.loggedIn ? <Footer /> : null }
       </div>
     </Router>

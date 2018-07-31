@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import ModulesNav from "./ModulesNav";
+import ModulesNav from "../containers/ModulesNav";
 
 export default ({user, loggedIn, logOut, userRole, setRegistering, isRegistering, cancel}) => (
 	<div>
@@ -11,11 +11,11 @@ export default ({user, loggedIn, logOut, userRole, setRegistering, isRegistering
 		  		</Link>			  
 				{ loggedIn || isRegistering ? 
 					<Link className="home-link" to="/">
-						<button className="btn btn-default pull-right btn-logout" onClick={ () => isRegistering ? cancel() : logOut() }><i className="fa user-icon fa-user pull-right" aria-hidden="true"></i>{isRegistering ? 'Log In' : 'Log Out'}
+						<button className="btn btn-default pull-right btn-logout btn-submit" onClick={ () => isRegistering ? cancel() : logOut() }><i className="fa user-icon fa-user pull-right" aria-hidden="true"></i>{isRegistering ? 'Log In' : 'Log Out'}
 						</button> 
 					</Link>
 					: 
-					<button className="btn btn-default pull-right btn-logout" onClick={ setRegistering }><i className="fa user-icon fa-user-plus pull-right" aria-hidden="true"></i>Register
+					<button className="btn btn-default pull-right btn-logout btn-submit" onClick={ setRegistering }><i className="fa user-icon fa-user-plus pull-right" aria-hidden="true"></i>Register
 					</button> 
 					}
 			</div>
@@ -29,7 +29,7 @@ export default ({user, loggedIn, logOut, userRole, setRegistering, isRegistering
 			</div>
 		</div>
 
-		{ loggedIn? <ModulesNav text={userRole === 'instructor' ? 'Students' : 'Preparation' } /> : null }
+		{ loggedIn? <ModulesNav userRole={userRole} /> : null }
 
 	</div>
 )

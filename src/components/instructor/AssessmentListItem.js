@@ -6,8 +6,6 @@ export default ({i, assessment, onClick, questions, studentAssessmentData, topic
 				studentAnswers = studentAnswersForAssessment ? studentAnswersForAssessment.get('answers').toJS() : null,
 				attemptsForAssessment = studentAnswersForAssessment ? studentAnswersForAssessment.get('attempts') : null;
 
-				console.log(studentAnswers);
-
 	return attemptsForAssessment ? (
 		<div className="panel">
 			<div className="row assessment-item">
@@ -33,12 +31,13 @@ export default ({i, assessment, onClick, questions, studentAssessmentData, topic
 				{questions ? questions.map((question, i) => {
 					const answers = question.get('answers').toJS(),
 								correctAnswer = +question.get('correct_answer');
+
 					//If studentAnswers does not have a value at the index, then do no not run this code. 
 					//+ answers.length - studentAnswers.length - is used as studentAnswers[i] can be 0, which returns false.
 					return studentAnswers[i] + answers.length - studentAnswers.length || answers.length === studentAnswers.length ? (
 							<div className="panel row">
 								<div className="col-xs-2 resource-icon-container .marker">
-									{correctAnswer === studentAnswers[i]+1 ? 
+									{correctAnswer === studentAnswers[i]+1 && Number.isInteger(studentAnswers[i]) ? 
 										<i className="fa fa-check-circle-o" aria-hidden="true"></i> : 
 										<i className="fa fa-times-circle-o" aria-hidden="true"></i>
 									}
@@ -47,7 +46,7 @@ export default ({i, assessment, onClick, questions, studentAssessmentData, topic
 									<h2 className="panel-title">{i+1}. {question.get('question')}</h2>
 									{question.get('code_snippet') ? <CodeSnippet snippet={question.get('code_snippet')} /> : null}
 									<div>
-										<p><strong>Student's answer: </strong>{answers[studentAnswers[i]].answer_choice}</p>
+										<p><strong>Student's answer: </strong>{Number.isInteger(studentAnswers[i]) ? answers[studentAnswers[i]].answer_choice : "No answer provided"}</p>
 										<p><strong>Correct answer: </strong>{answers[correctAnswer-1].answer_choice}</p>
 									</div>
 								</div>

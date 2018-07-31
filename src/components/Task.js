@@ -1,5 +1,6 @@
 import React from 'react';
 import TaskResource from './TaskResource';
+import TaskShareCode from '../containers/TaskShareCode';
 const Parser = require('html-react-parser');
 
 export default ({ id, topicID, topic}) => {
@@ -25,5 +26,9 @@ export default ({ id, topicID, topic}) => {
 				: null
 	  		}
 	  	</div>
+	  	{topic.getIn(['tasks', id, 'share_code']) ? 
+	  		<TaskShareCode topicTitle={topic.get('short_title')} taskID={id}/> 
+	  		: null 
+	  	}
 	</div>
 }

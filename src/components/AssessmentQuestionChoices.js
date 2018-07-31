@@ -11,7 +11,7 @@ class AssessmentQuestionChoices extends Component {
 		this.setState({active: i})
 	}
 	render() {
-		const {choices, topicTitle, assessmentID, questionID, userAssessmentData, onChangeAssessmentAnswer, retake} = this.props;
+		const {choices, topicTitle, assessmentID, questionID, userAssessmentData, onChangeAssessmentAnswer} = this.props;
 		return choices.map( (answer, answerID) => answer.get('answer_choice') ? (
 		<div key={answerID} className={this.state.active === answerID ? 'radio active' : 'radio'}>
 			<label onClick={() => this.setActive(answerID)}>

@@ -15,9 +15,9 @@ export default ({id, topic}) => (
 	  				<h1 className="topic-title">{ topic.get('short_title') } <small>{ topic.get('title') }</small></h1>
 	  			</div>
 	  			{topic.get('duration') ? 
-				<div class="col-xs-4 resource-duration">
-					<div class="pull-right">
-						<i class="fa fa-clock-o" aria-hidden="true"></i>
+				<div className="col-xs-4 resource-duration">
+					<div className="pull-right">
+						<i className="fa fa-clock-o" aria-hidden="true"></i>
 						<p className="duration"><span>{topic.get('duration')}</span> {topic.get('duration') > 1 || +topic.get('duration') === 0.5 ? 'hours' : 'hour' }</p>
 					</div>
 				</div>

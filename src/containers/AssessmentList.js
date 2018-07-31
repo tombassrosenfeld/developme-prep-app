@@ -5,7 +5,7 @@ import AssessmentList from "../components/AssessmentList";
 // import { onClickUserProgress } from "../data/actions_API";
 
 const mapStateToProps = state => ({
-    userProgress: state.get('userProgress'),
+    userProgress: state.get('root').get('userProgress'),
 });
 
 const mapDispatchToProps = dispatch => ({
