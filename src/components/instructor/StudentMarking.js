@@ -11,25 +11,23 @@ export default ({student, topicID, topics}) => (
 		</div>
 		<div className="row">
 			<div className="col-xs-12">
-				<div>
-					{ student.getIn(['userSharedCode', topicID]) ?
-						student.getIn(['userSharedCode', topicID]).map((task, i) => (
-							<div>
-								{task ? 
-									<StudentMarkingTask 
-										question={getQuestionFromTitleAndId(topicID, i, topics).description.replace(/\\n/g, "")}
-										answer={task} 
-										topicID={topicID}
-										taskID={i}
-										student={student}
-									/>
-								: null}
-							</div>
-						))
-						: 
-						<p className="taskList-task-title">This topic has no code submitted for review</p>
+				{ student.getIn(['userSharedCode', topicID]) ?
+					student.getIn(['userSharedCode', topicID]).map((task, i) => (
+						<div>
+							{task ? 
+								<StudentMarkingTask 
+									question={getQuestionFromTitleAndId(topicID, i, topics).description.replace(/\\n/g, "")}
+									answer={task} 
+									topicID={topicID}
+									taskID={i}
+									student={student}
+								/>
+							: null}
+						</div>
+					))
+					: 
+					<p className="taskList-task-title">This topic has no code submitted for review</p>
 					}
-				</div>
 			</div>
 		</div>					
 	</div>

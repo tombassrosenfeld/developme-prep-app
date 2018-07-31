@@ -546,8 +546,8 @@ INSTRUCTOR VIEW
       text-align: right; }
     .selected-topic .assessment-item .attempts:hover, .selected-topic .assessment-item .task:hover {
       background-color: transparent; }
-  .selected-topic .task {
-    padding-bottom: 15px; }
+  .selected-topic .task:hover p {
+    background-color: transparent; }
 
 .report-issue {
   display: flex;
@@ -772,6 +772,8 @@ INSTRUCTOR VIEW
   border-top: 1px solid #E5E5E5; }
   .marking-task p {
     padding-left: 0; }
+  .marking-task .taskList-task-title {
+    padding-left: 10px; }
 
 .marking-notice {
   background-color: #FF3030;

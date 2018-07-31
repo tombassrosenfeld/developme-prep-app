@@ -88,6 +88,8 @@ INSTRUCTOR VIEW
 		}
 	}
 	.task {
-		padding-bottom: 15px;
+		&:hover p {
+			background-color: transparent;
+		}
 	}
 }
