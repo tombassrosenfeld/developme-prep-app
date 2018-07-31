@@ -480,18 +480,21 @@ INSTRUCTOR VIEW
 .student-topic-status:hover .taskList-task-title, .student-topic-status:hover strong {
   color: #FFF; }
 
-.selected-topic .assessment-item {
-  padding: 1em 0;
-  cursor: pointer; }
-  .selected-topic .assessment-item .questions-header {
-    margin: 0;
-    text-align: center; }
-  .selected-topic .assessment-item .attempts {
-    text-align: right; }
-  .selected-topic .assessment-item .attempts:hover, .selected-topic .assessment-item .task:hover {
-    background-color: transparent; }
-.selected-topic .task {
-  padding-bottom: 15px; }
+.selected-topic {
+  border-right: none;
+  border-left: none; }
+  .selected-topic .assessment-item {
+    padding: 1em 0;
+    cursor: pointer; }
+    .selected-topic .assessment-item .questions-header {
+      margin: 0;
+      text-align: center; }
+    .selected-topic .assessment-item .attempts {
+      text-align: right; }
+    .selected-topic .assessment-item .attempts:hover, .selected-topic .assessment-item .task:hover {
+      background-color: transparent; }
+  .selected-topic .task {
+    padding-bottom: 15px; }
 
 .report-issue {
   display: flex;
