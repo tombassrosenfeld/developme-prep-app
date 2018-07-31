@@ -11,6 +11,7 @@ export const GET_ARCHIVED_ASSESSMENT_DATA = Symbol("GET_ARCHIVED_ASSESSMENT_DATA
 export const UPDATEISSUE = Symbol("UPDATEISSUE");
 export const UPDATEISSUEFALSE = Symbol("UPDATEISSUEFALSE");
 export const UPDATESHAREDCODE = Symbol("UPDATESHAREDCODE");
+export const SET_ACTIVE_MODULE = Symbol("SET_ACTIVE_MODULE");
 
 export const logOut = () => ({
 	type: LOGOUT,
@@ -73,4 +74,9 @@ export const updateIssueFalse = () => ({
 export const updateSharedCode = (code, topicTitle, taskID) => ({
 	type: UPDATESHAREDCODE,
 	code, topicTitle, taskID
+})
+
+export const setActiveModule = i => ({
+	type: SET_ACTIVE_MODULE,
+	i
 })

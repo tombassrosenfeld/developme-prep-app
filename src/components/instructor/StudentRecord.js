@@ -21,7 +21,7 @@ export default ({student, totalTasks, userRole}) => {
 			  		/>
 		  		</div>
 	  		<div className="hyperlink email-div col-xs-12">
-				<a href={'mailto:' + student.get('email')} className="email-link btn btn-email btn-block">Email {student.get('name')} <i className="fa fa-2x fas fa-envelope" aria-hidden="true"></i></a>
+				<a href={'mailto:' + student.get('email')} className="email-link btn btn-home-green">Email {student.get('name')} <i className="fa fa-2x fas fa-envelope" aria-hidden="true"></i></a>
 			</div>
 
 		  </div>

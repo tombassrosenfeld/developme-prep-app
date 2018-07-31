@@ -114,10 +114,6 @@ p {
 .hyperlink {
   padding-top: 1em;
   padding-bottom: 1em; }
-  .hyperlink a {
-    color: #00e6b8; }
-    .hyperlink a:hover {
-      text-decoration: underline; }
 
 .loading {
   padding: 1em;
@@ -169,6 +165,25 @@ p {
     .btn-email:link .fa {
       color: #404040;
       margin-left: 5px; }
+
+.btn-home-green {
+  transition: background-color .25s ease-in-out;
+  background-color: #00e6b8;
+  border-color: transparent;
+  color: #404040; }
+  .btn-home-green:hover {
+    transition: background-color .25s ease-in-out;
+    background-color: #FFF;
+    border-color: transparent;
+    color: #00e6b8; }
+    .btn-home-green:hover .fa {
+      color: #404040; }
+  .btn-home-green .fa {
+    margin-left: .3em; }
+  .btn-home-green.active {
+    background-color: #FFF;
+    box-shadow: none;
+    color: #00e6b8; }
 
 @media (max-width: 767px) {
   .btn-lg-mob {

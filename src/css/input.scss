@@ -145,13 +145,6 @@ p {
 .hyperlink {
 	padding-top: 1em;
 	padding-bottom: 1em;
-
-	a {
-		color: $homeGreen;
-		&:hover {
-			text-decoration: underline;
-		}
-	}
 }
 
 .loading {
