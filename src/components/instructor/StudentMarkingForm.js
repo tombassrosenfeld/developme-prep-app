@@ -14,7 +14,7 @@ class StudentMarkingForm extends Component {
     }
 
     disabled() {
-    	return this.state.comment == '';
+    	return this.state.comment === '';
     }
 
     render() {

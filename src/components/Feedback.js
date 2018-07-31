@@ -1,5 +1,4 @@
 import React from 'react';
-import { List } from "immutable";
 import { Link } from "react-router-dom";
 
 export default ({sharedCode, topics, onClickFeedback, hasNewFeedback}) => {

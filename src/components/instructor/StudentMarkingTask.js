@@ -1,5 +1,4 @@
 import React from 'react';
-import { getTaskFromTitleAndId } from "../../utilities/utilities";
 import StudentMarkingForm from "../../containers/instructor/StudentMarkingForm";
 const Parser = require('html-react-parser');
 

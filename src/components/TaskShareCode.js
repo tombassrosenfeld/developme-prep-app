@@ -3,7 +3,6 @@ import React from 'react';
 export default ({ topicTitle, taskID, sharedCode, onChangeSharedCode, onClickSharedCodeSubmit, onClickSharedCodeSave }) => {
 	let code = sharedCode.getIn([topicTitle, taskID, 'code']);
 	let pending = sharedCode.getIn([topicTitle, taskID, 'pending']);
-	let newFeedback = sharedCode.getIn([topicTitle, taskID, 'newFeedback']);
 	let feedback = sharedCode.getIn([topicTitle, taskID, 'feedback']);
 	return (
 		<div>
