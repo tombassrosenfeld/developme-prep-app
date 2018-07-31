@@ -6,7 +6,9 @@ export default ({userRole, navItems, hasMarking, hasNewFeedback, activeModule, s
 		<div className="col-xs-12 modules">		
 			{userRole? navItems.get(userRole).map((navItem, i) => {
 				let className = 'bottom-nav-module btn btn-home-green';
-				className += i === activeModule ? ' active' : '';
+				if(Number.isInteger(activeModule)) {
+					className += i === activeModule ? ' active' : '';
+				} 
 				return (
 					<Link 
 						className={ className }
