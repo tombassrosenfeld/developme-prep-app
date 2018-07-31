@@ -20,7 +20,7 @@ class StudentMarkingForm extends Component {
     render() {
     	const { student, topicID, taskID, onClickFeedbackSubmit } = this.props;
     	return (
-            <div>
+            <div className="share-code__form">
                 <p><strong>Please leave feedback for {student.get('slug')}</strong></p>
                 <textarea 
                     className="form-control share-code__textarea" 

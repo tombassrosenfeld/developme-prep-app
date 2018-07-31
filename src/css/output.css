@@ -796,6 +796,12 @@ INSTRUCTOR VIEW
   padding: 4px;
   border-radius: 4px; }
 
+.share-code__form {
+  display: flow-root; }
+
+.share-code_comments {
+  padding-bottom: 1em; }
+
 @media (max-width: 767px) {
   .student-list {
     padding-top: 2em; }
