@@ -3,6 +3,33 @@
 /******************************************/
 /*Colour names*/
 /******************************************/
+.green {
+  color: #00e6b8; }
+
+.bgrd-green {
+  background-color: #00e6b8; }
+
+.bgrd-grey {
+  background-color: #C9C9C9; }
+
+.bgrd-red {
+  background-color: #FF3030; }
+
+.text-white {
+  color: #FFF; }
+
+.glow {
+  animation-name: glow;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-out; }
+
+@keyframes glow {
+  0% {
+    box-shadow: none; }
+  100% {
+    box-shadow: 0px 0px 2px 2px #FFF; } }
 /******************************************/
 /*Generic*/
 /******************************************/
@@ -57,18 +84,21 @@ p {
 .panel:last-of-type {
   border-bottom: 1px solid #E5E5E5; }
 
-.error-message-container {
+.message-container {
   position: fixed;
   top: 10px;
   left: 10px;
   z-index: 5;
   width: calc(100% - 20px);
   padding: 8px 0;
-  background-color: #FF3030;
+  background-color: #00e6b8;
   cursor: pointer;
   border-radius: 4px; }
 
-.error-message {
+.message-container__red {
+  background-color: #FF3030; }
+
+.message {
   color: #FFF;
   margin-bottom: 0; }
 
@@ -84,10 +114,6 @@ p {
 .hyperlink {
   padding-top: 1em;
   padding-bottom: 1em; }
-  .hyperlink a {
-    color: #00e6b8; }
-    .hyperlink a:hover {
-      text-decoration: underline; }
 
 .loading {
   padding: 1em;
@@ -96,6 +122,21 @@ p {
   font-size: 10em;
   opacity: 0.8;
   animation: spin 2s infinite linear; }
+
+.share-code {
+  padding: 0 10px; }
+  .share-code p {
+    padding: 0; }
+  .share-code label {
+    padding: 10px 0 5px; }
+  .share-code .share-code__textarea {
+    margin-bottom: 10px; }
+  .share-code .share-code__message {
+    padding: 10px 10px 0;
+    text-align: center; }
+
+.btn-submit {
+  background-color: #00e6b8; }
 
 /* remember to define focus styles! */
 *:focus {
@@ -125,6 +166,25 @@ p {
       color: #404040;
       margin-left: 5px; }
 
+.btn-home-green {
+  transition: background-color .25s ease-in-out;
+  background-color: #00e6b8;
+  border-color: transparent;
+  color: #404040; }
+  .btn-home-green:hover {
+    transition: background-color .25s ease-in-out;
+    background-color: #FFF;
+    border-color: transparent;
+    color: #00e6b8; }
+    .btn-home-green:hover .fa {
+      color: #404040; }
+  .btn-home-green .fa {
+    margin-left: .3em; }
+  .btn-home-green.active {
+    background-color: #FFF;
+    box-shadow: none;
+    color: #00e6b8; }
+
 @media (max-width: 767px) {
   .btn-lg-mob {
     margin: 1em 0;
@@ -148,7 +208,6 @@ p {
   display: inline-block; }
 
 .btn-logout {
-  background-color: #00e6b8;
   color: #404040;
   border: none;
   font-size: 16px; }
@@ -176,14 +235,15 @@ p {
 .bottom-nav {
   background-color: #C9C9C9;
   text-align: center;
-  padding: 5px 20px; }
+  padding: 2px;
+  min-height: 30px; }
 
 .bottom-nav-module {
   display: inline-block;
   background-color: #00e6b8;
   padding: 5px 10px;
-  border-radius: 5px;
-  margin: 0 5px;
+  border-radius: 2px;
+  margin: 1px;
   cursor: pointer;
   font-size: 16px; }
   .bottom-nav-module .fa {
@@ -199,13 +259,6 @@ p {
 @media only screen and (max-width: 768px) {
   .header-loggedIn {
     display: none; } }
-.home-div {
-  padding: 4px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none !important; }
-
 .fa-home {
   color: #404040;
   font-size: 22px; }
@@ -480,18 +533,21 @@ INSTRUCTOR VIEW
 .student-topic-status:hover .taskList-task-title, .student-topic-status:hover strong {
   color: #FFF; }
 
-.selected-topic .assessment-item {
-  padding: 1em 0;
-  cursor: pointer; }
-  .selected-topic .assessment-item .questions-header {
-    margin: 0;
-    text-align: center; }
-  .selected-topic .assessment-item .attempts {
-    text-align: right; }
-  .selected-topic .assessment-item .attempts:hover, .selected-topic .assessment-item .task:hover {
-    background-color: transparent; }
-.selected-topic .task {
-  padding-bottom: 15px; }
+.selected-topic {
+  border-right: none;
+  border-left: none; }
+  .selected-topic .assessment-item {
+    padding: 1em 0;
+    cursor: pointer; }
+    .selected-topic .assessment-item .questions-header {
+      margin: 0;
+      text-align: center; }
+    .selected-topic .assessment-item .attempts {
+      text-align: right; }
+    .selected-topic .assessment-item .attempts:hover, .selected-topic .assessment-item .task:hover {
+      background-color: transparent; }
+  .selected-topic .task {
+    padding-bottom: 15px; }
 
 .report-issue {
   display: flex;
@@ -697,25 +753,6 @@ INSTRUCTOR VIEW
   .question-answer p:last-of-type {
     margin-bottom: 0; }
 
-.welcome .logo {
-  display: block;
-  position: static;
-  margin: 10px; }
-
-.welcome-banner {
-  height: 250px;
-  margin: 0 10px 20px;
-  width: calc(100% - 20px);
-  background-image: url("../images/welcome-bg.jpg");
-  background-size: cover;
-  background-position: center; }
-
-.instructions {
-  margin: 0 25px;
-  width: 80%; }
-  .instructions li {
-    margin: 8px 0; }
-
 .progress {
   margin: 0px auto 10px;
   width: 80%;
@@ -731,6 +768,17 @@ INSTRUCTOR VIEW
     width: 100%; }
     .progress .progress-bar {
       padding: .5em; } }
+.marking-task {
+  border-top: 1px solid #E5E5E5; }
+  .marking-task p {
+    padding-left: 0; }
+
+.marking-notice {
+  background-color: #FF3030;
+  color: #FFF;
+  padding: 4px;
+  border-radius: 4px; }
+
 @media (max-width: 767px) {
   .student-list {
     padding-top: 2em; }
@@ -748,5 +796,34 @@ INSTRUCTOR VIEW
   padding: 0; }
 .student .btn-email {
   margin-left: 0; }
+
+.welcome .logo {
+  display: block;
+  position: static;
+  margin: 10px; }
+
+.welcome-banner {
+  height: 250px;
+  margin: 0 10px 20px;
+  width: calc(100% - 20px);
+  background-image: url("../images/welcome-bg.jpg");
+  background-size: cover;
+  background-position: center; }
+
+.welcome-panel {
+  margin-bottom: 0;
+  border-left: none;
+  border-right: none;
+  border-bottom: none; }
+  .welcome-panel:last-of-type {
+    border-bottom: none; }
+  .welcome-panel .instructions {
+    margin: 0 25px;
+    padding-bottom: 1em;
+    width: 80%; }
+    .welcome-panel .instructions li {
+      margin: 8px 0; }
+      .welcome-panel .instructions li:last-of-type {
+        margin-bottom: 0; }
 
 /*# sourceMappingURL=output.css.map */

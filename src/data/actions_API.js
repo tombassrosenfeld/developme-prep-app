@@ -1,15 +1,17 @@
 import axios from '../data/axios';
 import { processTopicsData } from '../utilities/utilities';
-import { updateErrors, updateIssue, setUserRegistered } from './actions';
+import { updateErrors, updateMessage, updateIssue, setUserRegistered } from './actions';
 import { List, fromJS } from "immutable";
-import { getUserRole } from "../utilities/utilities";
+import { getUserRole, sendSlackNotification } from "../utilities/utilities";
 
 export const UPDATE_CREDENTIALS = Symbol("UPDATE_CREDENTIALS");
-export const UPDATE_ERRORS = Symbol("UPDATE_ERRORS");
+// export const UPDATE_ERRORS = Symbol("UPDATE_ERRORS");
 export const TOPICS_DATA = Symbol("TOPICS_DATA");
 export const USER_DATA = Symbol("USER_DATA");
 export const USER_PROGRESS = Symbol("USER_PROGRESS");
 export const USER_ASSESSMENT_DATA = Symbol("USER_ASSESSMENT_DATA");
+export const USER_SHARED_CODE = Symbol("USER_SHARED_CODE");
+export const SHARED_CODE_FEEDBACK = Symbol("SHARED_CODE_FEEDBACK");
 export const SET_STUDENTS = Symbol("SET_STUDENTS");
 export const REGISTER_USER = Symbol("REGISTER_USER");
 
@@ -46,14 +48,16 @@ const getData = (token) => (dispatch, getState) => {
 			dispatch(userData(response.data)); // update state with user data
 			dispatch(userProgress(List(response.data[0].userProgress))); // update state with user progress
 			dispatch(userAssessmentData(fromJS(response.data[0].userAssessmentData))); // update state
+			dispatch(userSharedCode(fromJS(response.data[0].userSharedCode))); // update state
 			let role = getUserRole(response.data[0].roles);
-			if(role === 'instructor') { //If user is instructor get all student users
+			if(role === 'instructor') { // If user is instructor get all student users
 				getStudents(token)
 					.then(response => {
 						dispatch(setStudents(fromJS(response.data)));
 					})
 					.catch( error => {
-						dispatch( updateErrors('Error: unable to retrieve students data.'));
+						console.log(error);
+						dispatch(updateErrors('Error: unable to retrieve students data.'));
 					});
 			}
 		})
@@ -124,7 +128,6 @@ export const onChangeAssessmentAnswer = (topic, assessmentID, questionID, answer
 
 export const onIssueFormSubmit = data => (dispatch, getState )=> {
 	let userEmail = getState().get('root').getIn(['user', 'user_email']);
-
 	data.email = userEmail;
 
 	postIssue(data)
@@ -186,6 +189,71 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 		} );
 }
 
+export const onClickSharedCodeSubmit = (topicTitle, taskID) => (dispatch, getState) => {
+	dispatch(updateErrors(''));
+	dispatch(updateMessage(''));
+	let data = getState().get('root').get('sharedCode');
+	data = data.setIn([topicTitle, taskID, 'pending'], true);
+	let userID = getState().get('root').getIn(['user', 'id']);
+	let token = getState().get('root').getIn(['user', 'token']);
+	postUserSharedCode(data.toJS(), userID, token)
+		.then( response => {
+			dispatch(updateErrors(''));
+			dispatch(updateMessage('You\'re code has been submitted and will be marked by an instructor soon!'));
+			dispatch(userSharedCode(fromJS(response.data))); // update state
+			const username = getState().get('root').getIn(['user', 'username']);
+			sendSlackNotification(username);
+		})
+		.catch( error => dispatch(updateErrors('Sorry, we couldn\'t submit your code at this time. Please try again.')) )
+}
+
+export const onClickSharedCodeSave = (topicTitle, taskID) => (dispatch, getState) => {
+	dispatch(updateErrors(''));
+	dispatch(updateMessage(''));
+	let data = getState().get('root').get('sharedCode');
+	data = data.setIn([topicTitle, taskID, 'newFeedback'], false); // assume if they are saving that they have read any feedback
+	let userID = getState().get('root').getIn(['user', 'id']);
+	let token = getState().get('root').getIn(['user', 'token']);
+	postUserSharedCode(data.toJS(), userID, token)
+		.then( response => {
+			dispatch(updateErrors(''));
+			dispatch(updateMessage('You\'re code has been saved!'));
+			dispatch(userSharedCode(fromJS(response.data))); // update state
+		})
+		.catch( error => dispatch(updateErrors('Sorry, we couldn\'t save your code at this time. Please try again.')) )
+}
+
+export const markFeedbackRead = (topicTitle, taskID) => (dispatch, getState) => {
+	let data = getState().get('root').get('sharedCode');
+	data = data.setIn([topicTitle, taskID, 'newFeedback'], false); 
+	let userID = getState().get('root').getIn(['user', 'id']);
+	let token = getState().get('root').getIn(['user', 'token']);	
+	postUserSharedCode(data.toJS(), userID, token)
+		.then( response => {
+			dispatch(userSharedCode(fromJS(response.data))); // update state
+		});
+}
+
+export const sharedCodeFeedbackSubmit = (student, comment, topicID, taskID) => (dispatch, getState) => {
+	dispatch(updateErrors(''));
+	dispatch(updateMessage(''));
+	let data = student.get('userSharedCode');
+	let feedbackArray = data.getIn([topicID, taskID, 'feedback']) || List([]); // if no existing feedback start new array
+	feedbackArray = feedbackArray.unshift(comment); // add new comment
+	data = data.setIn([topicID, taskID, 'feedback'], feedbackArray)
+				.setIn([topicID, taskID, 'newFeedback'], true)
+				.setIn([topicID, taskID, 'pending'], false);
+
+	let token = getState().get('root').getIn(['user', 'token']);				
+	postUserSharedCode(data.toJS(), student.get('id'), token)
+		.then( response => {
+			dispatch(updateErrors(''));
+			dispatch(updateMessage('You\'re feedback has been submitted!'));
+			dispatch(sharedCodeFeedback(data, student.get('cohort'), student.get('id'))); // update state
+		})
+		.catch( error => dispatch(updateErrors('Sorry, we couldn\'t save your feedback at this time. Please try again.')) )
+}
+
 const updateCredentials = (data) => ({
 	type: UPDATE_CREDENTIALS, 
 	data,
@@ -204,6 +272,18 @@ const userProgress = (data) => ({
 const userAssessmentData = (data) => ({
 	type: USER_ASSESSMENT_DATA,
 	data,
+})
+
+const userSharedCode = (data) => ({
+	type: USER_SHARED_CODE,
+	data,
+})
+
+const sharedCodeFeedback = (data, cohort, studentID) => ({
+	type: SHARED_CODE_FEEDBACK,
+	data,
+	cohort,
+	studentID,
 })
 
 const topicsData = (data) => ({
@@ -249,6 +329,13 @@ function postUserAssessmentData(data, userID, token) {
 	return axios.post('/wp-json/cf/prep/' + userID + '/assessment', {
     	data: data,
   })
+}
+
+function postUserSharedCode(data, userID, token) {
+	axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+	return axios.post('/wp-json/cf/prep/' + userID + '/sharedcode', {
+		data: data,
+	})
 }
 
 function getTopics() {

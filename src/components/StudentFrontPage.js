@@ -11,7 +11,7 @@ export default ({userProgress, numAssessments, numTasks, topics}) => {
 		<div>
 
 		{ userProgress.size > 0 ?
-			<div className="topics panel">
+			<div className="topics panel welcome-panel">
 				<div>
 					<h2 className="text-center panel-title">Your progress so far</h2>
 					<div className="col-xs-12">
@@ -27,7 +27,7 @@ export default ({userProgress, numAssessments, numTasks, topics}) => {
 
 			</div>
 			:
-			<div className="topics panel">
+			<div className="topics panel welcome-panel">
 				<h2 className="text-center panel-title">How to use the app</h2>
 				<ul className="instructions">
 					<li>Use the sidebar navigation to view each topic</li>

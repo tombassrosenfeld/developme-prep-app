@@ -5,10 +5,13 @@ export const CANCEL_REGISTRATION = Symbol("CANCEL_REGISTRATION");
 export const ONFORMELEMENTCHANGE = Symbol("ONFORMELEMENTCHANGE");
 export const ONCLICK_ICON = Symbol("ONCLICK_ICON");
 export const UPDATE_ERRORS = Symbol("UPDATE_ERRORS");
+export const UPDATE_MESSAGE = Symbol("UPDATE_MESSAGE");
 export const DELETE_ASSESSMENT_DATA = Symbol("DELETE_ASSESSMENT_DATA");
 export const GET_ARCHIVED_ASSESSMENT_DATA = Symbol("GET_ARCHIVED_ASSESSMENT_DATA");
 export const UPDATEISSUE = Symbol("UPDATEISSUE");
 export const UPDATEISSUEFALSE = Symbol("UPDATEISSUEFALSE");
+export const UPDATESHAREDCODE = Symbol("UPDATESHAREDCODE");
+export const SET_ACTIVE_MODULE = Symbol("SET_ACTIVE_MODULE");
 
 export const logOut = () => ({
 	type: LOGOUT,
@@ -41,6 +44,11 @@ export const updateErrors = (errorMessage) => ({
 	errorMessage,
 })
 
+export const updateMessage = (message) => ({
+	type: UPDATE_MESSAGE,
+	message,
+})
+
 export const deleteAssessmentData = (topicTitle, assessmentID, assessment) => ({
 	type: DELETE_ASSESSMENT_DATA,
 	topicTitle,
@@ -61,4 +69,14 @@ export const updateIssue = () => ({
 
 export const updateIssueFalse = () => ({
 	type: UPDATEISSUEFALSE,
+})
+
+export const updateSharedCode = (code, topicTitle, taskID) => ({
+	type: UPDATESHAREDCODE,
+	code, topicTitle, taskID
+})
+
+export const setActiveModule = i => ({
+	type: SET_ACTIVE_MODULE,
+	i
 })

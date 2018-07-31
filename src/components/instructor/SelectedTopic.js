@@ -3,6 +3,7 @@ import StudentTasksRemaining from './StudentTasksRemaining';
 import AssessmentListItem from './AssessmentListItem';
 import SelectedTopicHeader from './SelectedTopicHeader';
 import {startScrollEvents, terminateScrollEvents, scrollWithContainer} from '../../utilities/utilities';
+import StudentMarking from '../../containers/instructor/StudentMarking';
 
 class SelectedTopic extends Component {
 
@@ -31,7 +32,7 @@ class SelectedTopic extends Component {
 				{ selectedTopic.get('assessments').size > 0 && student.get('userAssessmentData').size ?
 			  		selectedTopic.get('assessments').map( (assessment, i) => (
 			  		<AssessmentListItem 
-			  			key={selectedTopic.get('short_title')} i={i} 
+			  			key={i} i={i} 
 			  			assessment={assessment} 
 			  			onClick={onClick} 
 			  			questions={selectedAssessment ? selectedAssessment.get('questions') : null}
@@ -40,16 +41,17 @@ class SelectedTopic extends Component {
 			  		/>)) :
 			  		<div className="row task">
 			  			<div className="col-xs-10">
-							<p className="taskList-task-title">
-							{
-								selectedTopic.get('assessments').size ? 'This student has no assessment data for this topic' : 'There are currently no assessments for this topic.'
-							}
-							</p>
+								<p className="taskList-task-title">
+								{
+									selectedTopic.get('assessments').size ? 'This student has no assessment data for this topic' : 'There are currently no assessments for this topic.'
+								}
+								</p>
+							</div>
 						</div>
-					</div>
-				}				  	
+				}	
+				<StudentMarking student={student} topicID={selectedTopic.get('short_title')}/>			  	
 			</div>
-		);
+		)
 	}
 }
 	

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TopicListItem from './TopicListItem';
 import SelectedTopic from './SelectedTopic';
+import {Map} from "immutable";
 
 class TopicList extends Component {
 
@@ -29,8 +30,8 @@ class TopicList extends Component {
 
 	render() {
 		const {selectedTopic, selectedAssessment} = this.state;
-
 		const studentProgress = this.props.student.get('userProgress');
+		const sharedCode = this.props.student.get('userSharedCode') || Map({});
 
 		return (
 			<div>
@@ -52,6 +53,10 @@ class TopicList extends Component {
 					  				onClick={() => this.changeTopic(topic.get('id'))} 
 					  				totalTasks={topic.get('assessments').size + topic.get('tasks').size} 
 					  				topicProgress={studentProgress.filter(task => task.includes(topic.get('short_title'))).size}
+					  				hasMarking={
+					  					sharedCode.get(topic.get('short_title')) ?
+					  					sharedCode.get(topic.get('short_title')).filter(code => code ? code.get('pending') : false).size > 0 : false
+					  				}
 					  			/>)) :
 					  		<div className="row task">
 				  				<div className="col-xs-12">
@@ -62,16 +67,17 @@ class TopicList extends Component {
 					</div>
 				</div>
 				{selectedTopic ? 
-				<div>
-					<SelectedTopic 
-						selectedTopic={selectedTopic} 
-						selectedAssessment={selectedAssessment} 
-						student={this.props.student} 
-						onClick={this.changeAssessment}
-					/>
-				</div>
-				:
-				null }
+					<div>
+						<SelectedTopic 
+							selectedTopic={selectedTopic} 
+							selectedAssessment={selectedAssessment} 
+							student={this.props.student} 
+							onClick={this.changeAssessment}
+						/>
+					</div>
+					:
+					null 
+				}
 			</div>
 		)
 	}
