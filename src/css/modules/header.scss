@@ -52,6 +52,7 @@
 }
 
 .bottom-nav-module {
+	position: relative;
 	display: inline-block;
 	background-color: $homeGreen;
 	padding: 5px 10px;
@@ -62,6 +63,24 @@
 	font-size: 16px;
 	.fa {
 		margin-left: 5px;
+	}
+	@at-root #{&}__notification {
+		position: absolute;
+		top: -12.5px;
+		right: -12.5px;
+
+		display: block;
+
+		height: 25px;
+		padding: 4px 0;
+		width: 25px;
+
+		background-color: $red;
+		border-radius: 100%;
+		box-shadow: 0 0 8px $black;
+
+		color: $white;
+		font-size: .9em;
 	}
 }
 

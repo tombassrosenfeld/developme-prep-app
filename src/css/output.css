@@ -239,6 +239,7 @@ p {
   min-height: 30px; }
 
 .bottom-nav-module {
+  position: relative;
   display: inline-block;
   background-color: #00e6b8;
   padding: 5px 10px;
@@ -248,6 +249,19 @@ p {
   font-size: 16px; }
   .bottom-nav-module .fa {
     margin-left: 5px; }
+  .bottom-nav-module__notification {
+    position: absolute;
+    top: -12.5px;
+    right: -12.5px;
+    display: block;
+    height: 25px;
+    padding: 4px 0;
+    width: 25px;
+    background-color: #FF3030;
+    border-radius: 100%;
+    box-shadow: 0 0 8px #404040;
+    color: #FFF;
+    font-size: .9em; }
 
 .user-icon {
   color: #404040;
