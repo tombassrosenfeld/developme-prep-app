@@ -48,11 +48,11 @@ const updateUserSharedCode = (state, {data}) => {
 
 const updateStudentSharedCodeFeedback = (state, {data, cohort, studentID}) => {
 	let cohorts = state.get('cohorts');
-	let cohortIndex = cohorts.toJS().findIndex(co => co.name == cohort);
-	let studentIndex = cohorts.get(cohortIndex).get('students').toJS().findIndex(student => student.id == studentID);
+	let cohortIndex = cohorts.toJS().findIndex(co => co.name === cohort);
+	let studentIndex = cohorts.get(cohortIndex).get('students').toJS().findIndex(student => student.id === studentID);
 	cohorts = cohorts.setIn([cohortIndex, 'students', studentIndex, 'userSharedCode'], data);
 	let studentsToMark = state.get('studentsToMark');
-	studentsToMark = studentsToMark.filter(student => student.get('id') != studentID);
+	studentsToMark = studentsToMark.filter(student => student.get('id') !== studentID);
 	return state.set('cohorts', cohorts)
 				.set('studentsToMark', studentsToMark);
 }
@@ -73,10 +73,10 @@ const searchForMarking = (data) => {
 		let sharedCode = student.get('userSharedCode');
 		sharedCode.map((topic) => topic.map((task) => {
 			if(task) {
-				task.get('pending') ? hasMarking = true : null
+				return hasMarking = task.get('pending') ? true : hasMarking
 			};
 		}));
-		studentsWithMarking = hasMarking ? studentsWithMarking.push(Map({id: student.get('id'), cohort: student.get('cohort')})) : studentsWithMarking;
+		return studentsWithMarking = hasMarking ? studentsWithMarking.push(Map({id: student.get('id'), cohort: student.get('cohort')})) : studentsWithMarking;
 	});
 	return studentsWithMarking;
 }
