@@ -37,10 +37,10 @@ class TopicList extends Component {
 			<div>
 				<div className="panel">
 					<div className="row">
-						<div className="col-xs-9">
+						<div className="col-xs-9 col-sm-10">
 							<h2 className="panel-title">Topics</h2> 
 						</div>
-						<div className="col-xs-3">
+						<div className="col-xs-3 col-sm-2">
 							<h2 className="panel-title status-title">Done</h2> 
 						</div>
 					</div>
