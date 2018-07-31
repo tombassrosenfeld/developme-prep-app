@@ -3,6 +3,7 @@ import Messages from "../components/Messages";
 import { updateMessage } from "../data/actions";
 
 const mapStateToProps = state => ({
+	error: false,
 	message: state.get('root').get('message'),
 });
 

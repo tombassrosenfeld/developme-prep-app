@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default ({message, dismissMessage}) => (
+export default ({error, message, dismissMessage}) => (
 	<div 
-		className="message-container" 
+		className={error ? "message-container message-container__red" : "message-container"}
 		style={{ display: message? 'block' : 'none' }}
 		onClick={ () => dismissMessage() }
 	>

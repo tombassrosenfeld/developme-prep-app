@@ -1,13 +1,14 @@
 import { connect } from "react-redux";
-import Errors from "../components/Errors";
+import Errors from "../components/Messages";
 import { updateErrors } from "../data/actions";
 
 const mapStateToProps = state => ({
-	errors: state.get('root').get('errors'),
+	error: state.get('root').get('errors'),
+	message: state.get('root').get('errors'),
 });
 
 const mapDispatchToProps = dispatch => ({
-	dismissErrors: () => dispatch(updateErrors('')),
+	dismissMessage: () => dispatch(updateErrors('')),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Errors);
