@@ -11,8 +11,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-	setActiveModule: (e, i) => {
-		e.preventDefault();
+	setActiveModule: (i) => {
 		dispatch(setActiveModule(i));
 	}
 });

@@ -2,7 +2,7 @@ import axios from '../data/axios';
 import { processTopicsData } from '../utilities/utilities';
 import { updateErrors, updateMessage, updateIssue, setUserRegistered } from './actions';
 import { List, fromJS } from "immutable";
-import { getUserRole } from "../utilities/utilities";
+import { getUserRole, sendSlackNotification } from "../utilities/utilities";
 
 export const UPDATE_CREDENTIALS = Symbol("UPDATE_CREDENTIALS");
 // export const UPDATE_ERRORS = Symbol("UPDATE_ERRORS");
@@ -201,6 +201,8 @@ export const onClickSharedCodeSubmit = (topicTitle, taskID) => (dispatch, getSta
 			dispatch(updateErrors(''));
 			dispatch(updateMessage('You\'re code has been submitted and will be marked by an instructor soon!'));
 			dispatch(userSharedCode(fromJS(response.data))); // update state
+			const username = getState().get('root').getIn(['user', 'username']);
+			sendSlackNotification(username);
 		})
 		.catch( error => dispatch(updateErrors('Sorry, we couldn\'t submit your code at this time. Please try again.')) )
 }

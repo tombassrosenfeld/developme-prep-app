@@ -11,7 +11,7 @@ export default ({userRole, navItems, hasMarking, hasNewFeedback, activeModule, s
 				return (
 					<Link 
 						className={ className }
-						onClick={(e) => setActiveModule(e, i)}
+						onClick={() => setActiveModule(i)}
 						to={navItem.get('link')}
 						key={i}>
 					{navItem.get('label')}

@@ -1,5 +1,4 @@
 import { fromJS } from "immutable";
-
 export const preventDefault =  (e) => e.preventDefault();
 
 // rewrite this function if the API changes 
@@ -53,3 +52,26 @@ export const hasNewFeedback = (topics, sharedCode) => {
 	});
 	return hasNewFeedback;
 }
+
+export const sendSlackNotification = (username) => {
+	const message = {
+		text: username + ' just added some code. Please login and go to the Marking section to review it.',
+	}
+
+	const postData = (url, data) => {
+	    return fetch(url, {
+	        method: "POST",
+	        mode: "cors",
+	        cache: "no-cache",
+	        credentials: "same-origin",
+	        redirect: "follow",
+	        referrer: "no-referrer",
+	        body: JSON.stringify(data),
+	    })
+	    .then(response => response.json())
+	};
+
+	return postData('https://hooks.slack.com/services/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', message)
+		.then(data => console.log(data))
+}	
+
