@@ -1,7 +1,7 @@
 import initial from "./initial";
 import {List, Map, fromJS} from "immutable";
 
-import { ONFORMELEMENTCHANGE, UPDATE_ERRORS, UPDATE_MESSAGE, LOGOUT, SET_REGISTERING, SET_USER_REGISTERED, CANCEL_REGISTRATION, ONCLICK_ICON, DELETE_ASSESSMENT_DATA, GET_ARCHIVED_ASSESSMENT_DATA, UPDATEISSUE, UPDATEISSUEFALSE, UPDATESHAREDCODE } from "../data/actions";
+import { ONFORMELEMENTCHANGE, UPDATE_ERRORS, UPDATE_MESSAGE, LOGOUT, SET_REGISTERING, SET_ACTIVE_MODULE, CANCEL_REGISTRATION, ONCLICK_ICON, DELETE_ASSESSMENT_DATA, GET_ARCHIVED_ASSESSMENT_DATA, UPDATEISSUE, UPDATEISSUEFALSE, UPDATESHAREDCODE, SET_USER_REGISTERED } from "../data/actions";
 import { USER_DATA, UPDATE_CREDENTIALS, USER_PROGRESS, USER_ASSESSMENT_DATA, USER_SHARED_CODE, SHARED_CODE_FEEDBACK, SET_STUDENTS, TOPICS_DATA} from "../data/actions_API";
 
 const updateUsernameAndPassword = (state, { id, val }) => {
@@ -166,6 +166,11 @@ const updateSharedCode = (state, action) => {
 	return state.setIn(['sharedCode', action.topicTitle], tasks);
 }
 
+const setActiveModule = (state, {i}) => {
+	console.log(i);
+	return state.set('activeModule', i);
+}
+
 export default (state = initial, action) => {
 	switch (action.type) {
 		case ONFORMELEMENTCHANGE: return updateUsernameAndPassword(state, action);
@@ -189,6 +194,7 @@ export default (state = initial, action) => {
 		case UPDATESHAREDCODE: return updateSharedCode(state, action);
 		case SET_REGISTERING: return setRegistering(state);
 		case SET_USER_REGISTERED: return setUserRegistered(state, action);
+		case SET_ACTIVE_MODULE: return setActiveModule(state, action);
 		default: return state;
 	}
 };

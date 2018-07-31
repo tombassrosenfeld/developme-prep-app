@@ -12,6 +12,33 @@
 		}
 	}
 }
+
+.btn-home-green {
+	transition: background-color .25s ease-in-out;
+	background-color: $homeGreen;
+	border-color: transparent;
+	color: $black;
+	&:hover {
+		transition: background-color .25s ease-in-out;
+		background-color: $white;
+		border-color: transparent;
+		color: $homeGreen;
+		.fa {
+			color: $black;
+		}
+	}
+	.fa {
+		margin-left: .3em;	
+	}
+	&.active {
+		background-color: $white;
+		box-shadow: none;
+		color: $homeGreen;
+	}
+}
+
+
+
 @media (max-width: 767px) {
 	.btn-lg-mob {
 		margin: 1em 0;

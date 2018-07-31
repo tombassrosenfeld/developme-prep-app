@@ -27,4 +27,5 @@ export default Map({
 	issue: false,
 	isRegistering: false,
 	userRegistered: false,
+	activeModule: null,
 });

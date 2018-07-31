@@ -49,10 +49,7 @@ export default ({students, numAssessments, numTasks, cohortName, cohortID}) => {
 		  	}
 		</div>
 		<div className="narrow-padding hyperlink email-div">
-			<div>
-				
-			</div>
-			<a href={'mailto:' +mailto} className="btn btn-block btn-logout btn-email">Email {cohortName} <i className="fa fa-2x fas fa-envelope" aria-hidden="true"></i></a>
+			<a href={'mailto:' +mailto} className="btn btn-home-green">Email {cohortName} <i className="fa fa-2x fas fa-envelope" aria-hidden="true"></i></a>
 		</div>
 	</div>
 	);
