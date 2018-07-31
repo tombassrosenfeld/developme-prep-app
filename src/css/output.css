@@ -773,6 +773,7 @@ INSTRUCTOR VIEW
   background-color: #E5E5E5; }
 
 .progress-bar {
+  text-indent: .5em;
   background-color: #00e6b8; }
 
 @media (max-width: 767px) {
