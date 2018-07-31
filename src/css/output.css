@@ -697,25 +697,6 @@ INSTRUCTOR VIEW
   .question-answer p:last-of-type {
     margin-bottom: 0; }
 
-.welcome .logo {
-  display: block;
-  position: static;
-  margin: 10px; }
-
-.welcome-banner {
-  height: 250px;
-  margin: 0 10px 20px;
-  width: calc(100% - 20px);
-  background-image: url("../images/welcome-bg.jpg");
-  background-size: cover;
-  background-position: center; }
-
-.instructions {
-  margin: 0 25px;
-  width: 80%; }
-  .instructions li {
-    margin: 8px 0; }
-
 .progress {
   margin: 0px auto 10px;
   width: 80%;
@@ -748,5 +729,34 @@ INSTRUCTOR VIEW
   padding: 0; }
 .student .btn-email {
   margin-left: 0; }
+
+.welcome .logo {
+  display: block;
+  position: static;
+  margin: 10px; }
+
+.welcome-banner {
+  height: 250px;
+  margin: 0 10px 20px;
+  width: calc(100% - 20px);
+  background-image: url("../images/welcome-bg.jpg");
+  background-size: cover;
+  background-position: center; }
+
+.welcome-panel {
+  margin-bottom: 0;
+  border-left: none;
+  border-right: none;
+  border-bottom: none; }
+  .welcome-panel:last-of-type {
+    border-bottom: none; }
+  .welcome-panel .instructions {
+    margin: 0 25px;
+    padding-bottom: 1em;
+    width: 80%; }
+    .welcome-panel .instructions li {
+      margin: 8px 0; }
+      .welcome-panel .instructions li:last-of-type {
+        margin-bottom: 0; }
 
 /*# sourceMappingURL=output.css.map */
