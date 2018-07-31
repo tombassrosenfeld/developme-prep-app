@@ -2,9 +2,9 @@ import { connect } from "react-redux";
 import UncompletedTasks from "../components/UncompletedTasks";
 
 const mapStateToProps = state => {
-    const userProgress = state.get('userProgress');
+    const userProgress = state.get('root').get('userProgress');
     const completedShortTitles = userProgress.map(el=>el.split('.')[0]);
-    const topics = state.get('topics');
+    const topics = state.get('root').get('topics');
 
     const topicLengthObs = topics.map(topic => topic.set('length', topic.get('tasks').size + topic.get('assessments').size).set('count', 0));
 

@@ -3,7 +3,7 @@ import Messages from "../components/Messages";
 import { updateMessage } from "../data/actions";
 
 const mapStateToProps = state => ({
-	message: state.get('message'),
+	message: state.get('root').get('message'),
 });
 
 const mapDispatchToProps = dispatch => ({

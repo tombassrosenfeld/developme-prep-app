@@ -41,7 +41,7 @@ export const registerUser = data => (dispatch)=> {
 
 // if authentication is successful, calls getdata()
 const getData = (token) => (dispatch, getState) => {
-	let userEmail = getState().getIn(['user', 'user_email']);
+	let userEmail = getState().get('root').getIn(['user', 'user_email']);
 	getUserData(token, userEmail)
 		.then( response => {
 			dispatch(updateErrors('')); // remove any errors
@@ -76,7 +76,7 @@ const getData = (token) => (dispatch, getState) => {
   
 // when user clicks on markers
 export const onClickUserProgress = (id) => (dispatch, getState) => {
-	let userProgressArr = getState().get('userProgress');
+	let userProgressArr = getState().get('root').get('userProgress');
 	var savedUserProgressArr = userProgressArr;
 
 	if (!userProgressArr.includes(id)) {
@@ -88,8 +88,8 @@ export const onClickUserProgress = (id) => (dispatch, getState) => {
 	
 	dispatch(userProgress(userProgressArr));// dispatch to state
 
-	let userID = getState().getIn(['user', 'id']);
-	let token = getState().getIn(['user', 'token']);
+	let userID = getState().get('root').getIn(['user', 'id']);
+	let token = getState().get('root').getIn(['user', 'token']);
 	
 	// post to api
 	postUserProgress(userProgressArr, userID, token)
@@ -106,10 +106,10 @@ export const onClickUserProgress = (id) => (dispatch, getState) => {
 // when user clicks an answer in the assessment
 export const onChangeAssessmentAnswer = (topic, assessmentID, questionID, answerID) => (dispatch, getState) => {
 	//get assessment data from the state
-	let userAssessmentDataObj = getState().get('assessmentData');
+	let userAssessmentDataObj = getState().get('root').get('assessmentData');
 	let savedUserAssessmentDataObj = userAssessmentDataObj;
-	let userID = getState().getIn(['user', 'id']);
-	let token = getState().getIn(['user', 'token']);
+	let userID = getState().get('root').getIn(['user', 'id']);
+	let token = getState().get('root').getIn(['user', 'token']);
 
 
 	userAssessmentDataObj = userAssessmentDataObj.setIn([topic, assessmentID, 'answers', questionID], answerID);
@@ -127,7 +127,7 @@ export const onChangeAssessmentAnswer = (topic, assessmentID, questionID, answer
 }
 
 export const onIssueFormSubmit = data => (dispatch, getState )=> {
-	let userEmail = getState().getIn(['user', 'user_email']);
+	let userEmail = getState().get('root').getIn(['user', 'user_email']);
 	data.email = userEmail;
 
 	postIssue(data)
@@ -141,7 +141,7 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 	// mark assessment and update assessmentData
 	let answers = assessment.get('questions').map((question, i) => question.get('correct_answer') - 1);
 	let correctAnswers = answers.filter((answer, i) => answer === userAnswers.get(i));
-	let assessmentData = getState().get('assessmentData');
+	let assessmentData = getState().get('root').get('assessmentData');
 	let savedAssessmentData = assessmentData;
 	assessmentData = assessmentData.setIn([topicTitle, assessmentID, 'result'], correctAnswers.size);
 	let attemptsForTopic = 0;
@@ -156,11 +156,11 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 	dispatch(userAssessmentData(assessmentData)); // dispatch to state
 
 	// update user progress data
-	let userProgressArr = getState().get('userProgress'); 
+	let userProgressArr = getState().get('root').get('userProgress'); 
 	var savedUserProgressArr = userProgressArr; 
 	let assessmentKey = topicTitle + '.assess.' + assessmentID;
-	let userID = getState().getIn(['user', 'id']);
-	let token = getState().getIn(['user', 'token']);
+	let userID = getState().get('root').getIn(['user', 'id']);
+	let token = getState().get('root').getIn(['user', 'token']);
 	userProgressArr = !userProgressArr.includes(assessmentKey) ? userProgressArr.push(assessmentKey) : userProgressArr;
 	dispatch(userProgress(userProgressArr));// dispatch to state
 
@@ -192,10 +192,10 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 export const onClickSharedCodeSubmit = (topicTitle, taskID) => (dispatch, getState) => {
 	dispatch(updateErrors(''));
 	dispatch(updateMessage(''));
-	let data = getState().get('sharedCode');
+	let data = getState().get('root').get('sharedCode');
 	data = data.setIn([topicTitle, taskID, 'pending'], true);
-	let userID = getState().getIn(['user', 'id']);
-	let token = getState().getIn(['user', 'token']);
+	let userID = getState().get('root').getIn(['user', 'id']);
+	let token = getState().get('root').getIn(['user', 'token']);
 	postUserSharedCode(data.toJS(), userID, token)
 		.then( response => {
 			dispatch(updateErrors(''));
@@ -208,10 +208,10 @@ export const onClickSharedCodeSubmit = (topicTitle, taskID) => (dispatch, getSta
 export const onClickSharedCodeSave = (topicTitle, taskID) => (dispatch, getState) => {
 	dispatch(updateErrors(''));
 	dispatch(updateMessage(''));
-	let data = getState().get('sharedCode');
+	let data = getState().get('root').get('sharedCode');
 	data = data.setIn([topicTitle, taskID, 'newFeedback'], false); // assume if they are saving that they have read any feedback
-	let userID = getState().getIn(['user', 'id']);
-	let token = getState().getIn(['user', 'token']);
+	let userID = getState().get('root').getIn(['user', 'id']);
+	let token = getState().get('root').getIn(['user', 'token']);
 	postUserSharedCode(data.toJS(), userID, token)
 		.then( response => {
 			dispatch(updateErrors(''));
@@ -222,10 +222,10 @@ export const onClickSharedCodeSave = (topicTitle, taskID) => (dispatch, getState
 }
 
 export const markFeedbackRead = (topicTitle, taskID) => (dispatch, getState) => {
-	let data = getState().get('sharedCode');
+	let data = getState().get('root').get('sharedCode');
 	data = data.setIn([topicTitle, taskID, 'newFeedback'], false); 
-	let userID = getState().getIn(['user', 'id']);
-	let token = getState().getIn(['user', 'token']);	
+	let userID = getState().get('root').getIn(['user', 'id']);
+	let token = getState().get('root').getIn(['user', 'token']);	
 	postUserSharedCode(data.toJS(), userID, token)
 		.then( response => {
 			dispatch(userSharedCode(fromJS(response.data))); // update state
@@ -242,7 +242,7 @@ export const sharedCodeFeedbackSubmit = (student, comment, topicID, taskID) => (
 				.setIn([topicID, taskID, 'newFeedback'], true)
 				.setIn([topicID, taskID, 'pending'], false);
 
-	let token = getState().getIn(['user', 'token']);				
+	let token = getState().get('root').getIn(['user', 'token']);				
 	postUserSharedCode(data.toJS(), student.get('id'), token)
 		.then( response => {
 			dispatch(updateErrors(''));

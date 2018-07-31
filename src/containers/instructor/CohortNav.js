@@ -4,8 +4,8 @@ import { onClickIcon } from "../../data/actions";
 import { getUserRole } from "../../utilities/utilities";
 
 const mapStateToProps = state => ({
-    navItems: state.get("cohorts"),
-  	userRole: getUserRole(state.getIn(['user', 'roles'])),
+    navItems: state.get('root').get("cohorts"),
+  	userRole: getUserRole(state.get('root').getIn(['user', 'roles'])),
 });
 
 const mapDispatchToProps = dispatch => ({

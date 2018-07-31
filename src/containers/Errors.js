@@ -3,7 +3,7 @@ import Errors from "../components/Errors";
 import { updateErrors } from "../data/actions";
 
 const mapStateToProps = state => ({
-	errors: state.get('errors'),
+	errors: state.get('root').get('errors'),
 });
 
 const mapDispatchToProps = dispatch => ({

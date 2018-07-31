@@ -4,8 +4,8 @@ import { onClickAssessmentSubmit } from "../data/actions_API";
 import { deleteAssessmentData, getArchivedAssessmentData } from "../data/actions";
 
 const mapStateToProps = (state, {topicID}) => ({
-    topic: state.get("topics").find(topic => topic.get('id') === +topicID),
-    userAssessmentData: state.get('assessmentData'),
+    topic: state.get('root').get("topics").find(topic => topic.get('id') === +topicID),
+    userAssessmentData: state.get('root').get('assessmentData'),
 });
 
 const mapDispatchToProps = dispatch => ({

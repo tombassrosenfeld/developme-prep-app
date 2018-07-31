@@ -5,7 +5,7 @@ import { onClickSharedCodeSubmit } from "../data/actions_API";
 import { onClickSharedCodeSave } from "../data/actions_API";
 
 const mapStateToProps = state => ({
-	sharedCode: state.get('sharedCode'),
+	sharedCode: state.get('root').get('sharedCode'),
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -13,7 +13,8 @@ const updateCredentials = (state, { data }) => {
 	return state.setIn(['user', 'token'], data.token)
 				.setIn(['user', 'user_display_name'], data.user_display_name)
 				.setIn(['user', 'user_email'], data.user_email)
-				.set('loggedIn', true);
+				.set('loggedIn', true)
+				.set('userRegistered', false);
 }
 
 const updateErrors = (state, { errorMessage }) => {
@@ -60,7 +61,6 @@ const updateStudentSharedCodeFeedback = (state, {data, cohort, studentID}) => {
 const setStudents = (state, { data }) => {
 	let cohorts = orderByCohort(data);
 	let studentsToMark = searchForMarking(data);
-	console.log(studentsToMark.toJS());
 	return state.set('cohorts', fromJS(cohorts))
 				.set('cohortsLoaded', true)
 				.set('studentsToMark', studentsToMark);
