@@ -60,6 +60,7 @@ const updateStudentSharedCodeFeedback = (state, {data, cohort, studentID}) => {
 const setStudents = (state, { data }) => {
 	let cohorts = orderByCohort(data);
 	let studentsToMark = searchForMarking(data);
+	console.log(studentsToMark.toJS());
 	return state.set('cohorts', fromJS(cohorts))
 				.set('cohortsLoaded', true)
 				.set('studentsToMark', studentsToMark);
@@ -76,7 +77,7 @@ const searchForMarking = (data) => {
 				return hasMarking = task.get('pending') ? true : hasMarking
 			};
 		}));
-		return studentsWithMarking = hasMarking ? studentsWithMarking.push(Map({id: student.get('id'), cohort: student.get('cohort')})) : studentsWithMarking;
+		return studentsWithMarking = hasMarking ? studentsWithMarking.push(student) : studentsWithMarking;
 	});
 	return studentsWithMarking;
 }

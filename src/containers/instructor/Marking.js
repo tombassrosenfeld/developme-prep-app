@@ -2,8 +2,7 @@ import { connect } from "react-redux";
 import Marking from "../../components/instructor/Marking";
 
 const mapStateToProps = (state) => ({
-    marking: state.get('studentsToMark'),
-    cohorts: state.get('cohorts'),
+    studentsToMark: state.get('studentsToMark'),
 });
 
 const mapDispatchToProps = dispatch => ({
