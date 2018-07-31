@@ -55,7 +55,9 @@ export const hasNewFeedback = (topics, sharedCode) => {
 
 export const sendSlackNotification = (username) => {
 	const message = {
+		username: 'Develop Me App',
 		text: username + ' just added some code. Please login and go to the Marking section to review it.',
+		icon_emoji: ':computer:'
 	}
 
 	const postData = (url, data) => {
