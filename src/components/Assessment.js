@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import AssessmentQuestion from '../containers/AssessmentQuestion';
 import AssessmentSubmit from '../containers/AssessmentSubmit';
 import AssessmentHeader from './AssessmentHeader';
-import {startScrollEvents, terminateScrollEvents, scrollWithContainer} from '../utilities/utilities';
 import { List } from "immutable";
 
 class Assessment extends Component {
@@ -16,16 +15,6 @@ class Assessment extends Component {
 		this.onSubmit = this.onSubmit.bind(this);
 		this.onCancel = this.onCancel.bind(this);
 	}
-
-	componentDidMount() {
-		startScrollEvents();
-		scrollWithContainer("scroll-container-assessment");
-	}
-	
-	componentWillUnmount() {
-		terminateScrollEvents();
-	}
-
 
 	retakeOnClick() {
 		const { id, topic, deleteAssessmentData } = this.props;
@@ -53,10 +42,8 @@ class Assessment extends Component {
 
 		const userAnswers = userAssessmentData.getIn([topic.getIn(['short_title']), id, 'answers']) ? userAssessmentData.getIn([topic.getIn(['short_title']), id, 'answers']) : List([])
 
-		scrollWithContainer("scroll-container-assessment");
-
 		return (
-			<div id="scroll-container-assessment" className="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-4 narrow-padding">
+			<div className="col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-4 narrow-padding">
 				<AssessmentHeader 
 					assessmentID={id}
 					assessmentTitle={topic.getIn(['assessments', id, 'assessment_title'])}
