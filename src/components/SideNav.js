@@ -7,11 +7,22 @@ class SideNav extends Component {
 		super(props);
 		this.state = {
 			toggle: false,
-			height: 0,
+			height: window.innerWidth > 767 ? 'auto' : 0,
 			activeIcon: null,
 		};
 		this.switch = this.switch.bind(this);
 		this.onClick = this.onClick.bind(this);
+	}
+
+	componentDidMount() {
+		const self = this;
+		window.addEventListener('resize', function() {
+			self.toggleNav();
+		});
+	}
+
+	toggleNav() {
+		this.setState({height: window.innerWidth > 767 ? 'auto' : 0})
 	}
 
 	switch() {
