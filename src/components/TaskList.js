@@ -12,6 +12,9 @@ export default ({topic, userProgress, onClickUserProgress}) => {
 			<div className="col-xs-3 col-sm-2">
 				<h2 className="panel-title status-title">Done</h2> 
 			</div>
+			<div className="col-xs-12">
+				<p><i className="fa fa-info-circle task-info" aria-hidden="true"></i> As you complete a task mark it as done on the right, this will unlock further tasks for you to complete.</p> 
+			</div>
 		</div>
 		<div className="taskList">
 			{ topic.get('tasks').size > 0 ?

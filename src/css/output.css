@@ -379,6 +379,10 @@ p {
   align-self: center;
   margin-left: 10px; }
 
+.task-info {
+  color: #00e6b8;
+  padding-right: .25em; }
+
 /*!
  * Hamburgers
  * @description Tasty CSS-animated hamburgers
