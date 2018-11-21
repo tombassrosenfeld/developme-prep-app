@@ -16,8 +16,6 @@ class AssessmentHeader extends Component {
 
 		const { assessmentID, assessmentTitle, answers, result, totalQuestions, retake, retakeOnClick} = this.props;
 
-		scrollWithContainer("scroll-container-assessment");
-
 		return  (
 			<div  id="scroll-container-assessment" className="panel">
 				<h1>{+assessmentID + 1}. { assessmentTitle }</h1>
