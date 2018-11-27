@@ -212,7 +212,7 @@ export default (state = initial, action) => {
 		case SET_STUDENTS: return setStudents(state, action);
 		case TOPICS_DATA: return topicsData(state, action);
 		case ONCLICK_ICON: return onClickIcon(state, action);
-		case LOGOUT: return logOut(state);
+		case LOGOUT: return logOut(initial);
 		case CANCEL_REGISTRATION: return cancelRegistration(state);
 		case UPDATEISSUE: return updateIssue(state);
 		case UPDATEISSUEFALSE: return updateIssueFalse(state);
