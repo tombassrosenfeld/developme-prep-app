@@ -28,24 +28,29 @@ const updateMessage = (state, { message }) => {
 const updateUser = (state, { data }) => {
 	let user = data[0];
 	const cohort = user.cohort ? user.cohort : 'Coding Fellowship';
-	return state.setIn(['user', 'id'], user.id)
+	return state.set('lastActive', new Date().getTime())
+				.setIn(['user', 'id'], user.id)
 				.setIn(['user', 'username'], user.username) // update username with the value provided by api
 				.setIn(['user', 'roles'], user.roles)
 				.setIn(['user', 'cohort'], cohort); // update roles with the value provided by api
 }
 
 const updateUserProgress = (state, { data }) => {
-	return state.set('userProgress', data);
+	return state.set('lastActive', new Date().getTime())
+			.set('userProgress', data);
 }
 
 const updateUserAssessmentData = (state, { data }) => {
-	return state.set('assessmentData', data);
+	return state.set('lastActive', new Date().getTime())
+			.set('assessmentData', data);
 }
 
 // From API
 const updateUserSharedCode = (state, {data}) => {
-	return state.set('sharedCode', data);
+	return state.set('lastActive', new Date().getTime())
+			.set('sharedCode', data);
 }
+
 
 const updateStudentSharedCodeFeedback = (state, {data, cohort, studentID}) => {
 	let cohorts = state.get('cohorts');
@@ -55,6 +60,7 @@ const updateStudentSharedCodeFeedback = (state, {data, cohort, studentID}) => {
 	let studentsToMark = state.get('studentsToMark');
 	studentsToMark = studentsToMark.filter(student => student.get('id') !== studentID);
 	return state.set('cohorts', cohorts)
+				.set('lastActive', new Date().getTime())
 				.set('studentsToMark', studentsToMark);
 }
 
@@ -63,6 +69,7 @@ const setStudents = (state, { data }) => {
 	let studentsToMark = searchForMarking(data);
 	return state.set('cohorts', fromJS(cohorts))
 				.set('cohortsLoaded', true)
+				.set('lastActive', new Date().getTime())
 				.set('studentsToMark', studentsToMark);
 }
 
@@ -119,59 +126,77 @@ const topicsData = (state, { data }) => {
 		return topic.set('duration', totalDuration);
 	}, 0);
 
-	return state.set('topics', topicsWithDuration).set('isLoaded', true);
+	return state.set('lastActive', new Date().getTime())
+			.set('topics', topicsWithDuration).set('isLoaded', true);
 }
 
 const onClickIcon = (state, { id }) => {
-	return state.set('topics', state.get('topics').map((topic) => topic.set('selected', false)))
-				.setIn(['topics', id, 'selected'], true);
+	return state.set('lastActive', new Date().getTime())
+		.set('topics', state.get('topics').map((topic) => topic.set('selected', false)))
+		.setIn(['topics', id, 'selected'], true);
 }
 
 const logOut = (state) => {
-	return state.set('loggedIn', false).setIn(['user', 'roles'], []);
+	return state;
 }
 
 const setRegistering = (state) => {
-	return state.set('isRegistering', true).set('userRegistered', false);
+	return state.set('lastActive', new Date().getTime())
+			.set('isRegistering', true).set('userRegistered', false);
 }
 
 const setUserRegistered = (state, {data}) => {
-	return state.set('isRegistering', false).set('userRegistered', true);
+	return state.set('lastActive', new Date().getTime())
+			.set('isRegistering', false).set('userRegistered', true);
 }
 
 const cancelRegistration = (state) => {
-	return state.set('isRegistering', false);
+	return state.set('lastActive', new Date().getTime())
+			.set('isRegistering', false);
 }
 
 const deleteAssessmentData = (state, {topicTitle, assessmentID, assessment}) => {
 	const answers = state.getIn(['assessmentData', topicTitle, assessmentID, 'answers']);
 	const answersRemoved = answers.map(answer => null);
-	return state.setIn(['assessmentData', topicTitle, assessmentID, 'answers'], answersRemoved).set('archivedAssessmentData', answers);
+	return state.set('lastActive', new Date().getTime())
+			.setIn(['assessmentData', topicTitle, assessmentID, 'answers'], answersRemoved).set('archivedAssessmentData', answers);
 }
 
 const getArchivedAssessmentData = (state, {topicTitle, assessmentID, assessment}) => {
-	return state.setIn(['assessmentData', topicTitle, assessmentID, 'answers'], state.get('archivedAssessmentData'));
+	return state.set('lastActive', new Date().getTime())
+			.setIn(['assessmentData', topicTitle, assessmentID, 'answers'], state.get('archivedAssessmentData'));
 }
 
 const updateIssue = (state) => {
-	return state.set('issue', true);
+	return state.set('lastActive', new Date().getTime())
+			.set('issue', true);
 }
 const updateIssueFalse = (state) => {
-	return state.set('issue', false);
+	return state.set('lastActive', new Date().getTime())
+			.set('issue', false);
 }
 
 const updateSharedCode = (state, action) => {
 	let tasks = state.getIn(['sharedCode', action.topicTitle]) ? state.getIn(['sharedCode', action.topicTitle]) : List([]);
 	tasks = tasks.setIn([action.taskID, 'code'], action.code);
-	return state.setIn(['sharedCode', action.topicTitle], tasks);
+	return state.set('lastActive', new Date().getTime())
+			.setIn(['sharedCode', action.topicTitle], tasks);
 }
 
 const setActiveModule = (state, {i}) => {
-	console.log(i);
-	return state.set('activeModule', i);
+	return state.set('lastActive', new Date().getTime())
+			.set('activeModule', i);
+}
+
+const expireUserSession = () => {
+	return logOut(initial).set('errors', 'Your session has expired, please log in again.');
 }
 
 export default (state = initial, action) => {
+	const isExpiredSession = new Date(new Date().getTime() - state.get('lastActive')).getMinutes() >= 60;
+	if(state.get('loggedIn') && state.get('lastActive') && isExpiredSession) {
+		return expireUserSession();
+	}
 	switch (action.type) {
 		case ONFORMELEMENTCHANGE: return updateUsernameAndPassword(state, action);
 		case UPDATE_CREDENTIALS: return updateCredentials(state, action);

@@ -4,6 +4,7 @@ export default Map({
 	isLoaded: false,
 	cohortsLoaded: false,
 	loggedIn: false,
+	lastActive: null,
 	navItems: Map({
 		student: List([
 			Map({label: 'Home', link: '/'}),
