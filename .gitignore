@@ -26,3 +26,5 @@ yarn-error.log*
 
 #ignore sass cache files
 src/css/.sass-cache/
+
+src/env.js
