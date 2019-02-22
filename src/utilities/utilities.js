@@ -102,8 +102,7 @@ export const sendSlackNotification = (username) => {
 	    })
 	    .then(response => response)
 	};
-	let slackToken = process.env.SLACK_TOKEN ? process.env.SLACK_TOKEN : process.env.REACT_APP_SLACK_TOKEN;
 
-	return postData(`https://hooks.slack.com/services/TB2USJTQX/BBZEQ6V25/${slackToken}`, message)
+	return postData(`https://hooks.slack.com/services/TB2USJTQX/BBZEQ6V25/${process.env.REACT_APP_SLACK_TOKEN}`, message)
 		.then(data => console.log(data))
 }	
