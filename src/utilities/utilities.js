@@ -1,6 +1,6 @@
 import { fromJS } from "immutable";
 import { Events, scroller } from 'react-scroll';
-import env from '../env';
+import env from '../env.js';
 
 export const preventDefault =  (e) => e.preventDefault();
 
