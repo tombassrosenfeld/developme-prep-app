@@ -12,6 +12,7 @@ export const UPDATEISSUE = Symbol("UPDATEISSUE");
 export const UPDATEISSUEFALSE = Symbol("UPDATEISSUEFALSE");
 export const UPDATESHAREDCODE = Symbol("UPDATESHAREDCODE");
 export const SET_ACTIVE_MODULE = Symbol("SET_ACTIVE_MODULE");
+export const SET_DATA_FRESHNESS = Symbol("SET_DATA_FRESHNESS");
 
 export const logOut = () => ({
 	type: LOGOUT,
@@ -79,4 +80,9 @@ export const updateSharedCode = (code, topicTitle, taskID) => ({
 export const setActiveModule = i => ({
 	type: SET_ACTIVE_MODULE,
 	i
+})
+
+export const setDataFreshness = dataFreshness => ({
+	type: SET_DATA_FRESHNESS,
+	dataFreshness,
 })

@@ -29,4 +29,5 @@ export default Map({
 	isRegistering: false,
 	userRegistered: false,
 	activeModule: null,
+	dataFreshness: null,
 });
