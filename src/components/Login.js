@@ -10,7 +10,8 @@ export default ({user, authenticate, onFormElementChange, forgotPassword, isRegi
 				<div className="col-sm-5">	
 					<div className="form-group">
 					    <input 
-					    	type="name" 
+					    	type="text"
+					    	name="username"
 					    	className="form-control" 
 					    	id="username" 
 					    	placeholder="username" 
