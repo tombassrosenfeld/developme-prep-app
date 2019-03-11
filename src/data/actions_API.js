@@ -260,10 +260,12 @@ export const checkDataFreshness = () => (dispatch, getState) => {
 	      userId = getState().get('root').get('user').get('id'),
 	      token = getState().get('root').get('user').get('token');
 
-	if (!currentDataFreshness) {
-		// just get new data if there's no log
-		// of how old the current data is.
-		dispatch(getData(token));
+	if (currentDataFreshness === null) {
+		// if no data freshness is recorded
+		// set it to zero so that fresh data
+		// will definitely be fetched next check. 
+		// This also prevents a duplicate API call
+		dispatch(setDataFreshness(0));
 		return;
 	}
 
