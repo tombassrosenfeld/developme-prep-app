@@ -1,6 +1,6 @@
 import axios from '../data/axios';
 import { processTopicsData } from '../utilities/utilities';
-import { updateErrors, updateMessage, updateIssue, setUserRegistered } from './actions';
+import { updateErrors, updateMessage, updateIssue, setUserRegistered, setLoading } from './actions';
 import { List, fromJS } from "immutable";
 import { getUserRole, sendSlackNotification } from "../utilities/utilities";
 
@@ -22,8 +22,12 @@ export const authenticate = (username, password) => dispatch => {
 			dispatch(updateErrors('')); // remove any errors
 			dispatch(updateCredentials(response.data)); // dispatches token and credentials to state
 			dispatch(getData(response.data.token)); // and immediately calls api for module and user data
+			dispatch(setLoading(false));
 		})
-		.catch( error => dispatch(updateErrors('Unable to log you in! Please check your details.')) )
+		.catch( error => {
+			dispatch(updateErrors('Unable to log you in! Please check your details.'));
+			dispatch(setLoading(false));
+		})
 };
 
 export const registerUser = data => (dispatch)=> {

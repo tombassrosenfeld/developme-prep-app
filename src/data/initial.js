@@ -2,6 +2,7 @@ import { Map, List, /*fromJS*/ } from "immutable";
 
 export default Map({
 	isLoaded: false,
+	loading: false,
 	cohortsLoaded: false,
 	loggedIn: false,
 	lastActive: null,
