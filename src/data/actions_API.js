@@ -15,6 +15,9 @@ export const SHARED_CODE_FEEDBACK = Symbol("SHARED_CODE_FEEDBACK");
 export const SET_STUDENTS = Symbol("SET_STUDENTS");
 export const REGISTER_USER = Symbol("REGISTER_USER");
 
+// how long error banners appear on the screen
+const errorDuration = 6000;
+
 // when user submits login details, calls authenticate()
 export const authenticate = (username, password) => dispatch => {
 	getToken(username, password)
@@ -23,7 +26,10 @@ export const authenticate = (username, password) => dispatch => {
 			dispatch(updateCredentials(response.data)); // dispatches token and credentials to state
 			dispatch(getData(response.data.token)); // and immediately calls api for module and user data
 		})
-		.catch( error => dispatch(updateErrors('Unable to log you in! Please check your details.')) )
+		.catch( error => {
+			dispatch(updateErrors('Unable to log you in! Please check your details.'))
+			setTimeout(() => dispatch(updateErrors('')), errorDuration);
+		})
 };
 
 export const registerUser = data => (dispatch)=> {
@@ -35,6 +41,7 @@ export const registerUser = data => (dispatch)=> {
 		.catch( error => {
 		    if (error.response) {
 		    	dispatch(updateErrors(error.response.data.message));
+		    	setTimeout(() => dispatch(updateErrors('')), errorDuration);
 			}
 		});
 };
@@ -58,11 +65,13 @@ const getData = (token) => (dispatch, getState) => {
 					.catch( error => {
 						console.log(error);
 						dispatch(updateErrors('Error: unable to retrieve students data.'));
+		    		setTimeout(() => dispatch(updateErrors('')), errorDuration);
 					});
 			}
 		})
 		.catch( error => {
 			dispatch( updateErrors('Error: unable to retrieve user data.'));
+		  setTimeout(() => dispatch(updateErrors('')), errorDuration);
 		});
 
 	// gets modules and tasks
@@ -71,7 +80,10 @@ const getData = (token) => (dispatch, getState) => {
 			dispatch(updateErrors('')); // remove any errors
 		    dispatch(topicsData(processTopicsData(response.data))); // update state
 		})
-		.catch( error => dispatch(updateErrors('Error: no modules or tasks available.')) );
+		.catch( error => {
+			dispatch(updateErrors('Error: no modules or tasks available.'));
+    	setTimeout(() => dispatch(updateErrors('')), errorDuration);
+		});
 };
   
 // when user clicks on markers
@@ -99,6 +111,7 @@ export const onClickUserProgress = (id) => (dispatch, getState) => {
 		.catch( error => {
 			// if failed to update, roll back to previous state
 			dispatch(updateErrors('Error: unable to save your progress.'));
+		  setTimeout(() => dispatch(updateErrors('')), errorDuration);
 			return dispatch(userProgress(savedUserProgressArr));
 		})
 }
@@ -122,6 +135,7 @@ export const onChangeAssessmentAnswer = (topic, assessmentID, questionID, answer
 		.catch( error => {
 			// if failed to update, roll back to previous state
 			dispatch(updateErrors('Error: unable to save your answers.'));
+			setTimeout(() => dispatch(updateErrors('')), errorDuration);
 			return dispatch(userAssessmentData(savedUserAssessmentDataObj));
 		})
 }
@@ -134,7 +148,10 @@ export const onIssueFormSubmit = data => (dispatch, getState )=> {
 		.then( response => {
 			dispatch(updateIssue());// Don't worry about this bit for now
 		})
-		.catch( error => dispatch(updateErrors('Post was not submitted, please check for errors')) )
+		.catch( error => {
+			dispatch(updateErrors('Post was not submitted, please check for errors'))
+			setTimeout(() => dispatch(updateErrors('')), errorDuration);
+		})
 };
 
 export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, userAnswers) => (dispatch, getState) => {
@@ -177,6 +194,7 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 				.catch( error => {
 					// if failed, roll back assessment and user progress data
 					dispatch(updateErrors('Error: unable to save your progress.'));
+					setTimeout(() => dispatch(updateErrors('')), errorDuration);
 					dispatch(userAssessmentData(savedAssessmentData));
 					return dispatch(userProgress(savedUserProgressArr));
 				})
@@ -184,6 +202,7 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 		.catch( error => {
 			// if failed, roll back assessment and user progress data
 			dispatch(updateErrors('Error: unable to save your answers.'))
+			setTimeout(() => dispatch(updateErrors('')), errorDuration);
 			dispatch(userAssessmentData(savedAssessmentData));
 			return dispatch(userProgress(savedUserProgressArr));
 		} );
@@ -204,7 +223,10 @@ export const onClickSharedCodeSubmit = (topicTitle, taskID) => (dispatch, getSta
 			const username = getState().get('root').getIn(['user', 'username']);
 			sendSlackNotification(username);
 		})
-		.catch( error => dispatch(updateErrors('Sorry, we couldn\'t submit your code at this time. Please try again.')) )
+		.catch( error => {
+			dispatch(updateErrors('Sorry, we couldn\'t submit your code at this time. Please try again.'))
+			setTimeout(() => dispatch(updateErrors('')), errorDuration);
+		})
 }
 
 export const onClickSharedCodeSave = (topicTitle, taskID) => (dispatch, getState) => {
@@ -220,7 +242,10 @@ export const onClickSharedCodeSave = (topicTitle, taskID) => (dispatch, getState
 			dispatch(updateMessage('You\'re code has been saved!'));
 			dispatch(userSharedCode(fromJS(response.data))); // update state
 		})
-		.catch( error => dispatch(updateErrors('Sorry, we couldn\'t save your code at this time. Please try again.')) )
+		.catch( error => {
+			dispatch(updateErrors('Sorry, we couldn\'t save your code at this time. Please try again.'))
+			setTimeout(() => dispatch(updateErrors('')), errorDuration);
+		})
 }
 
 export const markFeedbackRead = (topicTitle, taskID) => (dispatch, getState) => {
@@ -251,7 +276,10 @@ export const sharedCodeFeedbackSubmit = (student, comment, topicID, taskID) => (
 			dispatch(updateMessage('You\'re feedback has been submitted!'));
 			dispatch(sharedCodeFeedback(data, student.get('cohort'), student.get('id'))); // update state
 		})
-		.catch( error => dispatch(updateErrors('Sorry, we couldn\'t save your feedback at this time. Please try again.')) )
+		.catch( error => {
+			dispatch(updateErrors('Sorry, we couldn\'t save your feedback at this time. Please try again.'))
+			setTimeout(() => dispatch(updateErrors('')), errorDuration);
+		})
 }
 
 const updateCredentials = (data) => ({
