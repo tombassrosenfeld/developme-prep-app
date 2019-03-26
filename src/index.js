@@ -26,15 +26,18 @@ export const rootReducer = combineReducers({root: reducer});
 
 export const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-export const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+export const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+	serialize: true,
+}) || compose;
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
-let enhancer = autoRehydrate();
+let enhancer = composeEnhancers(autoRehydrate());
 
 export const store = createStoreWithMiddleware(persistedReducer, enhancer);
 
 export let persistor = persistStore(store)
+
 
 ReactDOM.render(
 	<HttpsRedirect>
