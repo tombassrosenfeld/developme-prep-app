@@ -1,6 +1,6 @@
 import axios from '../data/axios';
 import { processTopicsData } from '../utilities/utilities';
-import { updateErrors, updateMessage, updateIssue, setUserRegistered } from './actions';
+import { updateErrors, updateMessage, updateIssue, setUserRegistered, setDataFreshness } from './actions';
 import { List, fromJS } from "immutable";
 import { getUserRole, sendSlackNotification } from "../utilities/utilities";
 
@@ -56,6 +56,7 @@ const getData = (token) => (dispatch, getState) => {
 			dispatch(userProgress(List(response.data[0].userProgress))); // update state with user progress
 			dispatch(userAssessmentData(fromJS(response.data[0].userAssessmentData))); // update state
 			dispatch(userSharedCode(fromJS(response.data[0].userSharedCode))); // update state
+			dispatch(setDataFreshness(response.data[0].dataFreshness)); // update data freshness
 			let role = getUserRole(response.data[0].roles);
 			if(role === 'instructor') { // If user is instructor get all student users
 				getStudents(token)
@@ -282,6 +283,28 @@ export const sharedCodeFeedbackSubmit = (student, comment, topicID, taskID) => (
 		})
 }
 
+export const checkDataFreshness = () => (dispatch, getState) => {
+	const currentDataFreshness = getState().get('root').get('dataFreshness'),
+	      userId = getState().get('root').get('user').get('id'),
+	      token = getState().get('root').get('user').get('token');
+
+	if (currentDataFreshness === null) {
+		// if no data freshness is recorded
+		// set it to zero so that fresh data
+		// will definitely be fetched next check. 
+		// This also prevents a duplicate API call
+		dispatch(setDataFreshness(0));
+		return;
+	}
+
+	getDataFreshness(userId).then( ({ data }) => {
+		// get new data if current data is out of date
+		if (new Date(data) > new Date(currentDataFreshness)) {
+			dispatch(getData(token));
+		}
+	});
+}
+
 const updateCredentials = (data) => ({
 	type: UPDATE_CREDENTIALS, 
 	data,
@@ -380,4 +403,8 @@ function postIssue(data) {
 	return axios.post('/wp-json/cf/prep/issue', { 
 		data: data,
 	})
+}
+
+function getDataFreshness(id) {
+	return axios.get(`wp-json/cf/prep/${id}/timestamp`);
 }
