@@ -2,11 +2,14 @@ import React from 'react';
 import ForgotPassword from './ForgotPassword';
 import Register from '../containers/Register';
 
-export default ({user, authenticate, onFormElementChange, forgotPassword, isRegistering, cancel, userRegistered }) => (
+export default ({ user, authenticate, onFormElementChange, forgotPassword, isRegistering, cancel, userRegistered, setLoading, }) => (
 	<div className="container">
 		<div className="row">
 			{!isRegistering ?
-			<form onSubmit={ (e) => authenticate(e, user.get('username'), user.get('password'))}>
+			<form onSubmit={ (e) => {
+				setLoading(true);
+				authenticate(e, user.get('username'), user.get('password'))
+			}}>
 				<div className="col-sm-5">	
 					<div className="form-group">
 					    <input 

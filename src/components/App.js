@@ -91,14 +91,22 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
     <Router>
       <div>
         <div className="container-fluid">
           <Header />
           <div className="app">
-            { this.props.loggedIn ? null : <Login /> }
-            { this.props.loggedIn ? this.props.isLoaded? this.loaded() : this.loading() : null }
+            {
+              this.props.loading ?
+                this.loading() :
+              !this.props.loggedIn ? 
+                <Login /> :
+              this.props.isLoaded ? 
+                this.loaded() :
+                this.loading() 
+            }
           </div>
         </div>  
         <Errors />
