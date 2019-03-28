@@ -46,17 +46,16 @@ const getData = (token) => (dispatch, getState) => {
 		.then( response => {
 			dispatch(updateErrors('')); // remove any errors
 			dispatch(userData(response.data)); // update state with user data
-			dispatch(userProgress(List(response.data[0].userProgress))); // update state with user progress
-			dispatch(userAssessmentData(fromJS(response.data[0].userAssessmentData))); // update state
-			dispatch(userSharedCode(fromJS(response.data[0].userSharedCode))); // update state
-			let role = getUserRole(response.data[0].roles);
+			dispatch(userProgress(List(response.data.userProgress))); // update state with user progress
+			dispatch(userAssessmentData(fromJS(response.data.userAssessmentData))); // update state
+			dispatch(userSharedCode(fromJS(response.data.userSharedCode))); // update state
+			let role = getUserRole(response.data.roles);
 			if(role === 'instructor') { // If user is instructor get all student users
 				getStudents(token)
 					.then(response => {
 						dispatch(setStudents(fromJS(response.data)));
 					})
 					.catch( error => {
-						console.log(error);
 						dispatch(updateErrors('Error: unable to retrieve students data.'));
 					});
 			}
@@ -303,8 +302,6 @@ const setStudents = data => ({
 // API calls
 
 const source = {
-	topics: 'custom',
-	user: 'default',
 	students: 'default',
 }
 
@@ -316,15 +313,21 @@ function getToken(username, password) {
 }
 
 function getStudents(token) {
+	if (source.students === 'custom') {
+		return axios.get('/wp-json/cf/prep/students/', {
+			headers: {'Authorization': 'Bearer ' + token},
+		})
+	}
 	return axios.get('/wp-json/wp/v2/users?context=edit&roles=student&per_page=100', { // only return user data for the logged in user
     	headers: {'Authorization': 'Bearer ' + token},
   })
 }
 
 function getUserData(token, userEmail) {
-	return axios.get('/wp-json/wp/v2/users?context=edit&search=' + userEmail, { // only return user data for the logged in user
-  	headers: {'Authorization': 'Bearer ' + token},
-  })
+	return axios.get(`/wp-json/cf/prep/user/${ userEmail }`, {
+		// only return user data for the logged in user
+		headers: {'Authorization': 'Bearer ' + token},
+	});
 }
 
 function postUserProgress(data, userID, token) {
@@ -349,10 +352,7 @@ function postUserSharedCode(data, userID, token) {
 }
 
 function getTopics() {
-	if (source.topics === 'custom') {
-		return axios.get('/wp-json/cf/prep/topics')
-	}
-	return axios.get('/wp-json/wp/v2/cf_preparation/');
+	return axios.get('/wp-json/cf/prep/topics')
 } 
 
 function postUserData(data) {
