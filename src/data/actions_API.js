@@ -301,9 +301,6 @@ const setStudents = data => ({
 
 // API calls
 
-const source = {
-	students: 'default',
-}
 
 function getToken(username, password) {
 	return axios.post('/wp-json/jwt-auth/v1/token', { 
@@ -313,14 +310,10 @@ function getToken(username, password) {
 }
 
 function getStudents(token) {
-	if (source.students === 'custom') {
-		return axios.get('/wp-json/cf/prep/students/', {
-			headers: {'Authorization': 'Bearer ' + token},
-		})
-	}
-	return axios.get('/wp-json/wp/v2/users?context=edit&roles=student&per_page=100', { // only return user data for the logged in user
-    	headers: {'Authorization': 'Bearer ' + token},
-  })
+	return axios.get('/wp-json/cf/prep/students/', {
+		// only return user data for the logged in user
+		headers: {'Authorization': 'Bearer ' + token},
+	})
 }
 
 function getUserData(token, userEmail) {
