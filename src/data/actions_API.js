@@ -71,7 +71,11 @@ const getData = (token) => (dispatch, getState) => {
 			dispatch(updateErrors('')); // remove any errors
 		    dispatch(topicsData(processTopicsData(response.data))); // update state
 		})
-		.catch( error => dispatch(updateErrors('Error: no modules or tasks available.')) );
+		.catch( error => {
+			console.log(error);
+			console.log(error.response);
+			dispatch(updateErrors('Error: no modules or tasks available.'));
+		});
 };
   
 // when user clicks on markers
@@ -298,6 +302,12 @@ const setStudents = data => ({
 
 // API calls
 
+const source = {
+	topics: 'custom',
+	user: 'default',
+	students: 'default',
+}
+
 function getToken(username, password) {
 	return axios.post('/wp-json/jwt-auth/v1/token', { 
 		username: username,
@@ -339,6 +349,9 @@ function postUserSharedCode(data, userID, token) {
 }
 
 function getTopics() {
+	if (source.topics === 'custom') {
+		return axios.get('/wp-json/cf/prep/topics')
+	}
 	return axios.get('/wp-json/wp/v2/cf_preparation/');
 } 
 
