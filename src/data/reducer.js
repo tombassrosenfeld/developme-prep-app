@@ -26,7 +26,7 @@ const updateMessage = (state, { message }) => {
 }
 
 const updateUser = (state, { data }) => {
-	let user = data[0];
+	let user = data;
 	const cohort = user.cohort ? user.cohort : 'Coding Fellowship';
 	return state.set('lastActive', new Date().getTime())
 				.setIn(['user', 'id'], user.id)
@@ -66,6 +66,7 @@ const updateStudentSharedCodeFeedback = (state, {data, cohort, studentID}) => {
 
 const setStudents = (state, { data }) => {
 	let cohorts = orderByCohort(data);
+	console.log(cohorts);
 	let studentsToMark = searchForMarking(data);
 	return state.set('cohorts', fromJS(cohorts))
 				.set('cohortsLoaded', true)

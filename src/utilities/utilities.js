@@ -8,14 +8,13 @@ export const preventDefault =  (e) => e.preventDefault();
 export const processTopicsData = (modulesData) => {
 	let data = modulesData.map((item, i) => ({
 		id: i, 
-		title: item.title.rendered, 
-		order: item.acfs.topic_order,
+		title: item.title, 
 		short_title: item.acfs.short_title,
 		description: item.acfs.description,
 		tasks: item.acfs.tasks ? item.acfs.tasks : [],
 		assessments: item.acfs.assessment ? item.acfs.assessment : [],
 		selected: 'selected',
-								}));
+	}));
 	return fromJS(data); // make immutable
 }
 
