@@ -66,7 +66,6 @@ const updateStudentSharedCodeFeedback = (state, {data, cohort, studentID}) => {
 
 const setStudents = (state, { data }) => {
 	let cohorts = orderByCohort(data);
-	console.log(cohorts);
 	let studentsToMark = searchForMarking(data);
 	return state.set('cohorts', fromJS(cohorts))
 				.set('cohortsLoaded', true)
