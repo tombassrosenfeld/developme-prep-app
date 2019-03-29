@@ -8,9 +8,11 @@ import {
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web and AsyncStorage for react-native
 import { persistStore, autoRehydrate } from 'redux-persist-immutable'
+import { PersistGate } from 'redux-persist-immutable'
 import { Provider } from "react-redux";
 import reducer from "./data/reducer";
 import HttpsRedirect from 'react-https-redirect';
+import { setLoading } from './data/actions';
 import './css/output.css';
 
 // import necessary to make asynchronous actions using thunks, for API calls
@@ -36,7 +38,10 @@ let enhancer = composeEnhancers(autoRehydrate());
 
 export const store = createStoreWithMiddleware(persistedReducer, enhancer);
 
-export let persistor = persistStore(store)
+export const persistor = persistStore(store);
+
+// prevent infinite loading loop if user closed app in loading state
+setTimeout(() => store.dispatch(setLoading(false)), 500);
 
 
 ReactDOM.render(

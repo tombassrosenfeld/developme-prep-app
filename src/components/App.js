@@ -91,7 +91,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
     <Router>
       <div>
