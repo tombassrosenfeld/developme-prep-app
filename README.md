@@ -10,6 +10,9 @@ To run this app in production mode:
 Fetch all files from the repository:  
 In the root folder, run `yarn add` to install all dependencies listed in the package.json file.  
 Run `yarn start` to start the app in production mode.  
+
+## Environment Variables
+Create a file .env at the root of your project. This will store all variables to change between each environment. An example of the variables currently in use can be found at .env.example. Please update this file whenever you need to add environment variables. Create-React-App requires that all env variables are prefixed with `REACT_APP_`.
   
 ## Sass
 The app uses sass to modularize the css. Navigate to the css folder and run:  

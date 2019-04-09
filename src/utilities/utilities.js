@@ -1,6 +1,5 @@
 import { fromJS } from "immutable";
 import { Events, scroller } from 'react-scroll';
-import env from '../env';
 
 export const preventDefault =  (e) => e.preventDefault();
 
@@ -100,9 +99,9 @@ export const sendSlackNotification = (username) => {
 	        referrer: "no-referrer",
 	        body: JSON.stringify(data),
 	    })
-	    .then(response => response.json())
+	    .then(response => response)
 	};
 
-	return postData(`https://hooks.slack.com/services/TB2USJTQX/BBZEQ6V25/${env.slackToken}`, message)
-		.then(data => console.log(data))
+	return postData(`https://hooks.slack.com/services/TB2USJTQX/BBZEQ6V25/${process.env.REACT_APP_SLACK_TOKEN}`, message)
+		.then(data => data)
 }	
