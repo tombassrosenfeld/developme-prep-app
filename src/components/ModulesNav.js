@@ -1,10 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-export default ({userRole, navItems, hasMarking, hasNewFeedback, activeModule, setActiveModule, numStudentsToMark}) => {
-	console.log(userRole);
-	console.log(hasNewFeedback);
-	return (
+export default ({userRole, navItems, hasMarking, hasNewFeedback, activeModule, setActiveModule, numStudentsToMark}) => (
 	<div className="row bottom-nav">
 		<div className="col-xs-12 modules">		
 			{userRole? navItems.get(userRole).map((navItem, i) => {
@@ -35,4 +32,4 @@ export default ({userRole, navItems, hasMarking, hasNewFeedback, activeModule, s
 			}) : null}
 		</div>
 	</div>
-)}
+)
