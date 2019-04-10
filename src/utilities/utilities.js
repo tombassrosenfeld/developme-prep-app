@@ -105,3 +105,5 @@ export const sendSlackNotification = (username) => {
 	return postData(`https://hooks.slack.com/services/TB2USJTQX/BBZEQ6V25/${process.env.REACT_APP_SLACK_TOKEN}`, message)
 		.then(data => data)
 }	
+
+export const timeoutNotices = (dispatch, updater, noticeDuration) => setTimeout(() => dispatch(updater('')), noticeDuration);

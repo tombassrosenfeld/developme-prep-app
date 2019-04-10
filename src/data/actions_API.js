@@ -1,5 +1,5 @@
 import axios from '../data/axios';
-import { processTopicsData } from '../utilities/utilities';
+import { processTopicsData, timeoutNotices } from '../utilities/utilities';
 import { updateErrors, updateMessage, updateIssue, setUserRegistered, setDataFreshness, setLoading } from './actions';
 import { List, fromJS } from "immutable";
 import { getUserRole, sendSlackNotification } from "../utilities/utilities";
@@ -16,7 +16,7 @@ export const SET_STUDENTS = Symbol("SET_STUDENTS");
 export const REGISTER_USER = Symbol("REGISTER_USER");
 
 // how long error banners appear on the screen
-const errorDuration = 6000;
+const noticeDuration = 6000;
 
 // when user submits login details, calls authenticate()
 export const authenticate = (username, password) => dispatch => {
@@ -30,7 +30,7 @@ export const authenticate = (username, password) => dispatch => {
 		.catch( error => {
 			dispatch(updateErrors('Unable to log you in! Please check your details.'));
 			dispatch(setLoading(false));
-			setTimeout(() => dispatch(updateErrors('')), errorDuration);
+			timeoutNotices(dispatch, updateErrors, noticeDuration);
 		})
 };
 
@@ -43,7 +43,7 @@ export const registerUser = data => (dispatch)=> {
 		.catch( error => {
 		    if (error.response) {
 		    	dispatch(updateErrors(error.response.data.message));
-		    	setTimeout(() => dispatch(updateErrors('')), errorDuration);
+		    	timeoutNotices(dispatch, updateErrors, noticeDuration);
 			}
 		});
 };
@@ -67,13 +67,13 @@ const getData = (token) => (dispatch, getState) => {
 					})
 					.catch( error => {
 						dispatch(updateErrors('Error: unable to retrieve students data.'));
-		    		setTimeout(() => dispatch(updateErrors('')), errorDuration);
+		    		timeoutNotices(dispatch, updateErrors, noticeDuration);
 					});
 			}
 		})
 		.catch( error => {
 			dispatch( updateErrors('Error: unable to retrieve user data.'));
-		  setTimeout(() => dispatch(updateErrors('')), errorDuration);
+		  timeoutNotices(dispatch, updateErrors, noticeDuration);
 		});
 
 	// gets modules and tasks
@@ -84,7 +84,7 @@ const getData = (token) => (dispatch, getState) => {
 		})
 		.catch( error => {
 			dispatch(updateErrors('Error: no modules or tasks available.'));
-    	setTimeout(() => dispatch(updateErrors('')), errorDuration);
+    	timeoutNotices(dispatch, updateErrors, noticeDuration);
 		});
 };
   
@@ -113,7 +113,7 @@ export const onClickUserProgress = (id) => (dispatch, getState) => {
 		.catch( error => {
 			// if failed to update, roll back to previous state
 			dispatch(updateErrors('Error: unable to save your progress.'));
-		  setTimeout(() => dispatch(updateErrors('')), errorDuration);
+		  timeoutNotices(dispatch, updateErrors, noticeDuration);
 			return dispatch(userProgress(savedUserProgressArr));
 		})
 }
@@ -137,7 +137,7 @@ export const onChangeAssessmentAnswer = (topic, assessmentID, questionID, answer
 		.catch( error => {
 			// if failed to update, roll back to previous state
 			dispatch(updateErrors('Error: unable to save your answers.'));
-			setTimeout(() => dispatch(updateErrors('')), errorDuration);
+			timeoutNotices(dispatch, updateErrors, noticeDuration);
 			return dispatch(userAssessmentData(savedUserAssessmentDataObj));
 		})
 }
@@ -152,7 +152,7 @@ export const onIssueFormSubmit = data => (dispatch, getState )=> {
 		})
 		.catch( error => {
 			dispatch(updateErrors('Post was not submitted, please check for errors'))
-			setTimeout(() => dispatch(updateErrors('')), errorDuration);
+			timeoutNotices(dispatch, updateErrors, noticeDuration);
 		})
 };
 
@@ -196,7 +196,7 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 				.catch( error => {
 					// if failed, roll back assessment and user progress data
 					dispatch(updateErrors('Error: unable to save your progress.'));
-					setTimeout(() => dispatch(updateErrors('')), errorDuration);
+					timeoutNotices(dispatch, updateErrors, noticeDuration);
 					dispatch(userAssessmentData(savedAssessmentData));
 					return dispatch(userProgress(savedUserProgressArr));
 				})
@@ -204,7 +204,7 @@ export const onClickAssessmentSubmit = (topicTitle, assessmentID, assessment, us
 		.catch( error => {
 			// if failed, roll back assessment and user progress data
 			dispatch(updateErrors('Error: unable to save your answers.'))
-			setTimeout(() => dispatch(updateErrors('')), errorDuration);
+			timeoutNotices(dispatch, updateErrors, noticeDuration);
 			dispatch(userAssessmentData(savedAssessmentData));
 			return dispatch(userProgress(savedUserProgressArr));
 		} );
@@ -217,17 +217,19 @@ export const onClickSharedCodeSubmit = (topicTitle, taskID) => (dispatch, getSta
 	data = data.setIn([topicTitle, taskID, 'pending'], true);
 	let userID = getState().get('root').getIn(['user', 'id']);
 	let token = getState().get('root').getIn(['user', 'token']);
-	postUserSharedCode(data.toJS(), userID, token)
+	let userEmail = getState().get('root').getIn(['user', 'user_email']);
+	postUserSharedCode(data.toJS(), userID, token, userEmail)
 		.then( response => {
 			dispatch(updateErrors(''));
-			dispatch(updateMessage('You\'re code has been submitted and will be marked by an instructor soon!'));
+			dispatch(updateMessage('Your code has been submitted and will be marked by an instructor soon!'));
+			timeoutNotices(dispatch, updateMessage, noticeDuration);
 			dispatch(userSharedCode(fromJS(response.data))); // update state
 			const username = getState().get('root').getIn(['user', 'username']);
 			sendSlackNotification(username);
 		})
 		.catch( error => {
 			dispatch(updateErrors('Sorry, we couldn\'t submit your code at this time. Please try again.'))
-			setTimeout(() => dispatch(updateErrors('')), errorDuration);
+			timeoutNotices(dispatch, updateErrors, noticeDuration);
 		})
 }
 
@@ -238,15 +240,17 @@ export const onClickSharedCodeSave = (topicTitle, taskID) => (dispatch, getState
 	data = data.setIn([topicTitle, taskID, 'newFeedback'], false); // assume if they are saving that they have read any feedback
 	let userID = getState().get('root').getIn(['user', 'id']);
 	let token = getState().get('root').getIn(['user', 'token']);
-	postUserSharedCode(data.toJS(), userID, token)
+	let userEmail = getState().get('root').getIn(['user', 'user_email']);
+	postUserSharedCode(data.toJS(), userID, token, userEmail)
 		.then( response => {
 			dispatch(updateErrors(''));
-			dispatch(updateMessage('You\'re code has been saved!'));
+			dispatch(updateMessage('Your code has been saved!'));
+			timeoutNotices(dispatch, updateMessage, noticeDuration);
 			dispatch(userSharedCode(fromJS(response.data))); // update state
 		})
 		.catch( error => {
 			dispatch(updateErrors('Sorry, we couldn\'t save your code at this time. Please try again.'))
-			setTimeout(() => dispatch(updateErrors('')), errorDuration);
+			timeoutNotices(dispatch, updateErrors, noticeDuration);
 		})
 }
 
@@ -255,7 +259,8 @@ export const markFeedbackRead = (topicTitle, taskID) => (dispatch, getState) => 
 	data = data.setIn([topicTitle, taskID, 'newFeedback'], false); 
 	let userID = getState().get('root').getIn(['user', 'id']);
 	let token = getState().get('root').getIn(['user', 'token']);	
-	postUserSharedCode(data.toJS(), userID, token)
+	let userEmail = getState().get('root').getIn(['user', 'user_email']);
+	postUserSharedCode(data.toJS(), userID, token, userEmail)
 		.then( response => {
 			dispatch(userSharedCode(fromJS(response.data))); // update state
 		});
@@ -275,12 +280,13 @@ export const sharedCodeFeedbackSubmit = (student, comment, topicID, taskID) => (
 	postUserSharedCode(data.toJS(), student.get('id'), token)
 		.then( response => {
 			dispatch(updateErrors(''));
-			dispatch(updateMessage('You\'re feedback has been submitted!'));
+			dispatch(updateMessage('Your feedback has been submitted!'));
+			timeoutNotices(dispatch, updateMessage, noticeDuration);
 			dispatch(sharedCodeFeedback(data, student.get('cohort'), student.get('id'))); // update state
 		})
 		.catch( error => {
 			dispatch(updateErrors('Sorry, we couldn\'t save your feedback at this time. Please try again.'))
-			setTimeout(() => dispatch(updateErrors('')), errorDuration);
+			timeoutNotices(dispatch, updateErrors, noticeDuration);
 		})
 }
 
@@ -386,10 +392,11 @@ function postUserAssessmentData(data, userID, token) {
   })
 }
 
-function postUserSharedCode(data, userID, token) {
+function postUserSharedCode(data, userID, token, email) {
 	axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 	return axios.post('/wp-json/cf/prep/' + userID + '/sharedcode', {
 		data: data,
+		email: email,
 	})
 }
 
