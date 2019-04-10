@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-export default ({userRole, navItems, hasMarking, hasNewFeedback, activeModule, setActiveModule, numStudentsToMark}) => (
+export default ({userRole, navItems, hasMarking, hasNewFeedback, activeModule, setActiveModule, numStudentsToMark}) => {
+	console.log(userRole);
+	console.log(hasNewFeedback);
+	return (
 	<div className="row bottom-nav">
 		<div className="col-xs-12 modules">		
 			{userRole? navItems.get(userRole).map((navItem, i) => {
@@ -14,11 +17,22 @@ export default ({userRole, navItems, hasMarking, hasNewFeedback, activeModule, s
 						className={ className }
 						onClick={() => setActiveModule(i)}
 						to={navItem.get('link')}
-						key={i}>
-					{ numStudentsToMark && navItem.get('label') === 'Marking' ? <React.Fragment>{navItem.get('label')} <span className="bottom-nav-module__notification">{numStudentsToMark}</span></React.Fragment> : navItem.get('label')}
-		  			</Link>		
-	  			)
+						key={i}
+					>
+						{ navItem.get('label') } 
+						{ 
+							// check if there's marking or feedback
+							(numStudentsToMark && navItem.get('label') === 'Marking') ||
+							(hasNewFeedback && navItem.get('label') === 'Feedback') ?
+							// display notification if so
+							<span className="bottom-nav-module__notification">
+								{numStudentsToMark || +hasNewFeedback}
+							</span>
+							: null
+						}
+					</Link>		
+				)
 			}) : null}
 		</div>
 	</div>
-)
+)}
