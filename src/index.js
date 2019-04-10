@@ -28,9 +28,12 @@ export const rootReducer = combineReducers({root: reducer});
 
 export const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-export const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-	serialize: true,
-}) || compose;
+export const composeEnhancers = (
+	window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && 
+	window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+		serialize: true,
+	}) 
+) || compose;
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
