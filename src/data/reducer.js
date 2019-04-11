@@ -1,7 +1,7 @@
 import initial from "./initial";
 import {List, fromJS} from "immutable";
 
-import { ONFORMELEMENTCHANGE, UPDATE_ERRORS, UPDATE_MESSAGE, LOGOUT, SET_REGISTERING, SET_ACTIVE_MODULE, CANCEL_REGISTRATION, ONCLICK_ICON, DELETE_ASSESSMENT_DATA, GET_ARCHIVED_ASSESSMENT_DATA, UPDATEISSUE, UPDATEISSUEFALSE, UPDATESHAREDCODE, SET_USER_REGISTERED } from "../data/actions";
+import { ONFORMELEMENTCHANGE, UPDATE_ERRORS, UPDATE_MESSAGE, LOGOUT, SET_REGISTERING, SET_ACTIVE_MODULE, CANCEL_REGISTRATION, ONCLICK_ICON, DELETE_ASSESSMENT_DATA, GET_ARCHIVED_ASSESSMENT_DATA, UPDATEISSUE, UPDATEISSUEFALSE, UPDATESHAREDCODE, SET_USER_REGISTERED, SET_DATA_FRESHNESS, SET_LOADING } from "../data/actions";
 import { USER_DATA, UPDATE_CREDENTIALS, USER_PROGRESS, USER_ASSESSMENT_DATA, USER_SHARED_CODE, SHARED_CODE_FEEDBACK, SET_STUDENTS, TOPICS_DATA} from "../data/actions_API";
 
 const updateUsernameAndPassword = (state, { id, val }) => {
@@ -26,7 +26,7 @@ const updateMessage = (state, { message }) => {
 }
 
 const updateUser = (state, { data }) => {
-	let user = data[0];
+	let user = data;
 	const cohort = user.cohort ? user.cohort : 'Coding Fellowship';
 	return state.set('lastActive', new Date().getTime())
 				.setIn(['user', 'id'], user.id)
@@ -140,6 +140,11 @@ const logOut = (state) => {
 	return state;
 }
 
+const setLoading = (state, { loading }) => {
+	return state.set('lastActive', new Date().getTime())
+			.set('loading', loading);
+}
+
 const setRegistering = (state) => {
 	return state.set('lastActive', new Date().getTime())
 			.set('isRegistering', true).set('userRegistered', false);
@@ -192,6 +197,10 @@ const expireUserSession = () => {
 	return logOut(initial).set('errors', 'Your session has expired, please log in again.');
 }
 
+const setDataFreshness = (state, { dataFreshness }) => {
+	return state.set('dataFreshness', dataFreshness);
+}
+
 export default (state = initial, action) => {
 	const isExpiredSession = new Date(new Date().getTime() - state.get('lastActive')).getMinutes() >= 60;
 	if(state.get('loggedIn') && state.get('lastActive') && isExpiredSession) {
@@ -220,6 +229,8 @@ export default (state = initial, action) => {
 		case SET_REGISTERING: return setRegistering(state);
 		case SET_USER_REGISTERED: return setUserRegistered(state, action);
 		case SET_ACTIVE_MODULE: return setActiveModule(state, action);
+		case SET_DATA_FRESHNESS: return setDataFreshness(state, action);
+		case SET_LOADING: return setLoading(state, action);
 		default: return state;
 	}
 };

@@ -14,10 +14,21 @@ export default ({userRole, navItems, hasMarking, hasNewFeedback, activeModule, s
 						className={ className }
 						onClick={() => setActiveModule(i)}
 						to={navItem.get('link')}
-						key={i}>
-					{ numStudentsToMark && navItem.get('label') === 'Marking' ? <React.Fragment>{navItem.get('label')} <span className="bottom-nav-module__notification">{numStudentsToMark}</span></React.Fragment> : navItem.get('label')}
-		  			</Link>		
-	  			)
+						key={i}
+					>
+						{ navItem.get('label') } 
+						{ 
+							// check if there's marking or feedback
+							(numStudentsToMark && navItem.get('label') === 'Marking') ||
+							(hasNewFeedback && navItem.get('label') === 'Feedback') ?
+							// display notification if so
+							<span className="bottom-nav-module__notification">
+								{numStudentsToMark || +hasNewFeedback}
+							</span>
+							: null
+						}
+					</Link>		
+				)
 			}) : null}
 		</div>
 	</div>

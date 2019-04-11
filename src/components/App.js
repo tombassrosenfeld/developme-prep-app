@@ -33,6 +33,10 @@ class App extends Component {
     return this.props.userRole ? (
       <div className="row">
           <Route path="/" render={ ({ match }) => {
+            this.props.checkDataFreshness(this.props.userId)
+            return null;
+          }}/>
+          <Route path="/" render={ ({ match }) => {
             return this.props.userRole === 'instructor' ?
               <CohortNav title="Cohorts" />
               : null }
@@ -93,8 +97,15 @@ class App extends Component {
         <div className="container-fluid">
           <Header />
           <div className="app">
-            { this.props.loggedIn ? null : <Login /> }
-            { this.props.loggedIn ? this.props.isLoaded? this.loaded() : this.loading() : null }
+            {
+              this.props.loading ?
+                this.loading() :
+              !this.props.loggedIn ? 
+                <Login /> :
+              this.props.isLoaded ? 
+                this.loaded() :
+                this.loading() 
+            }
           </div>
         </div>  
         <Errors />

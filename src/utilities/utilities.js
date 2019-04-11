@@ -7,14 +7,13 @@ export const preventDefault =  (e) => e.preventDefault();
 export const processTopicsData = (modulesData) => {
 	let data = modulesData.map((item, i) => ({
 		id: i, 
-		title: item.title.rendered, 
-		order: item.acfs.topic_order,
+		title: item.title, 
 		short_title: item.acfs.short_title,
 		description: item.acfs.description,
 		tasks: item.acfs.tasks ? item.acfs.tasks : [],
 		assessments: item.acfs.assessment ? item.acfs.assessment : [],
 		selected: 'selected',
-								}));
+	}));
 	return fromJS(data); // make immutable
 }
 
@@ -106,3 +105,5 @@ export const sendSlackNotification = (username) => {
 	return postData(`https://hooks.slack.com/services/TB2USJTQX/BBZEQ6V25/${process.env.REACT_APP_SLACK_TOKEN}`, message)
 		.then(data => data)
 }	
+
+export const timeoutNotices = (dispatch, updater, noticeDuration) => setTimeout(() => dispatch(updater('')), noticeDuration);

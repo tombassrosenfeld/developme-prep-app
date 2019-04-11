@@ -1,12 +1,12 @@
 import { connect } from "react-redux";
 import Login from "../components/Login";
 import { authenticate } from "../data/actions_API";
-import { onFormElementChange, cancelRegistration } from "../data/actions";
+import { onFormElementChange, cancelRegistration, setLoading } from "../data/actions";
 
 const mapStateToProps = state => ({
    user: state.get('root').get('user'),
    isRegistering: state.get('root').get('isRegistering'),
-   userRegistered: state.get('root').get('userRegistered')
+   userRegistered: state.get('root').get('userRegistered'),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -16,6 +16,7 @@ const mapDispatchToProps = dispatch => ({
     },
     onFormElementChange: (id, val) => dispatch(onFormElementChange(id, val)),
     cancel: () => dispatch(cancelRegistration()),	
+    setLoading: bool => dispatch(setLoading(bool)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

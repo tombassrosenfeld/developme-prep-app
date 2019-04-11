@@ -2,6 +2,7 @@ import { Map, List, /*fromJS*/ } from "immutable";
 
 export default Map({
 	isLoaded: false,
+	loading: false,
 	cohortsLoaded: false,
 	loggedIn: false,
 	lastActive: null,
@@ -29,4 +30,5 @@ export default Map({
 	isRegistering: false,
 	userRegistered: false,
 	activeModule: null,
+	dataFreshness: null,
 });
