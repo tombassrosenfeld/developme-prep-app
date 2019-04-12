@@ -1,7 +1,7 @@
 import axios from "axios";
 import { url } from '../env.js';
 
-export const baseURL = url.base_url[url.app_env];
+export const baseURL = process.env.REACT_APP_API_URL
 
 // create a version of axios with useful defaults
 export default axios.create({
