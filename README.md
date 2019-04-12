@@ -12,7 +12,15 @@ In the root folder, run `yarn add` to install all dependencies listed in the pac
 Run `yarn start` to start the app in production mode.  
 
 ## Environment Variables
-Create a file .env at the root of your project. This will store all variables to change between each environment. An example of the variables currently in use can be found at .env.example. Please update this file whenever you need to add environment variables. Create-React-App requires that all env variables are prefixed with `REACT_APP_`.
+Create a file .env at the root of your project. This will store all variables to change between each environment. An example of the variables currently in use can be found at .env.example. Please update this file whenever you need to add environment variables. 
+
+Heroku / Create-React-App requires that all env variables are prefixed with `REACT_APP_`. You can set environment variables for your production Heroku app using the Heroku CLI tools. 
+
+<a href="https://github.com/nhutphuongit/create-react-app-buildpack#environment-variables">https://github.com/nhutphuongit/create-react-app-buildpack#environment-variables</a>
+
+```
+heroku config:set REACT_APP_HELLO='I love sushi!'
+```
   
 ## Sass
 The app uses sass to modularize the css. Navigate to the css folder and run:  
